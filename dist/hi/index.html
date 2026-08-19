@@ -1,0 +1,554 @@
+<!DOCTYPE html><html lang="hi" dir="ltr"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Anti-FOUC theme script --><script>
+  (function () {
+    try {
+      const saved = localStorage.getItem('iva_calculator_theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved ? saved : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+  })();
+</script><!-- Primary SEO --><title>Calculadora IVA — वैट एवं बिक्री कर कैलकुलेटर</title><meta name="description" content="स्पेन 2025 दरों (21%, 10%, 4%) या कस्टम दरों के साथ वैट (IVA) की तुरंत गणना करें।"><link rel="canonical" href="https://calculadoraiva.es/hi/"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="googlebot" content="index, follow"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Search Engine Verification --><meta name="google-site-verification" content="google-site-verification-token"><meta name="msvalidate.01" content="bing-site-verification-token"><meta name="yandex-verification" content="yandex-site-verification-token"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:title" content="Calculadora IVA — वैट एवं बिक्री कर कैलकुलेटर"><meta property="og:description" content="स्पेन 2025 दरों (21%, 10%, 4%) या कस्टम दरों के साथ वैट (IVA) की तुरंत गणना करें।"><meta property="og:url" content="https://calculadoraiva.es/hi/"><meta property="og:site_name" content="Calculadora IVA"><meta property="og:locale" content="hi_IN"><meta property="og:image" content="https://calculadoraiva.es/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Calculadora IVA — वैट एवं बिक्री कर कैलकुलेटर"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Calculadora IVA — वैट एवं बिक्री कर कैलकुलेटर"><meta name="twitter:description" content="स्पेन 2025 दरों (21%, 10%, 4%) या कस्टम दरों के साथ वैट (IVA) की तुरंत गणना करें।"><meta name="twitter:image" content="https://calculadoraiva.es/og-image.png"><!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"><!-- JSON-LD Structured Data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Calculadora IVA","legalName":"Calculadora IVA Pro S.L.","url":"https://calculadoraiva.es","logo":{"@type":"ImageObject","url":"https://calculadoraiva.es/favicon.svg"},"description":"Free, professional, and instant VAT/IVA calculator. Add or extract VAT with official Spanish and international rates. Real-time charts, breakdown formulas, and invoice tools.","contactPoint":{"@type":"ContactPoint","email":"contacto@calculadoraiva.es","contactType":"customer support"},"sameAs":["https://facebook.com/calculadoraiva","https://twitter.com/calculadoraiva","https://linkedin.com/company/calculadoraiva","https://pinterest.com/calculadoraiva"]}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"SiteNavigationElement","position":1,"name":"nav.calculator","url":"https://calculadoraiva.es/#calculator"},{"@type":"SiteNavigationElement","position":2,"name":"nav.howItWorks","url":"https://calculadoraiva.es/#how-it-works"},{"@type":"SiteNavigationElement","position":3,"name":"nav.rates","url":"https://calculadoraiva.es/#rates"},{"@type":"SiteNavigationElement","position":4,"name":"nav.faq","url":"https://calculadoraiva.es/#faq"},{"@type":"SiteNavigationElement","position":5,"name":"nav.blog","url":"https://calculadoraiva.es/blog/"}]}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Calculadora IVA — वैट एवं बिक्री कर कैलकुलेटर","description":"स्पेन 2025 दरों (21%, 10%, 4%) या कस्टम दरों के साथ वैट (IVA) की तुरंत गणना करें।","url":"https://calculadoraiva.es/hi/"}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is VAT (IVA)?","acceptedAnswer":{"@type":"Answer","text":"VAT (Value Added Tax, known as IVA in Spanish) is a general consumption tax assessed on the value added to goods and services. In Spain, it is regulated by the Spanish Tax Agency (Agencia Tributaria) and applies at standard rates across the supply chain."}},{"@type":"Question","name":"How do you calculate VAT in Spain?","acceptedAnswer":{"@type":"Answer","text":"To add VAT: Multiply the net taxable base by (1 + Tax Rate / 100). For example, €100 + 21% VAT = €100 × 1.21 = €121. To extract VAT from a gross amount: Divide the gross amount by (1 + Tax Rate / 100). For example, €121 / 1.21 = €100 taxable base."}},{"@type":"Question","name":"What is the Equivalence Surcharge (Recargo de Equivalencia)?","acceptedAnswer":{"@type":"Answer","text":"The Equivalence Surcharge is a special mandatory VAT regime in Spain for retail traders who sell goods without manufacturing or processing them. The current surcharge rates are 5.2% on the 21% general rate, 1.4% on the 10% reduced rate, and 0.5% on the 4% super-reduced rate."}},{"@type":"Question","name":"Is VAT included in consumer prices in Spain?","acceptedAnswer":{"@type":"Answer","text":"Yes, Spanish consumer protection laws require all B2C prices displayed to the public to be final gross prices with VAT included. B2B invoices between businesses and self-employed professionals must explicitly break down the net taxable base, VAT rate, and VAT quota."}}]}</script><link rel="stylesheet" href="/_astro/index.D27okbLx.css"></head> <body class="min-h-screen flex flex-col antialiased bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors"> <header class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="mainHeader"> <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-17 flex items-center justify-between"> <!-- Brand Logo --> <a href="/hi/" class="flex items-center gap-2.5 group transition-transform duration-200 hover:scale-[1.02]" id="headerLogo"> <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-base shadow-sm group-hover:shadow-indigo-500/20">
+%
+</div> <span class="font-display font-bold text-lg tracking-tight text-[var(--text-primary)]">
+Calculadora <span class="gradient-text font-extrabold">IVA</span> </span> </a> <!-- Desktop Nav & Actions --> <div class="hidden md:flex items-center gap-2"> <nav class="flex items-center gap-1" aria-label="Desktop Navigation"> <a href="/hi/#calculator" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10 transition-colors"> Calculator </a><a href="/hi/#how-it-works" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10 transition-colors"> How it works </a><a href="/hi/#rates" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10 transition-colors"> VAT Rates </a><a href="/hi/#faq" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10 transition-colors"> FAQ </a><a href="/hi/blog/" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10 transition-colors"> Blog </a> </nav> <!-- Theme Switcher --> <button id="themeToggleBtn" type="button" class="ml-2 w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-[var(--border-accent)] transition-all cursor-pointer" aria-label="Toggle light / dark theme" title="Toggle light / dark theme"> <!-- Sun icon (shown in dark mode) --> <svg class="sun-icon w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> <!-- Moon icon (shown in light mode) --> <svg class="moon-icon w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> </div> <!-- Mobile Hamburger Button --> <div class="flex items-center gap-2 md:hidden"> <button id="themeToggleBtnMobile" type="button" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] cursor-pointer" aria-label="Toggle light / dark theme"> <svg class="sun-icon w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg> <svg class="moon-icon w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> </button> <button id="mobileMenuToggle" type="button" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-primary)] transition-transform active:scale-95 cursor-pointer" aria-expanded="false" aria-controls="mobileMenuPanel" aria-label="Abrir menú"> <svg id="hamburgerIcon" class="w-5 h-5 block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"> <line x1="4" y1="6" x2="20" y2="6"></line> <line x1="4" y1="12" x2="20" y2="12"></line> <line x1="4" y1="18" x2="20" y2="18"></line> </svg> <svg id="closeIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"> <line x1="18" y1="6" x2="6" y2="18"></line> <line x1="6" y1="6" x2="18" y2="18"></line> </svg> </button> </div> </div> <!-- Mobile Menu Overlay Panel --> <div id="mobileMenuPanel" class="fixed inset-x-0 top-17 bottom-0 bg-[var(--bg-primary)]/95 backdrop-blur-2xl p-6 flex flex-col justify-between hidden md:hidden border-t border-[var(--border-subtle)] z-40 transition-all" aria-hidden="true"> <nav class="flex flex-col gap-3" aria-label="Mobile Navigation"> <a href="/hi/#calculator" class="mobile-nav-link text-lg font-bold text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 p-2.5 rounded-xl hover:bg-indigo-500/10 transition-colors"> Calculator </a><a href="/hi/#how-it-works" class="mobile-nav-link text-lg font-bold text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 p-2.5 rounded-xl hover:bg-indigo-500/10 transition-colors"> How it works </a><a href="/hi/#rates" class="mobile-nav-link text-lg font-bold text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 p-2.5 rounded-xl hover:bg-indigo-500/10 transition-colors"> VAT Rates </a><a href="/hi/#faq" class="mobile-nav-link text-lg font-bold text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 p-2.5 rounded-xl hover:bg-indigo-500/10 transition-colors"> FAQ </a><a href="/hi/blog/" class="mobile-nav-link text-lg font-bold text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 p-2.5 rounded-xl hover:bg-indigo-500/10 transition-colors"> Blog </a> </nav> </div> </header> <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle
+    const toggleBtns = [
+      document.getElementById('themeToggleBtn'),
+      document.getElementById('themeToggleBtnMobile'),
+    ].filter(Boolean);
+
+    toggleBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('iva_calculator_theme', nextTheme);
+      });
+    });
+
+    // Mobile Menu behavior
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    const menuPanel = document.getElementById('mobileMenuPanel');
+    const hamburgerIcon = document.getElementById('hamburgerIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    if (menuToggle && menuPanel) {
+      function toggleMenu(open) {
+        const isOpen = open !== undefined ? open : menuToggle.getAttribute('aria-expanded') !== 'true';
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuPanel.setAttribute('aria-hidden', String(!isOpen));
+
+        if (isOpen) {
+          menuPanel.classList.remove('hidden');
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        } else {
+          menuPanel.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      }
+
+      menuToggle.addEventListener('click', () => toggleMenu());
+      mobileLinks.forEach((link) => link.addEventListener('click', () => toggleMenu(false)));
+    }
+  });
+</script> <main class="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">   <section class="text-center max-w-3xl mx-auto pt-6 pb-10"> <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 shadow-sm mb-6 animate-pulse-dot"> <span class="w-2 h-2 rounded-full bg-emerald-500"></span> <span>स्पेन 2025 — आधिकारिक कर दरें</span> </div> <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[var(--text-primary)] mb-4">तुरंत <span class="gradient-text">IVA / VAT</span> की गणना करें</h1> <p class="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto"> वैट की सटीक गणना के लिए पेशेवर और निःशुल्क टूल। </p> </section>  <div class="relative w-full max-w-xl mx-auto z-10" id="calculator"> <!-- Interactive HTML5 Background Canvas Component --> <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas> <div class="glass-card p-6 sm:p-8 md:p-10 relative overflow-hidden transition-all duration-300"> <!-- Ambient card glow --> <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_30%_40%,rgba(79,70,229,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_60%,rgba(236,72,153,0.05)_0%,transparent_50%)] pointer-events-none animate-[spin_25s_linear_infinite]" aria-hidden="true"></div> <!-- Mode Toggle Segmented Control --> <div class="flex relative bg-[var(--bg-toggle)] border border-[var(--border-subtle)] rounded-xl p-1 mb-8" role="tablist" aria-label="Modo de cálculo"> <button type="button" id="modeAdd" data-mode="add" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 transition-all relative z-10" role="tab" aria-selected="true"> <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> <span>वैट जोड़ें</span> </button> <button type="button" id="modeRemove" data-mode="remove" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold text-[var(--text-secondary)] transition-all relative z-10" role="tab" aria-selected="false"> <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg> <span>वैट हटाएं</span> </button> <div id="toggleSlider" class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-[var(--bg-pill)] rounded-lg shadow-md transition-transform duration-300 pointer-events-none"></div> </div> <!-- Input Form Body --> <div id="calcBody" class="space-y-6"> <!-- Amount Input --> <div> <label for="amountInput" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2"> <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> <span id="amountLabel">कर पूर्व राशि (मूल)</span> </label> <div class="relative"> <input type="text" id="amountInput" class="w-full py-4 pl-5 pr-12 bg-[var(--bg-input)] border-1.5 border-[var(--border-medium)] rounded-xl font-display text-2xl font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 shadow-sm transition-all placeholder:text-[var(--text-tertiary)] placeholder:opacity-50" placeholder="0,00" inputmode="decimal" autocomplete="off" aria-label="Importe"> <span class="absolute right-5 top-1/2 -translate-y-1/2 font-display text-xl font-bold text-[var(--text-tertiary)]">€</span> </div> </div> <!-- Rate Buttons Selection --> <div> <label class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2"> <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> <span>वैट दर</span> </label> <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="radiogroup" aria-label="Seleccionar tipo de IVA"> <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="4" role="radio" aria-checked="false"> <span class="font-display font-bold text-base text-[var(--text-primary)]">4%</span> <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">अति-कम (4%)</span> </button> <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="10" role="radio" aria-checked="false"> <span class="font-display font-bold text-base text-[var(--text-primary)]">10%</span> <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">कम (10%)</span> </button> <button type="button" class="rate-btn active flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-indigo-500 bg-indigo-500/5 ring-3 ring-indigo-500/15 shadow-sm transition-all" data-rate="21" role="radio" aria-checked="true"> <span class="font-display font-bold text-base text-[var(--text-primary)]">21%</span> <span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">सामान्य (21%)</span> </button> <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" id="rateCustomBtn" data-rate="custom" role="radio" aria-checked="false"> <span class="font-display font-bold text-base text-[var(--text-primary)] flex items-center"> <input type="text" id="customRateInput" class="w-8 text-center bg-transparent border-b border-[var(--text-tertiary)] focus:border-indigo-500 outline-none text-base font-bold text-[var(--text-primary)]" placeholder="?" inputmode="decimal">%
+</span> <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">कस्टम</span> </button> </div> </div> <!-- Calculate Button --> <button type="button" id="calcButton" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/45 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden transition-all group"> <span class="relative z-10">गणना करें</span> <svg class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg> <div class="btn-shine" aria-hidden="true"></div> </button> </div> <!-- Results Panel --> <div id="resultsPanel" class="hidden space-y-6 animate-[fadeIn_0.4s_ease-out]"> <div class="flex items-center justify-between"> <h3 class="font-display font-extrabold text-xl gradient-text">परिणाम विवरण</h3> <button type="button" id="resultsClose" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-xs font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 transition-colors shadow-sm"> <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg> <span>संशोधित करें</span> </button> </div> <!-- Results Grid --> <div class="grid gap-3"> <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm"> <span class="text-sm font-semibold text-[var(--text-secondary)]" id="resultBaseLabel">कर योग्य आधार</span> <span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultBaseValue">0,00 €</span> </div> <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm"> <span class="text-sm font-semibold text-[var(--text-secondary)]"> वैट राशि (<span id="resultIvaRate">21</span>%)
+</span> <span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultIvaValue">0,00 €</span> </div> <div class="flex items-center justify-between p-4 rounded-xl border border-indigo-500/40 bg-[var(--gradient-card)] shadow-md"> <span class="text-sm font-bold text-[var(--text-secondary)]" id="resultTotalLabel">कुल मूल्य</span> <span class="font-display font-extrabold text-2xl gradient-text" id="resultTotalValue">0,00 €</span> </div> </div> <!-- HTML5 Canvas Donut Chart Component --> <div class="relative w-[170px] h-[170px] mx-auto flex items-center justify-center"> <canvas id="breakdownCanvas" class="w-[170px] h-[170px] block drop-shadow-md" width="170" height="170" aria-label="Gráfico de desglose de IVA"></canvas> <div class="absolute flex flex-col items-center justify-center pointer-events-none"> <span id="chartCenterPercent" class="font-display font-extrabold text-2xl text-[var(--text-primary)] leading-none">21%</span> <span id="chartCenterLabel" class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mt-1">IVA</span> </div> </div> <!-- Proportional Bar --> <div class="flex h-7 rounded-full overflow-hidden bg-[var(--bg-toggle)] border border-[var(--border-subtle)] shadow-inner"> <div id="breakdownFill" class="flex items-center justify-center bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all duration-500 min-w-[36px]">
+Base
+</div> <div id="breakdownIvaFill" class="flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-500 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all duration-500 min-w-[28px]">
+IVA
+</div> </div> <!-- Action Buttons --> <div class="flex gap-3 pt-2"> <button type="button" id="copyResult" class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"> <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>कॉपी करें</span> </button> <button type="button" id="newCalc" class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"> <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg> <span>नई गणना</span> </button> </div> </div> </div> </div> <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Calculator State & Elements
+    const elements = {
+      modeAdd: document.getElementById('modeAdd'),
+      modeRemove: document.getElementById('modeRemove'),
+      toggleSlider: document.getElementById('toggleSlider'),
+      amountInput: document.getElementById('amountInput'),
+      amountLabel: document.getElementById('amountLabel'),
+      rateButtons: document.querySelectorAll('.rate-btn'),
+      customRateInput: document.getElementById('customRateInput'),
+      rateCustomBtn: document.getElementById('rateCustomBtn'),
+      calcButton: document.getElementById('calcButton'),
+      calcBody: document.getElementById('calcBody'),
+      resultsPanel: document.getElementById('resultsPanel'),
+      resultsClose: document.getElementById('resultsClose'),
+      resultBaseLabel: document.getElementById('resultBaseLabel'),
+      resultBaseValue: document.getElementById('resultBaseValue'),
+      resultIvaRate: document.getElementById('resultIvaRate'),
+      resultIvaValue: document.getElementById('resultIvaValue'),
+      resultTotalLabel: document.getElementById('resultTotalLabel'),
+      resultTotalValue: document.getElementById('resultTotalValue'),
+      breakdownFill: document.getElementById('breakdownFill'),
+      breakdownIvaFill: document.getElementById('breakdownIvaFill'),
+      breakdownCanvas: document.getElementById('breakdownCanvas'),
+      chartCenterPercent: document.getElementById('chartCenterPercent'),
+      chartCenterLabel: document.getElementById('chartCenterLabel'),
+      copyResult: document.getElementById('copyResult'),
+      newCalc: document.getElementById('newCalc'),
+      ambientCanvas: document.getElementById('ambientCanvas'),
+    };
+
+    let state = {
+      mode: 'add',
+      rate: 21,
+      isCustom: false,
+      lastResult: null,
+    };
+
+    // 1. Ambient Background Canvas
+    function initAmbientCanvas() {
+      const canvas = elements.ambientCanvas;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let width = 0;
+      let height = 0;
+      let dpr = window.devicePixelRatio || 1;
+      const mouse = { x: null, y: null, radius: 140 };
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = window.devicePixelRatio || 1;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.scale(dpr, dpr);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const particles = [];
+      const count = Math.min(Math.floor((width * height) / 22000), 50);
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          r: Math.random() * 2.5 + 1.5,
+          colorIdx: Math.floor(Math.random() * 4),
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+        const colors = isDark
+          ? ['rgba(129,140,248,0.5)', 'rgba(192,132,252,0.45)', 'rgba(244,114,182,0.4)', 'rgba(52,211,153,0.35)']
+          : ['rgba(79,70,229,0.4)', 'rgba(124,58,237,0.35)', 'rgba(236,72,153,0.3)', 'rgba(16,185,129,0.3)'];
+
+        particles.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = mouse.x - p.x;
+            const dy = mouse.y - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius && dist > 0) {
+              const force = (mouse.radius - dist) / mouse.radius;
+              const angle = Math.atan2(dy, dx);
+              p.x -= Math.cos(angle) * force * 2;
+              p.y -= Math.sin(angle) * force * 2;
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = colors[p.colorIdx];
+          ctx.fill();
+        });
+
+        // Lines
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 125) {
+              const alpha = (1 - dist / 125) * (isDark ? 0.2 : 0.14);
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = isDark ? `rgba(129,140,248,${alpha})` : `rgba(79,70,229,${alpha})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+    initAmbientCanvas();
+
+    // 2. Mode Toggle
+    function setMode(mode) {
+      state.mode = mode;
+      elements.modeAdd.setAttribute('aria-selected', String(mode === 'add'));
+      elements.modeRemove.setAttribute('aria-selected', String(mode === 'remove'));
+
+      if (mode === 'add') {
+        elements.modeAdd.classList.add('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        elements.modeAdd.classList.remove('text-[var(--text-secondary)]', 'font-semibold');
+        elements.modeRemove.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        elements.modeRemove.classList.add('text-[var(--text-secondary)]', 'font-semibold');
+        elements.toggleSlider.style.transform = 'translateX(0%)';
+        elements.amountLabel.textContent = 'Importe sin IVA (Neto)';
+      } else {
+        elements.modeRemove.classList.add('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        elements.modeRemove.classList.remove('text-[var(--text-secondary)]', 'font-semibold');
+        elements.modeAdd.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        elements.modeAdd.classList.add('text-[var(--text-secondary)]', 'font-semibold');
+        elements.toggleSlider.style.transform = 'translateX(100%)';
+        elements.amountLabel.textContent = 'Importe con IVA (Bruto)';
+      }
+    }
+
+    elements.modeAdd?.addEventListener('click', () => setMode('add'));
+    elements.modeRemove?.addEventListener('click', () => setMode('remove'));
+
+    // 3. Rate Buttons
+    elements.rateButtons?.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const rate = btn.dataset.rate;
+        elements.rateButtons.forEach((b) => {
+          b.classList.remove('border-indigo-500', 'bg-indigo-500/5', 'ring-3', 'ring-indigo-500/15');
+          b.classList.add('border-[var(--border-subtle)]', 'bg-[var(--bg-input)]');
+          b.setAttribute('aria-checked', 'false');
+        });
+
+        btn.classList.add('border-indigo-500', 'bg-indigo-500/5', 'ring-3', 'ring-indigo-500/15');
+        btn.classList.remove('border-[var(--border-subtle)]', 'bg-[var(--bg-input)]');
+        btn.setAttribute('aria-checked', 'true');
+
+        if (rate === 'custom') {
+          state.isCustom = true;
+          elements.customRateInput?.focus();
+          const customVal = parseNumber(elements.customRateInput?.value);
+          state.rate = isNaN(customVal) ? 0 : customVal;
+        } else {
+          state.isCustom = false;
+          state.rate = parseFloat(rate);
+        }
+      });
+    });
+
+    elements.customRateInput?.addEventListener('input', () => {
+      if (state.isCustom) {
+        const val = parseNumber(elements.customRateInput.value);
+        state.rate = isNaN(val) ? 0 : val;
+      }
+    });
+
+    elements.customRateInput?.addEventListener('focus', () => {
+      elements.rateCustomBtn?.click();
+    });
+
+    // 4. Number Parsing & Formatting
+    function parseNumber(str) {
+      if (!str) return NaN;
+      str = str.trim();
+      const lastComma = str.lastIndexOf(',');
+      const lastDot = str.lastIndexOf('.');
+      if (lastComma > lastDot) {
+        str = str.replace(/\./g, '').replace(',', '.');
+      } else if (lastDot > lastComma) {
+        str = str.replace(/,/g, '');
+      } else if (lastComma !== -1) {
+        str = str.replace(',', '.');
+      }
+      return parseFloat(str);
+    }
+
+    function formatCurrency(val) {
+      return val.toLocaleString('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+    }
+
+    function formatRate(rate) {
+      return rate % 1 === 0 ? rate.toString() : rate.toFixed(1);
+    }
+
+    // 5. Calculation Engine
+    function calculate() {
+      const raw = elements.amountInput?.value.trim();
+      if (!raw) {
+        elements.amountInput?.classList.add('shake');
+        setTimeout(() => elements.amountInput?.classList.remove('shake'), 400);
+        return;
+      }
+
+      const amount = parseNumber(raw);
+      if (isNaN(amount) || amount <= 0) {
+        elements.amountInput?.classList.add('shake');
+        setTimeout(() => elements.amountInput?.classList.remove('shake'), 400);
+        return;
+      }
+
+      const rate = state.rate;
+      let base, iva, total;
+
+      if (state.mode === 'add') {
+        base = amount;
+        iva = amount * (rate / 100);
+        total = amount + iva;
+      } else {
+        total = amount;
+        base = amount / (1 + rate / 100);
+        iva = total - base;
+      }
+
+      state.lastResult = { base, iva, total, rate, mode: state.mode };
+      showResults(base, iva, total, rate);
+    }
+
+    elements.calcButton?.addEventListener('click', calculate);
+    elements.amountInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        calculate();
+      }
+    });
+
+    // 6. Donut Chart Canvas Renderer
+    let chartReqId = null;
+    function animateChart(base, iva, total) {
+      const canvas = elements.breakdownCanvas;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      if (chartReqId) cancelAnimationFrame(chartReqId);
+
+      const dpr = window.devicePixelRatio || 1;
+      const size = 170;
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      ctx.scale(dpr, dpr);
+
+      const centerX = size / 2;
+      const centerY = size / 2;
+      const radius = size * 0.38;
+      const lineWidth = 16;
+
+      const baseRatio = total > 0 ? base / total : 0.8;
+      const ivaRatio = total > 0 ? iva / total : 0.2;
+
+      elements.chartCenterPercent.textContent = `${Math.round(ivaRatio * 100)}%`;
+      elements.chartCenterLabel.textContent = `IVA (${formatRate(state.rate)}%)`;
+
+      const startTime = performance.now();
+      const duration = 600;
+
+      function frame(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        ctx.clearRect(0, 0, size, size);
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+        // Track
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.06)';
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+
+        const startAngle = -Math.PI / 2;
+        const totalAngle = Math.PI * 2 * ease;
+        const bAngle = totalAngle * baseRatio;
+        const iAngle = totalAngle * ivaRatio;
+
+        if (bAngle > 0) {
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, radius, startAngle, startAngle + bAngle);
+          const bGrad = ctx.createLinearGradient(0, 0, size, size);
+          bGrad.addColorStop(0, '#4f46e5');
+          bGrad.addColorStop(1, '#6366f1');
+          ctx.strokeStyle = bGrad;
+          ctx.lineWidth = lineWidth;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+
+        if (iAngle > 0) {
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, radius, startAngle + bAngle, startAngle + bAngle + iAngle);
+          const iGrad = ctx.createLinearGradient(0, 0, size, size);
+          iGrad.addColorStop(0, '#ec4899');
+          iGrad.addColorStop(1, '#c084fc');
+          ctx.strokeStyle = iGrad;
+          ctx.lineWidth = lineWidth;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+
+        if (progress < 1) chartReqId = requestAnimationFrame(frame);
+      }
+      chartReqId = requestAnimationFrame(frame);
+    }
+
+    function showResults(base, iva, total, rate) {
+      elements.resultBaseValue.textContent = formatCurrency(base);
+      elements.resultIvaValue.textContent = formatCurrency(iva);
+      elements.resultTotalValue.textContent = formatCurrency(total);
+      elements.resultIvaRate.textContent = formatRate(rate);
+
+      const basePct = (base / total) * 100;
+      const ivaPct = (iva / total) * 100;
+      elements.breakdownFill.style.width = `${basePct}%`;
+      elements.breakdownIvaFill.style.width = `${ivaPct}%`;
+
+      animateChart(base, iva, total);
+
+      elements.calcBody.classList.add('hidden');
+      elements.resultsPanel.classList.remove('hidden');
+    }
+
+    elements.resultsClose?.addEventListener('click', () => {
+      elements.resultsPanel.classList.add('hidden');
+      elements.calcBody.classList.remove('hidden');
+    });
+
+    elements.newCalc?.addEventListener('click', () => {
+      elements.resultsPanel.classList.add('hidden');
+      elements.calcBody.classList.remove('hidden');
+      elements.amountInput.value = '';
+      elements.amountInput.focus();
+    });
+
+    // 7. Copy Utility
+    elements.copyResult?.addEventListener('click', () => {
+      if (!state.lastResult) return;
+      const { base, iva, total, rate, mode } = state.lastResult;
+      const text = `Calculadora IVA (${mode === 'add' ? 'Añadir IVA' : 'Quitar IVA'})\nBase imponible: ${formatCurrency(base)}\nIVA (${formatRate(rate)}%): ${formatCurrency(iva)}\nTotal: ${formatCurrency(total)}`;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✓ Resumen copiado al portapapeles');
+      });
+    });
+
+    function showToast(msg) {
+      const existing = document.querySelector('.toast');
+      if (existing) existing.remove();
+      const toast = document.createElement('div');
+      toast.className = 'toast show';
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+  });
+</script>  <section class="py-16 lg:py-24 relative z-10" id="how-it-works"> <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center max-w-2xl mx-auto mb-14"> <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3"> यह कैसे काम करता है </h2> <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed"> वैट गणना के सरल चरण </p> </div> <!-- Reusable slot or default 3-step grid -->  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"> <!-- Step 1 --> <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300"> <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
+01
+</div> <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5"> 1. राशि दर्ज करें </h3> <p class="text-sm text-[var(--text-secondary)] leading-relaxed"> अपनी मूल राशि या कुल मूल्य दर्ज करें। </p> </div> <!-- Step 2 --> <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300"> <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
+02
+</div> <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5"> 2. दर चुनें </h3> <p class="text-sm text-[var(--text-secondary)] leading-relaxed"> 21%, 10%, 4% या अपनी पसंदीदा दर चुनें। </p> </div> <!-- Step 3 --> <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300"> <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
+03
+</div> <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5"> 3. त्वरित परिणाम </h3> <p class="text-sm text-[var(--text-secondary)] leading-relaxed"> चार्ट और विवरण के साथ तुरंत परिणाम प्राप्त करें। </p> </div> </div>  </div> </section>  <section class="py-16 lg:py-24 relative z-10 border-t border-[var(--border-subtle)]" id="rates"> <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center max-w-2xl mx-auto mb-14"> <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3"> आधिकारिक वैट दरें <span class="gradient-text">2025</span> </h2> <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed"> स्पेन में लागू आधिकारिक कर श्रेणियां </p> </div> <!-- 3 Cards Breakdown Grid --> <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12"> <!-- 21% General --> <div class="glass-card p-6 sm:p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"> <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600"></div> <div class="inline-flex items-center px-3.5 py-1 rounded-full font-display font-extrabold text-lg text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 mb-5">
+21%
+</div> <h3 class="font-display font-bold text-xl text-[var(--text-primary)] mb-2">
+IVA General
+</h3> <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
+Tipo impositivo estándar por defecto en España aplicable a la gran mayoría de bienes y prestaciones de servicios.
+</p> <ul class="space-y-2 text-xs text-[var(--text-secondary)]"> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+Electrónica, telefonía y tecnología
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+Ropa, calzado y textil
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+Servicios profesionales y consultoría
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+Vehículos nuevos y usados
+</li> </ul> </div> <!-- 10% Reducido --> <div class="glass-card p-6 sm:p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"> <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-orange-500"></div> <div class="inline-flex items-center px-3.5 py-1 rounded-full font-display font-extrabold text-lg text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/20 mb-5">
+10%
+</div> <h3 class="font-display font-bold text-xl text-[var(--text-primary)] mb-2">
+IVA Reducido
+</h3> <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
+Aplicable a productos alimenticios generales, transporte de viajeros, hostelería y vivienda.
+</p> <ul class="space-y-2 text-xs text-[var(--text-secondary)]"> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+Alimentos para nutrición humana
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+Hostelería, bares y restaurantes
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+Transporte de pasajeros
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+Viviendas de obra nueva
+</li> </ul> </div> <!-- 4% Superreducido --> <div class="glass-card p-6 sm:p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"> <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500"></div> <div class="inline-flex items-center px-3.5 py-1 rounded-full font-display font-extrabold text-lg text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 mb-5">
+4%
+</div> <h3 class="font-display font-bold text-xl text-[var(--text-primary)] mb-2">
+IVA Superreducido
+</h3> <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
+Destinado exclusivamente a bienes de primera necesidad, cultura básica y salud pública.
+</p> <ul class="space-y-2 text-xs text-[var(--text-secondary)]"> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+Pan, leche, huevos, frutas y verduras
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+Libros, periódicos y revistas
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+Medicamentos de uso humano
+</li> <li class="flex items-center gap-2"> <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+Prótesis e implantes
+</li> </ul> </div> </div> </div> </section>  <section class="py-16 lg:py-24 relative z-10 border-t border-[var(--border-subtle)]" id="faq"> <div class="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center mb-12"> <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3">Frequently Asked <span class="gradient-text">Questions</span></h2> <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed"> Everything you need to know about VAT in Spain, formulas, and invoicing </p> </div> <!-- Collapsible Accordion --> <div class="space-y-4" id="faqAccordion"> <div class="faq-item glass-card overflow-hidden transition-all duration-300"> <button type="button" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-expanded="false" aria-controls="faq-answer-0" id="faq-btn-0"> <span>What is VAT (IVA)?</span> <svg class="faq-chevron w-5 h-5 text-[var(--text-tertiary)] transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div id="faq-answer-0" class="faq-body max-h-0 overflow-hidden transition-all duration-300 px-5 sm:px-6 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed" role="region" aria-labelledby="faq-btn-0"> <p class="pb-5 sm:pb-6">VAT (Value Added Tax, known as IVA in Spanish) is a general consumption tax assessed on the value added to goods and services. In Spain, it is regulated by the Spanish Tax Agency (Agencia Tributaria) and applies at standard rates across the supply chain.</p> </div> </div><div class="faq-item glass-card overflow-hidden transition-all duration-300"> <button type="button" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-expanded="false" aria-controls="faq-answer-1" id="faq-btn-1"> <span>How do you calculate VAT in Spain?</span> <svg class="faq-chevron w-5 h-5 text-[var(--text-tertiary)] transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div id="faq-answer-1" class="faq-body max-h-0 overflow-hidden transition-all duration-300 px-5 sm:px-6 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed" role="region" aria-labelledby="faq-btn-1"> <p class="pb-5 sm:pb-6">To add VAT: Multiply the net taxable base by (1 + Tax Rate / 100). For example, €100 + 21% VAT = €100 × 1.21 = €121. To extract VAT from a gross amount: Divide the gross amount by (1 + Tax Rate / 100). For example, €121 / 1.21 = €100 taxable base.</p> </div> </div><div class="faq-item glass-card overflow-hidden transition-all duration-300"> <button type="button" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-expanded="false" aria-controls="faq-answer-2" id="faq-btn-2"> <span>What is the Equivalence Surcharge (Recargo de Equivalencia)?</span> <svg class="faq-chevron w-5 h-5 text-[var(--text-tertiary)] transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div id="faq-answer-2" class="faq-body max-h-0 overflow-hidden transition-all duration-300 px-5 sm:px-6 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed" role="region" aria-labelledby="faq-btn-2"> <p class="pb-5 sm:pb-6">The Equivalence Surcharge is a special mandatory VAT regime in Spain for retail traders who sell goods without manufacturing or processing them. The current surcharge rates are 5.2% on the 21% general rate, 1.4% on the 10% reduced rate, and 0.5% on the 4% super-reduced rate.</p> </div> </div><div class="faq-item glass-card overflow-hidden transition-all duration-300"> <button type="button" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-expanded="false" aria-controls="faq-answer-3" id="faq-btn-3"> <span>Is VAT included in consumer prices in Spain?</span> <svg class="faq-chevron w-5 h-5 text-[var(--text-tertiary)] transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg> </button> <div id="faq-answer-3" class="faq-body max-h-0 overflow-hidden transition-all duration-300 px-5 sm:px-6 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed" role="region" aria-labelledby="faq-btn-3"> <p class="pb-5 sm:pb-6">Yes, Spanish consumer protection laws require all B2C prices displayed to the public to be final gross prices with VAT included. B2B invoices between businesses and self-employed professionals must explicitly break down the net taxable base, VAT rate, and VAT quota.</p> </div> </div> </div> </div> </section> <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach((item) => {
+      const btn = item.querySelector('.faq-btn');
+      const body = item.querySelector('.faq-body');
+      const chevron = item.querySelector('.faq-chevron');
+
+      btn?.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+        // Close all
+        faqItems.forEach((other) => {
+          const otherBtn = other.querySelector('.faq-btn');
+          const otherBody = other.querySelector('.faq-body');
+          const otherChevron = other.querySelector('.faq-chevron');
+          otherBtn?.setAttribute('aria-expanded', 'false');
+          if (otherBody) otherBody.style.maxHeight = '0px';
+          otherChevron?.classList.remove('rotate-180', 'text-indigo-500');
+        });
+
+        // Toggle clicked
+        if (!isExpanded && body) {
+          btn.setAttribute('aria-expanded', 'true');
+          body.style.maxHeight = `${body.scrollHeight}px`;
+          chevron?.classList.add('rotate-180', 'text-indigo-500');
+        }
+      });
+    });
+  });
+</script>  </main> <footer class="mt-auto border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)] relative z-10 transition-colors" id="mainFooter"> <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16"> <div class="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12 mb-12"> <!-- Brand column --> <div class="md:col-span-2 space-y-4"> <a href="/hi/" class="flex items-center gap-2.5"> <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-base shadow-sm">
+%
+</div> <span class="font-display font-bold text-xl tracking-tight text-[var(--text-primary)]">
+Calculadora <span class="gradient-text font-extrabold">IVA</span> </span> </a> <p class="text-sm text-[var(--text-secondary)] max-w-sm leading-relaxed"> Professional tool for calculating Value Added Tax (VAT / IVA) with official Spanish rates, instant breakdowns, and export utilities. </p> <!-- Conditional Social Block --> <div class="flex items-center gap-3 pt-2"> <a href="https://facebook.com/calculadoraiva" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-indigo-600 hover:border-[var(--border-accent)] transition-all" aria-label="Facebook"> <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg> </a> <a href="https://twitter.com/calculadoraiva" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-indigo-600 hover:border-[var(--border-accent)] transition-all" aria-label="Twitter / X"> <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg> </a> <a href="https://linkedin.com/company/calculadoraiva" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-indigo-600 hover:border-[var(--border-accent)] transition-all" aria-label="LinkedIn"> <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg> </a> <a href="https://pinterest.com/calculadoraiva" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-indigo-600 hover:border-[var(--border-accent)] transition-all" aria-label="Pinterest"> <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.291 1.199-.334 1.357-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.546.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"></path></svg> </a> </div> </div> <!-- Navigation links --> <div> <h4 class="font-display font-bold text-sm text-[var(--text-primary)] uppercase tracking-wider mb-4"> Sitemap </h4> <ul class="space-y-2.5"> <li> <a href="/hi/#calculator/" class="text-sm text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"> Calculator </a> </li><li> <a href="/hi/about-us/" class="text-sm text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"> About Us </a> </li><li> <a href="/hi/contact-us/" class="text-sm text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"> Contact </a> </li><li> <a href="/hi/terms/" class="text-sm text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"> Terms of Service </a> </li><li> <a href="/hi/privacy/" class="text-sm text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"> Privacy Policy </a> </li> </ul> </div> <!-- Language Selector Column --> <div> <h4 class="font-display font-bold text-sm text-[var(--text-primary)] uppercase tracking-wider mb-4"> Language </h4> <div class="grid grid-cols-2 gap-1.5 max-h-48 overflow-y-auto pr-1"> <a href="/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> English </a><a href="/es/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Español </a><a href="/hi/" class="text-xs px-2 py-1.5 rounded border transition-colors border-indigo-500 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold"> हिन्दी </a><a href="/ru/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Русский </a><a href="/fr/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Français </a><a href="/de/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Deutsch </a><a href="/it/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Italiano </a><a href="/pt/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Português </a><a href="/bn/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> বাংলা </a><a href="/ja/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> 日本語 </a><a href="/ko/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> 한국어 </a><a href="/ms/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Bahasa Melayu </a><a href="/pl/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Polski </a><a href="/id/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Bahasa Indonesia </a><a href="/ar/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> العربية </a><a href="/bg/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Български </a><a href="/tr/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Türkçe </a><a href="/sv/" class="text-xs px-2 py-1.5 rounded border transition-colors border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"> Svenska </a> </div> </div> </div> <!-- Bottom line --> <div class="pt-8 border-t border-[var(--border-subtle)] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[var(--text-tertiary)]"> <p>&copy; 2026 Calculadora IVA. All rights reserved.</p> <p class="italic text-center md:text-right max-w-lg">This tool is for informational and educational purposes. Consult an authorized tax advisor for official filings.</p> </div> </div> </footer> </body></html>

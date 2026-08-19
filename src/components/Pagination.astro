@@ -1,0 +1,80 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  page: {
+    currentPage: number;
+    lastPage: number;
+    total: number;
+    start: number;
+    end: number;
+    url: {
+      current: string;
+      prev?: string;
+      next?: string;
+    };
+  };
+  locale?: string;
+}
+
+const { page, locale = 'en' } = Astro.props;
+const { t } = useTranslations(locale);
+
+const pages = Array.from({ length: page.lastPage }, (_, i) => i + 1);
+---
+
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-8 border-t border-[var(--border-subtle)]">
+  <!-- Meta Text -->
+  <p class="text-xs sm:text-sm text-[var(--text-secondary)] font-medium">
+    {t('pagination.showing')} <span class="font-bold text-[var(--text-primary)]">{page.start + 1}</span>–<span class="font-bold text-[var(--text-primary)]">{page.end + 1}</span> {t('pagination.of')} <span class="font-bold text-[var(--text-primary)]">{page.total}</span> {t('pagination.posts')}
+  </p>
+
+  <!-- Numbered Pagination -->
+  <nav class="flex items-center gap-1.5" aria-label="Paginación del Blog">
+    <!-- Prev -->
+    {page.url.prev ? (
+      <a
+        href={page.url.prev}
+        class="px-3.5 py-2 rounded-lg text-xs font-bold border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:border-indigo-500 hover:text-indigo-600 transition-colors"
+      >
+        &larr; {t('pagination.prev')}
+      </a>
+    ) : (
+      <span class="px-3.5 py-2 rounded-lg text-xs font-bold border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-tertiary)] opacity-50 cursor-not-allowed">
+        &larr; {t('pagination.prev')}
+      </span>
+    )}
+
+    <!-- Numbered Pages -->
+    {pages.map((num) => {
+      const isCurrent = num === page.currentPage;
+      const href = num === 1 ? '/blog/' : `/blog/${num}/`;
+      return isCurrent ? (
+        <span class="w-8 h-8 flex items-center justify-center rounded-lg text-xs font-extrabold bg-indigo-600 text-white shadow-sm" aria-current="page">
+          {num}
+        </span>
+      ) : (
+        <a
+          href={href}
+          class="w-8 h-8 flex items-center justify-center rounded-lg text-xs font-bold border border-[var(--border-subtle)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:border-indigo-500 hover:text-indigo-600 transition-colors"
+        >
+          {num}
+        </a>
+      );
+    })}
+
+    <!-- Next -->
+    {page.url.next ? (
+      <a
+        href={page.url.next}
+        class="px-3.5 py-2 rounded-lg text-xs font-bold border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:border-indigo-500 hover:text-indigo-600 transition-colors"
+      >
+        {t('pagination.next')} &rarr;
+      </a>
+    ) : (
+      <span class="px-3.5 py-2 rounded-lg text-xs font-bold border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-tertiary)] opacity-50 cursor-not-allowed">
+        {t('pagination.next')} &rarr;
+      </span>
+    )}
+  </nav>
+</div>

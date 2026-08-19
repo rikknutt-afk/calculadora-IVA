@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de IVA online gratuita. Calcula el IVA de forma rápida y precisa con los tipos impositivos de España: 21%, 10% y 4%. Añade o quita IVA al instante.">
+    <meta name="keywords" content="calculadora IVA, calcular IVA, IVA España, impuesto valor añadido, IVA 21%, IVA 10%, IVA 4%">
+    <meta name="author" content="Calculadora IVA">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Calculadora IVA — Calcula el IVA al instante">
+    <meta property="og:description" content="Herramienta premium para calcular el IVA en España. Tipos general (21%), reducido (10%) y superreducido (4%).">
+    <meta property="og:type" content="website">
+    <title>Calculadora IVA — Calcula el Impuesto sobre el Valor Añadido</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <!-- Interactive HTML5 Background Canvas Component -->
+    <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
+
+    <!-- Header -->
+    <header class="header" id="mainHeader">
+        <div class="header-container">
+            <a href="#" class="logo" id="logoLink">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#logoGrad)" stroke-width="2.5"/>
+                        <text x="14" y="19" text-anchor="middle" fill="url(#logoGrad)" font-size="14" font-weight="700" font-family="Inter">%</text>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28">
+                                <stop stop-color="#4f46e5"/>
+                                <stop offset="1" stop-color="#7c3aed"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">Calculadora <span class="logo-accent">IVA</span></span>
+            </a>
+            <div class="header-right">
+                <nav class="nav" aria-label="Navegación principal">
+                    <a href="#calculator" class="nav-link active" id="navCalculator">Calculadora</a>
+                    <a href="#rates" class="nav-link" id="navRates">Tipos de IVA</a>
+                    <a href="#faq" class="nav-link" id="navFaq">FAQ</a>
+                </nav>
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema claro / oscuro">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <div class="hero-badge" id="heroBadge">
+                    <span class="badge-dot"></span>
+                    España 2025 — Tipos actualizados
+                </div>
+                <h1 class="hero-title" id="heroTitle">
+                    Calcula el <span class="gradient-text">IVA</span> al instante
+                </h1>
+                <p class="hero-subtitle" id="heroSubtitle">
+                    Herramienta profesional y gratuita para calcular el Impuesto sobre el Valor Añadido. 
+                    Añade o quita IVA con precisión total.
+                </p>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section class="calculator-section" id="calculator">
+            <div class="calculator-card" id="calculatorCard">
+                <!-- Glow effect -->
+                <div class="card-glow" aria-hidden="true"></div>
+                
+                <!-- Mode Toggle -->
+                <div class="mode-toggle" id="modeToggle" role="tablist" aria-label="Modo de cálculo">
+                    <button class="mode-btn active" id="modeAdd" data-mode="add" role="tab" aria-selected="true" aria-controls="calcPanel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Añadir IVA
+                    </button>
+                    <button class="mode-btn" id="modeRemove" data-mode="remove" role="tab" aria-selected="false" aria-controls="calcPanel">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Quitar IVA
+                    </button>
+                    <div class="toggle-slider" id="toggleSlider"></div>
+                </div>
+
+                <!-- Calculator Body -->
+                <div class="calc-body" id="calcPanel" role="tabpanel">
+                    <!-- Amount Input -->
+                    <div class="input-group" id="amountGroup">
+                        <label class="input-label" for="amountInput">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                            <span id="amountLabel">Importe sin IVA</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="amountInput" class="calc-input" placeholder="0,00" inputmode="decimal" autocomplete="off" aria-label="Importe">
+                            <span class="input-currency">€</span>
+                        </div>
+                    </div>
+
+                    <!-- IVA Rate Selection -->
+                    <div class="rate-group" id="rateGroup">
+                        <label class="input-label">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+                            </svg>
+                            Tipo de IVA
+                        </label>
+                        <div class="rate-buttons" id="rateButtons" role="radiogroup" aria-label="Seleccionar tipo de IVA">
+                            <button class="rate-btn" id="rate4" data-rate="4" role="radio" aria-checked="false">
+                                <span class="rate-value">4%</span>
+                                <span class="rate-name">Superreducido</span>
+                            </button>
+                            <button class="rate-btn" id="rate10" data-rate="10" role="radio" aria-checked="false">
+                                <span class="rate-value">10%</span>
+                                <span class="rate-name">Reducido</span>
+                            </button>
+                            <button class="rate-btn active" id="rate21" data-rate="21" role="radio" aria-checked="true">
+                                <span class="rate-value">21%</span>
+                                <span class="rate-name">General</span>
+                            </button>
+                            <button class="rate-btn custom-rate-btn" id="rateCustom" data-rate="custom" role="radio" aria-checked="false">
+                                <span class="rate-value">
+                                    <input type="text" id="customRateInput" class="custom-rate-input" placeholder="?" inputmode="decimal" aria-label="IVA personalizado" autocomplete="off">%
+                                </span>
+                                <span class="rate-name">Personalizado</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Calculate Button -->
+                    <button class="calc-button" id="calcButton" type="button">
+                        <span class="btn-text">Calcular IVA</span>
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </span>
+                        <div class="btn-shine" aria-hidden="true"></div>
+                    </button>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel hidden" id="resultsPanel">
+                    <div class="results-header">
+                        <h2 class="results-title">Resultado</h2>
+                        <button class="results-close" id="resultsClose" aria-label="Cerrar resultados">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                            Modificar
+                        </button>
+                    </div>
+                    
+                    <div class="results-grid">
+                        <div class="result-card result-base" id="resultBase">
+                            <span class="result-label" id="resultBaseLabel">Base imponible</span>
+                            <span class="result-value" id="resultBaseValue">0,00 €</span>
+                        </div>
+                        <div class="result-card result-iva" id="resultIva">
+                            <span class="result-label">IVA (<span id="resultIvaRate">21</span>%)</span>
+                            <span class="result-value" id="resultIvaValue">0,00 €</span>
+                        </div>
+                        <div class="result-card result-total" id="resultTotal">
+                            <span class="result-label" id="resultTotalLabel">Total con IVA</span>
+                            <span class="result-value result-total-value" id="resultTotalValue">0,00 €</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Breakdown Donut Canvas & Bar -->
+                    <div class="chart-wrapper">
+                        <canvas id="breakdownCanvas" class="breakdown-canvas" width="180" height="180" aria-label="Gráfico de distribución del IVA"></canvas>
+                        <div class="chart-center-info">
+                            <span class="chart-center-percent" id="chartCenterPercent">21%</span>
+                            <span class="chart-center-label" id="chartCenterLabel">IVA</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual breakdown bar -->
+                    <div class="breakdown-bar" id="breakdownBar">
+                        <div class="breakdown-fill" id="breakdownFill">
+                            <span class="breakdown-label">Base</span>
+                        </div>
+                        <div class="breakdown-iva" id="breakdownIvaFill">
+                            <span class="breakdown-label">IVA</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="result-actions">
+                        <button class="action-btn" id="copyResult" aria-label="Copiar resultado">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                            Copiar
+                        </button>
+                        <button class="action-btn" id="newCalc" aria-label="Nuevo cálculo">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                            </svg>
+                            Nuevo cálculo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IVA Rates Info Section -->
+        <section class="rates-section" id="rates">
+            <div class="section-container">
+                <h2 class="section-title" id="ratesTitle">Tipos de IVA en España <span class="gradient-text">2025</span></h2>
+                <p class="section-subtitle" id="ratesSubtitle">Conoce los tres tipos impositivos vigentes y sus aplicaciones</p>
+                
+                <div class="rates-grid">
+                    <div class="rate-info-card" id="rateCard21">
+                        <div class="rate-info-badge general">21%</div>
+                        <h3 class="rate-info-title">IVA General</h3>
+                        <p class="rate-info-desc">Tipo estándar aplicable a la mayoría de bienes y servicios: electrónica, ropa, servicios profesionales, etc.</p>
+                        <ul class="rate-examples">
+                            <li>Electrónica y tecnología</li>
+                            <li>Ropa y calzado</li>
+                            <li>Servicios profesionales</li>
+                            <li>Vehículos</li>
+                        </ul>
+                    </div>
+                    <div class="rate-info-card" id="rateCard10">
+                        <div class="rate-info-badge reduced">10%</div>
+                        <h3 class="rate-info-title">IVA Reducido</h3>
+                        <p class="rate-info-desc">Aplicable a productos y servicios de primera necesidad y uso cotidiano.</p>
+                        <ul class="rate-examples">
+                            <li>Alimentación general</li>
+                            <li>Transporte de viajeros</li>
+                            <li>Hostelería y restauración</li>
+                            <li>Vivienda nueva</li>
+                        </ul>
+                    </div>
+                    <div class="rate-info-card" id="rateCard4">
+                        <div class="rate-info-badge super">4%</div>
+                        <h3 class="rate-info-title">IVA Superreducido</h3>
+                        <p class="rate-info-desc">Reservado para bienes y servicios considerados esenciales para la población.</p>
+                        <ul class="rate-examples">
+                            <li>Pan, leche, huevos, frutas</li>
+                            <li>Libros y prensa</li>
+                            <li>Medicamentos de uso humano</li>
+                            <li>Prótesis e implantes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <div class="section-container">
+                <h2 class="section-title" id="faqTitle">Preguntas <span class="gradient-text">Frecuentes</span></h2>
+                
+                <div class="faq-list" id="faqList">
+                    <div class="faq-item" id="faq1">
+                        <button class="faq-question" id="faqBtn1" aria-expanded="false" aria-controls="faqAnswer1">
+                            <span>¿Qué es el IVA?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="faq-answer" id="faqAnswer1" role="region" aria-labelledby="faqBtn1">
+                            <p>El IVA (Impuesto sobre el Valor Añadido) es un impuesto indirecto que grava el consumo de bienes y servicios. En España, es regulado por la Agencia Tributaria y se aplica en cada etapa de la cadena de producción y distribución.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" id="faq2">
+                        <button class="faq-question" id="faqBtn2" aria-expanded="false" aria-controls="faqAnswer2">
+                            <span>¿Cómo se calcula el IVA?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="faq-answer" id="faqAnswer2" role="region" aria-labelledby="faqBtn2">
+                            <p><strong>Para añadir IVA:</strong> Precio × (1 + IVA/100). Ejemplo: 100€ + 21% IVA = 100 × 1,21 = 121€</p>
+                            <p><strong>Para quitar IVA:</strong> Precio / (1 + IVA/100). Ejemplo: 121€ con 21% IVA → 121 / 1,21 = 100€ (base)</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" id="faq3">
+                        <button class="faq-question" id="faqBtn3" aria-expanded="false" aria-controls="faqAnswer3">
+                            <span>¿Qué es el recargo de equivalencia?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="faq-answer" id="faqAnswer3" role="region" aria-labelledby="faqBtn3">
+                            <p>El recargo de equivalencia es un régimen especial del IVA aplicable a comerciantes minoristas que venden productos sin transformarlos. Los recargos son: 5,2% (IVA general), 1,4% (IVA reducido) y 0,5% (IVA superreducido).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" id="faq4">
+                        <button class="faq-question" id="faqBtn4" aria-expanded="false" aria-controls="faqAnswer4">
+                            <span>¿Es obligatorio incluir el IVA en los precios?</span>
+                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="faq-answer" id="faqAnswer4" role="region" aria-labelledby="faqBtn4">
+                            <p>Sí, en España la normativa exige que los precios mostrados al consumidor final incluyan el IVA. Las facturas entre empresas (B2B) suelen desglosar la base imponible y el IVA por separado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="mainFooter">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo-text">Calculadora <span class="logo-accent">IVA</span></span>
+                <p class="footer-desc">Herramienta profesional para el cálculo del Impuesto sobre el Valor Añadido en España.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Calculadora IVA. Todos los derechos reservados.</p>
+                <p class="footer-disclaimer">Esta herramienta es orientativa. Consulte con un asesor fiscal para decisiones financieras importantes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "headerNav": [
+    { "key": "nav.calculator", "href": "/#calculator" },
+    { "key": "nav.howItWorks", "href": "/#how-it-works" },
+    { "key": "nav.rates", "href": "/#rates" },
+    { "key": "nav.faq", "href": "/#faq" },
+    { "key": "nav.blog", "href": "/blog/" }
+  ],
+  "footerNav": [
+    { "key": "nav.calculator", "href": "/#calculator" },
+    { "key": "nav.about", "href": "/about-us/" },
+    { "key": "nav.contact", "href": "/contact-us/" },
+    { "key": "nav.terms", "href": "/terms/" },
+    { "key": "nav.privacy", "href": "/privacy/" },
+    { "key": "nav.sitemap", "href": "/sitemap/" },
+    { "key": "nav.blog", "href": "/blog/" }
+  ]
+}

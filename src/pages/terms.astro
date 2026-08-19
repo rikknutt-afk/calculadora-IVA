@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../config/site.json';
+---
+
+<BaseLayout
+  title={`Terms of Service — ${siteConfig.siteName}`}
+  description="Terms and conditions for using Calculadora IVA online tax calculator and financial tools."
+>
+  <div class="max-w-3xl mx-auto py-8">
+    <div class="text-center mb-10">
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-[var(--text-primary)] mb-3">
+        Terms of <span class="gradient-text">Service</span>
+      </h1>
+      <p class="text-xs text-[var(--text-tertiary)]">
+        Last updated: January 2025
+      </p>
+    </div>
+
+    <div class="glass-card p-6 sm:p-10 space-y-6 text-sm text-[var(--text-secondary)] leading-relaxed">
+      <section>
+        <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2">1. Acceptance of Terms</h2>
+        <p>By accessing and using {siteConfig.siteName} (the "Service"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must not use our website.</p>
+      </section>
+
+      <section>
+        <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2">2. Nature of the Tool & Disclaimer</h2>
+        <p>Calculadora IVA is an educational and informational calculation tool. While we strive to ensure that all tax calculations, formulas, and tax brackets are accurate and compliant with current Spanish legislation, results are provided without warranty of any kind.</p>
+        <p class="mt-2 font-medium text-[var(--text-primary)]">Calculadora IVA is not a substitute for professional legal or financial advice. Always consult a certified accountant or tax advisor for binding tax filings.</p>
+      </section>
+
+      <section>
+        <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2">3. Intellectual Property</h2>
+        <p>All design assets, code, logos, visual layouts, and content on this website are the intellectual property of {siteConfig.legalName} and protected by applicable copyright laws.</p>
+      </section>
+
+      <section>
+        <h2 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2">4. Modifications</h2>
+        <p>We reserve the right to modify these terms at any time. Continued use of the website following changes indicates your acceptance of the revised terms.</p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

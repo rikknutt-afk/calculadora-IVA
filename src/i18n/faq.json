@@ -1,0 +1,62 @@
+{
+  "en": {
+    "faqTitle": "Frequently Asked <span class=\"gradient-text\">Questions</span>",
+    "faqSubtitle": "Everything you need to know about VAT in Spain, formulas, and invoicing",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "What is VAT (IVA)?",
+        "answer": "VAT (Value Added Tax, known as IVA in Spanish) is a general consumption tax assessed on the value added to goods and services. In Spain, it is regulated by the Spanish Tax Agency (Agencia Tributaria) and applies at standard rates across the supply chain.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "How do you calculate VAT in Spain?",
+        "answer": "To add VAT: Multiply the net taxable base by (1 + Tax Rate / 100). For example, €100 + 21% VAT = €100 × 1.21 = €121. To extract VAT from a gross amount: Divide the gross amount by (1 + Tax Rate / 100). For example, €121 / 1.21 = €100 taxable base.",
+        "display": true
+      },
+      {
+        "id": "faq3",
+        "question": "What is the Equivalence Surcharge (Recargo de Equivalencia)?",
+        "answer": "The Equivalence Surcharge is a special mandatory VAT regime in Spain for retail traders who sell goods without manufacturing or processing them. The current surcharge rates are 5.2% on the 21% general rate, 1.4% on the 10% reduced rate, and 0.5% on the 4% super-reduced rate.",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Is VAT included in consumer prices in Spain?",
+        "answer": "Yes, Spanish consumer protection laws require all B2C prices displayed to the public to be final gross prices with VAT included. B2B invoices between businesses and self-employed professionals must explicitly break down the net taxable base, VAT rate, and VAT quota.",
+        "display": true
+      }
+    ]
+  },
+  "es": {
+    "faqTitle": "Preguntas <span class=\"gradient-text\">Frecuentes</span>",
+    "faqSubtitle": "Todo lo que necesitas saber sobre el IVA en España, fórmulas y facturación",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "¿Qué es el IVA?",
+        "answer": "El IVA (Impuesto sobre el Valor Añadido) es un tributo de naturaleza indirecta que recae sobre el consumo de bienes y servicios. En España está regulado por la Agencia Tributaria y se aplica en cada fase de producción y distribución.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "¿Cómo se calcula el IVA?",
+        "answer": "Para añadir IVA: Base Imponible × (1 + Tipo/100). Ejemplo: 100€ + 21% = 100 × 1,21 = 121€. Para quitar IVA: Total / (1 + Tipo/100). Ejemplo: 121€ / 1,21 = 100€ de base imponible y 21€ de cuota de IVA.",
+        "display": true
+      },
+      {
+        "id": "faq3",
+        "question": "¿Qué es el recargo de equivalencia?",
+        "answer": "Es un régimen especial obligatorio para comerciantes minoristas autónomos que no transforman los productos que venden. Los tipos vigentes son: 5,2% para el tipo general (21%), 1,4% para el reducido (10%) y 0,5% para el superreducido (4%).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "¿Es obligatorio incluir el IVA en los precios?",
+        "answer": "Sí, en España el precio mostrado a los consumidores finales debe incluir siempre el IVA. En facturas entre empresas y profesionales autónomos (B2B) es obligatorio desglosar la base imponible y la cuota de IVA por separado.",
+        "display": true
+      }
+    ]
+  }
+}

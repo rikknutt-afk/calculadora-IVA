@@ -1,0 +1,145 @@
+---
+import siteConfig from '../config/site.json';
+import navConfig from '../config/navigation.json';
+
+interface Props {
+  type?: 'WebSite' | 'AboutPage' | 'ContactPage' | 'Article' | 'Blog';
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  datePublished?: string;
+  authorName?: string;
+  faqItems?: Array<{ question: string; answer: string; display?: boolean }>;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  blogItems?: Array<{ name: string; url: string; position: number }>;
+}
+
+const {
+  type = 'WebSite',
+  title = siteConfig.defaultTitle,
+  description = siteConfig.defaultDescription,
+  url = siteConfig.siteUrl,
+  image = `${siteConfig.siteUrl}${siteConfig.ogImage}`,
+  datePublished,
+  authorName = siteConfig.author,
+  faqItems,
+  breadcrumbs,
+  blogItems,
+} = Astro.props;
+
+// 1. Organization Schema
+const socialLinks = Object.values(siteConfig.social).filter(Boolean);
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteConfig.siteName,
+  legalName: siteConfig.legalName,
+  url: siteConfig.siteUrl,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${siteConfig.siteUrl}/favicon.svg`,
+  },
+  description: siteConfig.defaultDescription,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: siteConfig.contactEmail,
+    contactType: 'customer support',
+  },
+  sameAs: socialLinks,
+};
+
+// 2. Site Navigation Element Graph
+const siteNavSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: navConfig.headerNav.map((item, index) => ({
+    '@type': 'SiteNavigationElement',
+    position: index + 1,
+    name: item.key,
+    url: `${siteConfig.siteUrl}${item.href}`,
+  })),
+};
+
+// 3. WebSite / Page Specific Schema
+let pageSchema: Record<string, any> = {
+  '@context': 'https://schema.org',
+  '@type': type,
+  name: title,
+  description: description,
+  url: url,
+};
+
+if (type === 'Article') {
+  pageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    image: image,
+    datePublished: datePublished || new Date().toISOString(),
+    author: {
+      '@type': 'Person',
+      name: authorName,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.siteName,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.siteUrl}/favicon.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+  };
+}
+
+// 4. FAQ Schema (if FAQs exist)
+const visibleFaqs = faqItems?.filter((f) => f.display !== false);
+const faqSchema = visibleFaqs && visibleFaqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: visibleFaqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+} : null;
+
+// 5. Breadcrumb Schema
+const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.name,
+    item: crumb.url,
+  })),
+} : null;
+
+// 6. Blog Listing ItemList Schema
+const blogListSchema = blogItems && blogItems.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: blogItems.map((post) => ({
+    '@type': 'ListItem',
+    position: post.position,
+    name: post.name,
+    url: post.url,
+  })),
+} : null;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(siteNavSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+{breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+{blogListSchema && <script type="application/ld+json" set:html={JSON.stringify(blogListSchema)} />}

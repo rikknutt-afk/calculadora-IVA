@@ -1,0 +1,66 @@
+---
+import { getLocalizedUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  post: {
+    slug: string;
+    data: {
+      title: string;
+      description: string;
+      date: Date;
+      author: string;
+      category: string;
+      image: string;
+    };
+  };
+  locale?: string;
+}
+
+const { post, locale = 'en' } = Astro.props;
+const { t } = useTranslations(locale);
+const formattedDate = new Date(post.data.date).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const postUrl = getLocalizedUrl(`/blog/${post.slug}/`, locale);
+---
+
+<article class="glass-card flex flex-col justify-between overflow-hidden group hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+  <a href={postUrl} class="block aspect-[16/9] overflow-hidden bg-gradient-to-br from-indigo-500/20 to-purple-500/20 relative">
+    <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
+      <span class="font-display font-black text-2xl sm:text-3xl gradient-text opacity-90 group-hover:scale-105 transition-transform duration-300">
+        % IVA
+      </span>
+    </div>
+    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-indigo-600/90 text-white backdrop-blur-md shadow-sm">
+      {post.data.category}
+    </span>
+  </a>
+
+  <div class="p-6 flex-1 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center gap-2 text-xs text-[var(--text-tertiary)] mb-2.5 font-medium">
+        <span>{formattedDate}</span>
+        <span>•</span>
+        <span>{post.data.author}</span>
+      </div>
+
+      <h3 class="font-display font-bold text-lg text-[var(--text-primary)] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 mb-2">
+        <a href={postUrl}>{post.data.title}</a>
+      </h3>
+
+      <p class="text-xs sm:text-sm text-[var(--text-secondary)] line-clamp-3 leading-relaxed mb-4">
+        {post.data.description}
+      </p>
+    </div>
+
+    <a
+      href={postUrl}
+      class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 group-hover:underline pt-2"
+    >
+      <span>{t('readMore')}</span>
+      <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </a>
+  </div>
+</article>

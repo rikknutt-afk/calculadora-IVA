@@ -1,0 +1,67 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const { t } = useTranslations(locale);
+---
+
+<section class="py-16 lg:py-24 relative z-10" id="how-it-works">
+  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3">
+        {t('howItWorksTitle')}
+      </h2>
+      <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed">
+        {t('howItWorksSubtitle')}
+      </p>
+    </div>
+
+    <!-- Reusable slot or default 3-step grid -->
+    <slot>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Step 1 -->
+        <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
+            01
+          </div>
+          <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5">
+            {t('step1Title')}
+          </h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+            {t('step1Desc')}
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
+            02
+          </div>
+          <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5">
+            {t('step2Title')}
+          </h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+            {t('step2Desc')}
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
+            03
+          </div>
+          <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5">
+            {t('step3Title')}
+          </h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+            {t('step3Desc')}
+          </p>
+        </div>
+      </div>
+    </slot>
+  </div>
+</section>

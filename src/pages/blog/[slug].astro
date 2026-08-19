@@ -1,0 +1,91 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import siteConfig from '../../config/site.json';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formattedDate = new Date(post.data.date).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const postUrl = `${siteConfig.siteUrl}/blog/${post.slug}/`;
+
+const breadcrumbs = [
+  { name: 'Home', url: `${siteConfig.siteUrl}/` },
+  { name: 'Blog', url: `${siteConfig.siteUrl}/blog/` },
+  { name: post.data.title, url: postUrl },
+];
+---
+
+<BaseLayout
+  title={`${post.data.title} — ${siteConfig.siteName}`}
+  description={post.data.description}
+  image={post.data.image}
+  schemaType="Article"
+  datePublished={post.data.date.toISOString()}
+  authorName={post.data.author}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="max-w-3xl mx-auto py-8">
+    <!-- Breadcrumb Navigation -->
+    <nav class="flex items-center gap-2 text-xs text-[var(--text-tertiary)] mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-indigo-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/blog/" class="hover:text-indigo-600 transition-colors">Blog</a>
+      <span>/</span>
+      <span class="text-[var(--text-secondary)] font-medium truncate max-w-xs">{post.data.title}</span>
+    </nav>
+
+    <!-- Post Header Hero -->
+    <header class="mb-10 text-center sm:text-left">
+      <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 mb-4">
+        {post.data.category}
+      </div>
+
+      <h1 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-[var(--text-primary)] tracking-tight leading-tight mb-4">
+        {post.data.title}
+      </h1>
+
+      <p class="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed mb-6">
+        {post.data.description}
+      </p>
+
+      <div class="flex items-center justify-center sm:justify-start gap-3 text-xs text-[var(--text-tertiary)] border-t border-b border-[var(--border-subtle)] py-3">
+        <span class="font-semibold text-[var(--text-primary)]">{post.data.author}</span>
+        <span>•</span>
+        <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
+      </div>
+    </header>
+
+    <!-- Post Content (MDX) -->
+    <div class="glass-card p-6 sm:p-10 prose dark:prose-invert max-w-none text-[var(--text-secondary)] leading-relaxed space-y-6 text-sm sm:text-base">
+      <Content />
+    </div>
+
+    <!-- Back to blog CTA -->
+    <div class="mt-10 text-center">
+      <a
+        href="/blog/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-bold text-[var(--text-primary)] hover:text-indigo-600 hover:border-indigo-500 transition-all shadow-sm"
+      >
+        <span>&larr; Volver al índice del Blog</span>
+      </a>
+    </div>
+  </article>
+</BaseLayout>

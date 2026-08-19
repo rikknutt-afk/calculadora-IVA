@@ -1,0 +1,83 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale?: string;
+  items?: Array<{ id: string; question: string; answer: string; display?: boolean }>;
+}
+
+const { locale = 'en', items } = Astro.props;
+const { t, faq } = useTranslations(locale);
+const faqList = items || faq.items || [];
+const visibleFaqs = faqList.filter((item: any) => item.display !== false);
+---
+
+<section class="py-16 lg:py-24 relative z-10 border-t border-[var(--border-subtle)]" id="faq">
+  <div class="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3" set:html={faq.faqTitle || t('nav.faq')} />
+      <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed">
+        {faq.faqSubtitle || t('siteDescription')}
+      </p>
+    </div>
+
+    <!-- Collapsible Accordion -->
+    <div class="space-y-4" id="faqAccordion">
+      {visibleFaqs.map((item: any, index: number) => (
+        <div class="faq-item glass-card overflow-hidden transition-all duration-300">
+          <button
+            type="button"
+            class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            aria-expanded="false"
+            aria-controls={`faq-answer-${index}`}
+            id={`faq-btn-${index}`}
+          >
+            <span>{item.question}</span>
+            <svg class="faq-chevron w-5 h-5 text-[var(--text-tertiary)] transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div
+            id={`faq-answer-${index}`}
+            class="faq-body max-h-0 overflow-hidden transition-all duration-300 px-5 sm:px-6 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed"
+            role="region"
+            aria-labelledby={`faq-btn-${index}`}
+          >
+            <p class="pb-5 sm:pb-6">{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach((item) => {
+      const btn = item.querySelector('.faq-btn');
+      const body = item.querySelector('.faq-body');
+      const chevron = item.querySelector('.faq-chevron');
+
+      btn?.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+        // Close all
+        faqItems.forEach((other) => {
+          const otherBtn = other.querySelector('.faq-btn');
+          const otherBody = other.querySelector('.faq-body');
+          const otherChevron = other.querySelector('.faq-chevron');
+          otherBtn?.setAttribute('aria-expanded', 'false');
+          if (otherBody) otherBody.style.maxHeight = '0px';
+          otherChevron?.classList.remove('rotate-180', 'text-indigo-500');
+        });
+
+        // Toggle clicked
+        if (!isExpanded && body) {
+          btn.setAttribute('aria-expanded', 'true');
+          body.style.maxHeight = `${body.scrollHeight}px`;
+          chevron?.classList.add('rotate-180', 'text-indigo-500');
+        }
+      });
+    });
+  });
+</script>

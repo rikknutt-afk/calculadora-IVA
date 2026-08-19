@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../config/site.json';
+---
+
+<BaseLayout
+  title={`About Us — ${siteConfig.siteName}`}
+  description="Learn more about Calculadora IVA, our mission to simplify tax calculations for freelancers, businesses, and consumers in Spain and worldwide."
+  schemaType="AboutPage"
+>
+  <div class="max-w-3xl mx-auto py-8">
+    <div class="text-center mb-12">
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-[var(--text-primary)] mb-4">
+        About <span class="gradient-text">{siteConfig.siteName}</span>
+      </h1>
+      <p class="text-[var(--text-secondary)] text-base leading-relaxed">
+        Empowering businesses, freelancers, and individuals with fast, precise, and accessible tax calculation tools.
+      </p>
+    </div>
+
+    <div class="glass-card p-6 sm:p-10 space-y-8 text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base">
+      <section>
+        <h2 class="font-display font-bold text-xl text-[var(--text-primary)] mb-3">
+          Our Mission
+        </h2>
+        <p>
+          Value Added Tax (IVA in Spain) is an essential component of every commercial transaction. However, calculating VAT quotas, extracting taxable bases from gross amounts, and applying special regimes like the Equivalence Surcharge or IRPF withholdings can often be confusing. Our mission is to eliminate that friction by providing a reliable, modern, and 100% free financial calculator.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display font-bold text-xl text-[var(--text-primary)] mb-3">
+          Why Choose Calculadora IVA?
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <div class="p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)]">
+            <h3 class="font-bold text-[var(--text-primary)] text-sm mb-1">⚡ Instant & Reactive</h3>
+            <p class="text-xs text-[var(--text-secondary)]">Calculates in real time with bidirectional modes for adding or removing VAT.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)]">
+            <h3 class="font-bold text-[var(--text-primary)] text-sm mb-1">🎯 2025 Spanish Rates</h3>
+            <p class="text-xs text-[var(--text-secondary)]">Fully up to date with Spain's official 21%, 10%, and 4% tax brackets.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)]">
+            <h3 class="font-bold text-[var(--text-primary)] text-sm mb-1">📊 Visual Breakdown</h3>
+            <p class="text-xs text-[var(--text-secondary)]">Interactive HTML5 Canvas donut chart and proportional metrics.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)]">
+            <h3 class="font-bold text-[var(--text-primary)] text-sm mb-1">🔒 Privacy First</h3>
+            <p class="text-xs text-[var(--text-secondary)]">All calculations run locally in your browser with zero data harvesting.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="font-display font-bold text-xl text-[var(--text-primary)] mb-3">
+          Contact & Legal Notice
+        </h2>
+        <p>
+          Calculadora IVA is maintained by {siteConfig.legalName}. For inquiries, partnerships, or tax guide contributions, please visit our <a href="/contact-us/" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">Contact Page</a> or write directly to <a href={`mailto:${siteConfig.contactEmail}`} class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">{siteConfig.contactEmail}</a>.
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

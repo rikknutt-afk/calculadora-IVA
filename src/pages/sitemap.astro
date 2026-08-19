@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../config/site.json';
+import { supportedLocales, getLocalizedUrl } from '../i18n/utils';
+import { getCollection } from 'astro:content';
+
+const staticPages = [
+  { name: 'Home / Calculadora (English)', href: '/' },
+  { name: 'About Us', href: '/about-us/' },
+  { name: 'Contact Us', href: '/contact-us/' },
+  { name: 'Terms of Service', href: '/terms/' },
+  { name: 'Privacy Policy', href: '/privacy/' },
+  { name: 'Blog Archive', href: '/blog/' },
+];
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const totalBlogPages = Math.ceil(sortedPosts.length / 12) || 1;
+const blogPaginationPages = Array.from({ length: totalBlogPages }, (_, i) => ({
+  name: `Blog Page ${i + 1}`,
+  href: i === 0 ? '/blog/' : `/blog/${i + 1}/`,
+}));
+---
+
+<BaseLayout
+  title={`Sitemap — ${siteConfig.siteName}`}
+  description="Comprehensive HTML site index of all static pages, localized versions, and blog articles on Calculadora IVA."
+>
+  <div class="max-w-4xl mx-auto py-8">
+    <div class="text-center mb-12">
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-[var(--text-primary)] mb-3">
+        Site <span class="gradient-text">Index & Sitemap</span>
+      </h1>
+      <p class="text-sm text-[var(--text-secondary)]">
+        Full directory of all pages, localized editions, and tax guides available on {siteConfig.siteName}.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- 1. Core Static Pages -->
+      <div class="glass-card p-6 sm:p-8 space-y-4">
+        <h2 class="font-display font-bold text-lg text-[var(--text-primary)] border-b border-[var(--border-subtle)] pb-3 flex items-center gap-2">
+          <span>📄</span> Static Pages
+        </h2>
+        <ul class="space-y-2.5 text-sm">
+          {staticPages.map((page) => (
+            <li>
+              <a href={page.href} class="text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                <span>{page.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 2. Localized Home Pages -->
+      <div class="glass-card p-6 sm:p-8 space-y-4">
+        <h2 class="font-display font-bold text-lg text-[var(--text-primary)] border-b border-[var(--border-subtle)] pb-3 flex items-center gap-2">
+          <span>🌐</span> Localized Versions (18 Languages)
+        </h2>
+        <ul class="grid grid-cols-2 gap-2 text-xs">
+          {supportedLocales.map((loc) => (
+            <li>
+              <a href={getLocalizedUrl('/', loc.code)} class="text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline flex items-center gap-1.5">
+                <span class="w-1 h-1 rounded-full bg-indigo-500"></span>
+                <span>{loc.name} ({loc.code.toUpperCase()})</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 3. Blog Articles -->
+      <div class="glass-card p-6 sm:p-8 space-y-4">
+        <h2 class="font-display font-bold text-lg text-[var(--text-primary)] border-b border-[var(--border-subtle)] pb-3 flex items-center gap-2">
+          <span>📚</span> Tax & Financial Articles ({sortedPosts.length})
+        </h2>
+        <ul class="space-y-2.5 text-xs sm:text-sm">
+          {sortedPosts.map((post) => (
+            <li>
+              <a href={`/blog/${post.slug}/`} class="text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                <span>{post.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 4. Blog Pagination Links -->
+      <div class="glass-card p-6 sm:p-8 space-y-4">
+        <h2 class="font-display font-bold text-lg text-[var(--text-primary)] border-b border-[var(--border-subtle)] pb-3 flex items-center gap-2">
+          <span>🔢</span> Blog Pagination Indexes
+        </h2>
+        <ul class="space-y-2.5 text-xs sm:text-sm">
+          {blogPaginationPages.map((p) => (
+            <li>
+              <a href={p.href} class="text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+                <span>{p.name} ({p.href})</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,597 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const { t } = useTranslations(locale);
+---
+
+<div class="relative w-full max-w-xl mx-auto z-10" id="calculator">
+  <!-- Interactive HTML5 Background Canvas Component -->
+  <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
+
+  <div class="glass-card p-6 sm:p-8 md:p-10 relative overflow-hidden transition-all duration-300">
+    <!-- Ambient card glow -->
+    <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_30%_40%,rgba(79,70,229,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_60%,rgba(236,72,153,0.05)_0%,transparent_50%)] pointer-events-none animate-[spin_25s_linear_infinite]" aria-hidden="true"></div>
+
+    <!-- Mode Toggle Segmented Control -->
+    <div class="flex relative bg-[var(--bg-toggle)] border border-[var(--border-subtle)] rounded-xl p-1 mb-8" role="tablist" aria-label="Modo de cálculo">
+      <button
+        type="button"
+        id="modeAdd"
+        data-mode="add"
+        class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 transition-all relative z-10"
+        role="tab"
+        aria-selected="true"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <span>{t('modeAdd')}</span>
+      </button>
+
+      <button
+        type="button"
+        id="modeRemove"
+        data-mode="remove"
+        class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold text-[var(--text-secondary)] transition-all relative z-10"
+        role="tab"
+        aria-selected="false"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <span>{t('modeRemove')}</span>
+      </button>
+
+      <div id="toggleSlider" class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-[var(--bg-pill)] rounded-lg shadow-md transition-transform duration-300 pointer-events-none"></div>
+    </div>
+
+    <!-- Input Form Body -->
+    <div id="calcBody" class="space-y-6">
+      <!-- Amount Input -->
+      <div>
+        <label for="amountInput" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+          <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <span id="amountLabel">{t('amountWithoutVat')}</span>
+        </label>
+        <div class="relative">
+          <input
+            type="text"
+            id="amountInput"
+            class="w-full py-4 pl-5 pr-12 bg-[var(--bg-input)] border-1.5 border-[var(--border-medium)] rounded-xl font-display text-2xl font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 shadow-sm transition-all placeholder:text-[var(--text-tertiary)] placeholder:opacity-50"
+            placeholder="0,00"
+            inputmode="decimal"
+            autocomplete="off"
+            aria-label="Importe"
+          />
+          <span class="absolute right-5 top-1/2 -translate-y-1/2 font-display text-xl font-bold text-[var(--text-tertiary)]">€</span>
+        </div>
+      </div>
+
+      <!-- Rate Buttons Selection -->
+      <div>
+        <label class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+          <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+          <span>{t('vatRate')}</span>
+        </label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="radiogroup" aria-label="Seleccionar tipo de IVA">
+          <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="4" role="radio" aria-checked="false">
+            <span class="font-display font-bold text-base text-[var(--text-primary)]">4%</span>
+            <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">{t('superReduced')}</span>
+          </button>
+
+          <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="10" role="radio" aria-checked="false">
+            <span class="font-display font-bold text-base text-[var(--text-primary)]">10%</span>
+            <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">{t('reduced')}</span>
+          </button>
+
+          <button type="button" class="rate-btn active flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-indigo-500 bg-indigo-500/5 ring-3 ring-indigo-500/15 shadow-sm transition-all" data-rate="21" role="radio" aria-checked="true">
+            <span class="font-display font-bold text-base text-[var(--text-primary)]">21%</span>
+            <span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">{t('general')}</span>
+          </button>
+
+          <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" id="rateCustomBtn" data-rate="custom" role="radio" aria-checked="false">
+            <span class="font-display font-bold text-base text-[var(--text-primary)] flex items-center">
+              <input type="text" id="customRateInput" class="w-8 text-center bg-transparent border-b border-[var(--text-tertiary)] focus:border-indigo-500 outline-none text-base font-bold text-[var(--text-primary)]" placeholder="?" inputmode="decimal" />%
+            </span>
+            <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">{t('custom')}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Calculate Button -->
+      <button
+        type="button"
+        id="calcButton"
+        class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/45 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden transition-all group"
+      >
+        <span class="relative z-10">{t('calcButton')}</span>
+        <svg class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <div class="btn-shine" aria-hidden="true"></div>
+      </button>
+    </div>
+
+    <!-- Results Panel -->
+    <div id="resultsPanel" class="hidden space-y-6 animate-[fadeIn_0.4s_ease-out]">
+      <div class="flex items-center justify-between">
+        <h3 class="font-display font-extrabold text-xl gradient-text">{t('resultsTitle')}</h3>
+        <button
+          type="button"
+          id="resultsClose"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-xs font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 transition-colors shadow-sm"
+        >
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>{t('modify')}</span>
+        </button>
+      </div>
+
+      <!-- Results Grid -->
+      <div class="grid gap-3">
+        <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm">
+          <span class="text-sm font-semibold text-[var(--text-secondary)]" id="resultBaseLabel">{t('basePrice')}</span>
+          <span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultBaseValue">0,00 €</span>
+        </div>
+
+        <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm">
+          <span class="text-sm font-semibold text-[var(--text-secondary)]">
+            {t('vatAmount')} (<span id="resultIvaRate">21</span>%)
+          </span>
+          <span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultIvaValue">0,00 €</span>
+        </div>
+
+        <div class="flex items-center justify-between p-4 rounded-xl border border-indigo-500/40 bg-[var(--gradient-card)] shadow-md">
+          <span class="text-sm font-bold text-[var(--text-secondary)]" id="resultTotalLabel">{t('totalPrice')}</span>
+          <span class="font-display font-extrabold text-2xl gradient-text" id="resultTotalValue">0,00 €</span>
+        </div>
+      </div>
+
+      <!-- HTML5 Canvas Donut Chart Component -->
+      <div class="relative w-[170px] h-[170px] mx-auto flex items-center justify-center">
+        <canvas id="breakdownCanvas" class="w-[170px] h-[170px] block drop-shadow-md" width="170" height="170" aria-label="Gráfico de desglose de IVA"></canvas>
+        <div class="absolute flex flex-col items-center justify-center pointer-events-none">
+          <span id="chartCenterPercent" class="font-display font-extrabold text-2xl text-[var(--text-primary)] leading-none">21%</span>
+          <span id="chartCenterLabel" class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mt-1">IVA</span>
+        </div>
+      </div>
+
+      <!-- Proportional Bar -->
+      <div class="flex h-7 rounded-full overflow-hidden bg-[var(--bg-toggle)] border border-[var(--border-subtle)] shadow-inner">
+        <div id="breakdownFill" class="flex items-center justify-center bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all duration-500 min-w-[36px]">
+          Base
+        </div>
+        <div id="breakdownIvaFill" class="flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-500 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all duration-500 min-w-[28px]">
+          IVA
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-3 pt-2">
+        <button
+          type="button"
+          id="copyResult"
+          class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span>{t('copy')}</span>
+        </button>
+
+        <button
+          type="button"
+          id="newCalc"
+          class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          <span>{t('newCalc')}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Calculator State & Elements
+    const elements = {
+      modeAdd: document.getElementById('modeAdd'),
+      modeRemove: document.getElementById('modeRemove'),
+      toggleSlider: document.getElementById('toggleSlider'),
+      amountInput: document.getElementById('amountInput'),
+      amountLabel: document.getElementById('amountLabel'),
+      rateButtons: document.querySelectorAll('.rate-btn'),
+      customRateInput: document.getElementById('customRateInput'),
+      rateCustomBtn: document.getElementById('rateCustomBtn'),
+      calcButton: document.getElementById('calcButton'),
+      calcBody: document.getElementById('calcBody'),
+      resultsPanel: document.getElementById('resultsPanel'),
+      resultsClose: document.getElementById('resultsClose'),
+      resultBaseLabel: document.getElementById('resultBaseLabel'),
+      resultBaseValue: document.getElementById('resultBaseValue'),
+      resultIvaRate: document.getElementById('resultIvaRate'),
+      resultIvaValue: document.getElementById('resultIvaValue'),
+      resultTotalLabel: document.getElementById('resultTotalLabel'),
+      resultTotalValue: document.getElementById('resultTotalValue'),
+      breakdownFill: document.getElementById('breakdownFill'),
+      breakdownIvaFill: document.getElementById('breakdownIvaFill'),
+      breakdownCanvas: document.getElementById('breakdownCanvas'),
+      chartCenterPercent: document.getElementById('chartCenterPercent'),
+      chartCenterLabel: document.getElementById('chartCenterLabel'),
+      copyResult: document.getElementById('copyResult'),
+      newCalc: document.getElementById('newCalc'),
+      ambientCanvas: document.getElementById('ambientCanvas'),
+    };
+
+    let state = {
+      mode: 'add',
+      rate: 21,
+      isCustom: false,
+      lastResult: null,
+    };
+
+    // 1. Ambient Background Canvas
+    function initAmbientCanvas() {
+      const canvas = elements.ambientCanvas;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let width = 0;
+      let height = 0;
+      let dpr = window.devicePixelRatio || 1;
+      const mouse = { x: null, y: null, radius: 140 };
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+      window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = window.devicePixelRatio || 1;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.scale(dpr, dpr);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const particles = [];
+      const count = Math.min(Math.floor((width * height) / 22000), 50);
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          r: Math.random() * 2.5 + 1.5,
+          colorIdx: Math.floor(Math.random() * 4),
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+        const colors = isDark
+          ? ['rgba(129,140,248,0.5)', 'rgba(192,132,252,0.45)', 'rgba(244,114,182,0.4)', 'rgba(52,211,153,0.35)']
+          : ['rgba(79,70,229,0.4)', 'rgba(124,58,237,0.35)', 'rgba(236,72,153,0.3)', 'rgba(16,185,129,0.3)'];
+
+        particles.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = mouse.x - p.x;
+            const dy = mouse.y - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius && dist > 0) {
+              const force = (mouse.radius - dist) / mouse.radius;
+              const angle = Math.atan2(dy, dx);
+              p.x -= Math.cos(angle) * force * 2;
+              p.y -= Math.sin(angle) * force * 2;
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = colors[p.colorIdx];
+          ctx.fill();
+        });
+
+        // Lines
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 125) {
+              const alpha = (1 - dist / 125) * (isDark ? 0.2 : 0.14);
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = isDark ? `rgba(129,140,248,${alpha})` : `rgba(79,70,229,${alpha})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+    initAmbientCanvas();
+
+    // 2. Mode Toggle
+    function setMode(mode) {
+      state.mode = mode;
+      elements.modeAdd.setAttribute('aria-selected', String(mode === 'add'));
+      elements.modeRemove.setAttribute('aria-selected', String(mode === 'remove'));
+
+      if (mode === 'add') {
+        elements.modeAdd.classList.add('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        elements.modeAdd.classList.remove('text-[var(--text-secondary)]', 'font-semibold');
+        elements.modeRemove.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        elements.modeRemove.classList.add('text-[var(--text-secondary)]', 'font-semibold');
+        elements.toggleSlider.style.transform = 'translateX(0%)';
+        elements.amountLabel.textContent = 'Importe sin IVA (Neto)';
+      } else {
+        elements.modeRemove.classList.add('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        elements.modeRemove.classList.remove('text-[var(--text-secondary)]', 'font-semibold');
+        elements.modeAdd.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
+        elements.modeAdd.classList.add('text-[var(--text-secondary)]', 'font-semibold');
+        elements.toggleSlider.style.transform = 'translateX(100%)';
+        elements.amountLabel.textContent = 'Importe con IVA (Bruto)';
+      }
+    }
+
+    elements.modeAdd?.addEventListener('click', () => setMode('add'));
+    elements.modeRemove?.addEventListener('click', () => setMode('remove'));
+
+    // 3. Rate Buttons
+    elements.rateButtons?.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const rate = btn.dataset.rate;
+        elements.rateButtons.forEach((b) => {
+          b.classList.remove('border-indigo-500', 'bg-indigo-500/5', 'ring-3', 'ring-indigo-500/15');
+          b.classList.add('border-[var(--border-subtle)]', 'bg-[var(--bg-input)]');
+          b.setAttribute('aria-checked', 'false');
+        });
+
+        btn.classList.add('border-indigo-500', 'bg-indigo-500/5', 'ring-3', 'ring-indigo-500/15');
+        btn.classList.remove('border-[var(--border-subtle)]', 'bg-[var(--bg-input)]');
+        btn.setAttribute('aria-checked', 'true');
+
+        if (rate === 'custom') {
+          state.isCustom = true;
+          elements.customRateInput?.focus();
+          const customVal = parseNumber(elements.customRateInput?.value);
+          state.rate = isNaN(customVal) ? 0 : customVal;
+        } else {
+          state.isCustom = false;
+          state.rate = parseFloat(rate);
+        }
+      });
+    });
+
+    elements.customRateInput?.addEventListener('input', () => {
+      if (state.isCustom) {
+        const val = parseNumber(elements.customRateInput.value);
+        state.rate = isNaN(val) ? 0 : val;
+      }
+    });
+
+    elements.customRateInput?.addEventListener('focus', () => {
+      elements.rateCustomBtn?.click();
+    });
+
+    // 4. Number Parsing & Formatting
+    function parseNumber(str) {
+      if (!str) return NaN;
+      str = str.trim();
+      const lastComma = str.lastIndexOf(',');
+      const lastDot = str.lastIndexOf('.');
+      if (lastComma > lastDot) {
+        str = str.replace(/\./g, '').replace(',', '.');
+      } else if (lastDot > lastComma) {
+        str = str.replace(/,/g, '');
+      } else if (lastComma !== -1) {
+        str = str.replace(',', '.');
+      }
+      return parseFloat(str);
+    }
+
+    function formatCurrency(val) {
+      return val.toLocaleString('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+    }
+
+    function formatRate(rate) {
+      return rate % 1 === 0 ? rate.toString() : rate.toFixed(1);
+    }
+
+    // 5. Calculation Engine
+    function calculate() {
+      const raw = elements.amountInput?.value.trim();
+      if (!raw) {
+        elements.amountInput?.classList.add('shake');
+        setTimeout(() => elements.amountInput?.classList.remove('shake'), 400);
+        return;
+      }
+
+      const amount = parseNumber(raw);
+      if (isNaN(amount) || amount <= 0) {
+        elements.amountInput?.classList.add('shake');
+        setTimeout(() => elements.amountInput?.classList.remove('shake'), 400);
+        return;
+      }
+
+      const rate = state.rate;
+      let base, iva, total;
+
+      if (state.mode === 'add') {
+        base = amount;
+        iva = amount * (rate / 100);
+        total = amount + iva;
+      } else {
+        total = amount;
+        base = amount / (1 + rate / 100);
+        iva = total - base;
+      }
+
+      state.lastResult = { base, iva, total, rate, mode: state.mode };
+      showResults(base, iva, total, rate);
+    }
+
+    elements.calcButton?.addEventListener('click', calculate);
+    elements.amountInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        calculate();
+      }
+    });
+
+    // 6. Donut Chart Canvas Renderer
+    let chartReqId = null;
+    function animateChart(base, iva, total) {
+      const canvas = elements.breakdownCanvas;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      if (chartReqId) cancelAnimationFrame(chartReqId);
+
+      const dpr = window.devicePixelRatio || 1;
+      const size = 170;
+      canvas.width = size * dpr;
+      canvas.height = size * dpr;
+      ctx.scale(dpr, dpr);
+
+      const centerX = size / 2;
+      const centerY = size / 2;
+      const radius = size * 0.38;
+      const lineWidth = 16;
+
+      const baseRatio = total > 0 ? base / total : 0.8;
+      const ivaRatio = total > 0 ? iva / total : 0.2;
+
+      elements.chartCenterPercent.textContent = `${Math.round(ivaRatio * 100)}%`;
+      elements.chartCenterLabel.textContent = `IVA (${formatRate(state.rate)}%)`;
+
+      const startTime = performance.now();
+      const duration = 600;
+
+      function frame(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        ctx.clearRect(0, 0, size, size);
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+        // Track
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.06)';
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+
+        const startAngle = -Math.PI / 2;
+        const totalAngle = Math.PI * 2 * ease;
+        const bAngle = totalAngle * baseRatio;
+        const iAngle = totalAngle * ivaRatio;
+
+        if (bAngle > 0) {
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, radius, startAngle, startAngle + bAngle);
+          const bGrad = ctx.createLinearGradient(0, 0, size, size);
+          bGrad.addColorStop(0, '#4f46e5');
+          bGrad.addColorStop(1, '#6366f1');
+          ctx.strokeStyle = bGrad;
+          ctx.lineWidth = lineWidth;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+
+        if (iAngle > 0) {
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, radius, startAngle + bAngle, startAngle + bAngle + iAngle);
+          const iGrad = ctx.createLinearGradient(0, 0, size, size);
+          iGrad.addColorStop(0, '#ec4899');
+          iGrad.addColorStop(1, '#c084fc');
+          ctx.strokeStyle = iGrad;
+          ctx.lineWidth = lineWidth;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+
+        if (progress < 1) chartReqId = requestAnimationFrame(frame);
+      }
+      chartReqId = requestAnimationFrame(frame);
+    }
+
+    function showResults(base, iva, total, rate) {
+      elements.resultBaseValue.textContent = formatCurrency(base);
+      elements.resultIvaValue.textContent = formatCurrency(iva);
+      elements.resultTotalValue.textContent = formatCurrency(total);
+      elements.resultIvaRate.textContent = formatRate(rate);
+
+      const basePct = (base / total) * 100;
+      const ivaPct = (iva / total) * 100;
+      elements.breakdownFill.style.width = `${basePct}%`;
+      elements.breakdownIvaFill.style.width = `${ivaPct}%`;
+
+      animateChart(base, iva, total);
+
+      elements.calcBody.classList.add('hidden');
+      elements.resultsPanel.classList.remove('hidden');
+    }
+
+    elements.resultsClose?.addEventListener('click', () => {
+      elements.resultsPanel.classList.add('hidden');
+      elements.calcBody.classList.remove('hidden');
+    });
+
+    elements.newCalc?.addEventListener('click', () => {
+      elements.resultsPanel.classList.add('hidden');
+      elements.calcBody.classList.remove('hidden');
+      elements.amountInput.value = '';
+      elements.amountInput.focus();
+    });
+
+    // 7. Copy Utility
+    elements.copyResult?.addEventListener('click', () => {
+      if (!state.lastResult) return;
+      const { base, iva, total, rate, mode } = state.lastResult;
+      const text = `Calculadora IVA (${mode === 'add' ? 'Añadir IVA' : 'Quitar IVA'})\nBase imponible: ${formatCurrency(base)}\nIVA (${formatRate(rate)}%): ${formatCurrency(iva)}\nTotal: ${formatCurrency(total)}`;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✓ Resumen copiado al portapapeles');
+      });
+    });
+
+    function showToast(msg) {
+      const existing = document.querySelector('.toast');
+      if (existing) existing.remove();
+      const toast = document.createElement('div');
+      toast.className = 'toast show';
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+  });
+</script>

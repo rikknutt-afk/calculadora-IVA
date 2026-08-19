@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IvaCalculator from '../../components/IvaCalculator.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import RateTable from '../../components/RateTable.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { getStaticLocalePaths, useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return getStaticLocalePaths();
+}
+
+const { locale } = Astro.params;
+const currentLocale = locale || 'en';
+const { t, faq } = useTranslations(currentLocale);
+---
+
+<BaseLayout
+  title={t('siteTitle')}
+  description={t('siteDescription')}
+  schemaType="WebSite"
+  faqItems={faq.items}
+>
+  <!-- Hero Section -->
+  <section class="text-center max-w-3xl mx-auto pt-6 pb-10">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 shadow-sm mb-6 animate-pulse-dot">
+      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+      <span>{t('heroBadge')}</span>
+    </div>
+
+    <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[var(--text-primary)] mb-4" set:html={t('heroTitle')} />
+
+    <p class="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+      {t('heroSubtitle')}
+    </p>
+  </section>
+
+  <!-- Interactive Calculator Component -->
+  <IvaCalculator locale={currentLocale} />
+
+  <!-- How It Works Section -->
+  <HowItWorks locale={currentLocale} />
+
+  <!-- Rates & Table Section -->
+  <RateTable locale={currentLocale} />
+
+  <!-- FAQ Section -->
+  <FaqSection locale={currentLocale} />
+</BaseLayout>

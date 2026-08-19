@@ -1,0 +1,22 @@
+{
+  "siteName": "Calculadora IVA",
+  "legalName": "Calculadora IVA Pro S.L.",
+  "siteUrl": "https://calculadoraiva.es",
+  "contactEmail": "contacto@calculadoraiva.es",
+  "defaultLocale": "en",
+  "defaultTitle": "Calculadora IVA — VAT / Tax Calculator & Invoice Breakdown",
+  "defaultDescription": "Free, professional, and instant VAT/IVA calculator. Add or extract VAT with official Spanish and international rates. Real-time charts, breakdown formulas, and invoice tools.",
+  "verification": {
+    "google": "google-site-verification-token",
+    "bing": "bing-site-verification-token",
+    "yandex": "yandex-site-verification-token"
+  },
+  "social": {
+    "facebook": "https://facebook.com/calculadoraiva",
+    "twitter": "https://twitter.com/calculadoraiva",
+    "linkedin": "https://linkedin.com/company/calculadoraiva",
+    "pinterest": "https://pinterest.com/calculadoraiva"
+  },
+  "author": "Calculadora IVA Team",
+  "ogImage": "/og-image.png"
+}

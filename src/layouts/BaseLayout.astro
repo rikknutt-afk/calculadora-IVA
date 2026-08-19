@@ -1,0 +1,119 @@
+---
+import siteConfig from '../config/site.json';
+import { getLocaleFromUrl, getLocaleDir, getOgLocale, useTranslations } from '../i18n/utils';
+import ThemeScript from '../components/ThemeScript.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  schemaType?: 'WebSite' | 'AboutPage' | 'ContactPage' | 'Article' | 'Blog';
+  datePublished?: string;
+  authorName?: string;
+  faqItems?: Array<{ question: string; answer: string; display?: boolean }>;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  blogItems?: Array<{ name: string; url: string; position: number }>;
+}
+
+const {
+  title,
+  description,
+  image = siteConfig.ogImage,
+  schemaType = 'WebSite',
+  datePublished,
+  authorName,
+  faqItems,
+  breadcrumbs,
+  blogItems,
+} = Astro.props;
+
+const currentUrl = new URL(Astro.request.url);
+const locale = getLocaleFromUrl(currentUrl);
+const dir = getLocaleDir(locale);
+const ogLocale = getOgLocale(locale);
+const { t } = useTranslations(locale);
+
+const finalTitle = title || t('siteTitle', siteConfig.defaultTitle);
+const finalDescription = description || t('siteDescription', siteConfig.defaultDescription);
+const canonicalUrl = new URL(Astro.url.pathname, siteConfig.siteUrl).href;
+const fullImageUrl = image.startsWith('http') ? image : `${siteConfig.siteUrl}${image}`;
+---
+
+<!DOCTYPE html>
+<html lang={locale} dir={dir}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Anti-FOUC theme script -->
+    <ThemeScript />
+
+    <!-- Primary SEO -->
+    <title>{finalTitle}</title>
+    <meta name="description" content={finalDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Search Engine Verification -->
+    {siteConfig.verification?.google && <meta name="google-site-verification" content={siteConfig.verification.google} />}
+    {siteConfig.verification?.bing && <meta name="msvalidate.01" content={siteConfig.verification.bing} />}
+    {siteConfig.verification?.yandex && <meta name="yandex-verification" content={siteConfig.verification.yandex} />}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={schemaType === 'Article' ? 'article' : 'website'} />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={finalTitle} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDescription} />
+    <meta name="twitter:image" content={fullImageUrl} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <SchemaOrg
+      type={schemaType}
+      title={finalTitle}
+      description={finalDescription}
+      url={canonicalUrl}
+      image={fullImageUrl}
+      datePublished={datePublished}
+      authorName={authorName}
+      faqItems={faqItems}
+      breadcrumbs={breadcrumbs}
+      blogItems={blogItems}
+    />
+  </head>
+  <body class="min-h-screen flex flex-col antialiased bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors">
+    <Header locale={locale} />
+    
+    <main class="flex-1 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+      <slot />
+    </main>
+
+    <Footer locale={locale} />
+  </body>
+</html>

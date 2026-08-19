@@ -1,0 +1,50 @@
+---
+import type { GetStaticPathsOptions } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import Pagination from '../../components/Pagination.astro';
+import siteConfig from '../../config/site.json';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+  const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return paginate(sortedPosts, { pageSize: 12 });
+}
+
+const { page } = Astro.props;
+
+const blogItemsForSchema = page.data.map((post: any, idx: number) => ({
+  name: post.data.title,
+  url: `${siteConfig.siteUrl}/blog/${post.slug}/`,
+  position: page.start + idx + 1,
+}));
+---
+
+<BaseLayout
+  title={`Blog & Tax Guides (Page ${page.currentPage}) — ${siteConfig.siteName}`}
+  description="Comprehensive guides, news, formulas, and updates about VAT (IVA) and invoicing in Spain."
+  schemaType="Blog"
+  blogItems={blogItemsForSchema}
+>
+  <div class="py-8">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-[var(--text-primary)] mb-3">
+        Tax & Invoicing <span class="gradient-text">Blog</span>
+      </h1>
+      <p class="text-sm sm:text-base text-[var(--text-secondary)]">
+        In-depth articles, calculation guides, and regulatory updates on Value Added Tax in Spain.
+      </p>
+    </div>
+
+    <!-- 12-Card Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
+      {page.data.map((post: any) => (
+        <BlogCard post={post} locale="en" />
+      ))}
+    </div>
+
+    <!-- Numbered Pagination -->
+    <Pagination page={page} locale="en" />
+  </div>
+</BaseLayout>

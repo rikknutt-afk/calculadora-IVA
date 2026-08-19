@@ -1,0 +1,96 @@
+{
+  "en": {
+    "nav": {
+      "calculator": "Calculator",
+      "howItWorks": "How it works",
+      "rates": "VAT Rates",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "about": "About Us",
+      "contact": "Contact",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "sitemap": "Sitemap"
+    },
+    "footer": {
+      "desc": "Professional tool for calculating Value Added Tax (VAT / IVA) with official Spanish rates, instant breakdowns, and export utilities.",
+      "disclaimer": "This tool is for informational and educational purposes. Consult an authorized tax advisor for official filings.",
+      "rights": "All rights reserved."
+    },
+    "theme": {
+      "toggle": "Toggle light / dark theme"
+    },
+    "language": "Language",
+    "backHome": "Back to Home",
+    "readMore": "Read article",
+    "publishedOn": "Published on",
+    "author": "By",
+    "tableOfContents": "Table of Contents",
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next",
+      "showing": "Showing",
+      "of": "of",
+      "posts": "articles"
+    },
+    "contactForm": {
+      "title": "Send us a Message",
+      "subtitle": "Have questions, feature requests, or tax inquiries? Get in touch with our team.",
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Thank you! Your message has been sent successfully.",
+      "error": "An error occurred. Please try again or email us directly.",
+      "directEmail": "Or email us directly at"
+    }
+  },
+  "es": {
+    "nav": {
+      "calculator": "Calculadora",
+      "howItWorks": "Cómo funciona",
+      "rates": "Tipos de IVA",
+      "faq": "Preguntas",
+      "blog": "Blog",
+      "about": "Sobre Nosotros",
+      "contact": "Contacto",
+      "terms": "Términos de Uso",
+      "privacy": "Privacidad",
+      "sitemap": "Mapa del Sitio"
+    },
+    "footer": {
+      "desc": "Herramienta profesional para el cálculo del Impuesto sobre el Valor Añadido (IVA) con los tipos oficiales de España y desgloses instantáneos.",
+      "disclaimer": "Esta calculadora es de carácter orientativo. Consulte con un asesor fiscal para trámites oficiales.",
+      "rights": "Todos los derechos reservados."
+    },
+    "theme": {
+      "toggle": "Cambiar tema claro / oscuro"
+    },
+    "language": "Idioma",
+    "backHome": "Volver al Inicio",
+    "readMore": "Leer artículo",
+    "publishedOn": "Publicado el",
+    "author": "Por",
+    "tableOfContents": "Índice de contenidos",
+    "pagination": {
+      "prev": "Anterior",
+      "next": "Siguiente",
+      "showing": "Mostrando",
+      "of": "de",
+      "posts": "artículos"
+    },
+    "contactForm": {
+      "title": "Envíanos un mensaje",
+      "subtitle": "¿Tienes dudas, sugerencias o consultas fiscales? Contáctanos.",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "message": "Mensaje",
+      "send": "Enviar mensaje",
+      "sending": "Enviando...",
+      "success": "¡Muchas gracias! Tu mensaje ha sido enviado correctamente.",
+      "error": "Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.",
+      "directEmail": "O escríbenos directamente a"
+    }
+  }
+}

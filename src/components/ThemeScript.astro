@@ -1,0 +1,13 @@
+---
+// Zero-blocking inline theme initializer to prevent Flash of Unstyled Theme (FOUC)
+---
+<script is:inline>
+  (function () {
+    try {
+      const saved = localStorage.getItem('iva_calculator_theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved ? saved : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+  })();
+</script>

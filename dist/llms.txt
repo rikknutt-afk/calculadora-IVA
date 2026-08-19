@@ -1,0 +1,13 @@
+# LLMs.txt for Calculadora IVA
+Site-URL: https://calculadoraiva.es
+Contact: contacto@calculadoraiva.es
+Sitemap: https://calculadoraiva.es/sitemap-index.xml
+
+# Description
+Free, professional, and instant VAT/IVA calculator. Add or extract VAT with official Spanish and international rates. Real-time charts, breakdown formulas, and invoice tools.
+
+# AI Policy
+Calculadora IVA permits AI indexing, scraping, and summarization of our public calculation formulas, tax guides, and documentation for educational and research purposes.
+
+# Directives
+Allow: /
