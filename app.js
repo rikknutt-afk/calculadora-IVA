@@ -47,6 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // FAQ
         faqItems: document.querySelectorAll('.faq-item'),
+
+        // Articles
+        articleItems: document.querySelectorAll('.article-item'),
+
+        // Countries
+        countriesGrid: document.getElementById('countriesGrid'),
+        countryCards: document.querySelectorAll('.country-card'),
+        countryDetail: document.getElementById('countryDetail'),
+        detailClose: document.getElementById('detailClose'),
+        detailApply: document.getElementById('detailApply'),
+        detailFlag: document.getElementById('detailFlag'),
+        detailName: document.getElementById('detailName'),
+        detailTax: document.getElementById('detailTax'),
+        detailRate: document.getElementById('detailRate'),
+        detailAbbr: document.getElementById('detailAbbr'),
+        detailAuthority: document.getElementById('detailAuthority'),
     };
 
     // ===== State =====
@@ -55,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rate: 21,
         isCustomRate: false,
         lastResult: null,
+        selectedCountry: null,
     };
 
     // ===== Initialize =====
@@ -69,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setupCalculation();
         setupResults();
         setupFAQ();
+        setupArticles();
+        setupCountries();
         setupScrollAnimations();
         setupNavigation();
         setupInputFormatting();
@@ -453,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update active nav on scroll
-        const sections = ['calculator', 'rates', 'faq'];
+        const sections = ['calculator', 'countries', 'articles', 'faq'];
         window.addEventListener('scroll', () => {
             const scrollPos = window.scrollY + 100;
 
@@ -708,6 +727,121 @@ Total: ${formatCurrency(total)}`;
         });
     }
 
+    // ===== Articles (Accordion) =====
+    function setupArticles() {
+        elements.articleItems.forEach(item => {
+            const question = item.querySelector('.article-question');
+
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+
+                // Close all other articles
+                elements.articleItems.forEach(i => {
+                    i.classList.remove('open');
+                    const btn = i.querySelector('.article-question');
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                });
+
+                if (!isOpen) {
+                    item.classList.add('open');
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    }
+
+    // ===== Countries (Interactive Grid) =====
+    function setupCountries() {
+        elements.countryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Deselect previous
+                elements.countryCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+
+                // Get data
+                const data = {
+                    country: card.dataset.country,
+                    rate: card.dataset.rate,
+                    tax: card.dataset.tax,
+                    abbr: card.dataset.abbr,
+                    authority: card.dataset.authority,
+                    flag: card.querySelector('.country-flag').textContent,
+                };
+
+                state.selectedCountry = data;
+
+                // Populate detail panel
+                elements.detailFlag.textContent = data.flag;
+                elements.detailName.textContent = data.country;
+                elements.detailTax.textContent = data.tax;
+                elements.detailRate.textContent = data.rate + '%';
+                elements.detailAbbr.textContent = data.abbr;
+                elements.detailAuthority.textContent = data.authority;
+
+                // Show detail panel with animation
+                elements.countryDetail.classList.remove('hidden');
+                elements.countryDetail.style.animation = 'none';
+                void elements.countryDetail.offsetHeight;
+                elements.countryDetail.style.animation = '';
+
+                // Scroll detail panel into view
+                elements.countryDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+
+        // Close detail panel
+        if (elements.detailClose) {
+            elements.detailClose.addEventListener('click', () => {
+                elements.countryDetail.classList.add('hidden');
+                elements.countryCards.forEach(c => c.classList.remove('active'));
+                state.selectedCountry = null;
+            });
+        }
+
+        // Apply rate to calculator
+        if (elements.detailApply) {
+            elements.detailApply.addEventListener('click', () => {
+                if (!state.selectedCountry) return;
+
+                const rate = parseFloat(state.selectedCountry.rate);
+
+                // Set custom rate in calculator
+                elements.rateButtons.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-checked', 'false');
+                });
+
+                // Check if rate matches a preset
+                const presetBtn = document.querySelector(`.rate-btn[data-rate="${rate}"]`);
+                if (presetBtn && presetBtn.dataset.rate !== 'custom') {
+                    presetBtn.classList.add('active');
+                    presetBtn.setAttribute('aria-checked', 'true');
+                    state.isCustomRate = false;
+                    state.rate = rate;
+                } else {
+                    // Use custom rate
+                    const customBtn = document.getElementById('rateCustom');
+                    customBtn.classList.add('active');
+                    customBtn.setAttribute('aria-checked', 'true');
+                    elements.customRateInput.value = formatRate(rate);
+                    state.isCustomRate = true;
+                    state.rate = rate;
+                }
+
+                // Scroll to calculator
+                document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+
+                // Focus amount input
+                setTimeout(() => {
+                    elements.amountInput.focus();
+                }, 500);
+
+                // Show toast
+                showToast(`✓ Tasa de ${state.selectedCountry.abbr} (${formatRate(rate)}%) aplicada`);
+            });
+        }
+    }
+
     // ===== Scroll Animations =====
     function setupScrollAnimations() {
         const observer = new IntersectionObserver(
@@ -721,7 +855,7 @@ Total: ${formatCurrency(total)}`;
             { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
         );
 
-        document.querySelectorAll('.rate-info-card, .faq-item').forEach(el => {
+        document.querySelectorAll('.rate-info-card, .faq-item, .article-item, .country-card, .quick-table-wrapper').forEach(el => {
             observer.observe(el);
         });
     }
