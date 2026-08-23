@@ -74,7 +74,7 @@
                     España y Latinoamérica 2025 — Tipos actualizados
                 </div>
                 <h1 class="hero-title" id="heroTitle">
-                    Calculadora de <span class="gradient-text">IVA</span>
+                    Calculadora <span class="gradient-text">IVA</span>
                 </h1>
                 <p class="hero-subtitle" id="heroSubtitle">
                     La calculadora de IVA es una herramienta gratuita que calcula el Impuesto al Valor Agregado (IVA) para España, México, Argentina, Chile, Colombia, Perú, Ecuador y 15+ países más. Introduce un importe, selecciona el tipo de IVA y obtén el precio con IVA incluido, el precio sin IVA y la base imponible al instante.
@@ -848,119 +848,85 @@
     <!-- Footer -->
     <footer class="footer" id="mainFooter">
         <div class="footer-container">
-            <!-- Top Footer Brand Bar -->
-            <div class="footer-top-brand">
-                <div class="footer-brand-info">
+            <div class="footer-main">
+                <!-- Brand / Logo Column -->
+                <div class="footer-brand-col">
                     <a href="#hero" class="footer-logo">
-                        <span class="logo-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
-                                <line x1="8" y1="6" x2="16" y2="6"></line>
-                                <line x1="8" y1="10" x2="16" y2="10"></line>
-                                <line x1="8" y1="14" x2="12" y2="14"></line>
-                                <line x1="8" y1="18" x2="10" y2="18"></line>
+                        <div class="logo-icon">
+                            <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="24" height="24" rx="6" stroke="url(#logoGradFooter)" stroke-width="2.5"/>
+                                <text x="14" y="19" text-anchor="middle" fill="url(#logoGradFooter)" font-size="14" font-weight="700" font-family="Inter">%</text>
+                                <defs>
+                                    <linearGradient id="logoGradFooter" x1="0" y1="0" x2="28" y2="28">
+                                        <stop stop-color="#4f46e5"/>
+                                        <stop offset="1" stop-color="#7c3aed"/>
+                                    </linearGradient>
+                                </defs>
                             </svg>
-                        </span>
+                        </div>
                         <span class="logo-text">Calculadora <span class="logo-accent">IVA</span></span>
                     </a>
-                    <p class="footer-desc">
-                        Herramienta profesional, precisa y gratuita para calcular el Impuesto al Valor Agregado (IVA) en España y más de 20 países de Latinoamérica. Calcula importes con IVA incluido, precio sin IVA y base imponible al instante.
-                    </p>
+                    <p class="footer-tagline">Cálculo de IVA rápido y gratuito para España y Latinoamérica.</p>
                 </div>
-                <div class="footer-trust-badges">
-                    <div class="trust-badge">
-                        <span class="trust-badge-dot"></span>
-                        <span>Tipos Fiscales 2025</span>
+
+                <!-- Footer Navigation Grid -->
+                <div class="footer-grid">
+                    <!-- Col 1: Herramientas -->
+                    <div class="footer-col" id="footerInterest">
+                        <h4 class="footer-col-title">Herramientas</h4>
+                        <ul class="footer-link-list">
+                            <li><a href="#calculator" class="footer-link">Calculadora de IVA</a></li>
+                            <li><a href="#calcular-iva" class="footer-link">Calcular IVA online</a></li>
+                            <li><a href="#formula-iva" class="footer-link">Fórmula de IVA</a></li>
+                            <li><a href="#como-funciona" class="footer-link">Cómo funciona</a></li>
+                            <li><a href="#iva-porcentaje" class="footer-link">Tipos por país</a></li>
+                            <li><a href="#faq" class="footer-link">FAQ</a></li>
+                        </ul>
                     </div>
-                    <div class="trust-badge">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>100% Gratuito</span>
+
+                    <!-- Col 2: Por País -->
+                    <div class="footer-col" id="footerCountries">
+                        <h4 class="footer-col-title">Por País</h4>
+                        <ul class="footer-link-list">
+                            <li><a href="#iva-porcentaje" class="footer-link">España (21%)</a></li>
+                            <li><a href="#iva-porcentaje" class="footer-link">México (16%)</a></li>
+                            <li><a href="#iva-porcentaje" class="footer-link">Argentina (21%)</a></li>
+                            <li><a href="#iva-porcentaje" class="footer-link">Chile (19%)</a></li>
+                            <li><a href="#iva-porcentaje" class="footer-link">Colombia (19%)</a></li>
+                            <li><a href="#iva-porcentaje" class="footer-link">Perú (18%)</a></li>
+                        </ul>
                     </div>
-                    <div class="trust-badge">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        <span>Sin Registro</span>
+
+                    <!-- Col 3: Destacados -->
+                    <div class="footer-col" id="footerHighlights">
+                        <h4 class="footer-col-title">Destacados</h4>
+                        <ul class="footer-link-list">
+                            <li><a href="#formula-iva" class="footer-link">IVA soportado / repercutido</a></li>
+                            <li><a href="#calcular-iva" class="footer-link">Añadir / Quitar IVA</a></li>
+                            <li><a href="#quickTable" class="footer-link">Tabla rápida 21%</a></li>
+                            <li><a href="#spainRates" class="footer-link">Tipos de IVA España</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
 
-            <!-- Footer Navigation Grid (4 Columns) -->
-            <div class="footer-grid">
-                <!-- Col 1: Herramientas -->
-                <div class="footer-col" id="footerInterest">
-                    <h3 class="footer-col-title">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
-                        Herramientas
-                    </h3>
-                    <ul class="footer-link-list">
-                        <li><a href="#calculator" class="footer-link"><span>Calculadora de IVA</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#calcular-iva" class="footer-link"><span>Calcular IVA online</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#formula-iva" class="footer-link"><span>Fórmula para calcular IVA</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#como-funciona" class="footer-link"><span>Cómo funciona la calculadora</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#iva-porcentaje" class="footer-link"><span>Tipos de IVA por país</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#faq" class="footer-link"><span>Preguntas frecuentes</span><span class="link-arrow">→</span></a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 2: Por País -->
-                <div class="footer-col" id="footerCountries">
-                    <h3 class="footer-col-title">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                        Calculadora por País
-                    </h3>
-                    <ul class="footer-link-list">
-                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇪🇸</span> España (21%)<span class="link-arrow">→</span></a></li>
-                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇲🇽</span> México (16%)<span class="link-arrow">→</span></a></li>
-                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇦🇷</span> Argentina (21%)<span class="link-arrow">→</span></a></li>
-                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇨🇱</span> Chile (19%)<span class="link-arrow">→</span></a></li>
-                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇨🇴</span> Colombia (19%)<span class="link-arrow">→</span></a></li>
-                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇵🇪</span> Perú (18%)<span class="link-arrow">→</span></a></li>
-                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇪🇨</span> Ecuador (15%)<span class="link-arrow">→</span></a></li>
-                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇺🇾</span> Uruguay (22%)<span class="link-arrow">→</span></a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: Destacados / Guías -->
-                <div class="footer-col" id="footerHighlights">
-                    <h3 class="footer-col-title">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        Destacados
-                    </h3>
-                    <ul class="footer-link-list">
-                        <li><a href="#formula-iva" class="footer-link"><span>IVA soportado y repercutido</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#calcular-iva" class="footer-link"><span>Añadir IVA a un precio</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#calcular-iva" class="footer-link"><span>Quitar IVA de un total</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#quickTable" class="footer-link"><span>Tabla de cálculo rápido 21%</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#spainRates" class="footer-link"><span>IVA General, Reducido y Super</span><span class="link-arrow">→</span></a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Legal & Seguridad -->
-                <div class="footer-col" id="footerLegal">
-                    <h3 class="footer-col-title">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        Legal y Seguridad
-                    </h3>
-                    <ul class="footer-link-list">
-                        <li><a href="#" class="footer-link"><span>Aviso Legal</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#" class="footer-link"><span>Política de Privacidad</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#" class="footer-link"><span>Política de Cookies</span><span class="link-arrow">→</span></a></li>
-                        <li><a href="#" class="footer-link"><span>Seguridad y Datos</span><span class="link-arrow">→</span></a></li>
-                    </ul>
-                    <div class="footer-security-seal">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        <span>Cálculos locales seguros</span>
+                    <!-- Col 4: Legal -->
+                    <div class="footer-col" id="footerLegal">
+                        <h4 class="footer-col-title">Legal</h4>
+                        <ul class="footer-link-list">
+                            <li><a href="#" class="footer-link">Aviso Legal</a></li>
+                            <li><a href="#" class="footer-link">Privacidad</a></li>
+                            <li><a href="#" class="footer-link">Cookies</a></li>
+                            <li><a href="#" class="footer-link">Seguridad</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Disclaimer & Copyright Bar -->
+            <!-- Bottom Copyright & Disclaimer -->
             <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p class="footer-copyright">&copy; 2025 Calculadora IVA. Todos los derechos reservados.</p>
-                    <p class="footer-disclaimer">
-                        Esta herramienta es orientativa y educativa. Consulte con un asesor fiscal colegiado para decisiones financieras formales. Los tipos de IVA se actualizan de acuerdo con la normativa vigente de la Agencia Tributaria (AEAT) y las entidades tributarias oficiales de cada país.
-                    </p>
-                </div>
+                <p class="footer-copyright">&copy; 2025 Calculadora IVA. Todos los derechos reservados.</p>
+                <p class="footer-disclaimer">
+                    Herramienta orientativa. Consulte con un asesor fiscal colegiado para decisiones formales. Tipos actualizados según AEAT y organismos oficiales.
+                </p>
             </div>
         </div>
     </footer>
