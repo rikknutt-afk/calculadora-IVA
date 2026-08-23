@@ -91,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setupScrollAnimations();
         setupNavigation();
         setupInputFormatting();
+        setupHeroStats();
+        setupWalkthroughDemos();
     }
 
     // ===== Theme Management =====
@@ -472,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update active nav on scroll
-        const sections = ['calculator', 'countries', 'articles', 'faq'];
+        const sections = ['calculator', 'calcular-iva', 'formula-iva', 'como-funciona', 'iva-porcentaje', 'faq'];
         window.addEventListener('scroll', () => {
             const scrollPos = window.scrollY + 100;
 
@@ -481,7 +483,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (section) {
                     const top = section.offsetTop;
                     const height = section.offsetHeight;
-                    const navLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                    // Map section IDs to nav href anchors
+                    let navId = id;
+                    if (id === 'formula-iva' || id === 'como-funciona') navId = 'calcular-iva';
+                    const navLink = document.querySelector(`.nav-link[href="#${navId}"]`);
 
                     if (scrollPos >= top && scrollPos < top + height && navLink) {
                         elements.navLinks.forEach(l => l.classList.remove('active'));
@@ -855,8 +860,70 @@ Total: ${formatCurrency(total)}`;
             { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
         );
 
-        document.querySelectorAll('.rate-info-card, .faq-item, .article-item, .country-card, .quick-table-wrapper').forEach(el => {
+        document.querySelectorAll('.rate-info-card, .faq-item, .article-item, .country-card, .quick-table-wrapper, .method-card, .formula-builder-card, .soportado-repercutido-diagram, .walkthrough-step, .rate-chart-container, .spain-rate-card').forEach(el => {
             observer.observe(el);
+        });
+    }
+
+    // ===== Hero Stats Counter Animation =====
+    function setupHeroStats() {
+        const stats = document.querySelectorAll('.hero-stat-number');
+        if (!stats.length) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        stats.forEach(stat => observer.observe(stat));
+    }
+
+    function animateCounter(el) {
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1200;
+        const start = performance.now();
+
+        function tick(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(target * eased);
+
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            }
+        }
+
+        requestAnimationFrame(tick);
+    }
+
+    // ===== Walkthrough Mini Demos =====
+    function setupWalkthroughDemos() {
+        // Mini toggle demo
+        document.querySelectorAll('.walkthrough-mini-toggle').forEach(toggle => {
+            toggle.querySelectorAll('.mini-toggle-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    toggle.querySelectorAll('.mini-toggle-btn').forEach(b => b.classList.remove('mini-toggle-active'));
+                    btn.classList.add('mini-toggle-active');
+                });
+            });
+        });
+
+        // Mini rate demo
+        document.querySelectorAll('.walkthrough-mini-rates').forEach(container => {
+            container.querySelectorAll('.mini-rate-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    container.querySelectorAll('.mini-rate-btn').forEach(b => b.classList.remove('mini-rate-active'));
+                    btn.classList.add('mini-rate-active');
+                });
+            });
         });
     }
 

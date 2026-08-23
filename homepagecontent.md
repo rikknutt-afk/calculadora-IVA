@@ -1,61 +1,24 @@
 # CONTENT WRITING ASSIGNMENT
 
 ## PRIMARY KEYWORD
-"calculadora  IVA"
+"calculadora IVA"
 
 ---
 
 # ARTICLE STRUCTURE
 
 ## Heading Outline (Follow this structure exactly)
-H1: Calcular IVA
-H2: España
-H2: AndorraImpuesto general indirecto
-H2: ArgentinaImpuesto al Valor Agregado
-H2: BoliviaImpuesto al Valor Agregado, IVA
-H2: ChileImpuesto al Valor Agregado, IVA
-H2: ColombiaImpuesto al Valor Agregado, IVA
-H2: Costa RicaImpuesto al Valor Agregado, IVA
-H2: CubaImpuesto sobre las Ventas / Impuesto sobre los Servicios
-H2: EcuadorImpuesto al Valor Agregado, IVA
-H2: El SalvadorImpuesto al Valor Agregado, IVA
-H2: España, CeutaImpuesto sobre la Producción, los Servicios y la Importación, IPSI
-H2: España, Islas CanariasImpuesto General Indirecto Canario, IGIC
-H2: España, MelillaImpuesto sobre la Producción, los Servicios y la Importación, IPSI
-H2: GuatemalaImpuesto al Valor Agregado, IVA
-H2: HondurasImpuesto Sobre Ventas, ISV
-H2: MéxicoImpuesto al Valor Agregado, IVA
-H2: NicaraguaImpuesto al Valor Agregado, IVA
-H2: PanamáImpuesto a la Transferencia de Bienes Corporales Muebles y la Prestación de Servicios, ITBMS
-H2: ParaguayImpuesto al Valor Agregado, IVA
-H2: PerúImpuesto General a las Ventas, IGV
-H2: Puerto RicoImpuesto sobre Ventas y Uso, IVU
-H2: República DominicanaImpuesto sobre Transferencias de Bienes Industrializados y Servicios, ITBIS
-H2: UruguayImpuesto al Valor Agregado, IVA
-H2: VenezuelaImpuesto al Valor Agregado, IVA
-H2: Artículos:
-H2: ¿Qué es el IVA y cómo funciona en España?
-H2: ¿Qué productos o servicios están exentos de IVA?
-H2: ¿Cuántos tipos de IVA existen en España?
-H2: ¿Quién paga el IVA y cuándo se declara?
-H2: ¿Qué es el IVA repercutido?
-H2: ¿Qué es el IVA soportado?
-H2: ¿Qué significa IVA deducible?
-H2: ¿Qué diferencia hay entre precio con IVA y sin IVA?
-H2: ¿Cómo saber si un precio tiene el IVA incluido?
-H2: Preguntas frecuentes sobre el IVA
-H3: ¿Qué fórmula se usa para calcular el IVA?
-H3: ¿Cómo se suma el IVA a un precio?
-H3: ¿Cómo se quita el IVA de un precio con IVA incluido?
-H3: ¿Cuánto es el 21% de IVA?
-H3: ¿Cómo calcular el 10% o el 4% de IVA?
-H3: ¿Cuánto es 150 + IVA?
-H3: ¿Cuánto es el IVA de 3.000 euros?
-H3: Tabla de cálculo rápido de IVA (21%)
-H2: Te puede interesar
-H2: WEBS SANTANDER
-H2: INFORMACIÓN LEGAL Y SEGURIDAD
-H2: DESTACADOS
+H2: Calcular IVA
+H2: ¿Cuál es la fórmula para calcular el IVA?
+H2: ¿Cómo funciona la calculadora de IVA?
+H2: IVA Percentage
+H2: Preguntas frecuentes sobre
+H3: ¿Qué es una calculadora de IVA?
+H3: ¿Cómo se calcula el IVA?
+H3: ¿Cómo calcular el IVA de una cantidad?
+H3: ¿Cómo añadir el IVA a un precio?
+H3: ¿Cómo quitar el IVA de una cantidad?
+H3: ¿Cómo calcular el IVA de un total?
 
 ---
 
@@ -63,50 +26,64 @@ H2: DESTACADOS
 
 ## Entities to Include
 Use these entities naturally throughout the content:
-IVA, España, Andorra, Argentina, Bolivia, Chile, Colombia, Costa Rica, Cuba, Ecuador, El Salvador, Ceuta, Melilla, Islas Canarias, Guatemala, Honduras, México, Nicaragua, Panamá, Paraguay, Perú, Puerto Rico, República Dominicana, Uruguay, Venezuela, Impuesto al Valor Agregado, Impuesto General Indirecto, Impuesto sobre la Producción, los Servicios y la Importación, IPSI, IGIC, ISV, ITBMS, IGV, IVU, ITBIS, Calculadora, Santander, calculadora de IVA, Hacienda, Agencia Tributaria, SAT (Servicio de Administración Tributaria), SII (Servicio de Impuestos Internos), DIAN (Dirección de Impuestos y Aduanas Nacionales), SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria), AFIP (Administración Federal de Ingresos Públicos), tipo de IVA, IVA general, IVA reducido, IVA superreducido, base imponible
+IVA, Calculadora de IVA, España, IVA soportado, IVA repercutido, prueba gratuita, Impuesto al Valor Agregado, México, Argentina, Chile, Colombia, Perú, Ecuador, Uruguay, Paraguay, República Dominicana, Costa Rica, Panamá, Guatemala, Honduras, El Salvador, Nicaragua, Venezuela, Bolivia, Agencia Tributaria (AEAT), SAT (Servicio de Administración Tributaria), AFIP (Administración Federal de Ingresos Públicos), SII (Servicio de Impuestos Internos), DIAN (Dirección de Impuestos y Aduanas Nacionales), SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria), SRI (Servicio de Rentas Internas), DGI (Dirección General Impositiva), Subsecretaría de Estado de Tributación (SET), DGII (Dirección General de Impuestos Internos), Ministerio de Hacienda, Calculadora de IVA en línea, IVA incluido, IVA no incluido, Base imponible, Tipo impositivo, Recargo de equivalencia, Autoliquidación, Declaración de IVA (modelo 303), Modelo 390, Factura electrónica, Contabilidad, Precio sin IVA, Precio con IVA, Margen de beneficio, Deducible
 
 ## Key Phrases (N-Grams)
 ### AI-Selected Priority Phrases (USE THESE FIRST)
-None selected
+calculadora de iva, la calculadora de iva, tipos de iva en, de iva en españa, iva en españa todo, el tipo de iva, el iva soportado y, iva soportado y repercutido, soportado y repercutido diferencias, y repercutido diferencias y, repercutido diferencias y cómo, diferencias y cómo calcularlos, en españa todo lo que, españa todo lo que necesitas, todo lo que necesitas saber
 
 ### AI-Generated Phrases
-calcular IVA en Mexico, calculadora de IVA, como calcular el IVA, IVA 16 por ciento, calcular IVA incluido, calculadora IVA 2023, calcular IVA de una cantidad, IVA en factura, calcular precio sin IVA, calculadora IVA Argentina, calcular IVA en Chile, calculadora IVA 2024, como sacar el IVA, calculadora de IVA gratis, calcular IVA en Colombia, IVA 21 por ciento, calcular IVA en España, calculadora IVA Peru, calcular IVA en Ecuador, calculadora IVA Uruguay
+calcular IVA, calculadora de IVA, IVA calculadora, como calcular IVA, calcular IVA en, IVA en Mexico, calcular IVA 16, calcular IVA 21, calculadora IVA online, calculadora IVA gratis, calcular IVA incluido, calcular IVA excluido, IVA calculadora 2023, IVA calculadora 2024, calcular IVA en Chile, calcular IVA en España, calcular IVA en Colombia, calcular IVA en Argentina, calcular IVA en Peru, calcular IVA en Ecuador
 
 ### Unique N-Grams (Stand Out Phrases)
-cálculo IVA inverso, calcular IVA 2024, IVA México calculadora, IVA Chile calculadora, precio sin IVA, IVA incluido calcular, calcular IVA porcentaje, IVA España calculadora, calculadora IVA trimestral, IVA Argentina calculadora, calcular IVA Colombia, IVA Perú calculadora, calcular IVA Uruguay, IVA Ecuador calculadora, calcular IVA Venezuela, IVA Bolivia calculadora, calcular IVA Paraguay, IVA Costa Rica calculadora, calcular IVA Guatemala, IVA Honduras calculadora
+calcular IVA incluido, desglose IVA factura, IVA 21 por ciento, base imponible calculadora, IVA deducible calculo, calcular IVA inverso, IVA soportado calculadora, IVA repercutido formula, calculo IVA trimestral, IVA reducido 10, calcular IVA automatico, IVA exento operaciones, calcular IVA mental, IVA 4 superreducido, calcular IVA rapido, IVA factura proforma, calcular IVA sin redondeo, IVA pagos fraccionados, calcular IVA con descuento, IVA importacion calculo
 
 ### Competitor Phrases (Optional)
-al valor agregado, al valor agregado iva, valor agregado iva, es el iva, qué es el iva, qué es el, el iva y, precio con iva, el iva de, sobre la producción los, la producción los servicios, producción los servicios y, los servicios y la, servicios y la importación, y la importación ipsi, sobre la producción, la producción los, producción los servicios, los servicios y, servicios y la
+None extracted
 
 ## NLP Keywords (Topic Vocabulary)
-calculadora IVA, IVA, impuesto al valor agregado, calcular IVA, IVA incluido, IVA excluido, tasa de IVA, IVA 16%, IVA 21%, IVA 19%, IVA 12%, IVA 10%, IVA 8%, IVA 5%, IVA 0%, base imponible, precio sin IVA, precio con IVA, monto de IVA, desglose de IVA, factura con IVA, cálculo de impuestos, calculadora de impuestos, IVA en México, IVA en España
+calculadora IVA, IVA, impuesto al valor agregado, calcular IVA, calcular impuesto, IVA incluido, IVA excluido, precio sin IVA, precio con IVA, tasa de IVA, porcentaje IVA, base imponible, importe IVA, total con IVA, total sin IVA, desglose IVA, factura IVA, liquidación IVA, declaración IVA, régimen IVA, exento de IVA, no sujeto a IVA, IVA deducible, IVA soportado, IVA repercutido
 
 ## Skip-Gram Dominant Word Pairs
 These word pairs frequently appear together when discussing this topic:
-calcular IVA, IVA incluido, precio sin IVA, precio con IVA, tasa de IVA, cálculo de IVA, IVA 21%, IVA 10%, IVA 4%, base imponible, importe total, desglose de IVA, aplicar IVA, quitar IVA, sumar IVA, restar IVA, IVA sobre, IVA de, calcular precio, precio final, importe base, porcentaje de IVA, IVA en factura, factura con IVA, factura sin IVA
+calcular IVA, IVA incluido, precio sin IVA, base imponible, tipo de IVA, IVA reducido, IVA general, IVA superreducido, desglose IVA, importe IVA, total con IVA, factura con IVA, cálculo de IVA, IVA aplicable, porcentaje de IVA, IVA deducible, IVA soportado, IVA repercutido, liquidación de IVA, declaración de IVA, IVA en compras, IVA en ventas, exento de IVA, IVA no incluido, sumar IVA
 
-
+## Related Search Queries to Address
+Cover these user search intents:
+• calculadora iva incluido
+• calculadora iva e irpf
+• calculadora iva base imponible
+• calculadora iva al reves
+• calculadora iva inverso
+• calculadora iva desglosado
+• calculadora iva mexico
+• calculadora iva chile
+• calculadora iva colombia
+• calculadora iva argentina
+• calculadora iva españa
+• calculadora iva ecuador
+• calculadora iva guatemala
 
 ## Semantic Word Relationships
 Use these semantic variations for vocabulary richness:
 
 ### Proper Nouns (Brands/Names)
-Calculadora de IVA del SAT, Calculadora de IVA de la AEAT, Calculadora de IVA de Hacienda, Calculadora de IVA de la DIAN, Calculadora de IVA de la SII
+Calculadora de IVA (app), Calculadora IVA (sitio web)
 
 ### Common Nouns
-calculadora, IVA, impuesto, valor agregado, precio, base imponible, porcentaje, herramienta, cálculo, factura
+calculadora, herramienta, aplicación, programa, utilidad
 
 ### Synonyms
-calculadora de impuesto al valor agregado, calculadora de IVA, calculadora de impuestos, calculadora de porcentaje de IVA, calculadora de valor agregado, calculadora de impuesto indirecto, calculadora de impuesto sobre el consumo, calculadora de IVA incluido, calculadora de IVA excluido, calculadora de precio con IVA
+calculador de IVA, calculadora de impuesto al valor agregado, calculadora de impuestos, calculadora de porcentaje de IVA
 
 ### Hyponyms (More Specific Terms)
-calculadora de IVA estándar, calculadora de IVA reducido, calculadora de IVA superreducido, calculadora de IVA para autónomos, calculadora de IVA para empresas, calculadora de IVA para facturación, calculadora de IVA en línea, calculadora de IVA móvil, calculadora de IVA con desglose, calculadora de IVA para importaciones
+calculadora de IVA incluido, calculadora de IVA excluido, calculadora de IVA para autónomos, calculadora de IVA para empresas, calculadora de IVA de bienes, calculadora de IVA de servicios
 
 ### Hypernyms (Broader Terms)
-calculadora, herramienta de cálculo, software de cálculo, aplicación de impuestos, utilidad financiera, instrumento de cálculo, dispositivo de cálculo, programa de contabilidad, recurso educativo, servicio en línea
+calculadora, herramienta de cálculo, software de impuestos, aplicación financiera
 
 ### Meronyms (Parts/Components)
-teclado, pantalla, botón de porcentaje, botón de suma, botón de resta, botón de multiplicación, botón de división, memoria, batería, carcasa
+campo de monto, campo de porcentaje de IVA, botón de calcular, pantalla de resultado, teclado numérico
 
 ---
 
@@ -296,16 +273,16 @@ Summarize the whole document (heading vectors) in a representative way by follow
 ## Instructions for Introduction
 
 ### 1. Implicit Definition
-Provide an implicit definition of "calculadora  IVA" and explain how it works in a representative way
+Provide an implicit definition of "calculadora IVA" and explain how it works in a representative way
 
 ### 2. Main Benefits
-Highlight the main benefits of "calculadora  IVA"
+Highlight the main benefits of "calculadora IVA"
 
 ### 3. Main Uses
-Describe the main uses and applications of "calculadora  IVA"
+Describe the main uses and applications of "calculadora IVA"
 
 ### 4. Main Parts/Components
-Outline the main parts or components of "calculadora  IVA"
+Outline the main parts or components of "calculadora IVA"
 
 ## Best Practices
 - Use the same n-grams in both the introduction (intro) and conclusion (outro)

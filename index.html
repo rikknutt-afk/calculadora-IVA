@@ -41,8 +41,8 @@
             <div class="header-right">
                 <nav class="nav" aria-label="Navegación principal">
                     <a href="#calculator" class="nav-link active" id="navCalculator">Calculadora</a>
-                    <a href="#countries" class="nav-link" id="navCountries">Países</a>
-                    <a href="#articles" class="nav-link" id="navArticles">Artículos</a>
+                    <a href="#calcular-iva" class="nav-link" id="navCalcularIva">Calcular IVA</a>
+                    <a href="#iva-porcentaje" class="nav-link" id="navPorcentaje">Porcentajes</a>
                     <a href="#faq" class="nav-link" id="navFaq">FAQ</a>
                 </nav>
                 <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema claro / oscuro">
@@ -66,7 +66,7 @@
     </header>
 
     <main>
-        <!-- Hero Section — H1: Calcular IVA -->
+        <!-- Hero / Introduction Section -->
         <section class="hero" id="hero">
             <div class="hero-content">
                 <div class="hero-badge" id="heroBadge">
@@ -74,35 +74,47 @@
                     España y Latinoamérica 2025 — Tipos actualizados
                 </div>
                 <h1 class="hero-title" id="heroTitle">
-                    Calcular <span class="gradient-text">IVA</span>
+                    Calculadora de <span class="gradient-text">IVA</span>
                 </h1>
                 <p class="hero-subtitle" id="heroSubtitle">
-                    La calculadora de IVA calcula el Impuesto al Valor Agregado (IVA) para España y 20+ países de Latinoamérica. Añade o quita IVA de cualquier precio, conoce la base imponible y el importe total con un solo clic.
+                    La calculadora de IVA es una herramienta gratuita que calcula el Impuesto al Valor Agregado (IVA) para España, México, Argentina, Chile, Colombia, Perú, Ecuador y 15+ países más. Introduce un importe, selecciona el tipo de IVA y obtén el precio con IVA incluido, el precio sin IVA y la base imponible al instante.
                 </p>
+                <!-- Interactive animated stats -->
+                <div class="hero-stats" id="heroStats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="20">0</span><span class="hero-stat-suffix">+</span>
+                        <span class="hero-stat-label">Países soportados</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="3">0</span>
+                        <span class="hero-stat-label">Tipos de IVA</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-target="100">0</span><span class="hero-stat-suffix">%</span>
+                        <span class="hero-stat-label">Gratis y sin registro</span>
+                    </div>
+                </div>
                 <div class="hero-features" id="heroFeatures">
                     <div class="hero-feature">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>Calcular IVA en España, México, Argentina, Chile y Colombia</span>
+                        <span>Añade o quita IVA de cualquier precio con un solo clic</span>
                     </div>
                     <div class="hero-feature">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>IVA general, IVA reducido e IVA superreducido</span>
+                        <span>IVA general (21%), IVA reducido (10%) e IVA superreducido (4%)</span>
                     </div>
                     <div class="hero-feature">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        <span>Calcula precio con IVA y precio sin IVA al instante</span>
+                        <span>Calcula base imponible, desglose de IVA e importe total</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Calculator Section -->
+        <!-- Calculator Section — KEPT AS-IS -->
         <section class="calculator-section" id="calculator">
             <div class="calculator-card" id="calculatorCard">
-                <!-- Glow effect -->
                 <div class="card-glow" aria-hidden="true"></div>
-                
-                <!-- Mode Toggle -->
                 <div class="mode-toggle" id="modeToggle" role="tablist" aria-label="Modo de cálculo">
                     <button class="mode-btn active" id="modeAdd" data-mode="add" role="tab" aria-selected="true" aria-controls="calcPanel">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
@@ -118,10 +130,7 @@
                     </button>
                     <div class="toggle-slider" id="toggleSlider"></div>
                 </div>
-
-                <!-- Calculator Body -->
                 <div class="calc-body" id="calcPanel" role="tabpanel">
-                    <!-- Amount Input -->
                     <div class="input-group" id="amountGroup">
                         <label class="input-label" for="amountInput">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -134,8 +143,6 @@
                             <span class="input-currency">€</span>
                         </div>
                     </div>
-
-                    <!-- IVA Rate Selection -->
                     <div class="rate-group" id="rateGroup">
                         <label class="input-label">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -164,8 +171,6 @@
                             </button>
                         </div>
                     </div>
-
-                    <!-- Calculate Button -->
                     <button class="calc-button" id="calcButton" type="button">
                         <span class="btn-text">Calcular IVA</span>
                         <span class="btn-icon">
@@ -176,19 +181,14 @@
                         <div class="btn-shine" aria-hidden="true"></div>
                     </button>
                 </div>
-
-                <!-- Results Panel -->
                 <div class="results-panel hidden" id="resultsPanel">
                     <div class="results-header">
                         <h2 class="results-title">Resultado</h2>
                         <button class="results-close" id="resultsClose" aria-label="Cerrar resultados">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                                <polyline points="15 18 9 12 15 6"/>
-                            </svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
                             Modificar
                         </button>
                     </div>
-                    
                     <div class="results-grid">
                         <div class="result-card result-base" id="resultBase">
                             <span class="result-label" id="resultBaseLabel">Base imponible</span>
@@ -203,8 +203,6 @@
                             <span class="result-value result-total-value" id="resultTotalValue">0,00 €</span>
                         </div>
                     </div>
-
-                    <!-- Visual Breakdown Donut Canvas & Bar -->
                     <div class="chart-wrapper">
                         <canvas id="breakdownCanvas" class="breakdown-canvas" width="180" height="180" aria-label="Gráfico de distribución del IVA"></canvas>
                         <div class="chart-center-info">
@@ -212,29 +210,17 @@
                             <span class="chart-center-label" id="chartCenterLabel">IVA</span>
                         </div>
                     </div>
-
-                    <!-- Visual breakdown bar -->
                     <div class="breakdown-bar" id="breakdownBar">
-                        <div class="breakdown-fill" id="breakdownFill">
-                            <span class="breakdown-label">Base</span>
-                        </div>
-                        <div class="breakdown-iva" id="breakdownIvaFill">
-                            <span class="breakdown-label">IVA</span>
-                        </div>
+                        <div class="breakdown-fill" id="breakdownFill"><span class="breakdown-label">Base</span></div>
+                        <div class="breakdown-iva" id="breakdownIvaFill"><span class="breakdown-label">IVA</span></div>
                     </div>
-
-                    <!-- Action Buttons -->
                     <div class="result-actions">
                         <button class="action-btn" id="copyResult" aria-label="Copiar resultado">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                             Copiar
                         </button>
                         <button class="action-btn" id="newCalc" aria-label="Nuevo cálculo">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
                             Nuevo cálculo
                         </button>
                     </div>
@@ -242,609 +228,592 @@
             </div>
         </section>
 
-        <!-- H2: España — IVA Rates with Interactive Comparison -->
-        <section class="rates-section" id="rates">
+        <!-- ============================================================
+             H2: Calcular IVA — Interactive Step-by-Step Flow
+             ============================================================ -->
+        <section class="content-section" id="calcular-iva">
             <div class="section-container">
-                <h2 class="section-title" id="ratesTitle">España <span class="gradient-text">2025</span></h2>
-                <p class="section-subtitle" id="ratesSubtitle">España aplica 3 tipos de Impuesto sobre el Valor Añadido (IVA), regulados por la Agencia Tributaria y Hacienda</p>
-                
-                <div class="rates-grid">
-                    <div class="rate-info-card" id="rateCard21">
-                        <div class="rate-info-badge general">21%</div>
-                        <h3 class="rate-info-title">IVA General</h3>
-                        <p class="rate-info-desc">El IVA general del 21% se aplica a la mayoría de bienes y servicios en España. La Agencia Tributaria establece este tipo como el estándar para el cálculo del Impuesto al Valor Agregado (IVA).</p>
-                        <ul class="rate-examples">
-                            <li>Electrónica y tecnología</li>
-                            <li>Ropa y calzado</li>
-                            <li>Servicios profesionales</li>
-                            <li>Vehículos</li>
-                        </ul>
-                        <!-- Interactive comparison bar -->
-                        <div class="rate-visual-bar" data-rate="21">
-                            <div class="rate-bar-fill" style="--target-width: 100%"></div>
-                            <span class="rate-bar-label">21% del precio</span>
+                <h2 class="section-title">Calcular <span class="gradient-text">IVA</span></h2>
+                <p class="section-subtitle">La calculadora de IVA permite calcular el Impuesto al Valor Agregado (IVA) de 3 formas: añadir IVA a un precio sin IVA, quitar IVA de un precio con IVA incluido, o calcular el IVA inverso desde un total</p>
+
+                <div class="content-text-block">
+                    <p>Calcular IVA es el proceso de aplicar el tipo impositivo correspondiente sobre la base imponible para obtener el monto de IVA y el precio final. En España, la Agencia Tributaria (AEAT) establece 3 tipos de IVA: el IVA general del 21%, el IVA reducido del 10% y el IVA superreducido del 4%. Cada tipo de IVA se aplica según la naturaleza del bien o servicio.</p>
+                    <p>Para calcular IVA en México se usa la tasa del 16% regulada por el SAT (Servicio de Administración Tributaria). En Argentina, la AFIP (Administración Federal de Ingresos Públicos) aplica un IVA del 21%. En Chile, el SII (Servicio de Impuestos Internos) aplica un IVA del 19%. En Colombia, la DIAN (Dirección de Impuestos y Aduanas Nacionales) aplica un IVA del 19%.</p>
+                </div>
+
+                <!-- Interactive 3-Method Flow Diagram -->
+                <div class="methods-grid" id="methodsGrid">
+                    <div class="method-card" id="methodAdd" data-method="add">
+                        <div class="method-icon-wrapper">
+                            <div class="method-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </div>
+                            <span class="method-number">01</span>
+                        </div>
+                        <h3 class="method-title">Añadir IVA a un precio</h3>
+                        <p class="method-desc">Parte de un precio sin IVA (base imponible) y suma el Impuesto al Valor Agregado para obtener el precio con IVA incluido.</p>
+                        <div class="method-formula">
+                            <span class="method-formula-var">Precio sin IVA</span>
+                            <span class="method-formula-op">×</span>
+                            <span class="method-formula-var">1,21</span>
+                            <span class="method-formula-op">=</span>
+                            <span class="method-formula-result">Precio con IVA</span>
+                        </div>
+                        <div class="method-example">
+                            <span class="method-example-label">Ejemplo</span>
+                            <span>100 € × 1,21 = <strong>121,00 €</strong></span>
                         </div>
                     </div>
-                    <div class="rate-info-card" id="rateCard10">
-                        <div class="rate-info-badge reduced">10%</div>
-                        <h3 class="rate-info-title">IVA Reducido</h3>
-                        <p class="rate-info-desc">El IVA reducido del 10% se aplica a productos y servicios de primera necesidad. Hacienda define este tipo para alimentación general, hostelería y transporte de viajeros.</p>
-                        <ul class="rate-examples">
-                            <li>Alimentación general</li>
-                            <li>Transporte de viajeros</li>
-                            <li>Hostelería y restauración</li>
-                            <li>Vivienda nueva</li>
-                        </ul>
-                        <div class="rate-visual-bar" data-rate="10">
-                            <div class="rate-bar-fill" style="--target-width: 47.6%"></div>
-                            <span class="rate-bar-label">10% del precio</span>
+
+                    <div class="method-card" id="methodRemove" data-method="remove">
+                        <div class="method-icon-wrapper">
+                            <div class="method-icon method-icon-remove">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </div>
+                            <span class="method-number">02</span>
+                        </div>
+                        <h3 class="method-title">Quitar IVA de un precio</h3>
+                        <p class="method-desc">Parte de un precio con IVA incluido y extrae la base imponible y el monto de IVA por separado. Se usa para calcular IVA inverso.</p>
+                        <div class="method-formula">
+                            <span class="method-formula-var">Precio con IVA</span>
+                            <span class="method-formula-op">÷</span>
+                            <span class="method-formula-var">1,21</span>
+                            <span class="method-formula-op">=</span>
+                            <span class="method-formula-result">Base imponible</span>
+                        </div>
+                        <div class="method-example">
+                            <span class="method-example-label">Ejemplo</span>
+                            <span>121 € ÷ 1,21 = <strong>100,00 €</strong></span>
                         </div>
                     </div>
-                    <div class="rate-info-card" id="rateCard4">
-                        <div class="rate-info-badge super">4%</div>
-                        <h3 class="rate-info-title">IVA Superreducido</h3>
-                        <p class="rate-info-desc">El IVA superreducido del 4% se reserva para bienes esenciales. La base imponible de estos productos recibe el tipo más bajo del sistema tributario español.</p>
-                        <ul class="rate-examples">
-                            <li>Pan, leche, huevos, frutas</li>
-                            <li>Libros y prensa</li>
-                            <li>Medicamentos de uso humano</li>
-                            <li>Prótesis e implantes</li>
-                        </ul>
-                        <div class="rate-visual-bar" data-rate="4">
-                            <div class="rate-bar-fill" style="--target-width: 19%"></div>
-                            <span class="rate-bar-label">4% del precio</span>
+
+                    <div class="method-card" id="methodDesglose" data-method="desglose">
+                        <div class="method-icon-wrapper">
+                            <div class="method-icon method-icon-desglose">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                            </div>
+                            <span class="method-number">03</span>
+                        </div>
+                        <h3 class="method-title">Desglose de IVA en factura</h3>
+                        <p class="method-desc">Calcula el desglose de IVA para factura electrónica: base imponible, monto de IVA al tipo correspondiente e importe total con IVA.</p>
+                        <div class="method-formula">
+                            <span class="method-formula-var">Base</span>
+                            <span class="method-formula-op">×</span>
+                            <span class="method-formula-var">21/100</span>
+                            <span class="method-formula-op">=</span>
+                            <span class="method-formula-result">Monto IVA</span>
+                        </div>
+                        <div class="method-example">
+                            <span class="method-example-label">Ejemplo</span>
+                            <span>1.000 € × 0,21 = <strong>210,00 €</strong></span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- H2: Countries — Interactive IVA Grid -->
-        <section class="countries-section" id="countries">
+        <!-- ============================================================
+             H2: ¿Cuál es la fórmula para calcular el IVA?
+             ============================================================ -->
+        <section class="content-section content-section-alt" id="formula-iva">
+            <div class="section-container">
+                <h2 class="section-title">¿Cuál es la fórmula para calcular el <span class="gradient-text">IVA</span>?</h2>
+                <p class="section-subtitle">2 fórmulas para calcular el IVA: una para añadir IVA a la base imponible y otra para quitar IVA de un precio con IVA incluido</p>
+
+                <div class="content-text-block">
+                    <p><strong>La fórmula para calcular el IVA es: Monto de IVA = Base imponible × (Tipo de IVA ÷ 100).</strong> El precio con IVA se obtiene sumando el monto de IVA a la base imponible. Para quitar el IVA de un precio con IVA incluido, se divide el importe total entre (1 + tipo de IVA ÷ 100).</p>
+                    <p>En la contabilidad del IVA soportado y repercutido, los autónomos y empresas calculan la diferencia entre el IVA repercutido (cobrado a clientes) y el IVA soportado (pagado a proveedores) para la autoliquidación trimestral. La declaración de IVA (modelo 303) se presenta ante la Agencia Tributaria (AEAT) cada trimestre, y el modelo 390 es el resumen anual.</p>
+                </div>
+
+                <!-- Interactive Formula Builder -->
+                <div class="formula-builder" id="formulaBuilder">
+                    <div class="formula-builder-card" id="formulaAddCard">
+                        <div class="formula-builder-header">
+                            <div class="formula-builder-badge formula-builder-badge-add">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                Añadir IVA
+                            </div>
+                        </div>
+                        <div class="formula-builder-equation">
+                            <div class="formula-builder-part" data-tooltip="El coste del producto o servicio antes de impuestos">
+                                <span class="formula-builder-label">Base imponible</span>
+                                <span class="formula-builder-value" id="fbuilderBase1">1.000 €</span>
+                            </div>
+                            <span class="formula-builder-op">×</span>
+                            <div class="formula-builder-part" data-tooltip="Factor de multiplicación: 1 + (tipo de IVA ÷ 100)">
+                                <span class="formula-builder-label">Factor IVA</span>
+                                <span class="formula-builder-value">(1 + 21/100)</span>
+                            </div>
+                            <span class="formula-builder-op">=</span>
+                            <div class="formula-builder-part formula-builder-part-result" data-tooltip="El precio final que paga el consumidor">
+                                <span class="formula-builder-label">Precio con IVA</span>
+                                <span class="formula-builder-value" id="fbuilderResult1">1.210 €</span>
+                            </div>
+                        </div>
+                        <div class="formula-builder-breakdown">
+                            <div class="formula-builder-breakdown-row">
+                                <span>Base imponible</span>
+                                <span id="fbreakBase1">1.000,00 €</span>
+                            </div>
+                            <div class="formula-builder-breakdown-row">
+                                <span>IVA (21%)</span>
+                                <span id="fbreakIva1">210,00 €</span>
+                            </div>
+                            <div class="formula-builder-breakdown-row formula-builder-breakdown-total">
+                                <span>Total con IVA</span>
+                                <span id="fbreakTotal1">1.210,00 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formula-builder-card" id="formulaRemoveCard">
+                        <div class="formula-builder-header">
+                            <div class="formula-builder-badge formula-builder-badge-remove">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                Quitar IVA
+                            </div>
+                        </div>
+                        <div class="formula-builder-equation">
+                            <div class="formula-builder-part" data-tooltip="El precio final con IVA incluido">
+                                <span class="formula-builder-label">Precio con IVA</span>
+                                <span class="formula-builder-value" id="fbuilderBase2">1.210 €</span>
+                            </div>
+                            <span class="formula-builder-op">÷</span>
+                            <div class="formula-builder-part" data-tooltip="Divisor: 1 + (tipo de IVA ÷ 100)">
+                                <span class="formula-builder-label">Factor IVA</span>
+                                <span class="formula-builder-value">(1 + 21/100)</span>
+                            </div>
+                            <span class="formula-builder-op">=</span>
+                            <div class="formula-builder-part formula-builder-part-result" data-tooltip="El precio del producto sin impuestos">
+                                <span class="formula-builder-label">Base imponible</span>
+                                <span class="formula-builder-value" id="fbuilderResult2">1.000 €</span>
+                            </div>
+                        </div>
+                        <div class="formula-builder-breakdown">
+                            <div class="formula-builder-breakdown-row">
+                                <span>Precio con IVA</span>
+                                <span id="fbreakTotal2">1.210,00 €</span>
+                            </div>
+                            <div class="formula-builder-breakdown-row">
+                                <span>IVA (21%)</span>
+                                <span id="fbreakIva2">210,00 €</span>
+                            </div>
+                            <div class="formula-builder-breakdown-row formula-builder-breakdown-total">
+                                <span>Base imponible</span>
+                                <span id="fbreakBase2">1.000,00 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IVA soportado vs repercutido diagram -->
+                <div class="soportado-repercutido-diagram" id="soportadoDiagram">
+                    <h3 class="sr-diagram-title">IVA soportado y repercutido: diferencias y cómo calcularlos</h3>
+                    <div class="sr-diagram-flow">
+                        <div class="sr-diagram-node sr-node-green">
+                            <div class="sr-node-icon">📤</div>
+                            <div class="sr-node-title">IVA repercutido</div>
+                            <div class="sr-node-desc">IVA que cobras a tus clientes en las facturas de venta</div>
+                            <div class="sr-node-example">Vendes a 1.210 € → IVA repercutido: 210 €</div>
+                        </div>
+                        <div class="sr-diagram-connector">
+                            <div class="sr-connector-line"></div>
+                            <div class="sr-connector-label">Diferencia</div>
+                            <div class="sr-connector-line"></div>
+                        </div>
+                        <div class="sr-diagram-node sr-node-pink">
+                            <div class="sr-node-icon">📥</div>
+                            <div class="sr-node-title">IVA soportado</div>
+                            <div class="sr-node-desc">IVA que pagas a tus proveedores en las facturas de compra</div>
+                            <div class="sr-node-example">Compras a 605 € → IVA soportado: 105 €</div>
+                        </div>
+                        <div class="sr-diagram-connector">
+                            <div class="sr-connector-line"></div>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            <div class="sr-connector-line"></div>
+                        </div>
+                        <div class="sr-diagram-node sr-node-result">
+                            <div class="sr-node-icon">🏛️</div>
+                            <div class="sr-node-title">Liquidación de IVA</div>
+                            <div class="sr-node-desc">Resultado de la autoliquidación trimestral (modelo 303)</div>
+                            <div class="sr-node-example">210 € − 105 € = <strong>105 € a pagar a Hacienda</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             H2: ¿Cómo funciona la calculadora de IVA?
+             ============================================================ -->
+        <section class="content-section" id="como-funciona">
+            <div class="section-container">
+                <h2 class="section-title">¿Cómo funciona la calculadora de <span class="gradient-text">IVA</span>?</h2>
+                <p class="section-subtitle">La calculadora de IVA en línea funciona en 4 pasos: seleccionar el modo de cálculo, introducir el importe, elegir el porcentaje de IVA y obtener el resultado</p>
+
+                <div class="content-text-block">
+                    <p><strong>La calculadora de IVA funciona en 4 pasos.</strong> Primero, se selecciona si se quiere añadir IVA o quitar IVA de un precio. Segundo, se introduce el importe en el campo de monto. Tercero, se elige el porcentaje de IVA con los botones de tipo impositivo (4%, 10%, 21% o personalizado). Cuarto, al pulsar el botón de calcular, la pantalla de resultado muestra la base imponible, el monto de IVA y el importe total.</p>
+                </div>
+
+                <!-- Interactive 4-Step Walkthrough -->
+                <div class="walkthrough-steps" id="walkthroughSteps">
+                    <div class="walkthrough-step" data-step="1">
+                        <div class="walkthrough-step-connector"></div>
+                        <div class="walkthrough-step-number">1</div>
+                        <div class="walkthrough-step-content">
+                            <div class="walkthrough-step-icon">🔄</div>
+                            <h3 class="walkthrough-step-title">Selecciona el modo</h3>
+                            <p class="walkthrough-step-desc">Elige «Añadir IVA» para calcular el precio con IVA desde una base imponible, o «Quitar IVA» para extraer la base imponible de un precio con IVA incluido.</p>
+                            <!-- Mini interactive toggle demo -->
+                            <div class="walkthrough-mini-toggle" id="miniToggle1">
+                                <button class="mini-toggle-btn mini-toggle-active" data-mini="add">+ Añadir IVA</button>
+                                <button class="mini-toggle-btn" data-mini="remove">− Quitar IVA</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="walkthrough-step" data-step="2">
+                        <div class="walkthrough-step-connector"></div>
+                        <div class="walkthrough-step-number">2</div>
+                        <div class="walkthrough-step-content">
+                            <div class="walkthrough-step-icon">💶</div>
+                            <h3 class="walkthrough-step-title">Introduce el importe</h3>
+                            <p class="walkthrough-step-desc">Escribe la cantidad en el campo de monto. La calculadora acepta números con coma o punto decimal, por ejemplo: 1.500,00 o 1500.00.</p>
+                            <div class="walkthrough-mini-input">
+                                <span class="mini-input-label">Importe</span>
+                                <div class="mini-input-box">1.000,00 <span class="mini-input-currency">€</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="walkthrough-step" data-step="3">
+                        <div class="walkthrough-step-connector"></div>
+                        <div class="walkthrough-step-number">3</div>
+                        <div class="walkthrough-step-content">
+                            <div class="walkthrough-step-icon">📊</div>
+                            <h3 class="walkthrough-step-title">Elige el porcentaje de IVA</h3>
+                            <p class="walkthrough-step-desc">Selecciona el campo de porcentaje de IVA: 4% (superreducido), 10% (reducido), 21% (general) o un tipo personalizado para otros países.</p>
+                            <!-- Mini rate selector demo -->
+                            <div class="walkthrough-mini-rates" id="miniRates">
+                                <button class="mini-rate-btn" data-minirate="4">4%</button>
+                                <button class="mini-rate-btn" data-minirate="10">10%</button>
+                                <button class="mini-rate-btn mini-rate-active" data-minirate="21">21%</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="walkthrough-step" data-step="4">
+                        <div class="walkthrough-step-connector"></div>
+                        <div class="walkthrough-step-number">4</div>
+                        <div class="walkthrough-step-content">
+                            <div class="walkthrough-step-icon">✅</div>
+                            <h3 class="walkthrough-step-title">Obtén el resultado</h3>
+                            <p class="walkthrough-step-desc">La pantalla de resultado muestra 3 valores: la base imponible (precio sin IVA), el monto de IVA al tipo seleccionado, y el importe total con IVA.</p>
+                            <!-- Mini result demo -->
+                            <div class="walkthrough-mini-result" id="miniResult">
+                                <div class="mini-result-row">
+                                    <span>Base imponible</span>
+                                    <span class="mini-result-value">1.000,00 €</span>
+                                </div>
+                                <div class="mini-result-row mini-result-iva">
+                                    <span>IVA (21%)</span>
+                                    <span class="mini-result-value">210,00 €</span>
+                                </div>
+                                <div class="mini-result-row mini-result-total">
+                                    <span>Total con IVA</span>
+                                    <span class="mini-result-value"><strong>1.210,00 €</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             H2: IVA Percentage — Interactive Country Rate Comparison
+             ============================================================ -->
+        <section class="content-section content-section-alt" id="iva-porcentaje">
             <div class="section-container section-container-wide">
-                <h2 class="section-title">Calcular IVA por <span class="gradient-text">País</span></h2>
-                <p class="section-subtitle">Haz clic en un país para ver los detalles del Impuesto al Valor Agregado (IVA) y aplicar su tasa en la calculadora</p>
+                <h2 class="section-title">IVA <span class="gradient-text">Percentage</span></h2>
+                <p class="section-subtitle">Tipos de IVA en España y Latinoamérica: porcentaje de IVA por país con las autoridades fiscales que regulan el Impuesto al Valor Agregado</p>
 
-                <div class="countries-grid" id="countriesGrid">
-                    <!-- España Territories -->
-                    <button class="country-card" id="countryEspana" data-rate="21" data-country="España" data-tax="Impuesto sobre el Valor Añadido" data-abbr="IVA" data-authority="Agencia Tributaria">
-                        <span class="country-flag">🇪🇸</span>
-                        <span class="country-name">España</span>
-                        <span class="country-rate">21%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryCeuta" data-rate="10" data-country="España, Ceuta" data-tax="Impuesto sobre la Producción, los Servicios y la Importación" data-abbr="IPSI" data-authority="Agencia Tributaria">
-                        <span class="country-flag">🇪🇸</span>
-                        <span class="country-name">Ceuta</span>
-                        <span class="country-rate">10%</span>
-                        <span class="country-tax-name">IPSI</span>
-                    </button>
-
-                    <button class="country-card" id="countryCanarias" data-rate="7" data-country="España, Islas Canarias" data-tax="Impuesto General Indirecto Canario" data-abbr="IGIC" data-authority="Agencia Tributaria">
-                        <span class="country-flag">🇮🇨</span>
-                        <span class="country-name">Islas Canarias</span>
-                        <span class="country-rate">7%</span>
-                        <span class="country-tax-name">IGIC</span>
-                    </button>
-
-                    <button class="country-card" id="countryMelilla" data-rate="10" data-country="España, Melilla" data-tax="Impuesto sobre la Producción, los Servicios y la Importación" data-abbr="IPSI" data-authority="Agencia Tributaria">
-                        <span class="country-flag">🇪🇸</span>
-                        <span class="country-name">Melilla</span>
-                        <span class="country-rate">10%</span>
-                        <span class="country-tax-name">IPSI</span>
-                    </button>
-
-                    <!-- Andorra -->
-                    <button class="country-card" id="countryAndorra" data-rate="4.5" data-country="Andorra" data-tax="Impuesto general indirecto" data-abbr="IGI" data-authority="Govern d'Andorra">
-                        <span class="country-flag">🇦🇩</span>
-                        <span class="country-name">Andorra</span>
-                        <span class="country-rate">4,5%</span>
-                        <span class="country-tax-name">IGI</span>
-                    </button>
-
-                    <!-- Latin American Countries -->
-                    <button class="country-card" id="countryArgentina" data-rate="21" data-country="Argentina" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="AFIP (Administración Federal de Ingresos Públicos)">
-                        <span class="country-flag">🇦🇷</span>
-                        <span class="country-name">Argentina</span>
-                        <span class="country-rate">21%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryBolivia" data-rate="13" data-country="Bolivia" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="Servicio de Impuestos Nacionales">
-                        <span class="country-flag">🇧🇴</span>
-                        <span class="country-name">Bolivia</span>
-                        <span class="country-rate">13%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryChile" data-rate="19" data-country="Chile" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="SII (Servicio de Impuestos Internos)">
-                        <span class="country-flag">🇨🇱</span>
-                        <span class="country-name">Chile</span>
-                        <span class="country-rate">19%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryColombia" data-rate="19" data-country="Colombia" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="DIAN (Dirección de Impuestos y Aduanas Nacionales)">
-                        <span class="country-flag">🇨🇴</span>
-                        <span class="country-name">Colombia</span>
-                        <span class="country-rate">19%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryCostaRica" data-rate="13" data-country="Costa Rica" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="Ministerio de Hacienda">
-                        <span class="country-flag">🇨🇷</span>
-                        <span class="country-name">Costa Rica</span>
-                        <span class="country-rate">13%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryCuba" data-rate="20" data-country="Cuba" data-tax="Impuesto sobre las Ventas / Impuesto sobre los Servicios" data-abbr="ISV" data-authority="ONAT">
-                        <span class="country-flag">🇨🇺</span>
-                        <span class="country-name">Cuba</span>
-                        <span class="country-rate">20%</span>
-                        <span class="country-tax-name">ISV</span>
-                    </button>
-
-                    <button class="country-card" id="countryEcuador" data-rate="15" data-country="Ecuador" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="SRI">
-                        <span class="country-flag">🇪🇨</span>
-                        <span class="country-name">Ecuador</span>
-                        <span class="country-rate">15%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryElSalvador" data-rate="13" data-country="El Salvador" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="Ministerio de Hacienda">
-                        <span class="country-flag">🇸🇻</span>
-                        <span class="country-name">El Salvador</span>
-                        <span class="country-rate">13%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryGuatemala" data-rate="12" data-country="Guatemala" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="SAT">
-                        <span class="country-flag">🇬🇹</span>
-                        <span class="country-name">Guatemala</span>
-                        <span class="country-rate">12%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryHonduras" data-rate="15" data-country="Honduras" data-tax="Impuesto Sobre Ventas" data-abbr="ISV" data-authority="SAR">
-                        <span class="country-flag">🇭🇳</span>
-                        <span class="country-name">Honduras</span>
-                        <span class="country-rate">15%</span>
-                        <span class="country-tax-name">ISV</span>
-                    </button>
-
-                    <button class="country-card" id="countryMexico" data-rate="16" data-country="México" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="SAT (Servicio de Administración Tributaria)">
-                        <span class="country-flag">🇲🇽</span>
-                        <span class="country-name">México</span>
-                        <span class="country-rate">16%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryNicaragua" data-rate="15" data-country="Nicaragua" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="DGI">
-                        <span class="country-flag">🇳🇮</span>
-                        <span class="country-name">Nicaragua</span>
-                        <span class="country-rate">15%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryPanama" data-rate="7" data-country="Panamá" data-tax="Impuesto a la Transferencia de Bienes Corporales Muebles y la Prestación de Servicios" data-abbr="ITBMS" data-authority="DGI">
-                        <span class="country-flag">🇵🇦</span>
-                        <span class="country-name">Panamá</span>
-                        <span class="country-rate">7%</span>
-                        <span class="country-tax-name">ITBMS</span>
-                    </button>
-
-                    <button class="country-card" id="countryParaguay" data-rate="10" data-country="Paraguay" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="SET">
-                        <span class="country-flag">🇵🇾</span>
-                        <span class="country-name">Paraguay</span>
-                        <span class="country-rate">10%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryPeru" data-rate="18" data-country="Perú" data-tax="Impuesto General a las Ventas" data-abbr="IGV" data-authority="SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria)">
-                        <span class="country-flag">🇵🇪</span>
-                        <span class="country-name">Perú</span>
-                        <span class="country-rate">18%</span>
-                        <span class="country-tax-name">IGV</span>
-                    </button>
-
-                    <button class="country-card" id="countryPuertoRico" data-rate="11.5" data-country="Puerto Rico" data-tax="Impuesto sobre Ventas y Uso" data-abbr="IVU" data-authority="DTII">
-                        <span class="country-flag">🇵🇷</span>
-                        <span class="country-name">Puerto Rico</span>
-                        <span class="country-rate">11,5%</span>
-                        <span class="country-tax-name">IVU</span>
-                    </button>
-
-                    <button class="country-card" id="countryDominicana" data-rate="18" data-country="República Dominicana" data-tax="Impuesto sobre Transferencias de Bienes Industrializados y Servicios" data-abbr="ITBIS" data-authority="DGII">
-                        <span class="country-flag">🇩🇴</span>
-                        <span class="country-name">Rep. Dominicana</span>
-                        <span class="country-rate">18%</span>
-                        <span class="country-tax-name">ITBIS</span>
-                    </button>
-
-                    <button class="country-card" id="countryUruguay" data-rate="22" data-country="Uruguay" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="DGI">
-                        <span class="country-flag">🇺🇾</span>
-                        <span class="country-name">Uruguay</span>
-                        <span class="country-rate">22%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
-
-                    <button class="country-card" id="countryVenezuela" data-rate="16" data-country="Venezuela" data-tax="Impuesto al Valor Agregado" data-abbr="IVA" data-authority="SENIAT">
-                        <span class="country-flag">🇻🇪</span>
-                        <span class="country-name">Venezuela</span>
-                        <span class="country-rate">16%</span>
-                        <span class="country-tax-name">IVA</span>
-                    </button>
+                <div class="content-text-block">
+                    <p>El porcentaje de IVA varía según el país. En España, la Agencia Tributaria (AEAT) establece 3 tipos de IVA: general (21%), reducido (10%) y superreducido (4%). En México, el SAT (Servicio de Administración Tributaria) aplica un IVA del 16%. En Perú, la SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria) aplica un IGV del 18%.</p>
+                    <p>En Ecuador, el SRI (Servicio de Rentas Internas) aplica un IVA del 15%. En Uruguay, la DGI (Dirección General Impositiva) aplica un IVA del 22%, el más alto de Latinoamérica. En Paraguay, la Subsecretaría de Estado de Tributación (SET) aplica un IVA del 10%. En República Dominicana, la DGII (Dirección General de Impuestos Internos) aplica un ITBIS del 18%.</p>
                 </div>
 
-                <!-- Country Detail Panel -->
-                <div class="country-detail hidden" id="countryDetail">
-                    <div class="country-detail-inner">
-                        <div class="country-detail-header">
-                            <span class="country-detail-flag" id="detailFlag"></span>
-                            <div>
-                                <h3 class="country-detail-name" id="detailName"></h3>
-                                <p class="country-detail-tax" id="detailTax"></p>
+                <!-- Interactive Country Rate Comparison Chart -->
+                <div class="rate-chart-container" id="rateChart">
+                    <h3 class="rate-chart-title">Comparación de tipos de IVA por país</h3>
+                    <div class="rate-chart-bars" id="rateChartBars">
+                        <div class="rate-chart-bar-item" data-country="Uruguay" data-rate="22">
+                            <span class="rate-chart-country">🇺🇾 Uruguay</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 100%;" data-authority="DGI"></div>
                             </div>
-                            <button class="country-detail-close" id="detailClose" aria-label="Cerrar detalle">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            </button>
+                            <span class="rate-chart-pct">22%</span>
                         </div>
-                        <div class="country-detail-body">
-                            <div class="country-detail-stat">
-                                <span class="detail-stat-label">Tasa de IVA</span>
-                                <span class="detail-stat-value" id="detailRate"></span>
+                        <div class="rate-chart-bar-item" data-country="España" data-rate="21">
+                            <span class="rate-chart-country">🇪🇸 España</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 95.5%;" data-authority="AEAT"></div>
                             </div>
-                            <div class="country-detail-stat">
-                                <span class="detail-stat-label">Abreviatura</span>
-                                <span class="detail-stat-value" id="detailAbbr"></span>
-                            </div>
-                            <div class="country-detail-stat">
-                                <span class="detail-stat-label">Autoridad fiscal</span>
-                                <span class="detail-stat-value detail-stat-authority" id="detailAuthority"></span>
-                            </div>
+                            <span class="rate-chart-pct">21%</span>
                         </div>
-                        <button class="country-detail-apply" id="detailApply">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            Aplicar tasa en la calculadora
-                        </button>
+                        <div class="rate-chart-bar-item" data-country="Argentina" data-rate="21">
+                            <span class="rate-chart-country">🇦🇷 Argentina</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 95.5%;" data-authority="AFIP"></div>
+                            </div>
+                            <span class="rate-chart-pct">21%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Chile" data-rate="19">
+                            <span class="rate-chart-country">🇨🇱 Chile</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 86.4%;" data-authority="SII"></div>
+                            </div>
+                            <span class="rate-chart-pct">19%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Colombia" data-rate="19">
+                            <span class="rate-chart-country">🇨🇴 Colombia</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 86.4%;" data-authority="DIAN"></div>
+                            </div>
+                            <span class="rate-chart-pct">19%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Perú" data-rate="18">
+                            <span class="rate-chart-country">🇵🇪 Perú</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 81.8%;" data-authority="SUNAT"></div>
+                            </div>
+                            <span class="rate-chart-pct">18%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Rep. Dominicana" data-rate="18">
+                            <span class="rate-chart-country">🇩🇴 R. Dominicana</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 81.8%;" data-authority="DGII"></div>
+                            </div>
+                            <span class="rate-chart-pct">18%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="México" data-rate="16">
+                            <span class="rate-chart-country">🇲🇽 México</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 72.7%;" data-authority="SAT"></div>
+                            </div>
+                            <span class="rate-chart-pct">16%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Ecuador" data-rate="15">
+                            <span class="rate-chart-country">🇪🇨 Ecuador</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 68.2%;" data-authority="SRI"></div>
+                            </div>
+                            <span class="rate-chart-pct">15%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Honduras" data-rate="15">
+                            <span class="rate-chart-country">🇭🇳 Honduras</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 68.2%;" data-authority="SAR"></div>
+                            </div>
+                            <span class="rate-chart-pct">15%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Nicaragua" data-rate="15">
+                            <span class="rate-chart-country">🇳🇮 Nicaragua</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 68.2%;" data-authority="DGI"></div>
+                            </div>
+                            <span class="rate-chart-pct">15%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Bolivia" data-rate="13">
+                            <span class="rate-chart-country">🇧🇴 Bolivia</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 59.1%;" data-authority="SIN"></div>
+                            </div>
+                            <span class="rate-chart-pct">13%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Costa Rica" data-rate="13">
+                            <span class="rate-chart-country">🇨🇷 Costa Rica</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 59.1%;" data-authority="Ministerio de Hacienda"></div>
+                            </div>
+                            <span class="rate-chart-pct">13%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="El Salvador" data-rate="13">
+                            <span class="rate-chart-country">🇸🇻 El Salvador</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 59.1%;" data-authority="Ministerio de Hacienda"></div>
+                            </div>
+                            <span class="rate-chart-pct">13%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Guatemala" data-rate="12">
+                            <span class="rate-chart-country">🇬🇹 Guatemala</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 54.5%;" data-authority="SAT"></div>
+                            </div>
+                            <span class="rate-chart-pct">12%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Paraguay" data-rate="10">
+                            <span class="rate-chart-country">🇵🇾 Paraguay</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 45.5%;" data-authority="SET"></div>
+                            </div>
+                            <span class="rate-chart-pct">10%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Panamá" data-rate="7">
+                            <span class="rate-chart-country">🇵🇦 Panamá</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 31.8%;" data-authority="DGI"></div>
+                            </div>
+                            <span class="rate-chart-pct">7%</span>
+                        </div>
+                        <div class="rate-chart-bar-item" data-country="Venezuela" data-rate="16">
+                            <span class="rate-chart-country">🇻🇪 Venezuela</span>
+                            <div class="rate-chart-bar-track">
+                                <div class="rate-chart-bar-fill" style="--bar-width: 72.7%;" data-authority="SENIAT"></div>
+                            </div>
+                            <span class="rate-chart-pct">16%</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- H2: Artículos — Educational Content -->
-        <section class="articles-section" id="articles">
-            <div class="section-container">
-                <h2 class="section-title">Artículos sobre el <span class="gradient-text">IVA</span></h2>
-                <p class="section-subtitle">Guía sobre el Impuesto al Valor Agregado (IVA): qué es, cómo funciona y cómo calcular el IVA en España</p>
-
-                <div class="articles-list" id="articlesList">
-                    <!-- Article 1 -->
-                    <div class="article-item" id="article1">
-                        <button class="article-question" id="articleBtn1" aria-expanded="false" aria-controls="articleAnswer1">
-                            <span class="article-icon">📘</span>
-                            <span>¿Qué es el IVA y cómo funciona en España?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer1" role="region" aria-labelledby="articleBtn1">
-                            <div class="article-content">
-                                <p>El Impuesto sobre el Valor Añadido (IVA) es un impuesto indirecto que grava el consumo de bienes y servicios en España. El IVA se aplica en cada etapa de la cadena de producción y distribución, desde el fabricante hasta el consumidor final.</p>
-                                <p>La Agencia Tributaria recauda el IVA a través de las declaraciones trimestrales (modelos 303 y 390) que presentan autónomos y empresas ante Hacienda. El consumidor final paga el IVA incluido en el precio de los productos y servicios.</p>
-                                <!-- Interactive Formula Diagram -->
-                                <div class="formula-diagram" id="formulaDiagram1">
-                                    <div class="formula-title">Cómo funciona el IVA</div>
-                                    <div class="formula-flow">
-                                        <div class="formula-step">
-                                            <div class="formula-step-icon">🏭</div>
-                                            <div class="formula-step-text">Fabricante</div>
-                                            <div class="formula-step-detail">Cobra IVA</div>
-                                        </div>
-                                        <div class="formula-arrow">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-                                        </div>
-                                        <div class="formula-step">
-                                            <div class="formula-step-icon">🏪</div>
-                                            <div class="formula-step-text">Distribuidor</div>
-                                            <div class="formula-step-detail">Cobra + deduce IVA</div>
-                                        </div>
-                                        <div class="formula-arrow">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-                                        </div>
-                                        <div class="formula-step">
-                                            <div class="formula-step-icon">🛒</div>
-                                            <div class="formula-step-text">Consumidor</div>
-                                            <div class="formula-step-detail">Paga IVA final</div>
-                                        </div>
-                                        <div class="formula-arrow">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
-                                        </div>
-                                        <div class="formula-step formula-step-highlight">
-                                            <div class="formula-step-icon">🏛️</div>
-                                            <div class="formula-step-text">Hacienda</div>
-                                            <div class="formula-step-detail">Recauda IVA</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Spain IVA Rate Cards -->
+                <div class="spain-rates-mini" id="spainRates">
+                    <h3 class="spain-rates-title">Tipos de IVA en España: todo lo que necesitas saber</h3>
+                    <div class="spain-rates-grid">
+                        <div class="spain-rate-card spain-rate-general">
+                            <div class="spain-rate-pct">21%</div>
+                            <div class="spain-rate-name">IVA General</div>
+                            <div class="spain-rate-desc">Electrónica, ropa, servicios profesionales, vehículos</div>
                         </div>
-                    </div>
-
-                    <!-- Article 2 -->
-                    <div class="article-item" id="article2">
-                        <button class="article-question" id="articleBtn2" aria-expanded="false" aria-controls="articleAnswer2">
-                            <span class="article-icon">🚫</span>
-                            <span>¿Qué productos o servicios están exentos de IVA?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer2" role="region" aria-labelledby="articleBtn2">
-                            <div class="article-content">
-                                <p>Existen 7 categorías principales de productos y servicios exentos de IVA en España según la Ley 37/1992:</p>
-                                <ul class="article-list">
-                                    <li>Servicios médicos y sanitarios prestados por profesionales</li>
-                                    <li>Enseñanza en centros públicos y privados autorizados</li>
-                                    <li>Operaciones de seguros y reaseguros</li>
-                                    <li>Servicios financieros y bancarios</li>
-                                    <li>Alquiler de vivienda habitual</li>
-                                    <li>Sellos de correos y efectos timbrados</li>
-                                    <li>Loterías y apuestas del Estado</li>
-                                </ul>
-                            </div>
+                        <div class="spain-rate-card spain-rate-reduced">
+                            <div class="spain-rate-pct">10%</div>
+                            <div class="spain-rate-name">IVA Reducido</div>
+                            <div class="spain-rate-desc">Alimentación, transporte, hostelería, vivienda nueva</div>
                         </div>
-                    </div>
-
-                    <!-- Article 3 -->
-                    <div class="article-item" id="article3">
-                        <button class="article-question" id="articleBtn3" aria-expanded="false" aria-controls="articleAnswer3">
-                            <span class="article-icon">📊</span>
-                            <span>¿Cuántos tipos de IVA existen en España?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer3" role="region" aria-labelledby="articleBtn3">
-                            <div class="article-content">
-                                <p>Existen 3 tipos de IVA en España: el IVA general del 21%, el IVA reducido del 10% y el IVA superreducido del 4%. Cada tipo de IVA se aplica según la naturaleza del bien o servicio.</p>
-                                <!-- Interactive rate comparison -->
-                                <div class="formula-diagram">
-                                    <div class="formula-title">Comparación de tipos de IVA en España</div>
-                                    <div class="rate-comparison">
-                                        <div class="rate-compare-item">
-                                            <div class="rate-compare-bar" style="--bar-height: 100%; --bar-color: var(--accent-indigo);">
-                                                <span class="rate-compare-pct">21%</span>
-                                            </div>
-                                            <span class="rate-compare-label">General</span>
-                                        </div>
-                                        <div class="rate-compare-item">
-                                            <div class="rate-compare-bar" style="--bar-height: 47.6%; --bar-color: var(--accent-amber);">
-                                                <span class="rate-compare-pct">10%</span>
-                                            </div>
-                                            <span class="rate-compare-label">Reducido</span>
-                                        </div>
-                                        <div class="rate-compare-item">
-                                            <div class="rate-compare-bar" style="--bar-height: 19%; --bar-color: var(--accent-green);">
-                                                <span class="rate-compare-pct">4%</span>
-                                            </div>
-                                            <span class="rate-compare-label">Super.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 4 -->
-                    <div class="article-item" id="article4">
-                        <button class="article-question" id="articleBtn4" aria-expanded="false" aria-controls="articleAnswer4">
-                            <span class="article-icon">👤</span>
-                            <span>¿Quién paga el IVA y cuándo se declara?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer4" role="region" aria-labelledby="articleBtn4">
-                            <div class="article-content">
-                                <p>El consumidor final paga el IVA incluido en el precio del producto o servicio. Los autónomos y empresas actúan como recaudadores: cobran el IVA repercutido a los clientes y lo declaran trimestralmente ante la Agencia Tributaria.</p>
-                                <p>Las declaraciones trimestrales del IVA se presentan en los primeros 20 días de abril, julio, octubre y enero. El modelo 303 es la autoliquidación trimestral del IVA y el modelo 390 es el resumen anual.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 5 -->
-                    <div class="article-item" id="article5">
-                        <button class="article-question" id="articleBtn5" aria-expanded="false" aria-controls="articleAnswer5">
-                            <span class="article-icon">📤</span>
-                            <span>¿Qué es el IVA repercutido?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer5" role="region" aria-labelledby="articleBtn5">
-                            <div class="article-content">
-                                <p>El IVA repercutido es el Impuesto al Valor Agregado que un autónomo o empresa cobra a los clientes al vender un producto o servicio. El IVA repercutido se calcula aplicando el tipo de IVA correspondiente (21%, 10% o 4%) sobre la base imponible de la factura.</p>
-                                <div class="formula-diagram">
-                                    <div class="formula-title">Cálculo del IVA repercutido</div>
-                                    <div class="formula-equation">
-                                        <span class="formula-var">Base imponible</span>
-                                        <span class="formula-op">×</span>
-                                        <span class="formula-var">Tipo de IVA</span>
-                                        <span class="formula-op">=</span>
-                                        <span class="formula-var formula-result">IVA repercutido</span>
-                                    </div>
-                                    <div class="formula-example">Ejemplo: 1.000 € × 21% = <strong>210 € de IVA repercutido</strong></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 6 -->
-                    <div class="article-item" id="article6">
-                        <button class="article-question" id="articleBtn6" aria-expanded="false" aria-controls="articleAnswer6">
-                            <span class="article-icon">📥</span>
-                            <span>¿Qué es el IVA soportado?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer6" role="region" aria-labelledby="articleBtn6">
-                            <div class="article-content">
-                                <p>El IVA soportado es el Impuesto al Valor Agregado que un autónomo o empresa paga al comprar bienes o servicios necesarios para la actividad profesional. El IVA soportado aparece en las facturas de proveedores y gastos del negocio.</p>
-                                <div class="formula-diagram">
-                                    <div class="formula-title">IVA repercutido vs IVA soportado</div>
-                                    <div class="formula-equation">
-                                        <span class="formula-var" style="--var-color: var(--accent-green);">IVA repercutido</span>
-                                        <span class="formula-op">−</span>
-                                        <span class="formula-var" style="--var-color: var(--accent-pink);">IVA soportado</span>
-                                        <span class="formula-op">=</span>
-                                        <span class="formula-var formula-result">Liquidación IVA</span>
-                                    </div>
-                                    <div class="formula-example">Resultado positivo → pagar a Hacienda | Resultado negativo → Hacienda devuelve</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 7 -->
-                    <div class="article-item" id="article7">
-                        <button class="article-question" id="articleBtn7" aria-expanded="false" aria-controls="articleAnswer7">
-                            <span class="article-icon">✅</span>
-                            <span>¿Qué significa IVA deducible?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer7" role="region" aria-labelledby="articleBtn7">
-                            <div class="article-content">
-                                <p>El IVA deducible es la parte del IVA soportado que un autónomo o empresa puede restar del IVA repercutido en la declaración trimestral. Para que el IVA soportado sea deducible, el gasto debe estar directamente relacionado con la actividad económica y la factura debe cumplir los requisitos legales de la Agencia Tributaria.</p>
-                                <p>3 condiciones principales para la deducción del IVA: el gasto debe estar vinculado a la actividad profesional, la factura debe incluir todos los datos fiscales requeridos, y la deducción debe realizarse dentro del plazo de 4 años.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 8 -->
-                    <div class="article-item" id="article8">
-                        <button class="article-question" id="articleBtn8" aria-expanded="false" aria-controls="articleAnswer8">
-                            <span class="article-icon">💰</span>
-                            <span>¿Qué diferencia hay entre precio con IVA y sin IVA?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer8" role="region" aria-labelledby="articleBtn8">
-                            <div class="article-content">
-                                <p>El precio sin IVA (base imponible) es el coste del producto o servicio antes de aplicar el impuesto. El precio con IVA (importe total) es la cantidad final que paga el consumidor, que incluye la base imponible más el monto de IVA.</p>
-                                <div class="formula-diagram">
-                                    <div class="formula-title">Calcular precio con IVA y precio sin IVA</div>
-                                    <div class="formula-equation">
-                                        <span class="formula-var">Precio sin IVA</span>
-                                        <span class="formula-op">×</span>
-                                        <span class="formula-var">(1 + IVA/100)</span>
-                                        <span class="formula-op">=</span>
-                                        <span class="formula-var formula-result">Precio con IVA</span>
-                                    </div>
-                                    <div class="formula-example">100 € × 1,21 = <strong>121 € (precio con IVA)</strong></div>
-                                    <div class="formula-equation" style="margin-top: 12px;">
-                                        <span class="formula-var">Precio con IVA</span>
-                                        <span class="formula-op">÷</span>
-                                        <span class="formula-var">(1 + IVA/100)</span>
-                                        <span class="formula-op">=</span>
-                                        <span class="formula-var formula-result">Precio sin IVA</span>
-                                    </div>
-                                    <div class="formula-example">121 € ÷ 1,21 = <strong>100 € (precio sin IVA)</strong></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Article 9 -->
-                    <div class="article-item" id="article9">
-                        <button class="article-question" id="articleBtn9" aria-expanded="false" aria-controls="articleAnswer9">
-                            <span class="article-icon">🔍</span>
-                            <span>¿Cómo saber si un precio tiene el IVA incluido?</span>
-                            <svg class="article-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="article-answer" id="articleAnswer9" role="region" aria-labelledby="articleBtn9">
-                            <div class="article-content">
-                                <p>En España, los precios mostrados al consumidor final en tiendas y establecimientos incluyen el IVA por ley. Las facturas entre empresas (B2B) desglosan la base imponible y el IVA por separado. Para identificar si un precio tiene el IVA incluido, revisa las indicaciones "IVA incluido" o "IVA incl." junto al precio, o consulta el desglose de IVA en el ticket o factura.</p>
-                                <p>Para calcular el IVA incluido en un precio, divide el importe total entre 1,21 (IVA general al 21%). La diferencia entre el precio original y el resultado es el monto de IVA.</p>
-                            </div>
+                        <div class="spain-rate-card spain-rate-super">
+                            <div class="spain-rate-pct">4%</div>
+                            <div class="spain-rate-name">IVA Superreducido</div>
+                            <div class="spain-rate-desc">Pan, leche, libros, medicamentos, prótesis</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- H2: Preguntas frecuentes sobre el IVA — FAQ with Live Calculations -->
+        <!-- ============================================================
+             H2: Preguntas frecuentes sobre el IVA — FAQ
+             ============================================================ -->
         <section class="faq-section" id="faq">
             <div class="section-container">
-                <h2 class="section-title" id="faqTitle">Preguntas frecuentes sobre el <span class="gradient-text">IVA</span></h2>
-                <p class="section-subtitle">Respuestas sobre cómo calcular el IVA, sumar IVA, quitar IVA y ejemplos prácticos de cálculo</p>
-                
+                <h2 class="section-title">Preguntas frecuentes sobre el <span class="gradient-text">IVA</span></h2>
+                <p class="section-subtitle">Respuestas sobre cómo calcular el IVA, calcular IVA incluido, calcular IVA excluido y ejemplos prácticos con la calculadora de IVA</p>
+
                 <div class="faq-list" id="faqList">
+                    <!-- H3: ¿Qué es una calculadora de IVA? -->
                     <div class="faq-item" id="faq1">
                         <button class="faq-question" id="faqBtn1" aria-expanded="false" aria-controls="faqAnswer1">
-                            <span>¿Qué fórmula se usa para calcular el IVA?</span>
+                            <span>¿Qué es una calculadora de IVA?</span>
                             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="faq-answer" id="faqAnswer1" role="region" aria-labelledby="faqBtn1">
-                            <p><strong>La fórmula para calcular el IVA es: Monto de IVA = Base imponible × (Tipo de IVA / 100).</strong> Para obtener el precio con IVA, se suma el monto de IVA a la base imponible. Para obtener el precio sin IVA de un precio con IVA incluido, se divide el importe total entre (1 + Tipo de IVA / 100).</p>
+                            <p><strong>Una calculadora de IVA es una herramienta en línea que calcula el Impuesto al Valor Agregado (IVA) de forma automática.</strong> La calculadora de IVA tiene 4 componentes: un campo de monto para introducir el importe, un campo de porcentaje de IVA para seleccionar la tasa (4%, 10%, 21% o personalizado), un botón de calcular, y una pantalla de resultado que muestra la base imponible, el monto de IVA y el total con IVA. Esta calculadora de IVA en línea es gratuita y funciona para España, México, Argentina, Chile, Colombia, Perú, Ecuador, Uruguay, Paraguay, República Dominicana, Costa Rica, Panamá, Guatemala, Honduras, El Salvador, Nicaragua, Venezuela y Bolivia.</p>
                         </div>
                     </div>
 
+                    <!-- H3: ¿Cómo se calcula el IVA? -->
                     <div class="faq-item" id="faq2">
                         <button class="faq-question" id="faqBtn2" aria-expanded="false" aria-controls="faqAnswer2">
-                            <span>¿Cómo se suma el IVA a un precio?</span>
+                            <span>¿Cómo se calcula el IVA?</span>
                             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="faq-answer" id="faqAnswer2" role="region" aria-labelledby="faqBtn2">
-                            <p><strong>Para sumar el IVA a un precio, se multiplica la base imponible por (1 + tipo de IVA / 100).</strong> Ejemplo: sumar IVA del 21% a 100 € → 100 × 1,21 = 121 €. Sumar IVA del 10% a 100 € → 100 × 1,10 = 110 €. Sumar IVA del 4% a 100 € → 100 × 1,04 = 104 €.</p>
+                            <p><strong>El IVA se calcula multiplicando la base imponible por el tipo de IVA expresado en decimal.</strong> Para calcular el IVA al 21%: Monto de IVA = Base imponible × 0,21. Ejemplo: 500 € × 0,21 = 105 € de IVA, y el precio con IVA es 605 €. Para calcular el IVA al 10%: 500 € × 0,10 = 50 € de IVA (total 550 €). Para calcular el IVA al 4%: 500 € × 0,04 = 20 € de IVA (total 520 €). La Agencia Tributaria (AEAT) recauda el IVA a través del IVA repercutido en las facturas de venta.</p>
+                            <!-- Mini formula diagram -->
+                            <div class="faq-formula-mini">
+                                <div class="faq-formula-equation">
+                                    <span class="faq-formula-var">500 €</span>
+                                    <span class="faq-formula-op">×</span>
+                                    <span class="faq-formula-var">0,21</span>
+                                    <span class="faq-formula-op">=</span>
+                                    <span class="faq-formula-result">105 € IVA</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- H3: ¿Cómo calcular el IVA de una cantidad? -->
                     <div class="faq-item" id="faq3">
                         <button class="faq-question" id="faqBtn3" aria-expanded="false" aria-controls="faqAnswer3">
-                            <span>¿Cómo se quita el IVA de un precio con IVA incluido?</span>
+                            <span>¿Cómo calcular el IVA de una cantidad?</span>
                             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="faq-answer" id="faqAnswer3" role="region" aria-labelledby="faqBtn3">
-                            <p><strong>Para quitar el IVA de un precio con IVA incluido, se divide el importe total entre (1 + tipo de IVA / 100).</strong> Ejemplo: quitar IVA del 21% de 121 € → 121 / 1,21 = 100 € (base imponible). El IVA de esa operación es 121 − 100 = 21 €.</p>
+                            <p><strong>Para calcular el IVA de una cantidad, se multiplica esa cantidad por el porcentaje de IVA en decimal.</strong> El IVA del 21% sobre 100 € son 21 € (total 121 €). El IVA del 21% sobre 200 € son 42 € (total 242 €). El IVA del 21% sobre 500 € son 105 € (total 605 €). El IVA del 21% sobre 1.000 € son 210 € (total 1.210 €). El IVA del 21% sobre 3.000 € son 630 € (total 3.630 €). El IVA del 21% sobre 10.000 € son 2.100 € (total 12.100 €). Introduce la cantidad en la calculadora de IVA para obtener el desglose completo.</p>
                         </div>
                     </div>
 
+                    <!-- H3: ¿Cómo añadir el IVA a un precio? -->
                     <div class="faq-item" id="faq4">
                         <button class="faq-question" id="faqBtn4" aria-expanded="false" aria-controls="faqAnswer4">
-                            <span>¿Cuánto es el 21% de IVA?</span>
+                            <span>¿Cómo añadir el IVA a un precio?</span>
                             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="faq-answer" id="faqAnswer4" role="region" aria-labelledby="faqBtn4">
-                            <p><strong>El 21% de IVA sobre 100 € son 21 €, y el precio con IVA es 121 €.</strong> Sobre 200 € son 42 € (total 242 €). Sobre 500 € son 105 € (total 605 €). Sobre 1.000 € son 210 € (total 1.210 €).</p>
+                            <p><strong>Para añadir el IVA a un precio, se multiplica la base imponible por (1 + tipo de IVA ÷ 100).</strong> Añadir IVA del 21% a 100 € → 100 × 1,21 = 121 €. Añadir IVA del 21% a 150 € → 150 × 1,21 = 181,50 €. Añadir IVA del 10% a 100 € → 100 × 1,10 = 110 €. Añadir IVA del 4% a 100 € → 100 × 1,04 = 104 €. Selecciona «Añadir IVA» en la calculadora de IVA, introduce el precio sin IVA y pulsa el botón de calcular.</p>
+                            <div class="faq-formula-mini">
+                                <div class="faq-formula-equation">
+                                    <span class="faq-formula-var">150 €</span>
+                                    <span class="faq-formula-op">×</span>
+                                    <span class="faq-formula-var">1,21</span>
+                                    <span class="faq-formula-op">=</span>
+                                    <span class="faq-formula-result">181,50 €</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- H3: ¿Cómo quitar el IVA de una cantidad? -->
                     <div class="faq-item" id="faq5">
                         <button class="faq-question" id="faqBtn5" aria-expanded="false" aria-controls="faqAnswer5">
-                            <span>¿Cómo calcular el 10% o el 4% de IVA?</span>
+                            <span>¿Cómo quitar el IVA de una cantidad?</span>
                             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="faq-answer" id="faqAnswer5" role="region" aria-labelledby="faqBtn5">
-                            <p><strong>Para calcular el 10% de IVA, se multiplica el precio por 0,10.</strong> Ejemplo: 100 € × 0,10 = 10 € de IVA (total 110 €). <strong>Para calcular el 4% de IVA, se multiplica el precio por 0,04.</strong> Ejemplo: 100 € × 0,04 = 4 € de IVA (total 104 €).</p>
+                            <p><strong>Para quitar el IVA de una cantidad con IVA incluido, se divide el importe total entre (1 + tipo de IVA ÷ 100).</strong> Quitar IVA del 21% de 121 € → 121 ÷ 1,21 = 100 € de base imponible (IVA: 21 €). Quitar IVA del 21% de 242 € → 242 ÷ 1,21 = 200 € (IVA: 42 €). Quitar IVA del 21% de 605 € → 605 ÷ 1,21 = 500 € (IVA: 105 €). Selecciona «Quitar IVA» en la calculadora de IVA, introduce el precio con IVA incluido y pulsa calcular.</p>
+                            <div class="faq-formula-mini">
+                                <div class="faq-formula-equation">
+                                    <span class="faq-formula-var">242 €</span>
+                                    <span class="faq-formula-op">÷</span>
+                                    <span class="faq-formula-var">1,21</span>
+                                    <span class="faq-formula-op">=</span>
+                                    <span class="faq-formula-result">200 € base</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- H3: ¿Cómo calcular el IVA de un total? -->
                     <div class="faq-item" id="faq6">
                         <button class="faq-question" id="faqBtn6" aria-expanded="false" aria-controls="faqAnswer6">
-                            <span>¿Cuánto es 150 + IVA?</span>
+                            <span>¿Cómo calcular el IVA de un total?</span>
                             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="faq-answer" id="faqAnswer6" role="region" aria-labelledby="faqBtn6">
-                            <p><strong>150 € + IVA del 21% = 181,50 € (IVA: 31,50 €).</strong> 150 € + IVA del 10% = 165 € (IVA: 15 €). 150 € + IVA del 4% = 156 € (IVA: 6 €).</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item" id="faq7">
-                        <button class="faq-question" id="faqBtn7" aria-expanded="false" aria-controls="faqAnswer7">
-                            <span>¿Cuánto es el IVA de 3.000 euros?</span>
-                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="faq-answer" id="faqAnswer7" role="region" aria-labelledby="faqBtn7">
-                            <p><strong>El IVA del 21% sobre 3.000 € es 630 €, y el precio con IVA es 3.630 €.</strong> El IVA del 10% sobre 3.000 € es 300 € (total 3.300 €). El IVA del 4% sobre 3.000 € es 120 € (total 3.120 €).</p>
+                            <p><strong>Para calcular el IVA de un total con IVA incluido, se usa la calculadora IVA inverso: Monto de IVA = Total − (Total ÷ (1 + tipo de IVA ÷ 100)).</strong> El IVA de un total de 1.210 € al 21% → 1.210 − (1.210 ÷ 1,21) = 1.210 − 1.000 = 210 € de IVA. El IVA de un total de 3.630 € al 21% → 3.630 − 3.000 = 630 € de IVA. Para calcular IVA de un total en la calculadora de IVA, selecciona «Quitar IVA», introduce el total y el tipo de IVA correspondiente.</p>
+                            <div class="faq-formula-mini">
+                                <div class="faq-formula-equation">
+                                    <span class="faq-formula-var">1.210 €</span>
+                                    <span class="faq-formula-op">−</span>
+                                    <span class="faq-formula-var">1.000 €</span>
+                                    <span class="faq-formula-op">=</span>
+                                    <span class="faq-formula-result">210 € IVA</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- H3: Tabla de cálculo rápido de IVA (21%) -->
+                <!-- Quick Reference Table -->
                 <div class="quick-table-wrapper" id="quickTable">
                     <h3 class="quick-table-title">Tabla de cálculo rápido de IVA <span class="gradient-text">(21%)</span></h3>
-                    <p class="quick-table-subtitle">Desglose de IVA del 21% para importes comunes — base imponible, monto de IVA e importe total</p>
+                    <p class="quick-table-subtitle">Desglose de IVA del 21% para importes comunes — base imponible, monto de IVA e importe total con IVA</p>
                     <div class="quick-table-container">
                         <table class="quick-table" id="quickCalcTable">
                             <thead>
@@ -879,62 +848,119 @@
     <!-- Footer -->
     <footer class="footer" id="mainFooter">
         <div class="footer-container">
-            <!-- Te puede interesar -->
-            <div class="footer-section" id="footerInterest">
-                <h2 class="footer-section-title">Te puede interesar</h2>
-                <div class="footer-links">
-                    <a href="#calculator" class="footer-link">Calculadora de IVA gratis</a>
-                    <a href="#rates" class="footer-link">Tipos de IVA en España 2025</a>
-                    <a href="#countries" class="footer-link">Calcular IVA en México</a>
-                    <a href="#countries" class="footer-link">Calculadora IVA Argentina</a>
-                    <a href="#countries" class="footer-link">Calcular IVA en Chile</a>
-                    <a href="#countries" class="footer-link">Calculadora IVA Colombia</a>
-                    <a href="#countries" class="footer-link">Calcular IVA en Perú</a>
-                    <a href="#countries" class="footer-link">Calculadora IVA Uruguay</a>
+            <!-- Top Footer Brand Bar -->
+            <div class="footer-top-brand">
+                <div class="footer-brand-info">
+                    <a href="#hero" class="footer-logo">
+                        <span class="logo-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                                <line x1="8" y1="6" x2="16" y2="6"></line>
+                                <line x1="8" y1="10" x2="16" y2="10"></line>
+                                <line x1="8" y1="14" x2="12" y2="14"></line>
+                                <line x1="8" y1="18" x2="10" y2="18"></line>
+                            </svg>
+                        </span>
+                        <span class="logo-text">Calculadora <span class="logo-accent">IVA</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        Herramienta profesional, precisa y gratuita para calcular el Impuesto al Valor Agregado (IVA) en España y más de 20 países de Latinoamérica. Calcula importes con IVA incluido, precio sin IVA y base imponible al instante.
+                    </p>
                 </div>
-            </div>
-
-            <!-- WEBS SANTANDER -->
-            <div class="footer-section" id="footerSantander">
-                <h2 class="footer-section-title">Webs Santander</h2>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">Santander — Particulares</a>
-                    <a href="#" class="footer-link">Santander — Empresas</a>
-                    <a href="#" class="footer-link">Santander — Banca Privada</a>
-                </div>
-            </div>
-
-            <div class="footer-columns">
-                <!-- INFORMACIÓN LEGAL Y SEGURIDAD -->
-                <div class="footer-section" id="footerLegal">
-                    <h2 class="footer-section-title">Información legal y seguridad</h2>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Aviso legal</a>
-                        <a href="#" class="footer-link">Política de privacidad</a>
-                        <a href="#" class="footer-link">Política de cookies</a>
-                        <a href="#" class="footer-link">Seguridad</a>
+                <div class="footer-trust-badges">
+                    <div class="trust-badge">
+                        <span class="trust-badge-dot"></span>
+                        <span>Tipos Fiscales 2025</span>
                     </div>
-                </div>
-
-                <!-- DESTACADOS -->
-                <div class="footer-section" id="footerHighlights">
-                    <h2 class="footer-section-title">Destacados</h2>
-                    <div class="footer-links">
-                        <a href="#articles" class="footer-link">¿Qué es el IVA?</a>
-                        <a href="#faq" class="footer-link">¿Cómo calcular el IVA?</a>
-                        <a href="#articles" class="footer-link">IVA repercutido y soportado</a>
-                        <a href="#faq" class="footer-link">Tabla de cálculo rápido IVA</a>
+                    <div class="trust-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>100% Gratuito</span>
+                    </div>
+                    <div class="trust-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>Sin Registro</span>
                     </div>
                 </div>
             </div>
 
-            <div class="footer-brand">
-                <span class="logo-text">Calculadora <span class="logo-accent">IVA</span></span>
-                <p class="footer-desc">Herramienta profesional para el cálculo del Impuesto al Valor Agregado (IVA) en España y Latinoamérica. Calcula precio con IVA y precio sin IVA de forma rápida y gratuita.</p>
+            <!-- Footer Navigation Grid (4 Columns) -->
+            <div class="footer-grid">
+                <!-- Col 1: Herramientas -->
+                <div class="footer-col" id="footerInterest">
+                    <h3 class="footer-col-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+                        Herramientas
+                    </h3>
+                    <ul class="footer-link-list">
+                        <li><a href="#calculator" class="footer-link"><span>Calculadora de IVA</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#calcular-iva" class="footer-link"><span>Calcular IVA online</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#formula-iva" class="footer-link"><span>Fórmula para calcular IVA</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#como-funciona" class="footer-link"><span>Cómo funciona la calculadora</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#iva-porcentaje" class="footer-link"><span>Tipos de IVA por país</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#faq" class="footer-link"><span>Preguntas frecuentes</span><span class="link-arrow">→</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 2: Por País -->
+                <div class="footer-col" id="footerCountries">
+                    <h3 class="footer-col-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        Calculadora por País
+                    </h3>
+                    <ul class="footer-link-list">
+                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇪🇸</span> España (21%)<span class="link-arrow">→</span></a></li>
+                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇲🇽</span> México (16%)<span class="link-arrow">→</span></a></li>
+                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇦🇷</span> Argentina (21%)<span class="link-arrow">→</span></a></li>
+                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇨🇱</span> Chile (19%)<span class="link-arrow">→</span></a></li>
+                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇨🇴</span> Colombia (19%)<span class="link-arrow">→</span></a></li>
+                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇵🇪</span> Perú (18%)<span class="link-arrow">→</span></a></li>
+                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇪🇨</span> Ecuador (15%)<span class="link-arrow">→</span></a></li>
+                        <li><a href="#iva-porcentaje" class="footer-link"><span class="flag-icon">🇺🇾</span> Uruguay (22%)<span class="link-arrow">→</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Destacados / Guías -->
+                <div class="footer-col" id="footerHighlights">
+                    <h3 class="footer-col-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Destacados
+                    </h3>
+                    <ul class="footer-link-list">
+                        <li><a href="#formula-iva" class="footer-link"><span>IVA soportado y repercutido</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#calcular-iva" class="footer-link"><span>Añadir IVA a un precio</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#calcular-iva" class="footer-link"><span>Quitar IVA de un total</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#quickTable" class="footer-link"><span>Tabla de cálculo rápido 21%</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#spainRates" class="footer-link"><span>IVA General, Reducido y Super</span><span class="link-arrow">→</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Legal & Seguridad -->
+                <div class="footer-col" id="footerLegal">
+                    <h3 class="footer-col-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Legal y Seguridad
+                    </h3>
+                    <ul class="footer-link-list">
+                        <li><a href="#" class="footer-link"><span>Aviso Legal</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#" class="footer-link"><span>Política de Privacidad</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#" class="footer-link"><span>Política de Cookies</span><span class="link-arrow">→</span></a></li>
+                        <li><a href="#" class="footer-link"><span>Seguridad y Datos</span><span class="link-arrow">→</span></a></li>
+                    </ul>
+                    <div class="footer-security-seal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span>Cálculos locales seguros</span>
+                    </div>
+                </div>
             </div>
+
+            <!-- Bottom Disclaimer & Copyright Bar -->
             <div class="footer-bottom">
-                <p>&copy; 2025 Calculadora IVA. Todos los derechos reservados.</p>
-                <p class="footer-disclaimer">Esta herramienta es orientativa. Consulte con un asesor fiscal para decisiones financieras. Los tipos de IVA se actualizan según la normativa vigente de la Agencia Tributaria y las autoridades fiscales de cada país.</p>
+                <div class="footer-bottom-content">
+                    <p class="footer-copyright">&copy; 2025 Calculadora IVA. Todos los derechos reservados.</p>
+                    <p class="footer-disclaimer">
+                        Esta herramienta es orientativa y educativa. Consulte con un asesor fiscal colegiado para decisiones financieras formales. Los tipos de IVA se actualizan de acuerdo con la normativa vigente de la Agencia Tributaria (AEAT) y las entidades tributarias oficiales de cada país.
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
