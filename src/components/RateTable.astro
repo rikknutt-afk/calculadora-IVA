@@ -7,115 +7,71 @@ interface Props {
 
 const { locale = 'en' } = Astro.props;
 const { t } = useTranslations(locale);
+
+const countries = [
+  { flag: '🇺🇾', name: 'Uruguay', rate: 22, width: '100%', auth: 'DGI' },
+  { flag: '🇪🇸', name: 'España', rate: 21, width: '95.5%', auth: 'AEAT' },
+  { flag: '🇦🇷', name: 'Argentina', rate: 21, width: '95.5%', auth: 'AFIP' },
+  { flag: '🇨🇱', name: 'Chile', rate: 19, width: '86.4%', auth: 'SII' },
+  { flag: '🇨🇴', name: 'Colombia', rate: 19, width: '86.4%', auth: 'DIAN' },
+  { flag: '🇵🇪', name: 'Perú', rate: 18, width: '81.8%', auth: 'SUNAT' },
+  { flag: '🇩🇴', name: 'R. Dominicana', rate: 18, width: '81.8%', auth: 'DGII' },
+  { flag: '🇲🇽', name: 'México', rate: 16, width: '72.7%', auth: 'SAT' },
+  { flag: '🇻🇪', name: 'Venezuela', rate: 16, width: '72.7%', auth: 'SENIAT' },
+  { flag: '🇪🇨', name: 'Ecuador', rate: 15, width: '68.2%', auth: 'SRI' },
+  { flag: '🇭🇳', name: 'Honduras', rate: 15, width: '68.2%', auth: 'SAR' },
+  { flag: '🇳🇮', name: 'Nicaragua', rate: 15, width: '68.2%', auth: 'DGI' },
+  { flag: '🇧🇴', name: 'Bolivia', rate: 13, width: '59.1%', auth: 'SIN' },
+  { flag: '🇨🇷', name: 'Costa Rica', rate: 13, width: '59.1%', auth: 'Ministerio de Hacienda' },
+  { flag: '🇸🇻', name: 'El Salvador', rate: 13, width: '59.1%', auth: 'Ministerio de Hacienda' },
+  { flag: '🇬🇹', name: 'Guatemala', rate: 12, width: '54.5%', auth: 'SAT' },
+  { flag: '🇵🇾', name: 'Paraguay', rate: 10, width: '45.5%', auth: 'SET' },
+  { flag: '🇵🇦', name: 'Panamá', rate: 7, width: '31.8%', auth: 'DGI' },
+];
 ---
 
-<section class="py-16 lg:py-24 relative z-10 border-t border-[var(--border-subtle)]" id="rates">
-  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-14">
-      <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3">
-        {t('ratesSectionTitle')} <span class="gradient-text">2025</span>
-      </h2>
-      <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed">
-        {t('ratesSectionSubtitle')}
-      </p>
+<section class="content-section content-section-alt" id="iva-porcentaje">
+  <div class="section-container section-container-wide">
+    <h2 class="section-title" set:html={t('ratesSectionTitle', 'IVA <span class="gradient-text">Percentage</span>')} />
+    <p class="section-subtitle">
+      {t('ratesSectionSubtitle', 'Tipos de IVA en España y Latinoamérica: porcentaje de IVA por país con las autoridades fiscales que regulan el Impuesto al Valor Agregado')}
+    </p>
+
+    <!-- Interactive Country Rate Comparison Chart -->
+    <div class="rate-chart-container" id="rateChart">
+      <h3 class="rate-chart-title">Comparación de tipos de IVA por país</h3>
+      <div class="rate-chart-bars" id="rateChartBars">
+        {countries.map((c) => (
+          <div class="rate-chart-bar-item" data-country={c.name} data-rate={c.rate}>
+            <span class="rate-chart-country">{c.flag} {c.name}</span>
+            <div class="rate-chart-bar-track">
+              <div class="rate-chart-bar-fill" style={`--bar-width: ${c.width};`} data-authority={c.auth}></div>
+            </div>
+            <span class="rate-chart-pct">{c.rate}%</span>
+          </div>
+        ))}
+      </div>
     </div>
 
-    <!-- 3 Cards Breakdown Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
-      <!-- 21% General -->
-      <div class="glass-card p-6 sm:p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600"></div>
-        <div class="inline-flex items-center px-3.5 py-1 rounded-full font-display font-extrabold text-lg text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 mb-5">
-          21%
+    <!-- Spain IVA Rate Cards -->
+    <div class="spain-rates-mini" id="spainRates">
+      <h3 class="spain-rates-title">{t('spainRatesTitle', 'Tipos de IVA en España: todo lo que necesitas saber')}</h3>
+      <div class="spain-rates-grid">
+        <div class="spain-rate-card spain-rate-general">
+          <div class="spain-rate-pct">21%</div>
+          <div class="spain-rate-name">{t('general', 'General')} (21%)</div>
+          <div class="spain-rate-desc">Electrónica, ropa, servicios profesionales, vehículos</div>
         </div>
-        <h3 class="font-display font-bold text-xl text-[var(--text-primary)] mb-2">
-          IVA General
-        </h3>
-        <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
-          Tipo impositivo estándar por defecto en España aplicable a la gran mayoría de bienes y prestaciones de servicios.
-        </p>
-        <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-            Electrónica, telefonía y tecnología
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-            Ropa, calzado y textil
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-            Servicios profesionales y consultoría
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-            Vehículos nuevos y usados
-          </li>
-        </ul>
-      </div>
-
-      <!-- 10% Reducido -->
-      <div class="glass-card p-6 sm:p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-orange-500"></div>
-        <div class="inline-flex items-center px-3.5 py-1 rounded-full font-display font-extrabold text-lg text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/20 mb-5">
-          10%
+        <div class="spain-rate-card spain-rate-reduced">
+          <div class="spain-rate-pct">10%</div>
+          <div class="spain-rate-name">{t('reduced', 'Reducido')} (10%)</div>
+          <div class="spain-rate-desc">Alimentación, transporte, hostelería, vivienda nueva</div>
         </div>
-        <h3 class="font-display font-bold text-xl text-[var(--text-primary)] mb-2">
-          IVA Reducido
-        </h3>
-        <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
-          Aplicable a productos alimenticios generales, transporte de viajeros, hostelería y vivienda.
-        </p>
-        <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-            Alimentos para nutrición humana
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-            Hostelería, bares y restaurantes
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-            Transporte de pasajeros
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-            Viviendas de obra nueva
-          </li>
-        </ul>
-      </div>
-
-      <!-- 4% Superreducido -->
-      <div class="glass-card p-6 sm:p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
-        <div class="inline-flex items-center px-3.5 py-1 rounded-full font-display font-extrabold text-lg text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 mb-5">
-          4%
+        <div class="spain-rate-card spain-rate-super">
+          <div class="spain-rate-pct">4%</div>
+          <div class="spain-rate-name">{t('superReduced', 'Superreducido')} (4%)</div>
+          <div class="spain-rate-desc">Pan, leche, libros, medicamentos, prótesis</div>
         </div>
-        <h3 class="font-display font-bold text-xl text-[var(--text-primary)] mb-2">
-          IVA Superreducido
-        </h3>
-        <p class="text-xs text-[var(--text-secondary)] leading-relaxed mb-6">
-          Destinado exclusivamente a bienes de primera necesidad, cultura básica y salud pública.
-        </p>
-        <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            Pan, leche, huevos, frutas y verduras
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            Libros, periódicos y revistas
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            Medicamentos de uso humano
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-            Prótesis e implantes
-          </li>
-        </ul>
       </div>
     </div>
   </div>

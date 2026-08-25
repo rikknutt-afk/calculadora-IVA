@@ -17,6 +17,7 @@ interface Props {
   faqItems?: Array<{ question: string; answer: string; display?: boolean }>;
   breadcrumbs?: Array<{ name: string; url: string }>;
   blogItems?: Array<{ name: string; url: string; position: number }>;
+  locale?: string;
 }
 
 const {
@@ -29,10 +30,11 @@ const {
   faqItems,
   breadcrumbs,
   blogItems,
+  locale: propLocale,
 } = Astro.props;
 
 const currentUrl = new URL(Astro.request.url);
-const locale = getLocaleFromUrl(currentUrl);
+const locale = propLocale || getLocaleFromUrl(currentUrl);
 const dir = getLocaleDir(locale);
 const ogLocale = getOgLocale(locale);
 const { t } = useTranslations(locale);

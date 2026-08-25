@@ -1,0 +1,137 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const { t } = useTranslations(locale);
+---
+
+<section class="content-section content-section-alt" id="formula-iva">
+  <div class="section-container">
+    <h2 class="section-title" set:html={t('formulaTitle', '¿Cuál es la fórmula para calcular el <span class="gradient-text">IVA</span>?')} />
+    <p class="section-subtitle">
+      {t('formulaSubtitle', '2 fórmulas para calcular el IVA: una para añadir IVA a la base imponible y otra para quitar IVA de un precio con IVA incluido')}
+    </p>
+
+    <!-- Interactive Formula Builder -->
+    <div class="formula-builder" id="formulaBuilder">
+      <!-- Add Formula Card -->
+      <div class="formula-builder-card" id="formulaAddCard">
+        <div class="formula-builder-header">
+          <div class="formula-builder-badge formula-builder-badge-add">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>{t('modeAdd', 'Añadir IVA')}</span>
+          </div>
+        </div>
+        <div class="formula-builder-equation">
+          <div class="formula-builder-part" title={t('formulaBase')}>
+            <span class="formula-builder-label">{t('formulaBase', 'Base imponible')}</span>
+            <span class="formula-builder-value" id="fbuilderBase1">1.000 €</span>
+          </div>
+          <span class="formula-builder-op">×</span>
+          <div class="formula-builder-part" title={t('formulaFactor')}>
+            <span class="formula-builder-label">{t('formulaFactor', 'Factor IVA')}</span>
+            <span class="formula-builder-value">(1 + 21/100)</span>
+          </div>
+          <span class="formula-builder-op">=</span>
+          <div class="formula-builder-part formula-builder-part-result" title={t('formulaTotal')}>
+            <span class="formula-builder-label">{t('formulaTotal', 'Precio con IVA')}</span>
+            <span class="formula-builder-value" id="fbuilderResult1">1.210 €</span>
+          </div>
+        </div>
+        <div class="formula-builder-breakdown">
+          <div class="formula-builder-breakdown-row">
+            <span>{t('basePrice', 'Base imponible')}</span>
+            <span id="fbreakBase1">1.000,00 €</span>
+          </div>
+          <div class="formula-builder-breakdown-row">
+            <span>{t('vatAmount', 'IVA')} (21%)</span>
+            <span id="fbreakIva1">210,00 €</span>
+          </div>
+          <div class="formula-builder-breakdown-row formula-builder-breakdown-total">
+            <span>{t('totalPrice', 'Total con IVA')}</span>
+            <span id="fbreakTotal1">1.210,00 €</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Remove Formula Card -->
+      <div class="formula-builder-card" id="formulaRemoveCard">
+        <div class="formula-builder-header">
+          <div class="formula-builder-badge formula-builder-badge-remove">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>{t('modeRemove', 'Quitar IVA')}</span>
+          </div>
+        </div>
+        <div class="formula-builder-equation">
+          <div class="formula-builder-part" title={t('formulaTotal')}>
+            <span class="formula-builder-label">{t('formulaTotal', 'Precio con IVA')}</span>
+            <span class="formula-builder-value" id="fbuilderBase2">1.210 €</span>
+          </div>
+          <span class="formula-builder-op">÷</span>
+          <div class="formula-builder-part" title={t('formulaFactor')}>
+            <span class="formula-builder-label">{t('formulaFactor', 'Factor IVA')}</span>
+            <span class="formula-builder-value">(1 + 21/100)</span>
+          </div>
+          <span class="formula-builder-op">=</span>
+          <div class="formula-builder-part formula-builder-part-result" title={t('formulaBase')}>
+            <span class="formula-builder-label">{t('formulaBase', 'Base imponible')}</span>
+            <span class="formula-builder-value" id="fbuilderResult2">1.000 €</span>
+          </div>
+        </div>
+        <div class="formula-builder-breakdown">
+          <div class="formula-builder-breakdown-row">
+            <span>{t('formulaTotal', 'Precio con IVA')}</span>
+            <span id="fbreakTotal2">1.210,00 €</span>
+          </div>
+          <div class="formula-builder-breakdown-row">
+            <span>{t('vatAmount', 'IVA')} (21%)</span>
+            <span id="fbreakIva2">210,00 €</span>
+          </div>
+          <div class="formula-builder-breakdown-row formula-builder-breakdown-total">
+            <span>{t('basePrice', 'Base imponible')}</span>
+            <span id="fbreakBase2">1.000,00 €</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IVA soportado vs repercutido diagram -->
+    <div class="soportado-repercutido-diagram" id="soportadoDiagram">
+      <h3 class="sr-diagram-title">{t('srTitle', 'IVA soportado y repercutido: diferencias y cómo calcularlos')}</h3>
+      <div class="sr-diagram-flow">
+        <div class="sr-diagram-node sr-node-green">
+          <div class="sr-node-icon">📤</div>
+          <div class="sr-node-title">{t('srRepercutidoTitle', 'IVA repercutido')}</div>
+          <div class="sr-node-desc">{t('srRepercutidoDesc', 'IVA que cobras a tus clientes en las facturas de venta')}</div>
+          <div class="sr-node-example">1.210 € → IVA: 210 €</div>
+        </div>
+        <div class="sr-diagram-connector">
+          <div class="sr-connector-line"></div>
+          <div class="sr-connector-label">−</div>
+          <div class="sr-connector-line"></div>
+        </div>
+        <div class="sr-diagram-node sr-node-pink">
+          <div class="sr-node-icon">📥</div>
+          <div class="sr-node-title">{t('srSoportadoTitle', 'IVA soportado')}</div>
+          <div class="sr-node-desc">{t('srSoportadoDesc', 'IVA que pagas a tus proveedores en las facturas de compra')}</div>
+          <div class="sr-node-example">605 € → IVA: 105 €</div>
+        </div>
+        <div class="sr-diagram-connector">
+          <div class="sr-connector-line"></div>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <div class="sr-connector-line"></div>
+        </div>
+        <div class="sr-diagram-node sr-node-result">
+          <div class="sr-node-icon">🏛️</div>
+          <div class="sr-node-title">{t('srLiquidacionTitle', 'Liquidación de IVA')}</div>
+          <div class="sr-node-desc">{t('srLiquidacionDesc', 'Resultado de la autoliquidación trimestral (modelo 303)')}</div>
+          <div class="sr-node-example">210 € − 105 € = <strong>105 €</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

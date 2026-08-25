@@ -1,8 +1,10 @@
 {
   "headerNav": [
     { "key": "nav.calculator", "href": "/#calculator" },
-    { "key": "nav.howItWorks", "href": "/#how-it-works" },
-    { "key": "nav.rates", "href": "/#rates" },
+    { "key": "nav.calcularIva", "href": "/#calcular-iva" },
+    { "key": "nav.formulaIva", "href": "/#formula-iva" },
+    { "key": "nav.howItWorks", "href": "/#como-funciona" },
+    { "key": "nav.rates", "href": "/#iva-porcentaje" },
     { "key": "nav.faq", "href": "/#faq" },
     { "key": "nav.blog", "href": "/blog/" }
   ],

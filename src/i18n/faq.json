@@ -1,61 +1,1117 @@
 {
   "en": {
     "faqTitle": "Frequently Asked <span class=\"gradient-text\">Questions</span>",
-    "faqSubtitle": "Everything you need to know about VAT in Spain, formulas, and invoicing",
+    "faqSubtitle": "Everything you need to know about calculating VAT, formulas, and invoicing",
     "items": [
       {
         "id": "faq1",
-        "question": "What is VAT (IVA)?",
-        "answer": "VAT (Value Added Tax, known as IVA in Spanish) is a general consumption tax assessed on the value added to goods and services. In Spain, it is regulated by the Spanish Tax Agency (Agencia Tributaria) and applies at standard rates across the supply chain.",
+        "question": "What is a VAT calculator?",
+        "answer": "A VAT calculator is an online tool that automatically calculates Value Added Tax (VAT / IVA). It features a numeric amount input, rate buttons (4%, 10%, 21% or custom), a calculate button, and a breakdown display showing the taxable base, VAT quota, and total price with VAT. It supports Spain and 20+ countries worldwide.",
         "display": true
       },
       {
         "id": "faq2",
-        "question": "How do you calculate VAT in Spain?",
-        "answer": "To add VAT: Multiply the net taxable base by (1 + Tax Rate / 100). For example, €100 + 21% VAT = €100 × 1.21 = €121. To extract VAT from a gross amount: Divide the gross amount by (1 + Tax Rate / 100). For example, €121 / 1.21 = €100 taxable base.",
-        "display": true
+        "question": "How is VAT calculated?",
+        "answer": "VAT is calculated by multiplying the taxable base by the tax rate in decimal format. For example, at 21% VAT: VAT Amount = Taxable Base × 0.21. For a €500 base: 500 € × 0.21 = €105 VAT, resulting in a total price of €605.",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0.21",
+          "result": "105 € VAT"
+        }
       },
       {
         "id": "faq3",
-        "question": "What is the Equivalence Surcharge (Recargo de Equivalencia)?",
-        "answer": "The Equivalence Surcharge is a special mandatory VAT regime in Spain for retail traders who sell goods without manufacturing or processing them. The current surcharge rates are 5.2% on the 21% general rate, 1.4% on the 10% reduced rate, and 0.5% on the 4% super-reduced rate.",
+        "question": "How to calculate the VAT of an amount?",
+        "answer": "To calculate the VAT of an amount, multiply that amount by the decimal VAT rate. 21% VAT on €100 is €21 (Total €121). 21% VAT on €200 is €42 (Total €242). 21% VAT on €500 is €105 (Total €605). 21% VAT on €1,000 is €210 (Total €1,210).",
         "display": true
       },
       {
         "id": "faq4",
-        "question": "Is VAT included in consumer prices in Spain?",
-        "answer": "Yes, Spanish consumer protection laws require all B2C prices displayed to the public to be final gross prices with VAT included. B2B invoices between businesses and self-employed professionals must explicitly break down the net taxable base, VAT rate, and VAT quota.",
-        "display": true
+        "question": "How to add VAT to a price?",
+        "answer": "To add VAT to a net price, multiply the taxable base by (1 + Tax Rate / 100). For example, adding 21% VAT to €100: 100 × 1.21 = €121. Adding 21% VAT to €150: 150 × 1.21 = €181.50.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1.21",
+          "result": "181.50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "How to remove VAT from a total price?",
+        "answer": "To extract VAT from a gross amount with VAT included, divide the total by (1 + Tax Rate / 100). For example, removing 21% VAT from €121: 121 ÷ 1.21 = €100 taxable base (€21 VAT). Removing 21% VAT from €242: 242 ÷ 1.21 = €200 base (€42 VAT).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1.21",
+          "result": "200 € base"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "How to calculate the VAT of a gross total?",
+        "answer": "To extract only the VAT portion from a total with VAT included, use the inverse formula: VAT Amount = Total − (Total ÷ (1 + Tax Rate / 100)). For example, 21% VAT from a €1,210 total: 1,210 − (1,210 ÷ 1.21) = 1,210 − 1,000 = €210 VAT.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € VAT"
+        }
       }
     ]
   },
   "es": {
-    "faqTitle": "Preguntas <span class=\"gradient-text\">Frecuentes</span>",
-    "faqSubtitle": "Todo lo que necesitas saber sobre el IVA en España, fórmulas y facturación",
+    "faqTitle": "Preguntas frecuentes sobre el <span class=\"gradient-text\">IVA</span>",
+    "faqSubtitle": "Respuestas sobre cómo calcular el IVA, calcular IVA incluido, calcular IVA excluido y ejemplos prácticos",
     "items": [
       {
         "id": "faq1",
-        "question": "¿Qué es el IVA?",
-        "answer": "El IVA (Impuesto sobre el Valor Añadido) es un tributo de naturaleza indirecta que recae sobre el consumo de bienes y servicios. En España está regulado por la Agencia Tributaria y se aplica en cada fase de producción y distribución.",
+        "question": "¿Qué es una calculadora de IVA?",
+        "answer": "Una calculadora de IVA es una herramienta en línea que calcula el Impuesto al Valor Agregado (IVA) de forma automática. Permite introducir el importe, seleccionar la tasa (4%, 10%, 21% o personalizado) y muestra la base imponible, el monto de IVA y el total con IVA para España y más de 18 países.",
         "display": true
       },
       {
         "id": "faq2",
         "question": "¿Cómo se calcula el IVA?",
-        "answer": "Para añadir IVA: Base Imponible × (1 + Tipo/100). Ejemplo: 100€ + 21% = 100 × 1,21 = 121€. Para quitar IVA: Total / (1 + Tipo/100). Ejemplo: 121€ / 1,21 = 100€ de base imponible y 21€ de cuota de IVA.",
-        "display": true
+        "answer": "El IVA se calcula multiplicando la base imponible por el tipo de IVA en decimal. Para el 21%: Monto de IVA = Base imponible × 0,21. Ejemplo: 500 € × 0,21 = 105 € de IVA (Total: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € IVA"
+        }
       },
       {
         "id": "faq3",
-        "question": "¿Qué es el recargo de equivalencia?",
-        "answer": "Es un régimen especial obligatorio para comerciantes minoristas autónomos que no transforman los productos que venden. Los tipos vigentes son: 5,2% para el tipo general (21%), 1,4% para el reducido (10%) y 0,5% para el superreducido (4%).",
+        "question": "¿Cómo calcular el IVA de una cantidad?",
+        "answer": "Para calcular el IVA de una cantidad, se multiplica por el porcentaje decimal. El 21% de IVA sobre 100 € son 21 € (Total 121 €); sobre 200 € son 42 € (Total 242 €); sobre 500 € son 105 € (Total 605 €).",
         "display": true
       },
       {
         "id": "faq4",
-        "question": "¿Es obligatorio incluir el IVA en los precios?",
-        "answer": "Sí, en España el precio mostrado a los consumidores finales debe incluir siempre el IVA. En facturas entre empresas y profesionales autónomos (B2B) es obligatorio desglosar la base imponible y la cuota de IVA por separado.",
+        "question": "¿Cómo añadir el IVA a un precio?",
+        "answer": "Para añadir el IVA a un precio neto, se multiplica la base imponible por (1 + tipo ÷ 100). Ejemplo con 21%: 100 € × 1,21 = 121 €; 150 € × 1,21 = 181,50 €.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "¿Cómo quitar el IVA de una cantidad?",
+        "answer": "Para quitar el IVA de un precio final, se divide el total entre (1 + tipo ÷ 100). Ejemplo al 21%: 121 € ÷ 1,21 = 100 € de base imponible (IVA: 21 €); 242 € ÷ 1,21 = 200 € (IVA: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € base"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "¿Cómo calcular el IVA de un total?",
+        "answer": "Para extraer la cuota de IVA de un total con IVA incluido: Monto de IVA = Total − (Total ÷ (1 + tipo ÷ 100)). Ejemplo: 1.210 € − (1.210 ÷ 1,21) = 1.210 − 1.000 = 210 € de IVA.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € IVA"
+        }
+      }
+    ]
+  },
+  "hi": {
+    "faqTitle": "अक्सर पूछे जाने वाले <span class=\"gradient-text\">प्रश्न</span>",
+    "faqSubtitle": "वैट (IVA) की गणना, सूत्र और इनवॉइसिंग के बारे में विस्तृत जानकारी",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "वैट (IVA) कैलकुलेटर क्या है?",
+        "answer": "वैट कैलकुलेटर एक निःशुल्क ऑनलाइन टूल है जो वैल्यू एडेड टैक्स की स्वचालित गणना करता है। यह कर योग्य आधार, वैट राशि और वैट सहित कुल मूल्य तुरंत प्रदर्शित करता है।",
         "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "वैट की गणना कैसे की जाती है?",
+        "answer": "वैट की गणना मूल राशि (Base) को कर दर (Decimal) से गुणा करके की जाती है। उदाहरण: 21% की दर पर 500 € × 0.21 = 105 € वैट (कुल 605 €)।",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0.21",
+          "result": "105 € वैट"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "किसी राशि का वैट कैसे निकालें?",
+        "answer": "किसी राशि का वैट निकालने के लिए उस राशि को वैट दर से गुणा करें। 100 € पर 21% वैट 21 € (कुल 121 €) होता है।",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "मूल्य में वैट कैसे जोड़ें?",
+        "answer": "मूल्य में वैट जोड़ने के लिए कर योग्य आधार को (1 + दर / 100) से गुणा करें। उदाहरण: 150 € × 1.21 = 181.50 €।",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1.21",
+          "result": "181.50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "कुल राशि से वैट कैसे घटाएं / अलग करें?",
+        "answer": "वैट सहित कुल राशि से वैट अलग करने के लिए कुल मूल्य को (1 + दर / 100) से भाग दें। उदाहरण: 242 € ÷ 1.21 = 200 € मूल राशि।",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1.21",
+          "result": "200 € आधार"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "कुल राशि से केवल वैट राशि कैसे निकालें?",
+        "answer": "वैट राशि = कुल राशि − (कुल राशि ÷ 1.21)। उदाहरण: 1,210 € − 1,000 € = 210 € वैट।",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € वैट"
+        }
+      }
+    ]
+  },
+  "ru": {
+    "faqTitle": "Часто задаваемые <span class=\"gradient-text\">вопросы</span>",
+    "faqSubtitle": "Все о расчете НДС (IVA), формулах начисления и выделения налога",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Что такое калькулятор НДС (IVA)?",
+        "answer": "Калькулятор НДС — это онлайн-инструмент для автоматического расчета налога на добавленную стоимость. Он позволяет моментально вычислить налоговую базу, сумму налога и общую стоимость.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Как рассчитывается НДС?",
+        "answer": "НДС рассчитывается умножением налоговой базы на ставку налога в десятичном виде. Например: 500 € × 0,21 = 105 € НДС (Итого 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € НДС"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Как рассчитать сумму НДС от стоимости?",
+        "answer": "Чтобы узнать сумму НДС, умножьте цену без налога на ставку. При ставке 21% от 100 € налог составит 21 € (Итого 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Как начислить НДС на цену?",
+        "answer": "Для начисления НДС умножьте сумму без налога на (1 + ставка / 100). Например: 150 € × 1,21 = 181,50 €.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Как выделить (убрать) НДС из суммы?",
+        "answer": "Чтобы выделить НДС из общей суммы с налогом, разделите её на (1 + ставка / 100). Например: 242 € ÷ 1,21 = 200 € без налога.",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € база"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Как узнать размер налога в общей сумме с НДС?",
+        "answer": "Сумма НДС = Итого − (Итого ÷ 1,21). Например: 1.210 € − 1.000 € = 210 € НДС.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € НДС"
+        }
+      }
+    ]
+  },
+  "fr": {
+    "faqTitle": "Foire Aux <span class=\"gradient-text\">Questions</span>",
+    "faqSubtitle": "Tout savoir sur le calcul de la TVA (IVA), les formules et la facturation",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Qu'est-ce qu'un calculateur de TVA (IVA) ?",
+        "answer": "Un calculateur de TVA est un outil en ligne gratuit permettant de calculer automatiquement la Taxe sur la Valeur Ajoutée (HT, TVA et TTC) pour l'Espagne et plus de 18 pays.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Comment calculer la TVA ?",
+        "answer": "La TVA se calcule en multipliant la base HT par le taux en décimal. Exemple : 500 € × 0,21 = 105 € de TVA (Total TTC : 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € TVA"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Comment calculer la TVA sur un montant ?",
+        "answer": "Pour calculer la TVA, multipliez le montant HT par le taux de taxe. À 21%, pour 100 €, la TVA est de 21 € (Total TTC 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Comment ajouter la TVA à un prix HT ?",
+        "answer": "Multipliez le montant HT par (1 + taux / 100). Exemple : 150 € × 1,21 = 181,50 € TTC.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Comment extraire la TVA d'un prix TTC ?",
+        "answer": "Divisez le montant TTC par (1 + taux / 100). Exemple à 21% : 242 € ÷ 1,21 = 200 € HT (TVA : 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € HT"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Comment isoler le montant de la TVA dans un total TTC ?",
+        "answer": "Montant TVA = Total TTC − (Total TTC ÷ 1,21). Exemple : 1.210 € − 1.000 € = 210 € de TVA.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € TVA"
+        }
+      }
+    ]
+  },
+  "de": {
+    "faqTitle": "Häufig gestellte <span class=\"gradient-text\">Fragen</span>",
+    "faqSubtitle": "Alles über die Berechnung der Mehrwertsteuer (IVA), Formeln und Rechnungsstellung",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Was ist ein Mehrwertsteuerrechner (IVA)?",
+        "answer": "Ein Mehrwertsteuerrechner ist ein Online-Tool zur automatischen Berechnung der Mehrwertsteuer (Netto, MwSt. und Brutto) für Spanien und über 18 weitere Länder.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Wie wird die Mehrwertsteuer berechnet?",
+        "answer": "Die Mehrwertsteuer wird berechnet, indem der Nettobetrag mit dem Steuersatz in Dezimalform multipliziert wird. Beispiel: 500 € × 0,21 = 105 € MwSt. (Brutto: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € MwSt."
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Wie berechnet man die MwSt. eines Betrags?",
+        "answer": "Multiplizieren Sie den Nettobetrag mit dem Steuersatz. Bei 21% MwSt. auf 100 € beträgt die Steuer 21 € (Brutto 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Wie schlägt man die MwSt. auf einen Nettopreis auf?",
+        "answer": "Multiplizieren Sie den Nettobetrag mit (1 + Steuersatz / 100). Beispiel: 150 € × 1,21 = 181,50 € Brutto.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Wie rechnet man die MwSt. aus einem Bruttobetrag heraus?",
+        "answer": "Teilen Sie den Bruttobetrag durch (1 + Steuersatz / 100). Beispiel: 242 € ÷ 1,21 = 200 € Netto (MwSt.: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € Netto"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Wie ermittelt man den reinen Steueranteil aus dem Bruttobetrag?",
+        "answer": "Steuerbetrag = Brutto − (Brutto ÷ 1,21). Beispiel: 1.210 € − 1.000 € = 210 € MwSt.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € MwSt."
+        }
+      }
+    ]
+  },
+  "it": {
+    "faqTitle": "Domande <span class=\"gradient-text\">Frequenti</span>",
+    "faqSubtitle": "Tutto sul calcolo dell'IVA, formule di scorporo e fatturazione",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Cos'è un calcolatore IVA?",
+        "answer": "Un calcolatore IVA è uno strumento online gratuito per calcolare automaticamente l'Imposta sul Valore Aggiunto (imponibile, quota IVA e totale con IVA) per Spagna e oltre 18 paesi.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Come si calcola l'IVA?",
+        "answer": "L'IVA si calcola moltiplicando la base imponibile per l'aliquota decimale. Esempio: 500 € × 0,21 = 105 € IVA (Totale: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € IVA"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Come calcolare l'IVA di un importo?",
+        "answer": "Moltiplica l'importo per l'aliquota IVA. Il 21% su 100 € corrisponde a 21 € di IVA (Totale 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Come aggiungere l'IVA a un prezzo imponibile?",
+        "answer": "Moltiplica la base imponibile per (1 + aliquota / 100). Esempio: 150 € × 1,21 = 181,50 € totale.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Come scorporare (togliere) l'IVA da un totale?",
+        "answer": "Dividi il totale per (1 + aliquota / 100). Esempio: 242 € ÷ 1,21 = 200 € imponibile (IVA: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € imponibile"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Come calcolare la quota IVA inclusa nel totale?",
+        "answer": "Quota IVA = Totale − (Totale ÷ 1,21). Esempio: 1.210 € − 1.000 € = 210 € IVA.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € IVA"
+        }
+      }
+    ]
+  },
+  "pt": {
+    "faqTitle": "Perguntas <span class=\"gradient-text\">Frequentes</span>",
+    "faqSubtitle": "Tudo sobre o cálculo do IVA, fórmulas e faturação",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "O que é uma calculadora de IVA?",
+        "answer": "Uma calculadora de IVA é uma ferramenta online gratuita para calcular automaticamente o Imposto sobre o Valor Acrescentado (base tributável, IVA e total).",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Como se calcula o IVA?",
+        "answer": "O IVA é calculado multiplicando a base tributável pela taxa decimal. Exemplo: 500 € × 0,21 = 105 € de IVA (Total: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € IVA"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Como calcular o IVA de uma quantia?",
+        "answer": "Multiplique o valor pela percentagem do IVA. O IVA de 21% sobre 100 € é de 21 € (Total 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Como adicionar IVA a um preço?",
+        "answer": "Multiplique o valor sem IVA por (1 + taxa / 100). Exemplo: 150 € × 1,21 = 181,50 € com IVA.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Como retirar o IVA de um valor total?",
+        "answer": "Divida o valor total por (1 + taxa / 100). Exemplo: 242 € ÷ 1,21 = 200 € base (IVA: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € base"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Como saber o montante de IVA incluído no total?",
+        "answer": "Montante de IVA = Total − (Total ÷ 1,21). Exemplo: 1.210 € − 1.000 € = 210 € de IVA.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € IVA"
+        }
+      }
+    ]
+  },
+  "bn": {
+    "faqTitle": "সাধারণ <span class=\"gradient-text\">প্রশ্নোত্তর</span>",
+    "faqSubtitle": "ভ্যাট (IVA) গণনা, সূত্র এবং ইনভয়েসিং সম্পর্কিত সকল তথ্য",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "ভ্যাট ক্যালকুলেটর কী?",
+        "answer": "ভ্যাট ক্যালকুলেটর হলো একটি অনলাইন টুল যা স্বয়ংক্রিয়ভাবে ভ্যাট (মূল্য সংযোজন কর) গণনা করে এবং করের ভিত্তি, ভ্যাট এবং মোট মূল্য প্রদর্শন করে।",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "ভ্যাট কীভাবে গণনা করা হয়?",
+        "answer": "ভ্যাট গণনা করতে করের ভিত্তি মূল্যকে ট্যাক্স রেট দিয়ে গুণ করা হয়। উদাহরণ: ৫০০ € × ০.২১ = ১০৫ € ভ্যাট (মোট ৬০৫ €)।",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0.21",
+          "result": "105 € ভ্যাট"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "যেকোনো পরিমাণের ভ্যাট কীভাবে বের করবেন?",
+        "answer": "মূল্যকে ভ্যাট হার দিয়ে গুণ করুন। যেমন ১০০ € এর উপর ২১% ভ্যাট হলো ২১ € (মোট ১২১ €)।",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "মূল্যে ভ্যাট কীভাবে যোগ করবেন?",
+        "answer": "ভ্যাট যোগ করতে ভিত্তিমূল্যকে (১ + হার / ১০০) দিয়ে গুণ করুন। যেমন: ১৫০ € × ১.২১ = ১৮১.৫০ €।",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1.21",
+          "result": "181.50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "মোট মূল্য থেকে ভ্যাট কীভাবে বাদ দেবেন?",
+        "answer": "মোট মূল্যকে (১ + হার / ১০০) দিয়ে ভাগ করুন। যেমন: ২৪২ € ÷ ১.২১ = ২০০ € ভিত্তিমূল্য।",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1.21",
+          "result": "200 € ভিত্তি"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "মোট মূল্যের মধ্যে থাকা ভ্যাটের পরিমাণ কীভাবে জানবেন?",
+        "answer": "ভ্যাট পরিমাণ = মোট − (মোট ÷ ১.২১)। যেমন: ১,২১০ € − ১,০০০ € = ২১০ € ভ্যাট।",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € ভ্যাট"
+        }
+      }
+    ]
+  },
+  "ja": {
+    "faqTitle": "よくある<span class=\"gradient-text\">質問（FAQ）</span>",
+    "faqSubtitle": "消費税・付加価値税（IVA）の計算方法、計算式、請求書の端数処理について",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "VAT / IVA 計算機とは何ですか？",
+        "answer": "税抜価格、消費税額、税込価格を瞬時に自動算出できる無料のオンライン計算ツールです。",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "消費税（VAT/IVA）はどのように計算されますか？",
+        "answer": "税抜金額に税率（小数）を掛けて計算します。例：500 € × 0.21 = 105 €（税込総額 605 €）。",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0.21",
+          "result": "105 € VAT"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "特定の金額に対する消費税の求め方は？",
+        "answer": "対象金額に税率を乗算します。21%の税率の場合、100 €に対して21 €の税額（合計 121 €）となります。",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "税抜価格に消費税を加算（税込化）する方法は？",
+        "answer": "税抜金額に（1 ＋ 税率 ÷ 100）を掛けます。例：150 € × 1.21 = 181.50 €。",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1.21",
+          "result": "181.50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "税込価格から消費税を引く（税抜化）方法は？",
+        "answer": "税込総額を（1 ＋ 税率 ÷ 100）で割ります。例：242 € ÷ 1.21 = 200 €（本体価格）。",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1.21",
+          "result": "200 € 本体"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "税込総額に含まれる税額のみを計算する方法は？",
+        "answer": "税額 = 税込総額 − (税込総額 ÷ 1.21)。例：1,210 € − 1,000 € = 210 €。",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € VAT"
+        }
+      }
+    ]
+  },
+  "ko": {
+    "faqTitle": "자주 묻는 <span class=\"gradient-text\">질문 (FAQ)</span>",
+    "faqSubtitle": "부가가치세(VAT/IVA) 계산 공식, 계산법 및 세금계산서 정보",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "부가세(IVA) 계산기란 무엇인가요?",
+        "answer": "부가세 계산기는 공급가액(기본금액), 부가세액, 합계금액(총액)을 자동으로 즉시 계산해 주는 온라인 도구입니다.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "부가세는 어떻게 계산하나요?",
+        "answer": "공급가액에 세율을 소수로 곱하여 계산합니다. 예: 500 € × 0.21 = 105 € 부가세 (총액 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0.21",
+          "result": "105 € 부가세"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "특정 금액의 부가세를 구하는 방법은?",
+        "answer": "금액에 세율을 곱합니다. 21% 세율 적용 시 100 €에 대해 21 €의 세액(총 121 €)이 발생합니다.",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "공급가액에 부가세를 추가하는 방법은?",
+        "answer": "공급가액에 (1 + 세율 / 100)을 곱합니다. 예: 150 € × 1.21 = 181.50 €.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1.21",
+          "result": "181.50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "총액에서 부가세를 제외(공급가액 계산)하는 방법은?",
+        "answer": "총액을 (1 + 세율 / 100)으로 나눕니다. 예: 242 € ÷ 1.21 = 200 € 공급가액 (세액 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1.21",
+          "result": "200 € 공급가"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "총액에 포함된 부가세만 따로 계산하는 방법은?",
+        "answer": "부가세액 = 총액 − (총액 ÷ 1.21). 예: 1,210 € − 1,000 € = 210 € 부가세.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € 부가세"
+        }
+      }
+    ]
+  },
+  "ms": {
+    "faqTitle": "Soalan <span class=\"gradient-text\">Lazim</span>",
+    "faqSubtitle": "Semua maklumat mengenai pengiraan Cukai Nilai Tambah (VAT/IVA) dan invois",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Apakah itu kalkulator VAT / IVA?",
+        "answer": "Kalkulator VAT adalah alat dalam talian percuma untuk mengira Cukai Nilai Tambah secara automatik bagi asas cukai, amaun cukai dan jumlah keseluruhan.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Bagaimanakah VAT dikira?",
+        "answer": "VAT dikira dengan mendarabkan asas cukai dengan kadar cukai dalam perpuluhan. Contoh: 500 € × 0.21 = 105 € VAT (Jumlah: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0.21",
+          "result": "105 € VAT"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Bagaimana mengira VAT untuk sesuatu amaun?",
+        "answer": "Darabkan amaun dengan kadar peratusan VAT. Cukai 21% untuk 100 € ialah 21 € (Jumlah 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Bagaimana menambah VAT pada harga?",
+        "answer": "Darabkan harga bersih dengan (1 + kadar / 100). Contoh: 150 € × 1.21 = 181.50 €.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1.21",
+          "result": "181.50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Bagaimana mengasingkan VAT daripada jumlah kasar?",
+        "answer": "Bahagikan jumlah keseluruhan dengan (1 + kadar / 100). Contoh: 242 € ÷ 1.21 = 200 € asas bersih.",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1.21",
+          "result": "200 € asas"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Bagaimana mengira bahagian VAT daripada jumlah keseluruhan?",
+        "answer": "Amaun VAT = Jumlah − (Jumlah ÷ 1.21). Contoh: 1,210 € − 1,000 € = 210 € VAT.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € VAT"
+        }
+      }
+    ]
+  },
+  "pl": {
+    "faqTitle": "Często Zadawane <span class=\"gradient-text\">Pytania</span>",
+    "faqSubtitle": "Wszystko o obliczaniu podatku VAT (IVA), wzorach i fakturowaniu",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Czym jest kalkulator VAT / IVA?",
+        "answer": "Kalkulator VAT to darmowe narzędzie online umożliwiające szybkie obliczenie kwoty netto, podatku VAT oraz kwoty brutto.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Jak obliczyć podatek VAT?",
+        "answer": "Podatek VAT oblicza się, mnożąc podstawę opodatkowania (netto) przez stawkę podatku w postaci dziesiętnej. Przykład: 500 € × 0,21 = 105 € VAT (Brutto: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € VAT"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Jak obliczyć stawkę VAT z podanej kwoty?",
+        "answer": "Pomnóż kwotę netto przez stawkę VAT. 21% od 100 € daje 21 € podatku (Razem: 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Jak dodać podatek VAT do ceny netto?",
+        "answer": "Pomnóż kwotę netto przez (1 + stawka / 100). Przykład: 150 € × 1,21 = 181,50 € brutto.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Jak odliczyć (wyodrębnić) VAT z ceny brutto?",
+        "answer": "Podziel kwotę brutto przez (1 + stawka / 100). Przykład: 242 € ÷ 1,21 = 200 € netto (VAT: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € netto"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Jak wyliczyć samą kwotę VAT zawartą w cenie brutto?",
+        "answer": "Kwota VAT = Brutto − (Brutto ÷ 1,21). Przykład: 1.210 € − 1.000 € = 210 € VAT.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € VAT"
+        }
+      }
+    ]
+  },
+  "id": {
+    "faqTitle": "Pertanyaan <span class=\"gradient-text\">Umum</span>",
+    "faqSubtitle": "Panduan lengkap mengenai perhitungan PPN / VAT / IVA, rumus, dan faktur",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Apa itu kalkulator PPN (VAT / IVA)?",
+        "answer": "Kalkulator PPN adalah alat online gratis untuk menghitung Pajak Pertambahan Nilai secara otomatis bagi dasar pengenaan pajak, jumlah pajak, dan total harga.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Bagaimana cara menghitung PPN?",
+        "answer": "PPN dihitung dengan mengalikan Dasar Pengenaan Pajak (DPP) dengan tarif desimal. Contoh: 500 € × 0,21 = 105 € PPN (Total: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € PPN"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Bagaimana cara menghitung PPN dari suatu nominal?",
+        "answer": "Kalikan nominal dengan tarif PPN. Pajak 21% dari 100 € adalah 21 € (Total 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Bagaimana cara menambahkan PPN ke harga bersih?",
+        "answer": "Kalikan harga bersih dengan (1 + tarif / 100). Contoh: 150 € × 1,21 = 181,50 €.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Bagaimana cara memisahkan PPN dari harga total?",
+        "answer": "Bagi harga total dengan (1 + tarif / 100). Contoh: 242 € ÷ 1,21 = 200 € harga bersih (PPN: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € dasar"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Bagaimana menghitung nilai PPN yang ada di dalam total?",
+        "answer": "Nilai PPN = Total − (Total ÷ 1,21). Contoh: 1.210 € − 1.000 € = 210 € PPN.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € PPN"
+        }
+      }
+    ]
+  },
+  "ar": {
+    "faqTitle": "الأسئلة <span class=\"gradient-text\">الشائعة</span>",
+    "faqSubtitle": "كل ما تحتاج لمعرفته حول حساب ضريبة القيمة المضافة (VAT / IVA) والمعادلات والفواتير",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "ما هي حاسبة ضريبة القيمة المضافة؟",
+        "answer": "حاسبة ضريبة القيمة المضافة هي أداة مجانية عبر الإنترنت لحساب الضريبة تلقائياً وإظهار المبلغ الخاضع للضريبة وقيمة الضريبة والإجمالي.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "كيف يتم حساب ضريبة القيمة المضافة؟",
+        "answer": "يتم حساب الضريبة بضرب المبلغ الأساسي في النسبة العشرية. مثال: 500 € × 0.21 = 105 € ضريبة (الإجمالي: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0.21",
+          "result": "105 € ضريبة"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "كيف تحسب ضريبة مبلغ معين؟",
+        "answer": "اضرب المبلغ في نسبة الضريبة. نسبة 21% على 100 € تعادل 21 € (الإجمالي 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "كيف تضيف الضريبة إلى السعر الصافي؟",
+        "answer": "اضرب المبلغ الصافي في (1 + النسبة / 100). مثال: 150 € × 1.21 = 181.50 €.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1.21",
+          "result": "181.50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "كيف تستخرج الضريبة من الإجمالي الشامل؟",
+        "answer": "اقسم المبلغ الإجمالي على (1 + النسبة / 100). مثال: 242 € ÷ 1.21 = 200 € أساس صافي.",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1.21",
+          "result": "200 € أساس"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "كيف تحسب قيمة الضريبة فقط من الإجمالي؟",
+        "answer": "قيمة الضريبة = الإجمالي − (الإجمالي ÷ 1.21). مثال: 1,210 € − 1,000 € = 210 € ضريبة.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € ضريبة"
+        }
+      }
+    ]
+  },
+  "bg": {
+    "faqTitle": "Често Задавани <span class=\"gradient-text\">Въпроси</span>",
+    "faqSubtitle": "Всичко за изчисляването на ДДС (IVA), формули и фактуриране",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Какво представлява ДДС калкулаторът?",
+        "answer": "ДДС калкулаторът е безплатен онлайн инструмент за автоматично изчисляване на данък добавена стойност (данъчна основа, ДДС и крайна сума).",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Как се изчислява ДДС?",
+        "answer": "ДДС се изчислява чрез умножаване на данъчната основа по данъчната ставка в десетичен вид. Пример: 500 € × 0,21 = 105 € ДДС (Общо: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € ДДС"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Как се изчислява ДДС на дадена сума?",
+        "answer": "Умножете сумата по процентната ставка. ДДС от 21% върху 100 € е 21 € (Общо: 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Как да добавим ДДС към цена без данък?",
+        "answer": "Умножете сумата без ДДС по (1 + ставка / 100). Пример: 150 € × 1,21 = 181,50 € с ДДС.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Как да извадим ДДС от крайна цена?",
+        "answer": "Разделете крайната сума на (1 + ставка / 100). Пример: 242 € ÷ 1,21 = 200 € без ДДС (ДДС: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € основа"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Как се намира само размерът на начисления ДДС в крайната сума?",
+        "answer": "Сума на ДДС = Крайна сума − (Крайна сума ÷ 1,21). Пример: 1.210 € − 1.000 € = 210 € ДДС.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € ДДС"
+        }
+      }
+    ]
+  },
+  "tr": {
+    "faqTitle": "Sıkça Sorulan <span class=\"gradient-text\">Sorular</span>",
+    "faqSubtitle": "KDV (IVA) hesaplama, formüller ve fatura dökümleri hakkında her şey",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "KDV (IVA) hesaplayıcı nedir?",
+        "answer": "KDV hesaplayıcı, Katma Değer Vergisini matrah, KDV tutarı ve toplam tutar olarak anında ve otomatik hesaplayan ücretsiz bir çevrim içi araçtır.",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "KDV nasıl hesaplanır?",
+        "answer": "KDV, vergi matrahının ondalık vergi oranıyla çarpılmasıyla hesaplanır. Örnek: 500 € × 0,21 = 105 € KDV (Toplam: 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € KDV"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Bir tutarın KDV'si nasıl bulunur?",
+        "answer": "Tutarı vergi oranıyla çarpın. 100 € için %21 KDV 21 € eder (Toplam 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Fiyata KDV nasıl eklenir (KDV Dahil)?",
+        "answer": "KDV hariç tutarı (1 + oran / 100) ile çarpın. Örnek: 150 € × 1,21 = 181,50 € KDV dahil.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "KDV dahil fiyattan KDV nasıl çıkarılır (KDV Hariç)?",
+        "answer": "Toplam tutarı (1 + oran / 100) değerine bölün. Örnek: 242 € ÷ 1,21 = 200 € matrah (KDV: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € matrah"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Toplam fiyattaki sadece KDV tutarı nasıl bulunur?",
+        "answer": "KDV Tutarı = Toplam − (Toplam ÷ 1,21). Örnek: 1.210 € − 1.000 € = 210 € KDV.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € KDV"
+        }
+      }
+    ]
+  },
+  "sv": {
+    "faqTitle": "Vanliga <span class=\"gradient-text\">Frågor</span>",
+    "faqSubtitle": "Allt du behöver veta om beräkning av moms (IVA), formler och fakturering",
+    "items": [
+      {
+        "id": "faq1",
+        "question": "Vad är en momskalkylator?",
+        "answer": "En momskalkylator är ett gratis onlineverktyg som automatiskt beräknar mervärdesskatt (momsbas, momsbelopp och totalbelopp inkl. moms).",
+        "display": true
+      },
+      {
+        "id": "faq2",
+        "question": "Hur beräknas moms?",
+        "answer": "Moms beräknas genom att multiplicera momsbasen (exkl. moms) med momssatsen i decimalform. Exempel: 500 € × 0,21 = 105 € moms (Totalt 605 €).",
+        "display": true,
+        "formula": {
+          "base": "500 €",
+          "rate": "0,21",
+          "result": "105 € moms"
+        }
+      },
+      {
+        "id": "faq3",
+        "question": "Hur beräknar man moms på ett belopp?",
+        "answer": "Multiplicera beloppet med momssatsen. 21% moms på 100 € är 21 € (Totalt 121 €).",
+        "display": true
+      },
+      {
+        "id": "faq4",
+        "question": "Hur lägger man till moms på ett pris exkl. moms?",
+        "answer": "Multiplicera priset exkl. moms med (1 + momssats / 100). Exempel: 150 € × 1,21 = 181,50 € inkl. moms.",
+        "display": true,
+        "formula": {
+          "base": "150 €",
+          "rate": "1,21",
+          "result": "181,50 €"
+        }
+      },
+      {
+        "id": "faq5",
+        "question": "Hur drar man bort (räknar ut) moms från ett totalpris?",
+        "answer": "Dela totalbeloppet med (1 + momssats / 100). Exempel: 242 € ÷ 1,21 = 200 € exkl. moms (moms: 42 €).",
+        "display": true,
+        "formula": {
+          "base": "242 €",
+          "rate": "1,21",
+          "result": "200 € bas"
+        }
+      },
+      {
+        "id": "faq6",
+        "question": "Hur beräknar man enbart momsdelen från ett totalbelopp?",
+        "answer": "Momsbelopp = Totalbelopp − (Totalbelopp ÷ 1,21). Exempel: 1.210 € − 1.000 € = 210 € moms.",
+        "display": true,
+        "formula": {
+          "base": "1.210 €",
+          "minus": "1.000 €",
+          "result": "210 € moms"
+        }
       }
     ]
   }

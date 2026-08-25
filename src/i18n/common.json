@@ -2,6 +2,8 @@
   "en": {
     "nav": {
       "calculator": "Calculator",
+      "calcularIva": "Calculate VAT",
+      "formulaIva": "VAT Formula",
       "howItWorks": "How it works",
       "rates": "VAT Rates",
       "faq": "FAQ",
@@ -13,7 +15,7 @@
       "sitemap": "Sitemap"
     },
     "footer": {
-      "desc": "Professional tool for calculating Value Added Tax (VAT / IVA) with official Spanish rates, instant breakdowns, and export utilities.",
+      "desc": "Free online VAT/IVA calculator with official tax rates, instant invoice breakdowns, and math formulas.",
       "disclaimer": "This tool is for informational and educational purposes. Consult an authorized tax advisor for official filings.",
       "rights": "All rights reserved."
     },
@@ -49,9 +51,11 @@
   "es": {
     "nav": {
       "calculator": "Calculadora",
+      "calcularIva": "Calcular IVA",
+      "formulaIva": "Fórmula IVA",
       "howItWorks": "Cómo funciona",
-      "rates": "Tipos de IVA",
-      "faq": "Preguntas",
+      "rates": "Porcentajes",
+      "faq": "FAQ",
       "blog": "Blog",
       "about": "Sobre Nosotros",
       "contact": "Contacto",
@@ -60,8 +64,8 @@
       "sitemap": "Mapa del Sitio"
     },
     "footer": {
-      "desc": "Herramienta profesional para el cálculo del Impuesto sobre el Valor Añadido (IVA) con los tipos oficiales de España y desgloses instantáneos.",
-      "disclaimer": "Esta calculadora es de carácter orientativo. Consulte con un asesor fiscal para trámites oficiales.",
+      "desc": "Cálculo de IVA rápido y gratuito para España y Latinoamérica con los tipos oficiales y desgloses instantáneos.",
+      "disclaimer": "Herramienta orientativa. Consulte con un asesor fiscal colegiado para decisiones formales.",
       "rights": "Todos los derechos reservados."
     },
     "theme": {
@@ -91,6 +95,790 @@
       "success": "¡Muchas gracias! Tu mensaje ha sido enviado correctamente.",
       "error": "Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.",
       "directEmail": "O escríbenos directamente a"
+    }
+  },
+  "hi": {
+    "nav": {
+      "calculator": "कैलकुलेटर",
+      "calcularIva": "वैट गणना",
+      "formulaIva": "वैट सूत्र",
+      "howItWorks": "यह कैसे काम करता है",
+      "rates": "कर दरें",
+      "faq": "अक्सर पूछे जाने वाले प्रश्न",
+      "blog": "ब्लॉग",
+      "about": "हमारे बारे में",
+      "contact": "संपर्क करें",
+      "terms": "सेवा की शर्तें",
+      "privacy": "गोपनीयता नीति",
+      "sitemap": "साइटमैप"
+    },
+    "footer": {
+      "desc": "सटीक और तेज़ वैट/आईवीए गणना के लिए निःशुल्क ऑनलाइन टूल।",
+      "disclaimer": "यह टूल केवल शैक्षिक और जानकारी के उद्देश्य के लिए है।",
+      "rights": "सर्वाधिकार सुरक्षित।"
+    },
+    "theme": {
+      "toggle": "लाइट / डार्क थीम बदलें"
+    },
+    "language": "भाषा",
+    "backHome": "मुखपृष्ठ पर लौटें",
+    "readMore": "पूरा पढ़ें",
+    "publishedOn": "प्रकाशित",
+    "author": "लेखक",
+    "tableOfContents": "विषय सूची",
+    "pagination": {
+      "prev": "पिछला",
+      "next": "अगला",
+      "showing": "दिखा रहा है",
+      "of": "का",
+      "posts": "लेख"
+    },
+    "contactForm": {
+      "title": "हमें संदेश भेजें",
+      "subtitle": "कोई प्रश्न या सुझाव है? हमसे संपर्क करें।",
+      "name": "आपका नाम",
+      "email": "आपका ईमेल",
+      "message": "संदेश",
+      "send": "संदेश भेजें",
+      "sending": "भेजा जा रहा है...",
+      "success": "धन्यवाद! आपका संदेश सफलतापूर्वक भेज दिया गया है।",
+      "error": "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
+      "directEmail": "या सीधे ईमेल करें"
+    }
+  },
+  "ru": {
+    "nav": {
+      "calculator": "Калькулятор",
+      "calcularIva": "Расчет НДС",
+      "formulaIva": "Формула НДС",
+      "howItWorks": "Как это работает",
+      "rates": "Ставки НДС",
+      "faq": "Вопросы и ответы",
+      "blog": "Блог",
+      "about": "О нас",
+      "contact": "Контакты",
+      "terms": "Условия использования",
+      "privacy": "Конфиденциальность",
+      "sitemap": "Карта сайта"
+    },
+    "footer": {
+      "desc": "Бесплатный онлайн-калькулятор НДС (IVA) с официальными ставками и формулами.",
+      "disclaimer": "Калькулятор носит информационный характер.",
+      "rights": "Все права защищены."
+    },
+    "theme": {
+      "toggle": "Переключить светлую / темную тему"
+    },
+    "language": "Язык",
+    "backHome": "На главную",
+    "readMore": "Читать далее",
+    "publishedOn": "Опубликовано",
+    "author": "Автор",
+    "tableOfContents": "Содержание",
+    "pagination": {
+      "prev": "Назад",
+      "next": "Вперед",
+      "showing": "Показано",
+      "of": "из",
+      "posts": "статей"
+    },
+    "contactForm": {
+      "title": "Свяжитесь с нами",
+      "subtitle": "Есть вопросы или предложения? Напишите нам.",
+      "name": "Ваше имя",
+      "email": "Ваш Email",
+      "message": "Сообщение",
+      "send": "Отправить сообщение",
+      "sending": "Отправка...",
+      "success": "Спасибо! Ваше сообщение отправлено.",
+      "error": "Произошла ошибка. Попробуйте еще раз.",
+      "directEmail": "Или напишите нам на"
+    }
+  },
+  "fr": {
+    "nav": {
+      "calculator": "Calculateur",
+      "calcularIva": "Calculer la TVA",
+      "formulaIva": "Formule TVA",
+      "howItWorks": "Comment ça marche",
+      "rates": "Taux de TVA",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "about": "À propos",
+      "contact": "Contact",
+      "terms": "Conditions d'utilisation",
+      "privacy": "Confidentialité",
+      "sitemap": "Plan du site"
+    },
+    "footer": {
+      "desc": "Calculateur de TVA gratuit et précis avec taux officiels et ventilation instantanée.",
+      "disclaimer": "Outil à titre informatif et éducatif.",
+      "rights": "Tous droits réservés."
+    },
+    "theme": {
+      "toggle": "Changer de thème clair / sombre"
+    },
+    "language": "Langue",
+    "backHome": "Retour à l'accueil",
+    "readMore": "Lire l'article",
+    "publishedOn": "Publié le",
+    "author": "Par",
+    "tableOfContents": "Sommaire",
+    "pagination": {
+      "prev": "Précédent",
+      "next": "Suivant",
+      "showing": "Affichage",
+      "of": "sur",
+      "posts": "articles"
+    },
+    "contactForm": {
+      "title": "Envoyez-nous un message",
+      "subtitle": "Des questions ou des suggestions ? Contactez notre équipe.",
+      "name": "Votre nom",
+      "email": "Votre email",
+      "message": "Votre message",
+      "send": "Envoyer",
+      "sending": "Envoi en cours...",
+      "success": "Merci ! Votre message a bien été envoyé.",
+      "error": "Une erreur est survenue. Veuillez réessayer.",
+      "directEmail": "Ou écrivez-nous à"
+    }
+  },
+  "de": {
+    "nav": {
+      "calculator": "Rechner",
+      "calcularIva": "MwSt. berechnen",
+      "formulaIva": "MwSt.-Formel",
+      "howItWorks": "Funktionsweise",
+      "rates": "Steuersätze",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutz",
+      "sitemap": "Sitemap"
+    },
+    "footer": {
+      "desc": "Kostenloser Mehrwertsteuerrechner (IVA) mit offiziellen Steuersätzen und Formeln.",
+      "disclaimer": "Dieses Tool dient ausschließlich zu Informationszwecken.",
+      "rights": "Alle Rechte vorbehalten."
+    },
+    "theme": {
+      "toggle": "Hell-/Dunkelmodus umschalten"
+    },
+    "language": "Sprache",
+    "backHome": "Zur Startseite",
+    "readMore": "Artikel lesen",
+    "publishedOn": "Veröffentlicht am",
+    "author": "Von",
+    "tableOfContents": "Inhaltsverzeichnis",
+    "pagination": {
+      "prev": "Zurück",
+      "next": "Weiter",
+      "showing": "Zeige",
+      "of": "von",
+      "posts": "Artikeln"
+    },
+    "contactForm": {
+      "title": "Nachricht senden",
+      "subtitle": "Haben Sie Fragen oder Wünsche? Kontaktieren Sie uns.",
+      "name": "Ihr Name",
+      "email": "Ihre E-Mail",
+      "message": "Ihre Nachricht",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "success": "Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt.",
+      "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+      "directEmail": "Oder direkt per E-Mail an"
+    }
+  },
+  "it": {
+    "nav": {
+      "calculator": "Calcolatore",
+      "calcularIva": "Calcola IVA",
+      "formulaIva": "Formula IVA",
+      "howItWorks": "Come funziona",
+      "rates": "Aliquote IVA",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "about": "Chi siamo",
+      "contact": "Contatti",
+      "terms": "Termini di servizio",
+      "privacy": "Privacy",
+      "sitemap": "Mappa del sito"
+    },
+    "footer": {
+      "desc": "Calcolatore IVA online gratuito con aliquote ufficiali e scorporo istantaneo.",
+      "disclaimer": "Strumento informativo e didattico.",
+      "rights": "Tutti i diritti riservati."
+    },
+    "theme": {
+      "toggle": "Cambia tema chiaro / scuro"
+    },
+    "language": "Lingua",
+    "backHome": "Torna alla Home",
+    "readMore": "Leggi articolo",
+    "publishedOn": "Pubblicato il",
+    "author": "Di",
+    "tableOfContents": "Indice",
+    "pagination": {
+      "prev": "Precedente",
+      "next": "Successivo",
+      "showing": "Mostrando",
+      "of": "di",
+      "posts": "articoli"
+    },
+    "contactForm": {
+      "title": "Inviaci un messaggio",
+      "subtitle": "Domande o richieste? Contatta il nostro team.",
+      "name": "Il tuo nome",
+      "email": "La tua email",
+      "message": "Messaggio",
+      "send": "Invia messaggio",
+      "sending": "Invio in corso...",
+      "success": "Grazie! Il tuo messaggio è stato inviato con successo.",
+      "error": "Si è verificato un errore. Riprova più tardi.",
+      "directEmail": "Oppure scrivici a"
+    }
+  },
+  "pt": {
+    "nav": {
+      "calculator": "Calculadora",
+      "calcularIva": "Calcular IVA",
+      "formulaIva": "Fórmula do IVA",
+      "howItWorks": "Como funciona",
+      "rates": "Taxas de IVA",
+      "faq": "Perguntas",
+      "blog": "Blog",
+      "about": "Sobre nós",
+      "contact": "Contato",
+      "terms": "Termos de uso",
+      "privacy": "Privacidade",
+      "sitemap": "Mapa do site"
+    },
+    "footer": {
+      "desc": "Calculadora de IVA online gratuita com taxas oficiais e fórmulas instantâneas.",
+      "disclaimer": "Ferramenta apenas para fins informativos.",
+      "rights": "Todos os direitos reservados."
+    },
+    "theme": {
+      "toggle": "Alternar modo claro / escuro"
+    },
+    "language": "Idioma",
+    "backHome": "Voltar ao Início",
+    "readMore": "Ler artigo",
+    "publishedOn": "Publicado em",
+    "author": "Por",
+    "tableOfContents": "Índice",
+    "pagination": {
+      "prev": "Anterior",
+      "next": "Próximo",
+      "showing": "Exibindo",
+      "of": "de",
+      "posts": "artigos"
+    },
+    "contactForm": {
+      "title": "Envie-nos uma mensagem",
+      "subtitle": "Dúvidas ou sugestões? Entre em contato conosco.",
+      "name": "Seu nome",
+      "email": "Seu e-mail",
+      "message": "Mensagem",
+      "send": "Enviar mensagem",
+      "sending": "Enviando...",
+      "success": "Obrigado! Sua mensagem foi enviada com sucesso.",
+      "error": "Ocorreu um erro. Tente novamente.",
+      "directEmail": "Ou envie um e-mail para"
+    }
+  },
+  "bn": {
+    "nav": {
+      "calculator": "ক্যালকুলেটর",
+      "calcularIva": "ভ্যাট গণনা",
+      "formulaIva": "ভ্যাট সূত্র",
+      "howItWorks": "কীভাবে কাজ করে",
+      "rates": "ভ্যাট হার",
+      "faq": "সাধারণ প্রশ্ন",
+      "blog": "ব্লগ",
+      "about": "আমাদের সম্পর্কে",
+      "contact": "যোগাযোগ",
+      "terms": "শর্তাবলী",
+      "privacy": "গোপনীয়তা নীতি",
+      "sitemap": "সাইটম্যাপ"
+    },
+    "footer": {
+      "desc": "দ্রুত ও নিখুঁত ভ্যাট গণনার জন্য একটি বিনামূল্যে অনলাইন টুল।",
+      "disclaimer": "এই টুলটি শুধুমাত্র তথ্যগত উদ্দেশ্যে তৈরি।",
+      "rights": "সর্বস্বত্ব সংরক্ষিত।"
+    },
+    "theme": {
+      "toggle": "লাইট / ডার্ক থিম পরিবর্তন করুন"
+    },
+    "language": "ভাষা",
+    "backHome": "হোমে ফিরে যান",
+    "readMore": "সম্পূর্ণ পড়ুন",
+    "publishedOn": "প্রকাশিত",
+    "author": "লেখক",
+    "tableOfContents": "সুচিপত্র",
+    "pagination": {
+      "prev": "পূর্ববর্তী",
+      "next": "পরবর্তী",
+      "showing": "প্রদর্শিত",
+      "of": "এর",
+      "posts": "নিবন্ধ"
+    },
+    "contactForm": {
+      "title": "বার্তা পাঠান",
+      "subtitle": "কোনো প্রশ্ন বা পরামর্শ থাকলে আমাদের জানান।",
+      "name": "আপনার নাম",
+      "email": "আপনার ইমেল",
+      "message": "বার্তা",
+      "send": "বার্তা পাঠান",
+      "sending": "পাঠানো হচ্ছে...",
+      "success": "ধন্যবাদ! বার্তাটি সফলভাবে পাঠানো হয়েছে।",
+      "error": "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+      "directEmail": "বা সরাসরি ইমেল করুন"
+    }
+  },
+  "ja": {
+    "nav": {
+      "calculator": "計算機",
+      "calcularIva": "消費税計算",
+      "formulaIva": "消費税の計算式",
+      "howItWorks": "使い方",
+      "rates": "税率一覧",
+      "faq": "よくある質問",
+      "blog": "ブログ",
+      "about": "会社概要",
+      "contact": "お問い合わせ",
+      "terms": "利用規約",
+      "privacy": "プライバシーポリシー",
+      "sitemap": "サイトマップ"
+    },
+    "footer": {
+      "desc": "付加価値税（VAT/IVA）を瞬時に計算できる無料のオンラインツール。",
+      "disclaimer": "本ツールは参考情報として提供されています。",
+      "rights": "All rights reserved."
+    },
+    "theme": {
+      "toggle": "ライト／ダークモード切替"
+    },
+    "language": "言語",
+    "backHome": "ホームに戻る",
+    "readMore": "記事を読む",
+    "publishedOn": "公開日",
+    "author": "投稿者",
+    "tableOfContents": "目次",
+    "pagination": {
+      "prev": "前へ",
+      "next": "次へ",
+      "showing": "表示中",
+      "of": "/",
+      "posts": "件"
+    },
+    "contactForm": {
+      "title": "メッセージを送信",
+      "subtitle": "ご質問やご要望はお気軽にお問い合わせください。",
+      "name": "お名前",
+      "email": "メールアドレス",
+      "message": "メッセージ",
+      "send": "送信する",
+      "sending": "送信中...",
+      "success": "ありがとうございます。送信が完了しました。",
+      "error": "エラーが発生しました。再度お試しください。",
+      "directEmail": "または直接メール"
+    }
+  },
+  "ko": {
+    "nav": {
+      "calculator": "계산기",
+      "calcularIva": "부가세 계산",
+      "formulaIva": "부가세 공식",
+      "howItWorks": "사용 방법",
+      "rates": "세율표",
+      "faq": "자주 묻는 질문",
+      "blog": "블로그",
+      "about": "소개",
+      "contact": "문의하기",
+      "terms": "이용약관",
+      "privacy": "개인정보처리방침",
+      "sitemap": "사이트맵"
+    },
+    "footer": {
+      "desc": "공식 세율과 공식을 적용한 빠르고 정확한 무료 부가세 계산기입니다.",
+      "disclaimer": "본 도구는 정보 제공 목적으로만 사용됩니다.",
+      "rights": "All rights reserved."
+    },
+    "theme": {
+      "toggle": "라이트 / 다크 모드 전환"
+    },
+    "language": "언어",
+    "backHome": "홈으로 돌아가기",
+    "readMore": "더 보기",
+    "publishedOn": "작성일",
+    "author": "작성자",
+    "tableOfContents": "목차",
+    "pagination": {
+      "prev": "이전",
+      "next": "다음",
+      "showing": "표시 중",
+      "of": "/",
+      "posts": "개"
+    },
+    "contactForm": {
+      "title": "문의하기",
+      "subtitle": "궁금한 점이나 의견이 있으신가요?",
+      "name": "이름",
+      "email": "이메일",
+      "message": "내용",
+      "send": "보내기",
+      "sending": "전송 중...",
+      "success": "감사합니다! 메시지가 성공적으로 전송되었습니다.",
+      "error": "오류가 발생했습니다. 다시 시도해 주세요.",
+      "directEmail": "또는 직접 이메일 문의"
+    }
+  },
+  "ms": {
+    "nav": {
+      "calculator": "Kalkulator",
+      "calcularIva": "Kira VAT",
+      "formulaIva": "Formula VAT",
+      "howItWorks": "Cara Berfungsi",
+      "rates": "Kadar Cukai",
+      "faq": "Soalan Lazim",
+      "blog": "Blog",
+      "about": "Tentang Kami",
+      "contact": "Hubungi",
+      "terms": "Syarat Perkhidmatan",
+      "privacy": "Dasar Privasi",
+      "sitemap": "Peta Laman"
+    },
+    "footer": {
+      "desc": "Alat dalam talian percuma untuk mengira Cukai Nilai Tambah (VAT / IVA).",
+      "disclaimer": "Alat ini adalah untuk tujuan maklumat sahaja.",
+      "rights": "Hak cipta terpelihara."
+    },
+    "theme": {
+      "toggle": "Tukar mod cerah / gelap"
+    },
+    "language": "Bahasa",
+    "backHome": "Kembali ke Utama",
+    "readMore": "Baca artikel",
+    "publishedOn": "Diterbitkan pada",
+    "author": "Oleh",
+    "tableOfContents": "Isi Kandungan",
+    "pagination": {
+      "prev": "Sebelum",
+      "next": "Seterusnya",
+      "showing": "Memaparkan",
+      "of": "daripada",
+      "posts": "artikel"
+    },
+    "contactForm": {
+      "title": "Hantar Mesej",
+      "subtitle": "Ada soalan atau maklum balas? Hubungi kami.",
+      "name": "Nama Anda",
+      "email": "Emel Anda",
+      "message": "Mesej",
+      "send": "Hantar Mesej",
+      "sending": "Menghantar...",
+      "success": "Terima kasih! Mesej anda telah berjaya dihantar.",
+      "error": "Ralat berlaku. Sila cuba lagi.",
+      "directEmail": "Atau emel kami di"
+    }
+  },
+  "pl": {
+    "nav": {
+      "calculator": "Kalkulator",
+      "calcularIva": "Oblicz VAT",
+      "formulaIva": "Wzór na VAT",
+      "howItWorks": "Jak to działa",
+      "rates": "Stawki VAT",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "about": "O nas",
+      "contact": "Kontakt",
+      "terms": "Regulamin",
+      "privacy": "Prywatność",
+      "sitemap": "Mapa strony"
+    },
+    "footer": {
+      "desc": "Darmowy kalkulator podatku VAT / IVA z oficjalnymi stawkami i formułami.",
+      "disclaimer": "Narzędzie ma charakter wyłącznie informacyjny.",
+      "rights": "Wszelkie prawa zastrzeżone."
+    },
+    "theme": {
+      "toggle": "Przełącz motyw jasny / ciemny"
+    },
+    "language": "Język",
+    "backHome": "Wróć do strony głównej",
+    "readMore": "Czytaj artykuł",
+    "publishedOn": "Opublikowano",
+    "author": "Autor",
+    "tableOfContents": "Spis treści",
+    "pagination": {
+      "prev": "Poprzednia",
+      "next": "Następna",
+      "showing": "Wyświetlanie",
+      "of": "z",
+      "posts": "artykułów"
+    },
+    "contactForm": {
+      "title": "Wyślij wiadomość",
+      "subtitle": "Masz pytania lub uwagi? Skontaktuj się z nami.",
+      "name": "Twoje imię",
+      "email": "Twój e-mail",
+      "message": "Wiadomość",
+      "send": "Wyślij",
+      "sending": "Wysyłanie...",
+      "success": "Dziękujemy! Wiadomość została wysłana.",
+      "error": "Wystąpił błąd. Spróbuj ponownie.",
+      "directEmail": "Lub napisz na adres"
+    }
+  },
+  "id": {
+    "nav": {
+      "calculator": "Kalkulator",
+      "calcularIva": "Hitung PPN",
+      "formulaIva": "Rumus PPN",
+      "howItWorks": "Cara Kerja",
+      "rates": "Tarif PPN",
+      "faq": "Tanya Jawab",
+      "blog": "Blog",
+      "about": "Tentang Kami",
+      "contact": "Kontak",
+      "terms": "Ketentuan Layanan",
+      "privacy": "Kebijakan Privasi",
+      "sitemap": "Peta Situs"
+    },
+    "footer": {
+      "desc": "Alat online gratis untuk menghitung Pajak Pertambahan Nilai (PPN / VAT / IVA).",
+      "disclaimer": "Alat ini ditujukan untuk tujuan informasi dan edukasi semata.",
+      "rights": "Hak cipta dilindungi undang-undang."
+    },
+    "theme": {
+      "toggle": "Ubah tema terang / gelap"
+    },
+    "language": "Bahasa",
+    "backHome": "Kembali ke Beranda",
+    "readMore": "Baca artikel",
+    "publishedOn": "Diterbitkan pada",
+    "author": "Oleh",
+    "tableOfContents": "Daftar Isi",
+    "pagination": {
+      "prev": "Sebelumnya",
+      "next": "Berikutnya",
+      "showing": "Menampilkan",
+      "of": "dari",
+      "posts": "artikel"
+    },
+    "contactForm": {
+      "title": "Kirim Pesan",
+      "subtitle": "Punya pertanyaan atau masukan? Hubungi tim kami.",
+      "name": "Nama Anda",
+      "email": "Email Anda",
+      "message": "Pesan",
+      "send": "Kirim Pesan",
+      "sending": "Mengirim...",
+      "success": "Terima kasih! Pesan Anda telah berhasil dikirim.",
+      "error": "Terjadi kesalahan. Silakan coba lagi.",
+      "directEmail": "Atau email kami langsung di"
+    }
+  },
+  "ar": {
+    "nav": {
+      "calculator": "الحاسبة",
+      "calcularIva": "حساب الضريبة",
+      "formulaIva": "معادلة الضريبة",
+      "howItWorks": "كيف تعمل",
+      "rates": "نسب الضريبة",
+      "faq": "الأسئلة الشائعة",
+      "blog": "المدونة",
+      "about": "من نحن",
+      "contact": "اتصل بنا",
+      "terms": "شروط الخدمة",
+      "privacy": "سياسة الخصوصية",
+      "sitemap": "خريطة الموقع"
+    },
+    "footer": {
+      "desc": "أداة مجانية لحساب ضريبة القيمة المضافة (VAT / IVA) بدقة وفورية.",
+      "disclaimer": "هذه الأداة لأغراض إعلامية وتعليمية فقط.",
+      "rights": "جميع الحقوق محفوظة."
+    },
+    "theme": {
+      "toggle": "تبديل المظهر الفاتح / الداكن"
+    },
+    "language": "اللغة",
+    "backHome": "العودة للرئيسية",
+    "readMore": "اقرأ المقال",
+    "publishedOn": "نُشر في",
+    "author": "بواسطة",
+    "tableOfContents": "فهرس المحتويات",
+    "pagination": {
+      "prev": "السابق",
+      "next": "التالي",
+      "showing": "عرض",
+      "of": "من",
+      "posts": "مقالات"
+    },
+    "contactForm": {
+      "title": "أرسل لنا رسالة",
+      "subtitle": "هل لديك أسئلة أو استفسارات ضريبية؟ تواصل معنا.",
+      "name": "اسمك",
+      "email": "بريدك الإلكتروني",
+      "message": "رسالتك",
+      "send": "إرسال الرسالة",
+      "sending": "جاري الإرسال...",
+      "success": "شكراً لك! تم إرسال رسالتك بنجاح.",
+      "error": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+      "directEmail": "أو راسلنا مباشرة عبر"
+    }
+  },
+  "bg": {
+    "nav": {
+      "calculator": "Калкулатор",
+      "calcularIva": "Изчисляване на ДДС",
+      "formulaIva": "Формула за ДДС",
+      "howItWorks": "Как работи",
+      "rates": "ДДС ставки",
+      "faq": "Въпроси и отговори",
+      "blog": "Блог",
+      "about": "За нас",
+      "contact": "Контакти",
+      "terms": "Условия за ползване",
+      "privacy": "Поверителност",
+      "sitemap": "Карта на сайта"
+    },
+    "footer": {
+      "desc": "Безплатен онлайн калкулатор за ДДС с официални ставки и бързи изчисления.",
+      "disclaimer": "Инструментът е с информационна цел.",
+      "rights": "Всички права запазени."
+    },
+    "theme": {
+      "toggle": "Превключване на светла / тъмна тема"
+    },
+    "language": "Език",
+    "backHome": "Към началото",
+    "readMore": "Прочетете статията",
+    "publishedOn": "Публикувано на",
+    "author": "От",
+    "tableOfContents": "Съдържание",
+    "pagination": {
+      "prev": "Предишна",
+      "next": "Следваща",
+      "showing": "Показване",
+      "of": "от",
+      "posts": "статии"
+    },
+    "contactForm": {
+      "title": "Изпратете ни съобщение",
+      "subtitle": "Имате ли въпроси или предложения? Свържете се с нас.",
+      "name": "Вашето име",
+      "email": "Вашият имейл",
+      "message": "Съобщение",
+      "send": "Изпрати",
+      "sending": "Изпращане...",
+      "success": "Благодарим ви! Съобщението беше изпратено успешно.",
+      "error": "Възникна грешка. Моля, опитайте отново.",
+      "directEmail": "Или ни пишете на"
+    }
+  },
+  "tr": {
+    "nav": {
+      "calculator": "Hesaplayıcı",
+      "calcularIva": "KDV Hesapla",
+      "formulaIva": "KDV Formülü",
+      "howItWorks": "Nasıl Çalışır",
+      "rates": "KDV Oranları",
+      "faq": "SSS",
+      "blog": "Blog",
+      "about": "Hakkımızda",
+      "contact": "İletişim",
+      "terms": "Kullanım Koşulları",
+      "privacy": "Gizlilik Politikası",
+      "sitemap": "Site Haritası"
+    },
+    "footer": {
+      "desc": "Resmi vergi oranları ve formülleri ile ücretsiz Katma Değer Vergisi (KDV / IVA) hesaplama aracı.",
+      "disclaimer": "Bu araç yalnızca bilgilendirme ve eğitim amaçlıdır.",
+      "rights": "Tüm hakları saklıdır."
+    },
+    "theme": {
+      "toggle": "Açık / koyu temayı değiştir"
+    },
+    "language": "Dil",
+    "backHome": "Ana Sayfaya Dön",
+    "readMore": "Makaleyi Oku",
+    "publishedOn": "Yayınlanma tarihi",
+    "author": "Yazar",
+    "tableOfContents": "İçindekiler",
+    "pagination": {
+      "prev": "Önceki",
+      "next": "Sonraki",
+      "showing": "Gösterilen",
+      "of": "/",
+      "posts": "makale"
+    },
+    "contactForm": {
+      "title": "Bize Mesaj Gönderin",
+      "subtitle": "Sorularınız veya önerileriniz mi var? Bizimle iletişime geçin.",
+      "name": "Adınız",
+      "email": "E-postanız",
+      "message": "Mesajınız",
+      "send": "Mesaj Gönder",
+      "sending": "Gönderiliyor...",
+      "success": "Teşekkürler! Mesajınız başarıyla gönderildi.",
+      "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
+      "directEmail": "Veya doğrudan e-posta gönderin:"
+    }
+  },
+  "sv": {
+    "nav": {
+      "calculator": "Kalkylator",
+      "calcularIva": "Beräkna moms",
+      "formulaIva": "Momsformel",
+      "howItWorks": "Hur det fungerar",
+      "rates": "Momssatser",
+      "faq": "Vanliga frågor",
+      "blog": "Blogg",
+      "about": "Om oss",
+      "contact": "Kontakt",
+      "terms": "Användarvillkor",
+      "privacy": "Integritetspolicy",
+      "sitemap": "Webbplatskarta"
+    },
+    "footer": {
+      "desc": "Gratis onlinekalkylator för mervärdesskatt (moms / IVA) med officiella satser och formler.",
+      "disclaimer": "Detta verktyg är endast avsett för informations- och utbildningsändamål.",
+      "rights": "Alla rättigheter förbehållna."
+    },
+    "theme": {
+      "toggle": "Växla ljust / mörkt tema"
+    },
+    "language": "Språk",
+    "backHome": "Tillbaka till start",
+    "readMore": "Läs artikel",
+    "publishedOn": "Publicerad den",
+    "author": "Av",
+    "tableOfContents": "Innehållsförteckning",
+    "pagination": {
+      "prev": "Föregående",
+      "next": "Nästa",
+      "showing": "Visar",
+      "of": "av",
+      "posts": "artiklar"
+    },
+    "contactForm": {
+      "title": "Skicka ett meddelande",
+      "subtitle": "Har du frågor eller förslag? Kontakta vårt team.",
+      "name": "Ditt namn",
+      "email": "Din e-post",
+      "message": "Meddelande",
+      "send": "Skicka meddelande",
+      "sending": "Skickar...",
+      "success": "Tack! Ditt meddelande har skickats.",
+      "error": "Ett fel uppstod. Försök igen.",
+      "directEmail": "Eller maila oss direkt på"
     }
   }
 }

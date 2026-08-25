@@ -3,81 +3,116 @@ import { useTranslations } from '../i18n/utils';
 
 interface Props {
   locale?: string;
-  items?: Array<{ id: string; question: string; answer: string; display?: boolean }>;
 }
 
-const { locale = 'en', items } = Astro.props;
+const { locale = 'en' } = Astro.props;
 const { t, faq } = useTranslations(locale);
-const faqList = items || faq.items || [];
-const visibleFaqs = faqList.filter((item: any) => item.display !== false);
+
+const quickTableData = [
+  { base: '10 €', iva: '2,10 €', total: '12,10 €' },
+  { base: '25 €', iva: '5,25 €', total: '30,25 €' },
+  { base: '50 €', iva: '10,50 €', total: '60,50 €' },
+  { base: '100 €', iva: '21,00 €', total: '121,00 €' },
+  { base: '150 €', iva: '31,50 €', total: '181,50 €' },
+  { base: '200 €', iva: '42,00 €', total: '242,00 €' },
+  { base: '300 €', iva: '63,00 €', total: '363,00 €' },
+  { base: '500 €', iva: '105,00 €', total: '605,00 €' },
+  { base: '1.000 €', iva: '210,00 €', total: '1.210,00 €' },
+  { base: '2.000 €', iva: '420,00 €', total: '2.420,00 €' },
+  { base: '3.000 €', iva: '630,00 €', total: '3.630,00 €' },
+  { base: '5.000 €', iva: '1.050,00 €', total: '6.050,00 €' },
+  { base: '10.000 €', iva: '2.100,00 €', total: '12.100,00 €' },
+];
+
+const items = faq?.items || [];
 ---
 
-<section class="py-16 lg:py-24 relative z-10 border-t border-[var(--border-subtle)]" id="faq">
-  <div class="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3" set:html={faq.faqTitle || t('nav.faq')} />
-      <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed">
-        {faq.faqSubtitle || t('siteDescription')}
-      </p>
-    </div>
+<section class="faq-section" id="faq">
+  <div class="section-container">
+    <h2 class="section-title" set:html={faq?.faqTitle || t('faqTitle', 'Preguntas frecuentes sobre el <span class="gradient-text">IVA</span>')} />
+    <p class="section-subtitle">
+      {faq?.faqSubtitle || t('faqSubtitle', 'Respuestas sobre cómo calcular el IVA, calcular IVA incluido, calcular IVA excluido y ejemplos prácticos')}
+    </p>
 
-    <!-- Collapsible Accordion -->
-    <div class="space-y-4" id="faqAccordion">
-      {visibleFaqs.map((item: any, index: number) => (
-        <div class="faq-item glass-card overflow-hidden transition-all duration-300">
-          <button
-            type="button"
-            class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-            aria-expanded="false"
-            aria-controls={`faq-answer-${index}`}
-            id={`faq-btn-${index}`}
-          >
+    <div class="faq-list" id="faqList">
+      {items.map((item: any, idx: number) => (
+        <div class="faq-item" id={`faq${idx + 1}`}>
+          <button class="faq-question" id={`faqBtn${idx + 1}`} aria-expanded="false" aria-controls={`faqAnswer${idx + 1}`} type="button">
             <span>{item.question}</span>
-            <svg class="faq-chevron w-5 h-5 text-[var(--text-tertiary)] transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div
-            id={`faq-answer-${index}`}
-            class="faq-body max-h-0 overflow-hidden transition-all duration-300 px-5 sm:px-6 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed"
-            role="region"
-            aria-labelledby={`faq-btn-${index}`}
-          >
-            <p class="pb-5 sm:pb-6">{item.answer}</p>
+          <div class="faq-answer" id={`faqAnswer${idx + 1}`} role="region" aria-labelledby={`faqBtn${idx + 1}`}>
+            <p set:html={item.answer} />
+            {item.formula && (
+              <div class="faq-formula-mini">
+                <div class="faq-formula-equation">
+                  <span class="faq-formula-var">{item.formula.base}</span>
+                  <span class="faq-formula-op">{item.formula.rate ? '×' : '−'}</span>
+                  <span class="faq-formula-var">{item.formula.rate || item.formula.minus}</span>
+                  <span class="faq-formula-op">=</span>
+                  <span class="faq-formula-result">{item.formula.result}</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ))}
     </div>
+
+    <!-- Quick Reference Table -->
+    <div class="quick-table-wrapper" id="quickTable">
+      <h3 class="quick-table-title" set:html={t('quickTableTitle', 'Tabla de cálculo rápido de IVA <span class="gradient-text">(21%)</span>')} />
+      <p class="quick-table-subtitle">
+        {t('quickTableSubtitle', 'Desglose de IVA del 21% para importes comunes — base imponible, monto de IVA e importe total con IVA')}
+      </p>
+      <div class="quick-table-container">
+        <table class="quick-table" id="quickCalcTable">
+          <thead>
+            <tr>
+              <th>{t('thBase', 'Base imponible')}</th>
+              <th>{t('thVat', 'IVA (21%)')}</th>
+              <th>{t('thTotal', 'Total con IVA')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {quickTableData.map((row) => (
+              <tr>
+                <td>{row.base}</td>
+                <td>{row.iva}</td>
+                <td><strong>{row.total}</strong></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqItems = document.querySelectorAll('.faq-item');
+<script>
+  document.querySelectorAll('.faq-item .faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      if (!item) return;
+      const isOpen = item.classList.contains('open');
 
-    faqItems.forEach((item) => {
-      const btn = item.querySelector('.faq-btn');
-      const body = item.querySelector('.faq-body');
-      const chevron = item.querySelector('.faq-chevron');
-
-      btn?.addEventListener('click', () => {
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-
-        // Close all
-        faqItems.forEach((other) => {
-          const otherBtn = other.querySelector('.faq-btn');
-          const otherBody = other.querySelector('.faq-body');
-          const otherChevron = other.querySelector('.faq-chevron');
-          otherBtn?.setAttribute('aria-expanded', 'false');
-          if (otherBody) otherBody.style.maxHeight = '0px';
-          otherChevron?.classList.remove('rotate-180', 'text-indigo-500');
-        });
-
-        // Toggle clicked
-        if (!isExpanded && body) {
-          btn.setAttribute('aria-expanded', 'true');
-          body.style.maxHeight = `${body.scrollHeight}px`;
-          chevron?.classList.add('rotate-180', 'text-indigo-500');
+      // Close other accordion items
+      document.querySelectorAll('.faq-item').forEach(i => {
+        if (i !== item) {
+          i.classList.remove('open');
+          const btn = i.querySelector('.faq-question');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
         }
       });
+
+      // Toggle current item
+      if (isOpen) {
+        item.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 </script>

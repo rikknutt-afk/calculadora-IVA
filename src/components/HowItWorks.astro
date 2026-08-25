@@ -9,59 +9,117 @@ const { locale = 'en' } = Astro.props;
 const { t } = useTranslations(locale);
 ---
 
-<section class="py-16 lg:py-24 relative z-10" id="how-it-works">
-  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-14">
-      <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)] tracking-tight mb-3">
-        {t('howItWorksTitle')}
-      </h2>
-      <p class="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed">
-        {t('howItWorksSubtitle')}
-      </p>
-    </div>
+<section class="content-section" id="como-funciona">
+  <div class="section-container">
+    <h2 class="section-title" set:html={t('howItWorksTitle', '¿Cómo funciona la calculadora de <span class="gradient-text">IVA</span>?')} />
+    <p class="section-subtitle">
+      {t('howItWorksSubtitle', 'La calculadora de IVA en línea funciona en 4 pasos: seleccionar el modo de cálculo, introducir el importe, elegir el porcentaje de IVA y obtener el resultado')}
+    </p>
 
-    <!-- Reusable slot or default 3-step grid -->
-    <slot>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-        <!-- Step 1 -->
-        <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300">
-          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
-            01
-          </div>
-          <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5">
-            {t('step1Title')}
-          </h3>
-          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-            {t('step1Desc')}
+    <!-- Interactive 4-Step Walkthrough -->
+    <div class="walkthrough-steps" id="walkthroughSteps">
+      <!-- Step 1 -->
+      <div class="walkthrough-step" data-step="1">
+        <div class="walkthrough-step-connector"></div>
+        <div class="walkthrough-step-number">1</div>
+        <div class="walkthrough-step-content">
+          <div class="walkthrough-step-icon">🔄</div>
+          <h3 class="walkthrough-step-title">{t('step1Title', '1. Selecciona el modo')}</h3>
+          <p class="walkthrough-step-desc">
+            {t('step1Desc', 'Elige «Añadir IVA» para calcular el precio con IVA desde una base imponible, o «Quitar IVA» para extraer la base imponible de un precio con IVA incluido.')}
           </p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300">
-          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
-            02
+          <div class="walkthrough-mini-toggle" id="miniToggle1">
+            <button type="button" class="mini-toggle-btn mini-toggle-active" data-mini="add">+ {t('modeAdd', 'Añadir IVA')}</button>
+            <button type="button" class="mini-toggle-btn" data-mini="remove">− {t('modeRemove', 'Quitar IVA')}</button>
           </div>
-          <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5">
-            {t('step2Title')}
-          </h3>
-          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-            {t('step2Desc')}
-          </p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="glass-card p-6 sm:p-8 relative group hover:-translate-y-1 transition-all duration-300">
-          <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-600 dark:text-pink-400 font-display font-extrabold text-xl flex items-center justify-center mb-5">
-            03
-          </div>
-          <h3 class="font-display font-bold text-lg text-[var(--text-primary)] mb-2.5">
-            {t('step3Title')}
-          </h3>
-          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-            {t('step3Desc')}
-          </p>
         </div>
       </div>
-    </slot>
+
+      <!-- Step 2 -->
+      <div class="walkthrough-step" data-step="2">
+        <div class="walkthrough-step-connector"></div>
+        <div class="walkthrough-step-number">2</div>
+        <div class="walkthrough-step-content">
+          <div class="walkthrough-step-icon">💶</div>
+          <h3 class="walkthrough-step-title">{t('step2Title', '2. Introduce el importe')}</h3>
+          <p class="walkthrough-step-desc">
+            {t('step2Desc', 'Escribe la cantidad en el campo de monto. La calculadora acepta números con coma o punto decimal.')}
+          </p>
+          <div class="walkthrough-mini-input">
+            <span class="mini-input-label">{t('amountWithoutVat', 'Importe')}</span>
+            <div class="mini-input-box">1.000,00 <span class="mini-input-currency">€</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="walkthrough-step" data-step="3">
+        <div class="walkthrough-step-connector"></div>
+        <div class="walkthrough-step-number">3</div>
+        <div class="walkthrough-step-content">
+          <div class="walkthrough-step-icon">📊</div>
+          <h3 class="walkthrough-step-title">{t('step3Title', '3. Elige el porcentaje de IVA')}</h3>
+          <p class="walkthrough-step-desc">
+            {t('step3Desc', 'Selecciona el tipo de IVA: 4% (superreducido), 10% (reducido), 21% (general) o un porcentaje a medida.')}
+          </p>
+          <div class="walkthrough-mini-rates" id="miniRates">
+            <button type="button" class="mini-rate-btn" data-minirate="4">4%</button>
+            <button type="button" class="mini-rate-btn" data-minirate="10">10%</button>
+            <button type="button" class="mini-rate-btn mini-rate-active" data-minirate="21">21%</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="walkthrough-step" data-step="4">
+        <div class="walkthrough-step-connector"></div>
+        <div class="walkthrough-step-number">4</div>
+        <div class="walkthrough-step-content">
+          <div class="walkthrough-step-icon">✅</div>
+          <h3 class="walkthrough-step-title">{t('step4Title', '4. Obtén el resultado')}</h3>
+          <p class="walkthrough-step-desc">
+            {t('step4Desc', 'Visualiza la base imponible, la cuota de IVA y el precio final con IVA en tiempo real con gráfico de desglose.')}
+          </p>
+          <div class="walkthrough-mini-result" id="miniResult">
+            <div class="mini-result-row">
+              <span>{t('basePrice', 'Base')}</span>
+              <span class="mini-result-value">1.000,00 €</span>
+            </div>
+            <div class="mini-result-row mini-result-iva">
+              <span>{t('vatAmount', 'IVA')} (21%)</span>
+              <span class="mini-result-value">210,00 €</span>
+            </div>
+            <div class="mini-result-row mini-result-total">
+              <span>{t('totalPrice', 'Total con IVA')}</span>
+              <span class="mini-result-value"><strong>1.210,00 €</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  // Mini toggle interactivity
+  document.querySelectorAll('.walkthrough-mini-toggle .mini-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.walkthrough-mini-toggle');
+      if (parent) {
+        parent.querySelectorAll('.mini-toggle-btn').forEach(b => b.classList.remove('mini-toggle-active'));
+        btn.classList.add('mini-toggle-active');
+      }
+    });
+  });
+
+  // Mini rate buttons interactivity
+  document.querySelectorAll('.walkthrough-mini-rates .mini-rate-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.walkthrough-mini-rates');
+      if (parent) {
+        parent.querySelectorAll('.mini-rate-btn').forEach(b => b.classList.remove('mini-rate-active'));
+        btn.classList.add('mini-rate-active');
+      }
+    });
+  });
+</script>

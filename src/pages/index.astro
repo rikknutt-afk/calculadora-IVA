@@ -1,12 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
 import IvaCalculator from '../components/IvaCalculator.astro';
+import CalcularIva from '../components/CalcularIva.astro';
+import FormulaIva from '../components/FormulaIva.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import RateTable from '../components/RateTable.astro';
 import FaqSection from '../components/FaqSection.astro';
-import { useTranslations } from '../i18n/utils';
+import { defaultLocale, useTranslations } from '../i18n/utils';
 
-const locale = 'en';
+const locale = defaultLocale;
 const { t, faq } = useTranslations(locale);
 ---
 
@@ -16,29 +19,26 @@ const { t, faq } = useTranslations(locale);
   schemaType="WebSite"
   faqItems={faq.items}
 >
-  <!-- Hero Section -->
-  <section class="text-center max-w-3xl mx-auto pt-6 pb-10">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 shadow-sm mb-6 animate-pulse-dot">
-      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-      <span>{t('heroBadge')}</span>
-    </div>
+  <!-- Hero Section with animated counters & feature checkmarks -->
+  <HeroSection locale={locale} />
 
-    <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[var(--text-primary)] mb-4" set:html={t('heroTitle')} />
-
-    <p class="text-[var(--text-secondary)] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-      {t('heroSubtitle')}
-    </p>
+  <!-- Interactive Calculator Section -->
+  <section class="calculator-section" id="calculator">
+    <IvaCalculator locale={locale} />
   </section>
 
-  <!-- Interactive Calculator Component -->
-  <IvaCalculator locale={locale} />
+  <!-- Section: Calcular IVA (3-method flow diagram) -->
+  <CalcularIva locale={locale} />
 
-  <!-- How It Works Section -->
+  <!-- Section: ¿Cuál es la fórmula para calcular el IVA? & IVA soportado vs repercutido -->
+  <FormulaIva locale={locale} />
+
+  <!-- Section: ¿Cómo funciona la calculadora de IVA? (4-step interactive walkthrough) -->
   <HowItWorks locale={locale} />
 
-  <!-- Rates & Table Section -->
+  <!-- Section: IVA Percentage (18-country comparison chart & Spain rate cards) -->
   <RateTable locale={locale} />
 
-  <!-- FAQ Section -->
+  <!-- Section: FAQ (6 questions + Quick Reference Table) -->
   <FaqSection locale={locale} />
 </BaseLayout>
