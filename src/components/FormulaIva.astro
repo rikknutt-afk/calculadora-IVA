@@ -5,7 +5,7 @@ interface Props {
   locale?: string;
 }
 
-const { locale = 'en' } = Astro.props;
+const { locale = 'es' } = Astro.props;
 const { t } = useTranslations(locale);
 ---
 
@@ -95,41 +95,6 @@ const { t } = useTranslations(locale);
             <span>{t('basePrice', 'Base imponible')}</span>
             <span id="fbreakBase2">1.000,00 €</span>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- IVA soportado vs repercutido diagram -->
-    <div class="soportado-repercutido-diagram" id="soportadoDiagram">
-      <h3 class="sr-diagram-title">{t('srTitle', 'IVA soportado y repercutido: diferencias y cómo calcularlos')}</h3>
-      <div class="sr-diagram-flow">
-        <div class="sr-diagram-node sr-node-green">
-          <div class="sr-node-icon">📤</div>
-          <div class="sr-node-title">{t('srRepercutidoTitle', 'IVA repercutido')}</div>
-          <div class="sr-node-desc">{t('srRepercutidoDesc', 'IVA que cobras a tus clientes en las facturas de venta')}</div>
-          <div class="sr-node-example">1.210 € → IVA: 210 €</div>
-        </div>
-        <div class="sr-diagram-connector">
-          <div class="sr-connector-line"></div>
-          <div class="sr-connector-label">−</div>
-          <div class="sr-connector-line"></div>
-        </div>
-        <div class="sr-diagram-node sr-node-pink">
-          <div class="sr-node-icon">📥</div>
-          <div class="sr-node-title">{t('srSoportadoTitle', 'IVA soportado')}</div>
-          <div class="sr-node-desc">{t('srSoportadoDesc', 'IVA que pagas a tus proveedores en las facturas de compra')}</div>
-          <div class="sr-node-example">605 € → IVA: 105 €</div>
-        </div>
-        <div class="sr-diagram-connector">
-          <div class="sr-connector-line"></div>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          <div class="sr-connector-line"></div>
-        </div>
-        <div class="sr-diagram-node sr-node-result">
-          <div class="sr-node-icon">🏛️</div>
-          <div class="sr-node-title">{t('srLiquidacionTitle', 'Liquidación de IVA')}</div>
-          <div class="sr-node-desc">{t('srLiquidacionDesc', 'Resultado de la autoliquidación trimestral (modelo 303)')}</div>
-          <div class="sr-node-example">210 € − 105 € = <strong>105 €</strong></div>
         </div>
       </div>
     </div>

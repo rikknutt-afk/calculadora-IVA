@@ -12,26 +12,9 @@ export default defineConfig({
     sitemap({
       filter: (page) => !page.includes('/404/'),
       i18n: {
-        defaultLocale: 'en',
+        defaultLocale: 'es',
         locales: {
-          en: 'en-US',
           es: 'es-ES',
-          hi: 'hi-IN',
-          ru: 'ru-RU',
-          fr: 'fr-FR',
-          de: 'de-DE',
-          it: 'it-IT',
-          pt: 'pt-PT',
-          bn: 'bn-BD',
-          ja: 'ja-JP',
-          ko: 'ko-KR',
-          ms: 'ms-MY',
-          pl: 'pl-PL',
-          id: 'id-ID',
-          ar: 'ar-SA',
-          bg: 'bg-BG',
-          tr: 'tr-TR',
-          sv: 'sv-SE',
         }
       }
     }),

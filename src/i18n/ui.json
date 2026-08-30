@@ -72,7 +72,7 @@
     "siteDescription": "Calculadora de IVA online gratuita para España y Latinoamérica. Calcula el Impuesto al Valor Agregado (IVA) con los tipos impositivos de cada país: 21%, 16%, 19% y más. Añade o quita IVA al instante.",
     "heroBadge": "España y Latinoamérica 2025 — Tipos actualizados",
     "heroTitle": "Calculadora <span class=\"gradient-text\">IVA</span>",
-    "heroSubtitle": "La calculadora de IVA es una herramienta gratuita que calcula el Impuesto al Valor Agregado (IVA) para España, México, Argentina, Chile, Colombia, Perú, Ecuador y 15+ países más. Introduce un importe, selecciona el tipo de IVA y obtén el precio con IVA incluido, el precio sin IVA y la base imponible al instante.",
+    "heroSubtitle": "Calcula, añade o quita el IVA al instante con tipos oficiales y personalizados.<br class=\"hidden sm:inline\" /> Desglose automático de base imponible, cuota y precio total.",
     "statCountries": "Países soportados",
     "statTypes": "Tipos de IVA",
     "statFree": "Gratis y sin registro",

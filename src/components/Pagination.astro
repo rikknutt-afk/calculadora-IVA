@@ -17,7 +17,7 @@ interface Props {
   locale?: string;
 }
 
-const { page, locale = 'en' } = Astro.props;
+const { page, locale = 'es' } = Astro.props;
 const { t } = useTranslations(locale);
 
 const pages = Array.from({ length: page.lastPage }, (_, i) => i + 1);

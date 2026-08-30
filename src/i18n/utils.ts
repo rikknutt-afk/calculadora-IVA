@@ -3,7 +3,7 @@ import uiTranslations from './ui.json';
 import faqTranslations from './faq.json';
 import commonTranslations from './common.json';
 
-export const defaultLocale = localesConfig.defaultLocale || 'en';
+export const defaultLocale = localesConfig.defaultLocale || 'es';
 export const supportedLocales = localesConfig.locales;
 
 export type LocaleCode = string;
@@ -19,7 +19,7 @@ export function getLocaleDir(locale: string): 'ltr' | 'rtl' {
 
 export function getOgLocale(locale: string): string {
   const match = supportedLocales.find((l) => l.code === locale);
-  return match?.ogLocale || 'en_US';
+  return match?.ogLocale || 'es_ES';
 }
 
 export function getLocaleFromUrl(url: URL | string): string {
@@ -65,7 +65,7 @@ export function getStaticLocalePaths() {
 }
 
 export function useTranslations(locale: string) {
-  const fallbackLocale = 'en';
+  const fallbackLocale = 'es';
 
   const ui = (uiTranslations as Record<string, any>)[locale] || (uiTranslations as Record<string, any>)[fallbackLocale] || {};
   const uiFallback = (uiTranslations as Record<string, any>)[fallbackLocale] || {};

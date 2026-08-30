@@ -3,9 +3,9 @@
   "legalName": "Calculadora IVA Pro S.L.",
   "siteUrl": "https://calculadoraiva.es",
   "contactEmail": "contacto@calculadoraiva.es",
-  "defaultLocale": "en",
-  "defaultTitle": "Calculadora IVA — VAT / Tax Calculator & Invoice Breakdown",
-  "defaultDescription": "Free, professional, and instant VAT/IVA calculator. Add or extract VAT with official Spanish and international rates. Real-time charts, breakdown formulas, and invoice tools.",
+  "defaultLocale": "es",
+  "defaultTitle": "Calculadora IVA — Calcula el Impuesto sobre el Valor Añadido",
+  "defaultDescription": "Calculadora de IVA online gratuita para España y Latinoamérica. Calcula el Impuesto al Valor Agregado (IVA) con los tipos impositivos de cada país: 21%, 16%, 19% y más. Añade o quita IVA al instante.",
   "verification": {
     "google": "google-site-verification-token",
     "bing": "bing-site-verification-token",

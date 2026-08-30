@@ -67,7 +67,7 @@ const homeUrl = getLocalizedUrl('/', locale);
         <div class="footer-col" id="footerHighlights">
           <h4 class="footer-col-title">Destacados</h4>
           <ul class="footer-link-list">
-            <li><a href={`${homeUrl}#formula-iva`} class="footer-link">IVA soportado / repercutido</a></li>
+            <li><a href={`${homeUrl}#formula-iva`} class="footer-link">Fórmula del IVA</a></li>
             <li><a href={`${homeUrl}#calcular-iva`} class="footer-link">Añadir / Quitar IVA</a></li>
             <li><a href={`${homeUrl}#quickTable`} class="footer-link">Tabla rápida 21%</a></li>
             <li><a href={`${homeUrl}#spainRates`} class="footer-link">Tipos de IVA España</a></li>
@@ -90,23 +90,25 @@ const homeUrl = getLocalizedUrl('/', locale);
     </div>
 
     <!-- Language Selector Pills -->
-    <div class="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between flex-wrap gap-2">
-      <span class="text-xs font-bold text-[var(--text-tertiary)] uppercase tracking-wider">{t('language')}:</span>
-      <div class="flex items-center gap-1.5 flex-wrap">
-        {supportedLocales.map((loc) => (
-          <a
-            href={getLocalizedUrl('/', loc.code)}
-            class={`text-[11px] px-2 py-0.5 rounded transition-colors ${
-              loc.code === locale
-                ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-500/30'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-500/10'
-            }`}
-          >
-            {loc.name}
-          </a>
-        ))}
+    {supportedLocales.length > 1 && (
+      <div class="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between flex-wrap gap-2">
+        <span class="text-xs font-bold text-[var(--text-tertiary)] uppercase tracking-wider">{t('language')}:</span>
+        <div class="flex items-center gap-1.5 flex-wrap">
+          {supportedLocales.map((loc) => (
+            <a
+              href={getLocalizedUrl('/', loc.code)}
+              class={`text-[11px] px-2 py-0.5 rounded transition-colors ${
+                loc.code === locale
+                  ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-500/30'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-500/10'
+              }`}
+            >
+              {loc.name}
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
+    )}
 
     <!-- Bottom Copyright & Disclaimer -->
     <div class="footer-bottom">

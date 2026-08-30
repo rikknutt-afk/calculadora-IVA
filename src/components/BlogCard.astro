@@ -16,7 +16,7 @@ interface Props {
   locale?: string;
 }
 
-const { post, locale = 'en' } = Astro.props;
+const { post, locale = 'es' } = Astro.props;
 const { t } = useTranslations(locale);
 const formattedDate = new Date(post.data.date).toLocaleDateString('es-ES', {
   year: 'numeric',

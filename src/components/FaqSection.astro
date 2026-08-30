@@ -5,7 +5,7 @@ interface Props {
   locale?: string;
 }
 
-const { locale = 'en' } = Astro.props;
+const { locale = 'es' } = Astro.props;
 const { t, faq } = useTranslations(locale);
 
 const quickTableData = [

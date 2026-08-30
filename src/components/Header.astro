@@ -6,7 +6,7 @@ interface Props {
   locale?: string;
 }
 
-const { locale = 'en' } = Astro.props;
+const { locale = 'es' } = Astro.props;
 const { t } = useTranslations(locale);
 const homeUrl = getLocalizedUrl('/', locale);
 const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supportedLocales[0];
@@ -44,44 +44,46 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
       </nav>
 
       <!-- Language Switcher Dropdown (Desktop) -->
-      <div class="relative ml-2" id="langDropdownWrapper">
-        <button
-          id="langDropdownBtn"
-          type="button"
-          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-xs font-bold text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-all cursor-pointer"
-          aria-expanded="false"
-          aria-haspopup="true"
-          title={t('language', 'Idioma')}
-        >
-          <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-          </svg>
-          <span class="uppercase font-extrabold">{currentLocaleObj.code}</span>
-          <svg class="w-3 h-3 text-[var(--text-tertiary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
+      {supportedLocales.length > 1 && (
+        <div class="relative ml-2" id="langDropdownWrapper">
+          <button
+            id="langDropdownBtn"
+            type="button"
+            class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-xs font-bold text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-all cursor-pointer"
+            aria-expanded="false"
+            aria-haspopup="true"
+            title={t('language', 'Idioma')}
+          >
+            <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span class="uppercase font-extrabold">{currentLocaleObj.code}</span>
+            <svg class="w-3 h-3 text-[var(--text-tertiary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
 
-        <!-- Dropdown Menu -->
-        <div
-          id="langDropdownMenu"
-          class="absolute right-0 top-full mt-2 w-48 max-h-72 overflow-y-auto bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-xl shadow-xl p-1.5 hidden z-50 backdrop-blur-xl"
-        >
-          {supportedLocales.map((loc) => (
-            <a
-              href={getLocalizedUrl('/', loc.code)}
-              class={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-colors ${
-                loc.code === locale
-                  ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10'
-              }`}
-            >
-              <span>{loc.name}</span>
-              <span class="uppercase text-[10px] opacity-60 font-semibold">{loc.code}</span>
-            </a>
-          ))}
+          <!-- Dropdown Menu -->
+          <div
+            id="langDropdownMenu"
+            class="absolute right-0 top-full mt-2 w-48 max-h-72 overflow-y-auto bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-xl shadow-xl p-1.5 hidden z-50 backdrop-blur-xl"
+          >
+            {supportedLocales.map((loc) => (
+              <a
+                href={getLocalizedUrl('/', loc.code)}
+                class={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-colors ${
+                  loc.code === locale
+                    ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10'
+                }`}
+              >
+                <span>{loc.name}</span>
+                <span class="uppercase text-[10px] opacity-60 font-semibold">{loc.code}</span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <!-- Theme Switcher -->
       <button
@@ -113,13 +115,15 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
     <!-- Mobile Header Actions -->
     <div class="flex items-center gap-2 md:hidden">
       <!-- Mobile Language Switcher Button -->
-      <a
-        href="#footerLegal"
-        class="px-2.5 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-xs font-bold text-[var(--text-primary)] flex items-center gap-1"
-        aria-label="Seleccionar idioma"
-      >
-        <span class="uppercase text-[11px]">{currentLocaleObj.code}</span>
-      </a>
+      {supportedLocales.length > 1 && (
+        <a
+          href="#footerLegal"
+          class="px-2.5 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-xs font-bold text-[var(--text-primary)] flex items-center gap-1"
+          aria-label="Seleccionar idioma"
+        >
+          <span class="uppercase text-[11px]">{currentLocaleObj.code}</span>
+        </a>
+      )}
 
       <!-- Theme Button Mobile -->
       <button
