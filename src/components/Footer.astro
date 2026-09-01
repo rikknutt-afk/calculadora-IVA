@@ -32,58 +32,58 @@ const homeUrl = getLocalizedUrl('/', locale);
           </div>
           <span class="logo-text">Calculadora <span class="logo-accent">IVA</span></span>
         </a>
-        <p class="footer-tagline">Cálculo de IVA rápido y gratuito para España y Latinoamérica.</p>
+        <p class="footer-tagline">{t('footer.desc', 'Cálculo de IVA rápido y gratuito para España y Latinoamérica.')}</p>
       </div>
 
       <!-- Footer Navigation Grid -->
       <div class="footer-grid">
-        <!-- Col 1: Herramientas -->
+        <!-- Col 1: Tools / Herramientas -->
         <div class="footer-col" id="footerInterest">
-          <h4 class="footer-col-title">Herramientas</h4>
+          <h4 class="footer-col-title">{t('footer.tools', 'Herramientas')}</h4>
           <ul class="footer-link-list">
-            <li><a href={`${homeUrl}#calculator`} class="footer-link">Calculadora de IVA</a></li>
-            <li><a href={`${homeUrl}#calcular-iva`} class="footer-link">Calcular IVA online</a></li>
-            <li><a href={`${homeUrl}#formula-iva`} class="footer-link">Fórmula de IVA</a></li>
-            <li><a href={`${homeUrl}#como-funciona`} class="footer-link">Cómo funciona</a></li>
-            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">Tipos por país</a></li>
-            <li><a href={`${homeUrl}#faq`} class="footer-link">FAQ</a></li>
+            <li><a href={`${homeUrl}#calculator`} class="footer-link">{t('nav.calculator', 'Calculadora de IVA')}</a></li>
+            <li><a href={`${homeUrl}#calcular-iva`} class="footer-link">{t('nav.calcularIva', 'Calcular IVA online')}</a></li>
+            <li><a href={`${homeUrl}#formula-iva`} class="footer-link">{t('nav.formulaIva', 'Fórmula de IVA')}</a></li>
+            <li><a href={`${homeUrl}#como-funciona`} class="footer-link">{t('nav.howItWorks', 'Cómo funciona')}</a></li>
+            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('nav.rates', 'Tipos por país')}</a></li>
+            <li><a href={`${homeUrl}#faq`} class="footer-link">{t('nav.faq', 'FAQ')}</a></li>
           </ul>
         </div>
 
-        <!-- Col 2: Por País -->
+        <!-- Col 2: By Country / Por País -->
         <div class="footer-col" id="footerCountries">
-          <h4 class="footer-col-title">Por País</h4>
+          <h4 class="footer-col-title">{t('footer.byCountry', 'Por País')}</h4>
           <ul class="footer-link-list">
-            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">España (21%)</a></li>
-            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">México (16%)</a></li>
-            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">Argentina (21%)</a></li>
-            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">Chile (19%)</a></li>
-            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">Colombia (19%)</a></li>
-            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">Perú (18%)</a></li>
+            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('footer.countries.es', 'España')} (21%)</a></li>
+            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('footer.countries.mx', 'México')} (16%)</a></li>
+            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('footer.countries.ar', 'Argentina')} (21%)</a></li>
+            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('footer.countries.cl', 'Chile')} (19%)</a></li>
+            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('footer.countries.co', 'Colombia')} (19%)</a></li>
+            <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('footer.countries.pe', 'Perú')} (18%)</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Destacados -->
+        <!-- Col 3: Highlights / Destacados -->
         <div class="footer-col" id="footerHighlights">
-          <h4 class="footer-col-title">Destacados</h4>
+          <h4 class="footer-col-title">{t('footer.highlights', 'Destacados')}</h4>
           <ul class="footer-link-list">
-            <li><a href={`${homeUrl}#formula-iva`} class="footer-link">Fórmula del IVA</a></li>
-            <li><a href={`${homeUrl}#calcular-iva`} class="footer-link">Añadir / Quitar IVA</a></li>
-            <li><a href={`${homeUrl}#quickTable`} class="footer-link">Tabla rápida 21%</a></li>
-            <li><a href={`${homeUrl}#spainRates`} class="footer-link">Tipos de IVA España</a></li>
-            <li><a href={getLocalizedUrl('/blog/', locale)} class="footer-link">Blog & Guías</a></li>
+            <li><a href={`${homeUrl}#formula-iva`} class="footer-link">{t('nav.formulaIva', 'Fórmula del IVA')}</a></li>
+            <li><a href={`${homeUrl}#calcular-iva`} class="footer-link">{t('footer.addRemoveIva', 'Añadir / Quitar IVA')}</a></li>
+            <li><a href={`${homeUrl}#quickTable`} class="footer-link">{t('footer.quickTableLink', 'Tabla rápida 21%')}</a></li>
+            <li><a href={`${homeUrl}#spainRates`} class="footer-link">{t('footer.spainRatesLink', 'Tipos de IVA España')}</a></li>
+            <li><a href={getLocalizedUrl('/blog/', locale)} class="footer-link">{t('footer.blogGuides', 'Blog & Guías')}</a></li>
           </ul>
         </div>
 
-        <!-- Col 4: Legal & Idiomas -->
+        <!-- Col 4: Legal & Info -->
         <div class="footer-col" id="footerLegal">
-          <h4 class="footer-col-title">Legal & Info</h4>
+          <h4 class="footer-col-title">{t('footer.legal', 'Legal & Info')}</h4>
           <ul class="footer-link-list mb-3">
-            <li><a href={getLocalizedUrl('/about-us/', locale)} class="footer-link">Sobre Nosotros</a></li>
-            <li><a href={getLocalizedUrl('/contact-us/', locale)} class="footer-link">Contacto</a></li>
-            <li><a href={getLocalizedUrl('/privacy/', locale)} class="footer-link">Privacidad</a></li>
-            <li><a href={getLocalizedUrl('/terms/', locale)} class="footer-link">Términos</a></li>
-            <li><a href={getLocalizedUrl('/sitemap/', locale)} class="footer-link">Mapa del Sitio</a></li>
+            <li><a href={getLocalizedUrl('/about-us/', locale)} class="footer-link">{t('nav.about', 'Sobre Nosotros')}</a></li>
+            <li><a href={getLocalizedUrl('/contact-us/', locale)} class="footer-link">{t('nav.contact', 'Contacto')}</a></li>
+            <li><a href={getLocalizedUrl('/privacy/', locale)} class="footer-link">{t('nav.privacy', 'Privacidad')}</a></li>
+            <li><a href={getLocalizedUrl('/terms/', locale)} class="footer-link">{t('nav.terms', 'Términos')}</a></li>
+            <li><a href={getLocalizedUrl('/sitemap/', locale)} class="footer-link">{t('nav.sitemap', 'Mapa del Sitio')}</a></li>
           </ul>
         </div>
       </div>
@@ -92,18 +92,21 @@ const homeUrl = getLocalizedUrl('/', locale);
     <!-- Language Selector Pills -->
     {supportedLocales.length > 1 && (
       <div class="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between flex-wrap gap-2">
-        <span class="text-xs font-bold text-[var(--text-tertiary)] uppercase tracking-wider">{t('language')}:</span>
+        <span class="text-xs font-bold text-[var(--text-tertiary)] uppercase tracking-wider flex items-center gap-1.5">
+          <span>🌐</span> {t('language', 'Idioma')}:
+        </span>
         <div class="flex items-center gap-1.5 flex-wrap">
           {supportedLocales.map((loc) => (
             <a
-              href={getLocalizedUrl('/', loc.code)}
-              class={`text-[11px] px-2 py-0.5 rounded transition-colors ${
+              href={getLocalizedUrl(Astro.url.pathname, loc.code)}
+              class={`text-[11px] px-2 py-1 rounded-lg transition-all flex items-center gap-1 ${
                 loc.code === locale
                   ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-500/30'
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-500/10'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-500/10 border border-transparent'
               }`}
             >
-              {loc.name}
+              <span>{loc.flag || '🌐'}</span>
+              <span>{loc.name}</span>
             </a>
           ))}
         </div>

@@ -39,7 +39,7 @@ const countries = [
 
     <!-- Interactive Country Rate Comparison Chart -->
     <div class="rate-chart-container" id="rateChart">
-      <h3 class="rate-chart-title">Comparación de tipos de IVA por país</h3>
+      <h3 class="rate-chart-title">{t('rateChartTitle', 'Comparación de tipos de IVA por país')}</h3>
       <div class="rate-chart-bars" id="rateChartBars">
         {countries.map((c) => (
           <div class="rate-chart-bar-item" data-country={c.name} data-rate={c.rate}>
@@ -60,17 +60,17 @@ const countries = [
         <div class="spain-rate-card spain-rate-general">
           <div class="spain-rate-pct">21%</div>
           <div class="spain-rate-name">{t('general', 'General')} (21%)</div>
-          <div class="spain-rate-desc">Electrónica, ropa, servicios profesionales, vehículos</div>
+          <div class="spain-rate-desc">{t('spainGeneralDesc', 'Electrónica, ropa, servicios profesionales, vehículos')}</div>
         </div>
         <div class="spain-rate-card spain-rate-reduced">
           <div class="spain-rate-pct">10%</div>
           <div class="spain-rate-name">{t('reduced', 'Reducido')} (10%)</div>
-          <div class="spain-rate-desc">Alimentación, transporte, hostelería, vivienda nueva</div>
+          <div class="spain-rate-desc">{t('spainReducedDesc', 'Alimentación, transporte, hostelería, vivienda nueva')}</div>
         </div>
         <div class="spain-rate-card spain-rate-super">
           <div class="spain-rate-pct">4%</div>
           <div class="spain-rate-name">{t('superReduced', 'Superreducido')} (4%)</div>
-          <div class="spain-rate-desc">Pan, leche, libros, medicamentos, prótesis</div>
+          <div class="spain-rate-desc">{t('spainSuperDesc', 'Pan, leche, libros, medicamentos, prótesis')}</div>
         </div>
       </div>
     </div>

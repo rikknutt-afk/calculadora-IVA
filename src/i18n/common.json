@@ -17,7 +17,23 @@
     "footer": {
       "desc": "Free online VAT/IVA calculator with official tax rates, instant invoice breakdowns, and math formulas.",
       "disclaimer": "This tool is for informational and educational purposes. Consult an authorized tax advisor for official filings.",
-      "rights": "All rights reserved."
+      "rights": "All rights reserved.",
+      "tools": "Tools",
+      "byCountry": "By Country",
+      "highlights": "Highlights",
+      "legal": "Legal & Info",
+      "addRemoveIva": "Add / Extract VAT",
+      "quickTableLink": "Quick 21% Table",
+      "spainRatesLink": "Spain VAT Rates",
+      "blogGuides": "Blog & Guides",
+      "countries": {
+        "es": "Spain",
+        "mx": "Mexico",
+        "ar": "Argentina",
+        "cl": "Chile",
+        "co": "Colombia",
+        "pe": "Peru"
+      }
     },
     "theme": {
       "toggle": "Toggle light / dark theme"
@@ -66,7 +82,23 @@
     "footer": {
       "desc": "Cálculo de IVA rápido y gratuito para España y Latinoamérica con los tipos oficiales y desgloses instantáneos.",
       "disclaimer": "Herramienta orientativa. Consulte con un asesor fiscal colegiado para decisiones formales.",
-      "rights": "Todos los derechos reservados."
+      "rights": "Todos los derechos reservados.",
+      "tools": "Herramientas",
+      "byCountry": "Por País",
+      "highlights": "Destacados",
+      "legal": "Legal & Info",
+      "addRemoveIva": "Añadir / Quitar IVA",
+      "quickTableLink": "Tabla rápida 21%",
+      "spainRatesLink": "Tipos de IVA España",
+      "blogGuides": "Blog y Guías",
+      "countries": {
+        "es": "España",
+        "mx": "México",
+        "ar": "Argentina",
+        "cl": "Chile",
+        "co": "Colombia",
+        "pe": "Perú"
+      }
     },
     "theme": {
       "toggle": "Cambiar tema claro / oscuro"
@@ -115,7 +147,23 @@
     "footer": {
       "desc": "सटीक और तेज़ वैट/आईवीए गणना के लिए निःशुल्क ऑनलाइन टूल।",
       "disclaimer": "यह टूल केवल शैक्षिक और जानकारी के उद्देश्य के लिए है।",
-      "rights": "सर्वाधिकार सुरक्षित।"
+      "rights": "सर्वाधिकार सुरक्षित।",
+      "tools": "उपकरण",
+      "byCountry": "देश अनुसार",
+      "highlights": "प्रमुख अंश",
+      "legal": "कानूनी और जानकारी",
+      "addRemoveIva": "वैट जोड़ें / निकालें",
+      "quickTableLink": "त्वरित 21% तालिका",
+      "spainRatesLink": "स्पेन वैट दरें",
+      "blogGuides": "ब्लॉग और गाइड",
+      "countries": {
+        "es": "स्पेन",
+        "mx": "मेक्सिको",
+        "ar": "अर्जेंटीना",
+        "cl": "चिली",
+        "co": "कोलंबिया",
+        "pe": "पेरू"
+      }
     },
     "theme": {
       "toggle": "लाइट / डार्क थीम बदलें"
@@ -164,7 +212,23 @@
     "footer": {
       "desc": "Бесплатный онлайн-калькулятор НДС (IVA) с официальными ставками и формулами.",
       "disclaimer": "Калькулятор носит информационный характер.",
-      "rights": "Все права защищены."
+      "rights": "Все права защищены.",
+      "tools": "Инструменты",
+      "byCountry": "По странам",
+      "highlights": "Главное",
+      "legal": "Правовая информация",
+      "addRemoveIva": "Начислить / Выделить НДС",
+      "quickTableLink": "Быстрая таблица 21%",
+      "spainRatesLink": "Ставки НДС в Испании",
+      "blogGuides": "Блог и руководства",
+      "countries": {
+        "es": "Испания",
+        "mx": "Мексика",
+        "ar": "Аргентина",
+        "cl": "Чили",
+        "co": "Колумбия",
+        "pe": "Перу"
+      }
     },
     "theme": {
       "toggle": "Переключить светлую / темную тему"
@@ -213,7 +277,23 @@
     "footer": {
       "desc": "Calculateur de TVA gratuit et précis avec taux officiels et ventilation instantanée.",
       "disclaimer": "Outil à titre informatif et éducatif.",
-      "rights": "Tous droits réservés."
+      "rights": "Tous droits réservés.",
+      "tools": "Outils",
+      "byCountry": "Par pays",
+      "highlights": "Points forts",
+      "legal": "Légal & Info",
+      "addRemoveIva": "Ajouter / Extraire la TVA",
+      "quickTableLink": "Tableau rapide 21%",
+      "spainRatesLink": "Taux de TVA Espagne",
+      "blogGuides": "Blog & Guides",
+      "countries": {
+        "es": "Espagne",
+        "mx": "Mexique",
+        "ar": "Argentine",
+        "cl": "Chili",
+        "co": "Colombie",
+        "pe": "Pérou"
+      }
     },
     "theme": {
       "toggle": "Changer de thème clair / sombre"
@@ -262,7 +342,23 @@
     "footer": {
       "desc": "Kostenloser Mehrwertsteuerrechner (IVA) mit offiziellen Steuersätzen und Formeln.",
       "disclaimer": "Dieses Tool dient ausschließlich zu Informationszwecken.",
-      "rights": "Alle Rechte vorbehalten."
+      "rights": "Alle Rechte vorbehalten.",
+      "tools": "Werkzeuge",
+      "byCountry": "Nach Land",
+      "highlights": "Highlights",
+      "legal": "Rechtliches & Info",
+      "addRemoveIva": "MwSt. hinzufügen / abziehen",
+      "quickTableLink": "Schnelltabelle 21%",
+      "spainRatesLink": "MwSt.-Sätze Spanien",
+      "blogGuides": "Blog & Ratgeber",
+      "countries": {
+        "es": "Spanien",
+        "mx": "Mexiko",
+        "ar": "Argentinien",
+        "cl": "Chile",
+        "co": "Kolumbien",
+        "pe": "Peru"
+      }
     },
     "theme": {
       "toggle": "Hell-/Dunkelmodus umschalten"
@@ -311,7 +407,23 @@
     "footer": {
       "desc": "Calcolatore IVA online gratuito con aliquote ufficiali e scorporo istantaneo.",
       "disclaimer": "Strumento informativo e didattico.",
-      "rights": "Tutti i diritti riservati."
+      "rights": "Tutti i diritti riservati.",
+      "tools": "Strumenti",
+      "byCountry": "Per Paese",
+      "highlights": "In evidenza",
+      "legal": "Legale & Info",
+      "addRemoveIva": "Aggiungi / Scorpora IVA",
+      "quickTableLink": "Tabella rapida 21%",
+      "spainRatesLink": "Aliquote IVA Spagna",
+      "blogGuides": "Blog & Guide",
+      "countries": {
+        "es": "Spagna",
+        "mx": "Messico",
+        "ar": "Argentina",
+        "cl": "Cile",
+        "co": "Colombia",
+        "pe": "Perù"
+      }
     },
     "theme": {
       "toggle": "Cambia tema chiaro / scuro"
@@ -360,7 +472,23 @@
     "footer": {
       "desc": "Calculadora de IVA online gratuita com taxas oficiais e fórmulas instantâneas.",
       "disclaimer": "Ferramenta apenas para fins informativos.",
-      "rights": "Todos os direitos reservados."
+      "rights": "Todos os direitos reservados.",
+      "tools": "Ferramentas",
+      "byCountry": "Por País",
+      "highlights": "Destaques",
+      "legal": "Legal & Info",
+      "addRemoveIva": "Adicionar / Extrair IVA",
+      "quickTableLink": "Tabela rápida 21%",
+      "spainRatesLink": "Taxas de IVA Espanha",
+      "blogGuides": "Blog & Guias",
+      "countries": {
+        "es": "Espanha",
+        "mx": "México",
+        "ar": "Argentina",
+        "cl": "Chile",
+        "co": "Colômbia",
+        "pe": "Peru"
+      }
     },
     "theme": {
       "toggle": "Alternar modo claro / escuro"
@@ -409,7 +537,23 @@
     "footer": {
       "desc": "দ্রুত ও নিখুঁত ভ্যাট গণনার জন্য একটি বিনামূল্যে অনলাইন টুল।",
       "disclaimer": "এই টুলটি শুধুমাত্র তথ্যগত উদ্দেশ্যে তৈরি।",
-      "rights": "সর্বস্বত্ব সংরক্ষিত।"
+      "rights": "সর্বস্বত্ব সংরক্ষিত।",
+      "tools": "টুলস",
+      "byCountry": "দেশ অনুযায়ী",
+      "highlights": "হাইলাইটস",
+      "legal": "আইনি ও তথ্য",
+      "addRemoveIva": "ভ্যাট যোগ / অপসারণ করুন",
+      "quickTableLink": "দ্রুত ২১% তালিকা",
+      "spainRatesLink": "স্পেনের ভ্যাট হার",
+      "blogGuides": "ব্লগ এবং গাইড",
+      "countries": {
+        "es": "স্পেন",
+        "mx": "মেক্সিকো",
+        "ar": "আর্জেন্টিনা",
+        "cl": "চিলি",
+        "co": "কলম্বিয়া",
+        "pe": "পেরু"
+      }
     },
     "theme": {
       "toggle": "লাইট / ডার্ক থিম পরিবর্তন করুন"
@@ -458,7 +602,23 @@
     "footer": {
       "desc": "付加価値税（VAT/IVA）を瞬時に計算できる無料のオンラインツール。",
       "disclaimer": "本ツールは参考情報として提供されています。",
-      "rights": "All rights reserved."
+      "rights": "All rights reserved.",
+      "tools": "ツール",
+      "byCountry": "国別",
+      "highlights": "ハイライト",
+      "legal": "規約と情報",
+      "addRemoveIva": "消費税 加算 / 抽出",
+      "quickTableLink": "21% 早見表",
+      "spainRatesLink": "スペイン付加価値税率",
+      "blogGuides": "ブログ＆ガイド",
+      "countries": {
+        "es": "スペイン",
+        "mx": "メキシコ",
+        "ar": "アルゼンチン",
+        "cl": "チリ",
+        "co": "コロンビア",
+        "pe": "ペルー"
+      }
     },
     "theme": {
       "toggle": "ライト／ダークモード切替"
@@ -507,7 +667,23 @@
     "footer": {
       "desc": "공식 세율과 공식을 적용한 빠르고 정확한 무료 부가세 계산기입니다.",
       "disclaimer": "본 도구는 정보 제공 목적으로만 사용됩니다.",
-      "rights": "All rights reserved."
+      "rights": "All rights reserved.",
+      "tools": "도구",
+      "byCountry": "국가별",
+      "highlights": "주요 항목",
+      "legal": "법적 고지 및 정보",
+      "addRemoveIva": "부가세 추가 / 제외",
+      "quickTableLink": "21% 빠른 환산표",
+      "spainRatesLink": "스페인 부가세율",
+      "blogGuides": "블로그 및 가이드",
+      "countries": {
+        "es": "스페인",
+        "mx": "멕시코",
+        "ar": "아르헨티나",
+        "cl": "칠레",
+        "co": "콜롬비아",
+        "pe": "페루"
+      }
     },
     "theme": {
       "toggle": "라이트 / 다크 모드 전환"
@@ -556,7 +732,23 @@
     "footer": {
       "desc": "Alat dalam talian percuma untuk mengira Cukai Nilai Tambah (VAT / IVA).",
       "disclaimer": "Alat ini adalah untuk tujuan maklumat sahaja.",
-      "rights": "Hak cipta terpelihara."
+      "rights": "Hak cipta terpelihara.",
+      "tools": "Alat",
+      "byCountry": "Mengikut Negara",
+      "highlights": "Sorotan",
+      "legal": "Undang-undang & Info",
+      "addRemoveIva": "Tambah / Asingkan VAT",
+      "quickTableLink": "Jadual pantas 21%",
+      "spainRatesLink": "Kadar VAT Sepanyol",
+      "blogGuides": "Blog & Panduan",
+      "countries": {
+        "es": "Sepanyol",
+        "mx": "Mexico",
+        "ar": "Argentina",
+        "cl": "Chile",
+        "co": "Colombia",
+        "pe": "Peru"
+      }
     },
     "theme": {
       "toggle": "Tukar mod cerah / gelap"
@@ -605,7 +797,23 @@
     "footer": {
       "desc": "Darmowy kalkulator podatku VAT / IVA z oficjalnymi stawkami i formułami.",
       "disclaimer": "Narzędzie ma charakter wyłącznie informacyjny.",
-      "rights": "Wszelkie prawa zastrzeżone."
+      "rights": "Wszelkie prawa zastrzeżone.",
+      "tools": "Narzędzia",
+      "byCountry": "Według kraju",
+      "highlights": "Wyróżnione",
+      "legal": "Informacje prawne",
+      "addRemoveIva": "Dodaj / Odejmij VAT",
+      "quickTableLink": "Szybka tabela 21%",
+      "spainRatesLink": "Stawki VAT w Hiszpanii",
+      "blogGuides": "Blog i przewodniki",
+      "countries": {
+        "es": "Hiszpania",
+        "mx": "Meksyk",
+        "ar": "Argentyna",
+        "cl": "Chile",
+        "co": "Kolumbia",
+        "pe": "Peru"
+      }
     },
     "theme": {
       "toggle": "Przełącz motyw jasny / ciemny"
@@ -654,7 +862,23 @@
     "footer": {
       "desc": "Alat online gratis untuk menghitung Pajak Pertambahan Nilai (PPN / VAT / IVA).",
       "disclaimer": "Alat ini ditujukan untuk tujuan informasi dan edukasi semata.",
-      "rights": "Hak cipta dilindungi undang-undang."
+      "rights": "Hak cipta dilindungi undang-undang.",
+      "tools": "Alat",
+      "byCountry": "Berdasarkan Negara",
+      "highlights": "Sorotan",
+      "legal": "Hukum & Info",
+      "addRemoveIva": "Tambah / Ekstrak PPN",
+      "quickTableLink": "Tabel cepat 21%",
+      "spainRatesLink": "Tarif PPN Spanyol",
+      "blogGuides": "Blog & Panduan",
+      "countries": {
+        "es": "Spanyol",
+        "mx": "Meksiko",
+        "ar": "Argentina",
+        "cl": "Chili",
+        "co": "Kolombia",
+        "pe": "Peru"
+      }
     },
     "theme": {
       "toggle": "Ubah tema terang / gelap"
@@ -703,7 +927,23 @@
     "footer": {
       "desc": "أداة مجانية لحساب ضريبة القيمة المضافة (VAT / IVA) بدقة وفورية.",
       "disclaimer": "هذه الأداة لأغراض إعلامية وتعليمية فقط.",
-      "rights": "جميع الحقوق محفوظة."
+      "rights": "جميع الحقوق محفوظة.",
+      "tools": "الأدوات",
+      "byCountry": "حسب الدولة",
+      "highlights": "أبرز الأقسام",
+      "legal": "قانوني ومعلومات",
+      "addRemoveIva": "إضافة / خصم الضريبة",
+      "quickTableLink": "جدول سريع 21%",
+      "spainRatesLink": "نسب الضريبة في إسبانيا",
+      "blogGuides": "المدونة والأدلة",
+      "countries": {
+        "es": "إسبانيا",
+        "mx": "المكسيك",
+        "ar": "الأرجنتين",
+        "cl": "تشيلي",
+        "co": "كولومبيا",
+        "pe": "بيرو"
+      }
     },
     "theme": {
       "toggle": "تبديل المظهر الفاتح / الداكن"
@@ -752,7 +992,23 @@
     "footer": {
       "desc": "Безплатен онлайн калкулатор за ДДС с официални ставки и бързи изчисления.",
       "disclaimer": "Инструментът е с информационна цел.",
-      "rights": "Всички права запазени."
+      "rights": "Всички права запазени.",
+      "tools": "Инструменти",
+      "byCountry": "По държава",
+      "highlights": "Акценти",
+      "legal": "Правна информация",
+      "addRemoveIva": "Начисляване / Извличане на ДДС",
+      "quickTableLink": "Бърза таблица 21%",
+      "spainRatesLink": "ДДС ставки в Испания",
+      "blogGuides": "Блог и ръководства",
+      "countries": {
+        "es": "Испания",
+        "mx": "Мексико",
+        "ar": "Аржентина",
+        "cl": "Чили",
+        "co": "Колумбия",
+        "pe": "Перу"
+      }
     },
     "theme": {
       "toggle": "Превключване на светла / тъмна тема"
@@ -801,7 +1057,23 @@
     "footer": {
       "desc": "Resmi vergi oranları ve formülleri ile ücretsiz Katma Değer Vergisi (KDV / IVA) hesaplama aracı.",
       "disclaimer": "Bu araç yalnızca bilgilendirme ve eğitim amaçlıdır.",
-      "rights": "Tüm hakları saklıdır."
+      "rights": "Tüm hakları saklıdır.",
+      "tools": "Araçlar",
+      "byCountry": "Ülkeye Göre",
+      "highlights": "Öne Çıkanlar",
+      "legal": "Yasal & Bilgi",
+      "addRemoveIva": "KDV Ekle / Çıkar",
+      "quickTableLink": "Hızlı %21 Tablosu",
+      "spainRatesLink": "İspanya KDV Oranları",
+      "blogGuides": "Blog & Rehberler",
+      "countries": {
+        "es": "İspanya",
+        "mx": "Meksika",
+        "ar": "Arjantin",
+        "cl": "Şili",
+        "co": "Kolombiya",
+        "pe": "Peru"
+      }
     },
     "theme": {
       "toggle": "Açık / koyu temayı değiştir"
@@ -850,7 +1122,23 @@
     "footer": {
       "desc": "Gratis onlinekalkylator för mervärdesskatt (moms / IVA) med officiella satser och formler.",
       "disclaimer": "Detta verktyg är endast avsett för informations- och utbildningsändamål.",
-      "rights": "Alla rättigheter förbehållna."
+      "rights": "Alla rättigheter förbehållna.",
+      "tools": "Verktyg",
+      "byCountry": "Per land",
+      "highlights": "Höjdpunkter",
+      "legal": "Juridik & Info",
+      "addRemoveIva": "Lägg till / Dra av moms",
+      "quickTableLink": "Snabbtabell 21%",
+      "spainRatesLink": "Momssatser Spanien",
+      "blogGuides": "Blogg & Guider",
+      "countries": {
+        "es": "Spanien",
+        "mx": "Mexiko",
+        "ar": "Argentina",
+        "cl": "Chile",
+        "co": "Colombia",
+        "pe": "Peru"
+      }
     },
     "theme": {
       "toggle": "Växla ljust / mörkt tema"

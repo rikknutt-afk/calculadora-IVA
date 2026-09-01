@@ -10,12 +10,13 @@ const { locale = 'es' } = Astro.props;
 const { t } = useTranslations(locale);
 const homeUrl = getLocalizedUrl('/', locale);
 const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supportedLocales[0];
+const currentPath = Astro.url.pathname;
 ---
 
-<header class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="mainHeader">
+<header class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xl bg-[var(--header-bg)] border-b border-[var(--header-border)]" id="mainHeader">
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-17 flex items-center justify-between">
     <!-- Brand Logo -->
-    <a href={homeUrl} class="flex items-center gap-2.5 group transition-transform duration-200 hover:scale-[1.02]" id="headerLogo">
+    <a href={homeUrl} class="flex items-center gap-2.5 group transition-transform duration-200 hover:scale-[1.02]" id="headerLogo" aria-label="Calculadora IVA Inicio">
       <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-base shadow-sm group-hover:shadow-indigo-500/20">
         %
       </div>
@@ -43,44 +44,110 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
         })}
       </nav>
 
-      <!-- Language Switcher Dropdown (Desktop) -->
+      <!-- Multi-Language Dropdown Menu (Desktop) -->
       {supportedLocales.length > 1 && (
         <div class="relative ml-2" id="langDropdownWrapper">
           <button
             id="langDropdownBtn"
             type="button"
-            class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-xs font-bold text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-all cursor-pointer"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] hover:bg-[var(--bg-secondary)] text-xs font-bold text-[var(--text-primary)] hover:border-indigo-500/40 hover:shadow-sm transition-all duration-200 cursor-pointer group"
             aria-expanded="false"
             aria-haspopup="true"
-            title={t('language', 'Idioma')}
+            aria-controls="langDropdownMenu"
+            title={t('language', 'Seleccionar idioma')}
           >
-            <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            <span class="text-base leading-none select-none">{currentLocaleObj.flag || '🌐'}</span>
+            <span class="uppercase font-extrabold tracking-wide text-xs">{currentLocaleObj.code}</span>
+            <span class="text-[var(--text-tertiary)] text-[11px] font-medium hidden lg:inline-block max-w-[70px] truncate">
+              {currentLocaleObj.name}
+            </span>
+            <svg id="langChevron" class="w-3.5 h-3.5 text-[var(--text-tertiary)] group-hover:text-indigo-500 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
-            <span class="uppercase font-extrabold">{currentLocaleObj.code}</span>
-            <svg class="w-3 h-3 text-[var(--text-tertiary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
 
-          <!-- Dropdown Menu -->
+          <!-- Dropdown Card -->
           <div
             id="langDropdownMenu"
-            class="absolute right-0 top-full mt-2 w-48 max-h-72 overflow-y-auto bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-xl shadow-xl p-1.5 hidden z-50 backdrop-blur-xl"
+            class="absolute right-0 top-full mt-2 w-72 bg-[var(--bg-card)] border border-[var(--border-medium)] rounded-2xl shadow-2xl p-2.5 hidden z-50 backdrop-blur-2xl transition-all origin-top-right animate-in fade-in zoom-in-95 duration-150"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="langDropdownBtn"
           >
-            {supportedLocales.map((loc) => (
-              <a
-                href={getLocalizedUrl('/', loc.code)}
-                class={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-colors ${
-                  loc.code === locale
-                    ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10'
-                }`}
-              >
-                <span>{loc.name}</span>
-                <span class="uppercase text-[10px] opacity-60 font-semibold">{loc.code}</span>
-              </a>
-            ))}
+            <!-- Dropdown Header with Search -->
+            <div class="px-2 pt-1 pb-2 border-b border-[var(--border-subtle)] mb-1.5">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[var(--text-tertiary)] flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                  {t('language', 'Seleccionar Idioma')}
+                </span>
+                <span class="text-[10px] font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 px-1.5 py-0.5 rounded-full">
+                  {supportedLocales.length}
+                </span>
+              </div>
+              
+              <!-- Search filter input -->
+              <div class="relative">
+                <input
+                  type="text"
+                  id="langSearchDesktop"
+                  placeholder={locale === 'es' ? 'Buscar idioma...' : 'Search language...'}
+                  class="w-full text-xs px-2.5 py-1.5 pl-7 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                  autocomplete="off"
+                />
+                <svg class="w-3.5 h-3.5 absolute left-2 top-2 text-[var(--text-tertiary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Scrollable Language List -->
+            <div class="max-h-64 overflow-y-auto space-y-0.5 pr-0.5 custom-scrollbar" id="langListDesktop">
+              {supportedLocales.map((loc) => {
+                const targetUrl = getLocalizedUrl(currentPath, loc.code);
+                const isCurrent = loc.code === locale;
+                return (
+                  <a
+                    href={targetUrl}
+                    class={`lang-item flex items-center justify-between px-2.5 py-2 rounded-xl text-xs transition-all ${
+                      isCurrent
+                        ? 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold shadow-xs'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-indigo-500/10'
+                    }`}
+                    data-lang-code={loc.code}
+                    data-lang-name={loc.name.toLowerCase()}
+                    role="menuitem"
+                  >
+                    <div class="flex items-center gap-2.5 min-w-0">
+                      <span class="text-lg leading-none select-none">{loc.flag || '🌐'}</span>
+                      <div class="flex flex-col min-w-0">
+                        <span class="truncate font-medium">{loc.name}</span>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0">
+                      <span class={`uppercase text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
+                        isCurrent ? 'bg-indigo-500 text-white' : 'bg-[var(--bg-tertiary)] text-[var(--text-tertiary)]'
+                      }`}>
+                        {loc.code}
+                      </span>
+                      {isCurrent && (
+                        <svg class="w-3.5 h-3.5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      )}
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+            <div id="noLangMatchDesktop" class="py-4 text-center text-xs text-[var(--text-tertiary)] hidden">
+              {locale === 'es' ? 'No se encontraron idiomas' : 'No languages found'}
+            </div>
           </div>
         </div>
       )}
@@ -89,9 +156,9 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
       <button
         id="themeToggleBtn"
         type="button"
-        class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-[var(--border-accent)] transition-all cursor-pointer"
-        aria-label={t('theme.toggle')}
-        title={t('theme.toggle')}
+        class="w-9 h-9 flex items-center justify-center rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] hover:bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-500/40 transition-all cursor-pointer"
+        aria-label={t('theme.toggle', 'Cambiar tema')}
+        title={t('theme.toggle', 'Cambiar tema')}
       >
         <!-- Sun icon (shown in dark mode) -->
         <svg class="sun-icon w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -116,21 +183,24 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
     <div class="flex items-center gap-2 md:hidden">
       <!-- Mobile Language Switcher Button -->
       {supportedLocales.length > 1 && (
-        <a
-          href="#footerLegal"
-          class="px-2.5 py-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-xs font-bold text-[var(--text-primary)] flex items-center gap-1"
-          aria-label="Seleccionar idioma"
+        <button
+          id="mobileLangBtn"
+          type="button"
+          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-xs font-bold text-[var(--text-primary)] cursor-pointer hover:border-indigo-500/40 transition-all"
+          aria-label={t('language', 'Seleccionar idioma')}
+          aria-expanded="false"
         >
-          <span class="uppercase text-[11px]">{currentLocaleObj.code}</span>
-        </a>
+          <span class="text-base leading-none">{currentLocaleObj.flag || '🌐'}</span>
+          <span class="uppercase text-[11px] font-extrabold">{currentLocaleObj.code}</span>
+        </button>
       )}
 
       <!-- Theme Button Mobile -->
       <button
         id="themeToggleBtnMobile"
         type="button"
-        class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] cursor-pointer"
-        aria-label={t('theme.toggle')}
+        class="w-9 h-9 flex items-center justify-center rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] cursor-pointer"
+        aria-label={t('theme.toggle', 'Cambiar tema')}
       >
         <svg class="sun-icon w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
         <svg class="moon-icon w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -140,7 +210,7 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
       <button
         id="mobileMenuToggle"
         type="button"
-        class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-primary)] transition-transform active:scale-95 cursor-pointer"
+        class="w-9 h-9 flex items-center justify-center rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-primary)] transition-transform active:scale-95 cursor-pointer"
         aria-expanded="false"
         aria-controls="mobileMenuPanel"
         aria-label="Abrir menú"
@@ -158,13 +228,88 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
     </div>
   </div>
 
+  <!-- Mobile Language Modal / Sheet -->
+  <div
+    id="mobileLangModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex flex-col justify-end hidden md:hidden transition-all duration-300"
+    aria-hidden="true"
+  >
+    <div class="bg-[var(--bg-card)] border-t border-[var(--border-medium)] rounded-t-3xl p-5 max-h-[80vh] flex flex-col shadow-2xl animate-in slide-in-from-bottom-5">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-[var(--border-subtle)] mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-sm">
+            🌐
+          </span>
+          <h3 class="text-sm font-bold text-[var(--text-primary)]">{t('language', 'Seleccionar Idioma')}</h3>
+        </div>
+        <button
+          id="closeMobileLangBtn"
+          type="button"
+          class="p-1.5 rounded-lg text-[var(--text-tertiary)] hover:text-[var(--text-primary)] bg-[var(--bg-tertiary)] cursor-pointer"
+          aria-label="Cerrar selector de idioma"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Search Input Mobile -->
+      <div class="relative mb-3">
+        <input
+          type="text"
+          id="langSearchMobile"
+          placeholder={locale === 'es' ? 'Buscar idioma...' : 'Search language...'}
+          class="w-full text-xs px-3 py-2 pl-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:border-indigo-500"
+          autocomplete="off"
+        />
+        <svg class="w-4 h-4 absolute left-2.5 top-2.5 text-[var(--text-tertiary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+
+      <!-- Languages Grid Mobile -->
+      <div class="grid grid-cols-2 gap-2 overflow-y-auto max-h-[55vh] pr-1 pb-4" id="langListMobile">
+        {supportedLocales.map((loc) => {
+          const targetUrl = getLocalizedUrl(currentPath, loc.code);
+          const isCurrent = loc.code === locale;
+          return (
+            <a
+              href={targetUrl}
+              class={`mobile-lang-item flex items-center justify-between p-2.5 rounded-xl border text-xs transition-all ${
+                isCurrent
+                  ? 'border-indigo-500 bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold'
+                  : 'border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-indigo-500/30'
+              }`}
+              data-lang-code={loc.code}
+              data-lang-name={loc.name.toLowerCase()}
+            >
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-base leading-none select-none">{loc.flag || '🌐'}</span>
+                <span class="truncate font-medium">{loc.name}</span>
+              </div>
+              <span class={`uppercase text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                isCurrent ? 'bg-indigo-500 text-white' : 'bg-[var(--bg-tertiary)] text-[var(--text-tertiary)]'
+              }`}>
+                {loc.code}
+              </span>
+            </a>
+          );
+        })}
+      </div>
+      <div id="noLangMatchMobile" class="py-6 text-center text-xs text-[var(--text-tertiary)] hidden">
+        {locale === 'es' ? 'No se encontraron idiomas' : 'No languages found'}
+      </div>
+    </div>
+  </div>
+
   <!-- Mobile Menu Overlay Panel -->
   <div
     id="mobileMenuPanel"
-    class="fixed inset-x-0 top-17 bottom-0 bg-[var(--bg-primary)]/95 backdrop-blur-2xl p-6 flex flex-col justify-between hidden md:hidden border-t border-[var(--border-subtle)] z-40 transition-all"
+    class="fixed inset-x-0 top-17 bottom-0 bg-[var(--bg-primary)]/98 backdrop-blur-2xl p-6 flex flex-col justify-between hidden md:hidden border-t border-[var(--border-subtle)] z-40 transition-all overflow-y-auto"
     aria-hidden="true"
   >
-    <nav class="flex flex-col gap-3" aria-label="Mobile Navigation">
+    <nav class="flex flex-col gap-2.5" aria-label="Mobile Navigation">
       {navConfig.headerNav.map((item) => {
         const isAnchor = item.href.startsWith('/#');
         const finalHref = isAnchor
@@ -173,28 +318,38 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
         return (
           <a
             href={finalHref}
-            class="mobile-nav-link text-lg font-bold text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 p-2.5 rounded-xl hover:bg-indigo-500/10 transition-colors"
+            class="mobile-nav-link text-base font-bold text-[var(--text-primary)] hover:text-indigo-600 dark:hover:text-indigo-400 p-3 rounded-xl hover:bg-indigo-500/10 transition-colors flex items-center justify-between"
           >
-            {t(item.key)}
+            <span>{t(item.key)}</span>
+            <svg class="w-4 h-4 text-[var(--text-tertiary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </a>
         );
       })}
     </nav>
-    <div class="pt-6 border-t border-[var(--border-subtle)]">
-      <p class="text-xs font-bold uppercase text-[var(--text-tertiary)] mb-3">{t('language', 'Idioma')}:</p>
-      <div class="grid grid-cols-3 gap-2 max-h-40 overflow-y-auto pr-1">
-        {supportedLocales.map((loc) => (
-          <a
-            href={getLocalizedUrl('/', loc.code)}
-            class={`text-xs px-2 py-1.5 rounded text-center border transition-colors ${
-              loc.code === locale
-                ? 'border-indigo-500 bg-indigo-500/15 text-indigo-600 font-bold'
-                : 'border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-            }`}
-          >
-            {loc.name}
-          </a>
-        ))}
+    <div class="pt-5 border-t border-[var(--border-subtle)] mt-4">
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-bold uppercase tracking-wider text-[var(--text-tertiary)] flex items-center gap-1.5">
+          <span>🌐</span> {t('language', 'Idioma')} ({supportedLocales.length}):
+        </p>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5 max-h-48 overflow-y-auto pr-1">
+        {supportedLocales.map((loc) => {
+          const targetUrl = getLocalizedUrl(currentPath, loc.code);
+          const isCurrent = loc.code === locale;
+          return (
+            <a
+              href={targetUrl}
+              class={`text-xs px-2 py-2 rounded-xl text-center border transition-all flex flex-col items-center gap-1 ${
+                isCurrent
+                  ? 'border-indigo-500 bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-bold'
+                  : 'border-[var(--border-subtle)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              <span class="text-sm">{loc.flag || '🌐'}</span>
+              <span class="text-[11px] truncate w-full">{loc.name}</span>
+            </a>
+          );
+        })}
       </div>
     </div>
   </div>
@@ -217,30 +372,160 @@ const currentLocaleObj = supportedLocales.find((l) => l.code === locale) || supp
       });
     });
 
-    // Language Dropdown behavior
+    // Language Dropdown behavior (Desktop)
     const langBtn = document.getElementById('langDropdownBtn');
     const langMenu = document.getElementById('langDropdownMenu');
+    const langChevron = document.getElementById('langChevron');
+    const searchDesktop = document.getElementById('langSearchDesktop');
+    const itemsDesktop = document.querySelectorAll('#langListDesktop .lang-item');
+    const noMatchDesktop = document.getElementById('noLangMatchDesktop');
 
     if (langBtn && langMenu) {
+      function openMenu() {
+        langMenu.classList.remove('hidden');
+        langBtn.setAttribute('aria-expanded', 'true');
+        if (langChevron) langChevron.classList.add('rotate-180');
+        if (searchDesktop) {
+          setTimeout(() => searchDesktop.focus(), 50);
+        }
+      }
+
+      function closeMenu() {
+        langMenu.classList.add('hidden');
+        langBtn.setAttribute('aria-expanded', 'false');
+        if (langChevron) langChevron.classList.remove('rotate-180');
+        if (searchDesktop) searchDesktop.value = '';
+        if (itemsDesktop) {
+          itemsDesktop.forEach((item) => item.classList.remove('hidden'));
+        }
+        if (noMatchDesktop) noMatchDesktop.classList.add('hidden');
+      }
+
       langBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         const isOpen = !langMenu.classList.contains('hidden');
         if (isOpen) {
-          langMenu.classList.add('hidden');
-          langBtn.setAttribute('aria-expanded', 'false');
+          closeMenu();
         } else {
-          langMenu.classList.remove('hidden');
-          langBtn.setAttribute('aria-expanded', 'true');
+          openMenu();
         }
       });
 
-      document.addEventListener('click', () => {
-        langMenu.classList.add('hidden');
-        langBtn.setAttribute('aria-expanded', 'false');
+      // Search filter desktop
+      if (searchDesktop && itemsDesktop) {
+        searchDesktop.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          let visibleCount = 0;
+          itemsDesktop.forEach((item) => {
+            const code = (item.getAttribute('data-lang-code') || '').toLowerCase();
+            const name = (item.getAttribute('data-lang-name') || '').toLowerCase();
+            if (code.includes(query) || name.includes(query)) {
+              item.classList.remove('hidden');
+              visibleCount++;
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+          if (noMatchDesktop) {
+            if (visibleCount === 0) {
+              noMatchDesktop.classList.remove('hidden');
+            } else {
+              noMatchDesktop.classList.add('hidden');
+            }
+          }
+        });
+      }
+
+      // Close on document click
+      document.addEventListener('click', (e) => {
+        if (!langMenu.contains(e.target) && !langBtn.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMenu();
+          closeMobileLangModal();
+        }
       });
     }
 
-    // Mobile Menu behavior
+    // Mobile Language Modal Sheet
+    const mobileLangBtn = document.getElementById('mobileLangBtn');
+    const mobileLangModal = document.getElementById('mobileLangModal');
+    const closeMobileLangBtn = document.getElementById('closeMobileLangBtn');
+    const searchMobile = document.getElementById('langSearchMobile');
+    const itemsMobile = document.querySelectorAll('#langListMobile .mobile-lang-item');
+    const noMatchMobile = document.getElementById('noLangMatchMobile');
+
+    function openMobileLangModal() {
+      if (!mobileLangModal) return;
+      mobileLangModal.classList.remove('hidden');
+      mobileLangModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (searchMobile) {
+        setTimeout(() => searchMobile.focus(), 100);
+      }
+    }
+
+    function closeMobileLangModal() {
+      if (!mobileLangModal) return;
+      mobileLangModal.classList.add('hidden');
+      mobileLangModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (searchMobile) searchMobile.value = '';
+      if (itemsMobile) {
+        itemsMobile.forEach((item) => item.classList.remove('hidden'));
+      }
+      if (noMatchMobile) noMatchMobile.classList.add('hidden');
+    }
+
+    if (mobileLangBtn && mobileLangModal) {
+      mobileLangBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openMobileLangModal();
+      });
+    }
+
+    if (closeMobileLangBtn) {
+      closeMobileLangBtn.addEventListener('click', () => closeMobileLangModal());
+    }
+
+    if (mobileLangModal) {
+      mobileLangModal.addEventListener('click', (e) => {
+        if (e.target === mobileLangModal) {
+          closeMobileLangModal();
+        }
+      });
+    }
+
+    if (searchMobile && itemsMobile) {
+      searchMobile.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        let visibleCount = 0;
+        itemsMobile.forEach((item) => {
+          const code = (item.getAttribute('data-lang-code') || '').toLowerCase();
+          const name = (item.getAttribute('data-lang-name') || '').toLowerCase();
+          if (code.includes(query) || name.includes(query)) {
+            item.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+        if (noMatchMobile) {
+          if (visibleCount === 0) {
+            noMatchMobile.classList.remove('hidden');
+          } else {
+            noMatchMobile.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    // Mobile Navigation Menu behavior
     const menuToggle = document.getElementById('mobileMenuToggle');
     const menuPanel = document.getElementById('mobileMenuPanel');
     const hamburgerIcon = document.getElementById('hamburgerIcon');

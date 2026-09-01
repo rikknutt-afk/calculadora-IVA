@@ -52,7 +52,11 @@ const { t } = useTranslations(locale);
       <div>
         <label for="amountInput" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
           <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-          <span id="amountLabel">{t('amountWithoutVat')}</span>
+          <span
+            id="amountLabel"
+            data-label-add={t('amountWithoutVat')}
+            data-label-remove={t('amountWithVat')}
+          >{t('amountWithoutVat')}</span>
         </label>
         <div class="relative">
           <input
@@ -157,10 +161,10 @@ const { t } = useTranslations(locale);
       <!-- Proportional Bar -->
       <div class="flex h-7 rounded-full overflow-hidden bg-[var(--bg-toggle)] border border-[var(--border-subtle)] shadow-inner">
         <div id="breakdownFill" class="flex items-center justify-center bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all duration-500 min-w-[36px]">
-          Base
+          {t('formulaBase', 'Base')}
         </div>
         <div id="breakdownIvaFill" class="flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-500 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all duration-500 min-w-[28px]">
-          IVA
+          {t('vatRate', 'IVA')}
         </div>
       </div>
 
@@ -169,6 +173,7 @@ const { t } = useTranslations(locale);
         <button
           type="button"
           id="copyResult"
+          data-copied-msg={t('copySuccess', '✓ Resumen copiado al portapapeles')}
           class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"
         >
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -342,14 +347,14 @@ const { t } = useTranslations(locale);
         elements.modeRemove.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
         elements.modeRemove.classList.add('text-[var(--text-secondary)]', 'font-semibold');
         elements.toggleSlider.style.transform = 'translateX(0%)';
-        elements.amountLabel.textContent = 'Importe sin IVA (Neto)';
+        elements.amountLabel.textContent = elements.amountLabel.getAttribute('data-label-add') || 'Importe sin IVA (Neto)';
       } else {
         elements.modeRemove.classList.add('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
         elements.modeRemove.classList.remove('text-[var(--text-secondary)]', 'font-semibold');
         elements.modeAdd.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'font-bold');
         elements.modeAdd.classList.add('text-[var(--text-secondary)]', 'font-semibold');
         elements.toggleSlider.style.transform = 'translateX(100%)';
-        elements.amountLabel.textContent = 'Importe con IVA (Bruto)';
+        elements.amountLabel.textContent = elements.amountLabel.getAttribute('data-label-remove') || 'Importe con IVA (Bruto)';
       }
     }
 
@@ -574,10 +579,14 @@ const { t } = useTranslations(locale);
     elements.copyResult?.addEventListener('click', () => {
       if (!state.lastResult) return;
       const { base, iva, total, rate, mode } = state.lastResult;
-      const text = `Calculadora IVA (${mode === 'add' ? 'Añadir IVA' : 'Quitar IVA'})\nBase imponible: ${formatCurrency(base)}\nIVA (${formatRate(rate)}%): ${formatCurrency(iva)}\nTotal: ${formatCurrency(total)}`;
+      const modeText = mode === 'add' ? elements.modeAdd?.textContent?.trim() : elements.modeRemove?.textContent?.trim();
+      const baseLabel = elements.resultBaseLabel?.textContent?.trim() || 'Base';
+      const totalLabel = elements.resultTotalLabel?.textContent?.trim() || 'Total';
+      const text = `${modeText}\n${baseLabel}: ${formatCurrency(base)}\nIVA (${formatRate(rate)}%): ${formatCurrency(iva)}\n${totalLabel}: ${formatCurrency(total)}`;
       
       navigator.clipboard.writeText(text).then(() => {
-        showToast('✓ Resumen copiado al portapapeles');
+        const msg = elements.copyResult?.getAttribute('data-copied-msg') || '✓ Resumen copiado al portapapeles';
+        showToast(msg);
       });
     });
 

@@ -15,6 +15,23 @@ export default defineConfig({
         defaultLocale: 'es',
         locales: {
           es: 'es-ES',
+          en: 'en-US',
+          fr: 'fr-FR',
+          de: 'de-DE',
+          it: 'it-IT',
+          pt: 'pt-PT',
+          ru: 'ru-RU',
+          hi: 'hi-IN',
+          bn: 'bn-BD',
+          ja: 'ja-JP',
+          ko: 'ko-KR',
+          ms: 'ms-MY',
+          id: 'id-ID',
+          pl: 'pl-PL',
+          tr: 'tr-TR',
+          sv: 'sv-SE',
+          bg: 'bg-BG',
+          ar: 'ar-SA',
         }
       }
     }),
