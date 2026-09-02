@@ -1,0 +1,398 @@
+---
+/**
+ * ToolsShowcase — Visual grid of all calculator tools with mini flow diagrams.
+ * Placed on the homepage to drive discovery of specialized calculators.
+ */
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'es' } = Astro.props;
+
+const tools = [
+  {
+    title: 'IVA de una Cantidad',
+    href: '/iva-de-una-cantidad/',
+    desc: 'Calcula el IVA de cualquier importe al instante.',
+    color: '#4f46e5',
+    colorLight: 'rgba(79,70,229,0.08)',
+    colorBorder: 'rgba(79,70,229,0.25)',
+    icon: 'amount',
+    diagramLabel: ['Cantidad', '× IVA', '= Total'],
+  },
+  {
+    title: 'IVA Incluido',
+    href: '/iva-incluido/',
+    desc: 'Extrae la base imponible y el IVA de un precio final.',
+    color: '#7c3aed',
+    colorLight: 'rgba(124,58,237,0.08)',
+    colorBorder: 'rgba(124,58,237,0.25)',
+    icon: 'included',
+    diagramLabel: ['Total', '÷ 1,21', '= Base'],
+  },
+  {
+    title: 'IVA Porcentaje',
+    href: '/iva-porcentaje/',
+    desc: 'Determina qué porcentaje de IVA se aplicó a un precio.',
+    color: '#0ea5e9',
+    colorLight: 'rgba(14,165,233,0.08)',
+    colorBorder: 'rgba(14,165,233,0.25)',
+    icon: 'percent',
+    diagramLabel: ['IVA', '÷ Base', '= %'],
+  },
+  {
+    title: 'Retención IVA',
+    href: '/retencion-iva/',
+    desc: 'Calcula la retención del IVA en facturas a terceros.',
+    color: '#f59e0b',
+    colorLight: 'rgba(245,158,11,0.08)',
+    colorBorder: 'rgba(245,158,11,0.25)',
+    icon: 'retention',
+    diagramLabel: ['IVA', '− Ret.', '= Neto'],
+  },
+  {
+    title: 'IVA en Factura',
+    href: '/iva-factura/',
+    desc: 'Desglose completo del IVA para tu factura electrónica.',
+    color: '#10b981',
+    colorLight: 'rgba(16,185,129,0.08)',
+    colorBorder: 'rgba(16,185,129,0.25)',
+    icon: 'invoice',
+    diagramLabel: ['Cant.', '× Precio', '+ IVA'],
+  },
+  {
+    title: 'IVA Honorarios',
+    href: '/iva-honorarios/',
+    desc: 'IVA y retenciones en honorarios profesionales.',
+    color: '#ec4899',
+    colorLight: 'rgba(236,72,153,0.08)',
+    colorBorder: 'rgba(236,72,153,0.25)',
+    icon: 'honorarios',
+    diagramLabel: ['Honor.', '+ IVA', '− IRPF'],
+  },
+  {
+    title: 'IVA e IRPF',
+    href: '/iva-irpf/',
+    desc: 'Combinación de IVA e IRPF para autónomos españoles.',
+    color: '#8b5cf6',
+    colorLight: 'rgba(139,92,246,0.08)',
+    colorBorder: 'rgba(139,92,246,0.25)',
+    icon: 'irpf',
+    diagramLabel: ['Base', '+ IVA', '− IRPF'],
+  },
+  {
+    title: 'IVA e ISR',
+    href: '/iva-isr/',
+    desc: 'Calcula IVA e ISR para México y Latinoamérica.',
+    color: '#06b6d4',
+    colorLight: 'rgba(6,182,212,0.08)',
+    colorBorder: 'rgba(6,182,212,0.25)',
+    icon: 'isr',
+    diagramLabel: ['Ingreso', '+ IVA', '− ISR'],
+  },
+  {
+    title: 'IVA a Pagar',
+    href: '/iva-a-pagar/',
+    desc: 'Calcula el IVA neto a ingresar en Hacienda (IVA repercutido − soportado).',
+    color: '#ef4444',
+    colorLight: 'rgba(239,68,68,0.08)',
+    colorBorder: 'rgba(239,68,68,0.25)',
+    icon: 'apagar',
+    diagramLabel: ['Reper.', '− Soport.', '= Pagar'],
+  },
+  {
+    title: 'IVA Acreditable',
+    href: '/iva-acreditable/',
+    desc: 'Calcula el IVA deducible de tus compras para México.',
+    color: '#14b8a6',
+    colorLight: 'rgba(20,184,166,0.08)',
+    colorBorder: 'rgba(20,184,166,0.25)',
+    icon: 'acreditable',
+    diagramLabel: ['Traslad.', '− Acred.', '= Neto'],
+  },
+  {
+    title: 'IVA e IEPS',
+    href: '/iva-ieps/',
+    desc: 'Calcula IVA y el impuesto especial IEPS para México.',
+    color: '#d946ef',
+    colorLight: 'rgba(217,70,239,0.08)',
+    colorBorder: 'rgba(217,70,239,0.25)',
+    icon: 'ieps',
+    diagramLabel: ['Precio', '+ IEPS', '+ IVA'],
+  },
+  {
+    title: 'Recargo Equivalencia',
+    href: '/iva-recargo-equivalencia/',
+    desc: 'IVA + recargo de equivalencia para comerciantes minoristas.',
+    color: '#f97316',
+    colorLight: 'rgba(249,115,22,0.08)',
+    colorBorder: 'rgba(249,115,22,0.25)',
+    icon: 'recargo',
+    diagramLabel: ['Base', '+ IVA', '+ Rec.'],
+  },
+  {
+    title: 'IVA RESICO',
+    href: '/iva-resico/',
+    desc: 'ISR e IVA para el Régimen Simplificado de Confianza.',
+    color: '#0284c7',
+    colorLight: 'rgba(2,132,199,0.08)',
+    colorBorder: 'rgba(2,132,199,0.25)',
+    icon: 'resico',
+    diagramLabel: ['Ingreso', '− ISR', '+ IVA'],
+  },
+];
+---
+
+<section class="content-section" id="herramientas">
+  <div class="section-container section-container-wide">
+    <h2 class="section-title">Todas Nuestras <span class="gradient-text">Calculadoras</span></h2>
+    <p class="section-subtitle">13 herramientas especializadas para calcular IVA, retenciones, IRPF, ISR y más. Cada una con fórmulas, tablas de referencia y preguntas frecuentes.</p>
+
+    <div class="tools-grid" id="toolsGrid">
+      {tools.map((tool, i) => (
+        <a href={tool.href} class="tool-card" style={`--tool-color: ${tool.color}; --tool-color-light: ${tool.colorLight}; --tool-color-border: ${tool.colorBorder}; --tool-index: ${i};`}>
+          <!-- Top accent bar -->
+          <div class="tool-card-accent" aria-hidden="true"></div>
+          
+          <!-- Mini flow diagram -->
+          <div class="tool-diagram" aria-hidden="true">
+            <div class="tool-diagram-node">
+              <span class="tool-diagram-text">{tool.diagramLabel[0]}</span>
+            </div>
+            <svg class="tool-diagram-arrow" width="20" height="12" viewBox="0 0 20 12" fill="none">
+              <path d="M1 6h14M12 1l5 5-5 5" stroke="var(--tool-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            </svg>
+            <div class="tool-diagram-node tool-diagram-node-mid">
+              <span class="tool-diagram-text">{tool.diagramLabel[1]}</span>
+            </div>
+            <svg class="tool-diagram-arrow" width="20" height="12" viewBox="0 0 20 12" fill="none">
+              <path d="M1 6h14M12 1l5 5-5 5" stroke="var(--tool-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            </svg>
+            <div class="tool-diagram-node tool-diagram-node-result">
+              <span class="tool-diagram-text tool-diagram-text-result">{tool.diagramLabel[2]}</span>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <h3 class="tool-card-title">{tool.title}</h3>
+          <p class="tool-card-desc">{tool.desc}</p>
+
+          <!-- CTA -->
+          <div class="tool-card-cta">
+            <span>Abrir calculadora</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ========== Tools Showcase Grid ========== */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1024px) {
+    .tools-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .tools-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .tool-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.35rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    transition: all 0.35s var(--ease-out);
+    box-shadow: var(--shadow-sm);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: toolFadeIn 0.45s var(--ease-out) forwards;
+    animation-delay: calc(var(--tool-index) * 0.04s);
+  }
+
+  @keyframes toolFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tool-card:hover {
+    border-color: var(--tool-color-border);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg), 0 12px 28px -8px color-mix(in srgb, var(--tool-color) 18%, transparent);
+  }
+
+  /* Top colored accent bar */
+  .tool-card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--tool-color);
+    opacity: 0.55;
+    transition: opacity 0.3s var(--ease-out);
+  }
+
+  .tool-card:hover .tool-card-accent {
+    opacity: 1;
+  }
+
+  /* ---- Mini Flow Diagram ---- */
+  .tool-diagram {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 1rem;
+    padding: 0.65rem 0.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    transition: all 0.3s var(--ease-out);
+    overflow: hidden;
+  }
+
+  .tool-card:hover .tool-diagram {
+    border-color: var(--tool-color-border);
+    background: var(--tool-color-light);
+  }
+
+  .tool-diagram-node {
+    flex: 1;
+    min-width: 0;
+    padding: 5px 4px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-radius: 6px;
+    text-align: center;
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .tool-diagram-node-mid {
+    background: var(--bg-secondary);
+  }
+
+  .tool-diagram-node-result {
+    background: var(--tool-color-light);
+    border-color: var(--tool-color-border);
+  }
+
+  .tool-card:hover .tool-diagram-node-result {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--tool-color) 15%, transparent);
+  }
+
+  .tool-diagram-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tool-diagram-text-result {
+    color: var(--tool-color);
+    font-weight: 800;
+  }
+
+  .tool-diagram-arrow {
+    flex-shrink: 0;
+    width: 16px;
+    height: 10px;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .tool-card:hover .tool-diagram-arrow {
+    transform: translateX(2px);
+  }
+
+  /* ---- Card Content ---- */
+  .tool-card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 750;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+    transition: color 0.3s var(--ease-out);
+  }
+
+  .tool-card:hover .tool-card-title {
+    color: var(--tool-color);
+  }
+
+  .tool-card-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: auto;
+    padding-bottom: 0.75rem;
+  }
+
+  /* ---- CTA ---- */
+  .tool-card-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--tool-color);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 0.3s var(--ease-out);
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 0.5rem;
+  }
+
+  .tool-card:hover .tool-card-cta {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .tool-card-cta svg {
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .tool-card:hover .tool-card-cta svg {
+    transform: translateX(3px);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 640px) {
+    .tools-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .tool-card {
+      padding: 1.25rem 1.15rem 1rem;
+    }
+
+    .tool-card-cta {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>

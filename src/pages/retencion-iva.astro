@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Calculadora Retención IVA — Calcula la Retención del IVA en Facturas";
+const description = "Calculadora de retención de IVA para facturas con retención fiscal. Calcula la retención del IVA al 75%, 50% o porcentaje personalizado sobre la cuota de IVA para operaciones con Hacienda.";
+
+const faqItems = [
+  {
+    question: "¿Qué es la retención del IVA?",
+    answer: "La retención del IVA es un mecanismo fiscal por el cual el pagador de una factura retiene un porcentaje de la cuota de IVA y lo ingresa directamente a Hacienda en nombre del proveedor. Se aplica en determinadas operaciones, como servicios prestados por autónomos a empresas o en operaciones intracomunitarias.",
+    display: true
+  },
+  {
+    question: "¿Cuándo se aplica la retención del IVA?",
+    answer: "La retención de IVA se aplica en: operaciones con inversión de sujeto pasivo (construcción, chatarra), operaciones de transmisión de derechos de emisión, entregas de inmuebles en ejecución de garantías, y cuando la Agencia Tributaria lo requiera para controlar el cumplimiento fiscal.",
+    display: true
+  },
+  {
+    question: "¿Cómo se calcula la retención de IVA al 75%?",
+    answer: "La retención al 75% se calcula sobre la cuota de IVA. Ejemplo: factura de 1.000 € + 21% IVA = 210 € de IVA. Retención 75%: 210 × 0,75 = 157,50 €. El proveedor cobra: 1.000 + 210 − 157,50 = 1.052,50 €. Los 157,50 € se ingresan a Hacienda.",
+    display: true,
+    formula: { base: "210 € IVA", rate: "× 0,75", result: "157,50 € retención" }
+  },
+  {
+    question: "¿Quién está obligado a practicar la retención de IVA?",
+    answer: "Están obligados a practicar retención de IVA: las Administraciones Públicas, organismos autónomos, entidades públicas empresariales, y en general cualquier empresa o autónomo que realice operaciones sujetas a inversión del sujeto pasivo según los artículos 84 y 92 de la Ley del IVA.",
+    display: true
+  },
+  {
+    question: "¿La retención de IVA es lo mismo que la retención de IRPF?",
+    answer: "No. La retención de IVA se aplica sobre la cuota de IVA y se destina al pago del IVA adeudado. La retención de IRPF se aplica sobre la base imponible (honorarios) y es un pago a cuenta del Impuesto sobre la Renta. Son impuestos diferentes con finalidades distintas.",
+    display: true
+  },
+  {
+    question: "¿Cómo se refleja la retención de IVA en la factura?",
+    answer: "En la factura debe constar: la base imponible, la cuota de IVA (ej: 21%), el porcentaje y monto de retención de IVA, y el líquido a percibir (base + IVA − retención). El proveedor declara el IVA total pero cobra solo el importe neto tras la retención.",
+    display: true
+  }
+];
+
+const retentionTable = [
+  { base: '500 €', iva21: '105,00 €', ret50: '52,50 €', cobro50: '552,50 €', ret75: '78,75 €', cobro75: '526,25 €' },
+  { base: '1.000 €', iva21: '210,00 €', ret50: '105,00 €', cobro50: '1.105,00 €', ret75: '157,50 €', cobro75: '1.052,50 €' },
+  { base: '2.000 €', iva21: '420,00 €', ret50: '210,00 €', cobro50: '2.210,00 €', ret75: '315,00 €', cobro75: '2.105,00 €' },
+  { base: '3.000 €', iva21: '630,00 €', ret50: '315,00 €', cobro50: '3.315,00 €', ret75: '472,50 €', cobro75: '3.157,50 €' },
+  { base: '5.000 €', iva21: '1.050,00 €', ret50: '525,00 €', cobro50: '5.525,00 €', ret75: '787,50 €', cobro75: '5.262,50 €' },
+  { base: '10.000 €', iva21: '2.100,00 €', ret50: '1.050,00 €', cobro50: '11.050,00 €', ret75: '1.575,00 €', cobro75: '10.525,00 €' },
+];
+---
+
+<BaseLayout title={title} description={description} schemaType="WebSite" faqItems={faqItems} locale="es">
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Calculadora <span class="gradient-text">Retención IVA</span></h1>
+      <p class="hero-subtitle">Calcula la retención fiscal sobre la cuota de IVA en tus facturas.<br class="hidden sm:inline" /> Introduce el importe, el IVA y el porcentaje de retención para obtener el líquido a cobrar.</p>
+    </div>
+  </section>
+
+  <section class="calculator-section" id="calculator">
+    <div class="relative w-full max-w-xl mx-auto z-10">
+      <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
+      <div class="glass-card p-6 sm:p-8 md:p-10 relative overflow-hidden transition-all duration-300">
+        <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_30%_40%,rgba(79,70,229,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_60%,rgba(236,72,153,0.05)_0%,transparent_50%)] pointer-events-none animate-[spin_25s_linear_infinite]" aria-hidden="true"></div>
+
+        <div id="calcBody" class="space-y-6">
+          <div>
+            <label for="amountInput" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+              <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>Base imponible de la factura</span>
+            </label>
+            <div class="relative">
+              <input type="text" id="amountInput" class="w-full py-4 pl-5 pr-12 bg-[var(--bg-input)] border-1.5 border-[var(--border-medium)] rounded-xl font-display text-2xl font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 shadow-sm transition-all placeholder:text-[var(--text-tertiary)] placeholder:opacity-50" placeholder="Ej: 1.000,00" inputmode="decimal" autocomplete="off" />
+              <span class="absolute right-5 top-1/2 -translate-y-1/2 font-display text-xl font-bold text-[var(--text-tertiary)]">€</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+              <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              <span>Tipo de IVA</span>
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="radiogroup" aria-label="Tipo de IVA">
+              <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="4" role="radio" aria-checked="false"><span class="font-display font-bold text-base text-[var(--text-primary)]">4%</span><span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Superreducido</span></button>
+              <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="10" role="radio" aria-checked="false"><span class="font-display font-bold text-base text-[var(--text-primary)]">10%</span><span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Reducido</span></button>
+              <button type="button" class="rate-btn active flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-indigo-500 bg-indigo-500/5 ring-3 ring-indigo-500/15 shadow-sm transition-all" data-rate="21" role="radio" aria-checked="true"><span class="font-display font-bold text-base text-[var(--text-primary)]">21%</span><span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">General</span></button>
+              <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" id="rateCustomBtn" data-rate="custom" role="radio" aria-checked="false"><span class="font-display font-bold text-base text-[var(--text-primary)] flex items-center"><input type="text" id="customRateInput" class="w-8 text-center bg-transparent border-b border-[var(--text-tertiary)] focus:border-indigo-500 outline-none text-base font-bold text-[var(--text-primary)]" placeholder="?" inputmode="decimal" />%</span><span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Personalizado</span></button>
+            </div>
+          </div>
+
+          <!-- Retention Rate -->
+          <div>
+            <label class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+              <svg class="w-4 h-4 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Porcentaje de retención</span>
+            </label>
+            <div class="grid grid-cols-3 gap-2.5" role="radiogroup" aria-label="Porcentaje de retención">
+              <button type="button" class="ret-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-pink-500 hover:-translate-y-0.5 shadow-sm transition-all" data-ret="50" role="radio" aria-checked="false"><span class="font-display font-bold text-base text-[var(--text-primary)]">50%</span><span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Parcial</span></button>
+              <button type="button" class="ret-btn active flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-pink-500 bg-pink-500/5 ring-3 ring-pink-500/15 shadow-sm transition-all" data-ret="75" role="radio" aria-checked="true"><span class="font-display font-bold text-base text-[var(--text-primary)]">75%</span><span class="text-[10px] font-bold text-pink-600 dark:text-pink-400 uppercase tracking-wide">Estándar</span></button>
+              <button type="button" class="ret-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-pink-500 hover:-translate-y-0.5 shadow-sm transition-all" data-ret="100" role="radio" aria-checked="false"><span class="font-display font-bold text-base text-[var(--text-primary)]">100%</span><span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Total</span></button>
+            </div>
+          </div>
+
+          <button type="button" id="calcButton" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/45 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden transition-all group">
+            <span class="relative z-10">Calcular Retención de IVA</span>
+            <svg class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <div class="btn-shine" aria-hidden="true"></div>
+          </button>
+        </div>
+
+        <div id="resultsPanel" class="hidden space-y-6 animate-[fadeIn_0.4s_ease-out]">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display font-extrabold text-xl gradient-text">Desglose con Retención</h3>
+            <button type="button" id="resultsClose" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-xs font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 transition-colors shadow-sm"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Modificar</span></button>
+          </div>
+          <div class="grid gap-3">
+            <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm"><span class="text-sm font-semibold text-[var(--text-secondary)]">Base imponible</span><span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultBase">0,00 €</span></div>
+            <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm"><span class="text-sm font-semibold text-[var(--text-secondary)]">Cuota de IVA (<span id="resultIvaRate">21</span>%)</span><span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultIva">0,00 €</span></div>
+            <div class="flex items-center justify-between p-4 rounded-xl border border-pink-500/30 bg-pink-500/5 shadow-sm"><span class="text-sm font-bold text-pink-600 dark:text-pink-400">Retención IVA (<span id="resultRetRate">75</span>%)</span><span class="font-display font-bold text-lg text-pink-600 dark:text-pink-400" id="resultRet">0,00 €</span></div>
+            <div class="flex items-center justify-between p-4 rounded-xl border border-indigo-500/40 bg-[var(--gradient-card)] shadow-md"><span class="text-sm font-bold text-[var(--text-secondary)]">Líquido a cobrar</span><span class="font-display font-extrabold text-2xl gradient-text" id="resultNet">0,00 €</span></div>
+          </div>
+          <div class="relative w-[170px] h-[170px] mx-auto flex items-center justify-center">
+            <canvas id="breakdownCanvas" class="w-[170px] h-[170px] block drop-shadow-md" width="170" height="170"></canvas>
+            <div class="absolute flex flex-col items-center justify-center pointer-events-none">
+              <span id="chartCenterPercent" class="font-display font-extrabold text-2xl text-[var(--text-primary)] leading-none">75%</span>
+              <span id="chartCenterLabel" class="text-[11px] font-bold text-pink-600 dark:text-pink-400 uppercase tracking-wider mt-1">Retención</span>
+            </div>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <button type="button" id="copyResult" data-copied-msg="✓ Retención copiada" class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+            <button type="button" id="newCalc" class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg><span>Nuevo Cálculo</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="calcular-iva">
+    <div class="section-container">
+      <h2 class="section-title">3 Tipos de <span class="gradient-text">Retención de IVA</span></h2>
+      <p class="section-subtitle">Conoce los diferentes porcentajes de retención y cuándo se aplica cada uno según la normativa fiscal española</p>
+      <div class="methods-grid">
+        <div class="method-card"><div class="method-icon-wrapper"><div class="method-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="method-number">01</span></div><h3 class="method-title">Retención parcial (50%)</h3><p class="method-desc">Aplicada en determinadas operaciones donde la Agencia Tributaria exige retener la mitad de la cuota de IVA como anticipo del impuesto adeudado.</p><div class="method-formula"><span class="method-formula-var">210 € IVA</span><span class="method-formula-op">×</span><span class="method-formula-var">50%</span><span class="method-formula-op">=</span><span class="method-formula-result">105 € retenidos</span></div><div class="method-example"><span class="method-example-label">Cobro</span><span>1.000 + 210 − 105 = <strong>1.105 €</strong></span></div></div>
+        <div class="method-card"><div class="method-icon-wrapper"><div class="method-icon method-icon-remove"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div><span class="method-number">02</span></div><h3 class="method-title">Retención estándar (75%)</h3><p class="method-desc">El porcentaje más habitual en operaciones con inversión del sujeto pasivo. Se retiene el 75% de la cuota de IVA para ingreso directo a Hacienda.</p><div class="method-formula"><span class="method-formula-var">210 € IVA</span><span class="method-formula-op">×</span><span class="method-formula-var">75%</span><span class="method-formula-op">=</span><span class="method-formula-result">157,50 € retenidos</span></div><div class="method-example"><span class="method-example-label">Cobro</span><span>1.000 + 210 − 157,50 = <strong>1.052,50 €</strong></span></div></div>
+        <div class="method-card"><div class="method-icon-wrapper"><div class="method-icon method-icon-desglose"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg></div><span class="method-number">03</span></div><h3 class="method-title">Retención total (100%)</h3><p class="method-desc">En operaciones con la Administración Pública u organismos oficiales. Se retiene el 100% de la cuota de IVA, que se ingresa íntegramente a Hacienda.</p><div class="method-formula"><span class="method-formula-var">210 € IVA</span><span class="method-formula-op">×</span><span class="method-formula-var">100%</span><span class="method-formula-op">=</span><span class="method-formula-result">210 € retenidos</span></div><div class="method-example"><span class="method-example-label">Cobro</span><span>1.000 + 210 − 210 = <strong>1.000 €</strong></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section content-section-alt" id="formula-iva">
+    <div class="section-container">
+      <h2 class="section-title">Fórmula de la <span class="gradient-text">Retención de IVA</span></h2>
+      <p class="section-subtitle">Cómo calcular el importe de la retención y el líquido a percibir en una factura con retención de IVA</p>
+      <div class="formula-builder">
+        <div class="formula-builder-card"><div class="formula-builder-header"><div class="formula-builder-badge formula-builder-badge-add"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Retención sobre cuota IVA</span></div></div><div class="formula-builder-equation"><div class="formula-builder-part"><span class="formula-builder-label">Cuota de IVA</span><span class="formula-builder-value">210,00 €</span></div><span class="formula-builder-op">×</span><div class="formula-builder-part"><span class="formula-builder-label">% Retención</span><span class="formula-builder-value">75%</span></div><span class="formula-builder-op">=</span><div class="formula-builder-part formula-builder-part-result"><span class="formula-builder-label">Retención</span><span class="formula-builder-value">157,50 €</span></div></div><div class="formula-builder-breakdown"><div class="formula-builder-breakdown-row"><span>Base imponible</span><span>1.000,00 €</span></div><div class="formula-builder-breakdown-row"><span>IVA (21%)</span><span>210,00 €</span></div><div class="formula-builder-breakdown-row"><span>Retención IVA (75%)</span><span>−157,50 €</span></div><div class="formula-builder-breakdown-row formula-builder-breakdown-total"><span>Líquido a cobrar</span><span>1.052,50 €</span></div></div></div>
+        <div class="formula-builder-card"><div class="formula-builder-header"><div class="formula-builder-badge formula-builder-badge-remove"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Líquido a percibir</span></div></div><div class="formula-builder-equation"><div class="formula-builder-part"><span class="formula-builder-label">Base + IVA</span><span class="formula-builder-value">1.210,00 €</span></div><span class="formula-builder-op">−</span><div class="formula-builder-part"><span class="formula-builder-label">Retención</span><span class="formula-builder-value">157,50 €</span></div><span class="formula-builder-op">=</span><div class="formula-builder-part formula-builder-part-result"><span class="formula-builder-label">Cobro neto</span><span class="formula-builder-value">1.052,50 €</span></div></div><div class="formula-builder-breakdown"><div class="formula-builder-breakdown-row"><span>Total factura (Base + IVA)</span><span>1.210,00 €</span></div><div class="formula-builder-breakdown-row"><span>Retención practicada</span><span>−157,50 €</span></div><div class="formula-builder-breakdown-row formula-builder-breakdown-total"><span>Importe cobrado</span><span>1.052,50 €</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="como-funciona">
+    <div class="section-container">
+      <h2 class="section-title">¿Cómo Funciona la <span class="gradient-text">Retención de IVA</span>?</h2>
+      <p class="section-subtitle">4 pasos para calcular la retención de IVA y el importe neto a cobrar en tu factura</p>
+      <div class="walkthrough-steps">
+        <div class="walkthrough-step" data-step="1"><div class="walkthrough-step-connector"></div><div class="walkthrough-step-number">1</div><div class="walkthrough-step-content"><div class="walkthrough-step-icon">📋</div><h3 class="walkthrough-step-title">1. Introduce la base imponible</h3><p class="walkthrough-step-desc">Escribe el importe de la factura antes de impuestos. Es el precio del servicio o producto sin IVA.</p><div class="walkthrough-mini-input"><span class="mini-input-label">Base</span><div class="mini-input-box">1.000,00 <span class="mini-input-currency">€</span></div></div></div></div>
+        <div class="walkthrough-step" data-step="2"><div class="walkthrough-step-connector"></div><div class="walkthrough-step-number">2</div><div class="walkthrough-step-content"><div class="walkthrough-step-icon">📊</div><h3 class="walkthrough-step-title">2. Selecciona el tipo de IVA</h3><p class="walkthrough-step-desc">Elige el porcentaje de IVA aplicable a la operación: 4%, 10%, 21% o personalizado.</p></div></div>
+        <div class="walkthrough-step" data-step="3"><div class="walkthrough-step-connector"></div><div class="walkthrough-step-number">3</div><div class="walkthrough-step-content"><div class="walkthrough-step-icon">🛡️</div><h3 class="walkthrough-step-title">3. Elige el % de retención</h3><p class="walkthrough-step-desc">Selecciona el porcentaje de retención a aplicar sobre la cuota de IVA: 50%, 75% o 100% según el tipo de operación.</p></div></div>
+        <div class="walkthrough-step" data-step="4"><div class="walkthrough-step-connector"></div><div class="walkthrough-step-number">4</div><div class="walkthrough-step-content"><div class="walkthrough-step-icon">💰</div><h3 class="walkthrough-step-title">4. Consulta el líquido a cobrar</h3><p class="walkthrough-step-desc">Obtén el desglose completo: base, IVA, retención y el importe neto que recibirás tras la retención fiscal.</p><div class="walkthrough-mini-result"><div class="mini-result-row"><span>Base imponible</span><span class="mini-result-value">1.000,00 €</span></div><div class="mini-result-row mini-result-iva"><span>IVA (21%) − Retención (75%)</span><span class="mini-result-value">210 − 157,50 €</span></div><div class="mini-result-row mini-result-total"><span>Líquido a cobrar</span><span class="mini-result-value"><strong>1.052,50 €</strong></span></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section content-section-alt" id="tabla-referencia">
+    <div class="section-container section-container-wide">
+      <h2 class="section-title">Tabla de <span class="gradient-text">Retención de IVA</span> al 21%</h2>
+      <p class="section-subtitle">Retención de IVA al 50% y 75% para importes habituales con IVA general del 21%</p>
+      <div class="quick-table-wrapper"><div class="quick-table-container">
+        <table class="quick-table">
+          <thead><tr><th>Base</th><th>IVA 21%</th><th>Ret. 50%</th><th>Cobro 50%</th><th>Ret. 75%</th><th>Cobro 75%</th></tr></thead>
+          <tbody>{retentionTable.map((r) => (<tr><td><strong>{r.base}</strong></td><td>{r.iva21}</td><td>{r.ret50}</td><td>{r.cobro50}</td><td>{r.ret75}</td><td><strong>{r.cobro75}</strong></td></tr>))}</tbody>
+        </table>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="faq-section" id="faq">
+    <div class="section-container">
+      <h2 class="section-title">Preguntas sobre <span class="gradient-text">Retención de IVA</span></h2>
+      <p class="section-subtitle">Todo lo que necesitas saber sobre la retención del IVA en facturas y operaciones fiscales</p>
+      <div class="faq-list" id="faqList">
+        {faqItems.map((item, idx) => (
+          <div class="faq-item" id={`faq${idx + 1}`}><button class="faq-question" id={`faqBtn${idx + 1}`} aria-expanded="false" aria-controls={`faqAnswer${idx + 1}`} type="button"><span>{item.question}</span><svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer" id={`faqAnswer${idx + 1}`} role="region" aria-labelledby={`faqBtn${idx + 1}`}><p set:html={item.answer} />{item.formula && (<div class="faq-formula-mini"><div class="faq-formula-equation"><span class="faq-formula-var">{item.formula.base}</span><span class="faq-formula-op">×</span><span class="faq-formula-var">{item.formula.rate}</span><span class="faq-formula-op">=</span><span class="faq-formula-result">{item.formula.result}</span></div></div>)}</div></div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const els = { amountInput: document.getElementById('amountInput'), rateButtons: document.querySelectorAll('.rate-btn'), customRateInput: document.getElementById('customRateInput'), rateCustomBtn: document.getElementById('rateCustomBtn'), retButtons: document.querySelectorAll('.ret-btn'), calcButton: document.getElementById('calcButton'), calcBody: document.getElementById('calcBody'), resultsPanel: document.getElementById('resultsPanel'), resultsClose: document.getElementById('resultsClose'), resultBase: document.getElementById('resultBase'), resultIvaRate: document.getElementById('resultIvaRate'), resultIva: document.getElementById('resultIva'), resultRetRate: document.getElementById('resultRetRate'), resultRet: document.getElementById('resultRet'), resultNet: document.getElementById('resultNet'), breakdownCanvas: document.getElementById('breakdownCanvas'), chartCenterPercent: document.getElementById('chartCenterPercent'), chartCenterLabel: document.getElementById('chartCenterLabel'), copyResult: document.getElementById('copyResult'), newCalc: document.getElementById('newCalc'), ambientCanvas: document.getElementById('ambientCanvas') };
+  let state = { rate: 21, retRate: 75, isCustom: false, lastResult: null };
+
+  // Ambient canvas (compact)
+  !function(){const c=els.ambientCanvas;if(!c)return;const x=c.getContext('2d');if(!x)return;let w=0,h=0;function rs(){w=window.innerWidth;h=window.innerHeight;const d=window.devicePixelRatio||1;c.width=w*d;c.height=h*d;c.style.width=w+'px';c.style.height=h+'px';x.scale(d,d)}window.addEventListener('resize',rs);rs();const ps=[];for(let i=0;i<Math.min(Math.floor(w*h/22000),50);i++)ps.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,r:Math.random()*2.5+1.5,ci:Math.floor(Math.random()*4)});function rn(){x.clearRect(0,0,w,h);const dk=document.documentElement.getAttribute('data-theme')==='dark';const cl=dk?['rgba(129,140,248,0.5)','rgba(192,132,252,0.45)','rgba(244,114,182,0.4)','rgba(52,211,153,0.35)']:['rgba(79,70,229,0.4)','rgba(124,58,237,0.35)','rgba(236,72,153,0.3)','rgba(16,185,129,0.3)'];ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle=cl[p.ci];x.fill()});for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,ds=Math.sqrt(dx*dx+dy*dy);if(ds<125){const a=(1-ds/125)*(dk?.2:.14);x.beginPath();x.moveTo(ps[i].x,ps[i].y);x.lineTo(ps[j].x,ps[j].y);x.strokeStyle=dk?`rgba(129,140,248,${a})`:`rgba(79,70,229,${a})`;x.lineWidth=1;x.stroke()}}requestAnimationFrame(rn)}rn()}();
+
+  // IVA rate buttons
+  els.rateButtons?.forEach(btn=>{btn.addEventListener('click',()=>{const r=btn.dataset.rate;els.rateButtons.forEach(b=>{b.classList.remove('border-indigo-500','bg-indigo-500/5','ring-3','ring-indigo-500/15');b.classList.add('border-[var(--border-subtle)]','bg-[var(--bg-input)]');b.setAttribute('aria-checked','false')});btn.classList.add('border-indigo-500','bg-indigo-500/5','ring-3','ring-indigo-500/15');btn.classList.remove('border-[var(--border-subtle)]','bg-[var(--bg-input)]');btn.setAttribute('aria-checked','true');if(r==='custom'){state.isCustom=true;els.customRateInput?.focus();const v=pn(els.customRateInput?.value);state.rate=isNaN(v)?0:v}else{state.isCustom=false;state.rate=parseFloat(r)}})});
+  els.customRateInput?.addEventListener('input',()=>{if(state.isCustom){const v=pn(els.customRateInput.value);state.rate=isNaN(v)?0:v}});
+  els.customRateInput?.addEventListener('focus',()=>{els.rateCustomBtn?.click()});
+
+  // Retention rate buttons
+  els.retButtons?.forEach(btn=>{btn.addEventListener('click',()=>{els.retButtons.forEach(b=>{b.classList.remove('border-pink-500','bg-pink-500/5','ring-3','ring-pink-500/15');b.classList.add('border-[var(--border-subtle)]','bg-[var(--bg-input)]');b.setAttribute('aria-checked','false')});btn.classList.add('border-pink-500','bg-pink-500/5','ring-3','ring-pink-500/15');btn.classList.remove('border-[var(--border-subtle)]','bg-[var(--bg-input)]');btn.setAttribute('aria-checked','true');state.retRate=parseFloat(btn.dataset.ret)})});
+
+  function pn(s){if(!s)return NaN;s=s.trim();const lc=s.lastIndexOf(','),ld=s.lastIndexOf('.');if(lc>ld)s=s.replace(/\./g,'').replace(',','.');else if(ld>lc)s=s.replace(/,/g,'');else if(lc!==-1)s=s.replace(',','.');return parseFloat(s)}
+  function fc(v){return v.toLocaleString('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2})}
+  function fr(r){return r%1===0?r.toString():r.toFixed(1)}
+
+  function calculate(){
+    const raw=els.amountInput?.value.trim();if(!raw){els.amountInput?.classList.add('shake');setTimeout(()=>els.amountInput?.classList.remove('shake'),400);return}
+    const base=pn(raw);if(isNaN(base)||base<=0){els.amountInput?.classList.add('shake');setTimeout(()=>els.amountInput?.classList.remove('shake'),400);return}
+    const iva=base*(state.rate/100);const total=base+iva;const ret=iva*(state.retRate/100);const net=total-ret;
+    state.lastResult={base,iva,total,ret,net,rate:state.rate,retRate:state.retRate};
+    els.resultBase.textContent=fc(base);els.resultIvaRate.textContent=fr(state.rate);els.resultIva.textContent=fc(iva);els.resultRetRate.textContent=fr(state.retRate);els.resultRet.textContent=`−${fc(ret)}`;els.resultNet.textContent=fc(net);
+
+    // Chart: 3 segments (base, IVA paid, IVA retained)
+    const cv=els.breakdownCanvas;if(cv){const ctx=cv.getContext('2d');if(ctx){const dp=window.devicePixelRatio||1,sz=170;cv.width=sz*dp;cv.height=sz*dp;ctx.scale(dp,dp);const cx=sz/2,cy=sz/2,rd=sz*.38,lw=16;const ivaPaid=iva-ret;const bR=base/total,ipR=ivaPaid/total,irR=ret/total;els.chartCenterPercent.textContent=`${fr(state.retRate)}%`;els.chartCenterLabel.textContent='Retención';const st=performance.now(),du=600;let crid;function f(now){const p=Math.min((now-st)/du,1),e=1-Math.pow(1-p,3);ctx.clearRect(0,0,sz,sz);const dk=document.documentElement.getAttribute('data-theme')==='dark';ctx.beginPath();ctx.arc(cx,cy,rd,0,Math.PI*2);ctx.strokeStyle=dk?'rgba(255,255,255,0.08)':'rgba(15,23,42,0.06)';ctx.lineWidth=lw;ctx.stroke();const sa=-Math.PI/2,ta=Math.PI*2*e;const a1=ta*bR,a2=ta*ipR,a3=ta*irR;if(a1>0){ctx.beginPath();ctx.arc(cx,cy,rd,sa,sa+a1);const g=ctx.createLinearGradient(0,0,sz,sz);g.addColorStop(0,'#4f46e5');g.addColorStop(1,'#6366f1');ctx.strokeStyle=g;ctx.lineWidth=lw;ctx.lineCap='round';ctx.stroke()}if(a2>0){ctx.beginPath();ctx.arc(cx,cy,rd,sa+a1,sa+a1+a2);const g=ctx.createLinearGradient(0,0,sz,sz);g.addColorStop(0,'#10b981');g.addColorStop(1,'#34d399');ctx.strokeStyle=g;ctx.lineWidth=lw;ctx.lineCap='round';ctx.stroke()}if(a3>0){ctx.beginPath();ctx.arc(cx,cy,rd,sa+a1+a2,sa+a1+a2+a3);const g=ctx.createLinearGradient(0,0,sz,sz);g.addColorStop(0,'#ec4899');g.addColorStop(1,'#f472b6');ctx.strokeStyle=g;ctx.lineWidth=lw;ctx.lineCap='round';ctx.stroke()}if(p<1)crid=requestAnimationFrame(f)}crid=requestAnimationFrame(f)}}
+
+    els.calcBody.classList.add('hidden');els.resultsPanel.classList.remove('hidden');
+  }
+
+  els.calcButton?.addEventListener('click',calculate);
+  els.amountInput?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();calculate()}});
+  els.resultsClose?.addEventListener('click',()=>{els.resultsPanel.classList.add('hidden');els.calcBody.classList.remove('hidden')});
+  els.newCalc?.addEventListener('click',()=>{els.resultsPanel.classList.add('hidden');els.calcBody.classList.remove('hidden');els.amountInput.value='';els.amountInput.focus()});
+  els.copyResult?.addEventListener('click',()=>{if(!state.lastResult)return;const{base,iva,ret,net,rate,retRate}=state.lastResult;const t=`Retención IVA\nBase: ${fc(base)}\nIVA (${fr(rate)}%): ${fc(iva)}\nRetención (${fr(retRate)}%): −${fc(ret)}\nLíquido a cobrar: ${fc(net)}`;navigator.clipboard.writeText(t).then(()=>{const ex=document.querySelector('.toast');if(ex)ex.remove();const toast=document.createElement('div');toast.className='toast show';toast.textContent='✓ Retención copiada';document.body.appendChild(toast);setTimeout(()=>{toast.classList.remove('show');setTimeout(()=>toast.remove(),300)},2500)})});
+
+  document.querySelectorAll('.faq-item .faq-question').forEach(b=>{b.addEventListener('click',()=>{const i=b.closest('.faq-item');if(!i)return;const o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>{if(x!==i){x.classList.remove('open');const btn=x.querySelector('.faq-question');if(btn)btn.setAttribute('aria-expanded','false')}});if(o){i.classList.remove('open');b.setAttribute('aria-expanded','false')}else{i.classList.add('open');b.setAttribute('aria-expanded','true')}})});
+});
+</script>

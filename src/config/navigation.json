@@ -5,6 +5,7 @@
     { "key": "nav.formulaIva", "href": "/#formula-iva" },
     { "key": "nav.howItWorks", "href": "/#como-funciona" },
     { "key": "nav.rates", "href": "/#iva-porcentaje" },
+    { "key": "nav.tools", "href": "/#herramientas" },
     { "key": "nav.faq", "href": "/#faq" },
     { "key": "nav.blog", "href": "/blog/" }
   ],
@@ -16,5 +17,22 @@
     { "key": "nav.privacy", "href": "/privacy/" },
     { "key": "nav.sitemap", "href": "/sitemap/" },
     { "key": "nav.blog", "href": "/blog/" }
+  ],
+  "toolNav": [
+    { "label": "IVA de una Cantidad", "href": "/iva-de-una-cantidad/" },
+    { "label": "IVA Incluido", "href": "/iva-incluido/" },
+    { "label": "IVA Porcentaje", "href": "/iva-porcentaje/" },
+    { "label": "Retención IVA", "href": "/retencion-iva/" },
+    { "label": "IVA Factura", "href": "/iva-factura/" },
+    { "label": "IVA Honorarios", "href": "/iva-honorarios/" },
+    { "label": "IVA e IRPF", "href": "/iva-irpf/" },
+    { "label": "IVA e ISR", "href": "/iva-isr/" },
+    { "label": "IVA a Pagar", "href": "/iva-a-pagar/" },
+    { "label": "IVA Acreditable", "href": "/iva-acreditable/" },
+    { "label": "IVA e IEPS", "href": "/iva-ieps/" },
+    { "label": "Recargo Equivalencia", "href": "/iva-recargo-equivalencia/" },
+    { "label": "IVA RESICO", "href": "/iva-resico/" }
   ]
 }
+
+
