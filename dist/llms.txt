@@ -4,7 +4,7 @@ Contact: contacto@calculadoraiva.net
 Sitemap: https://calculadoraiva.net/sitemap-index.xml
 
 # Description
-Calculadora de IVA online gratuita para España y Latinoamérica. Calcula el Impuesto al Valor Agregado (IVA) con los tipos impositivos de cada país: 21%, 16%, 19% y más. Añade o quita IVA al instante.
+Calculadora de IVA online gratis. Añade o quita el IVA al instante con tipos del 21%, 10%, 4%, 16% y 19% para España y Latinoamérica de forma rápida.
 
 # AI Policy
 Calculadora IVA permits AI indexing, scraping, and summarization of our public calculation formulas, tax guides, and documentation for educational and research purposes.

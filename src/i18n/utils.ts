@@ -48,12 +48,17 @@ export function getLocalizedUrl(path: string, locale: string): string {
     }
   }
 
-  if (locale === defaultLocale) {
-    return cleanPath === '//' ? '/' : cleanPath;
+  // Only the root homepage '/' exists across all locales ('/en/', '/fr/', etc.)
+  // All other pages (tools, blog, legal, about) are single canonical pages in Spanish
+  if (cleanPath === '/' || cleanPath === '//') {
+    if (locale === defaultLocale) {
+      return '/';
+    }
+    return `/${locale}/`;
   }
 
-  const result = `/${locale}${cleanPath}`;
-  return result.replace(/\/+/g, '/');
+  // Non-homepage pages always link to their canonical Spanish path
+  return cleanPath;
 }
 
 export function getStaticLocalePaths() {

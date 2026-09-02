@@ -68,7 +68,7 @@ const isLocalizedHomepage = path === '/' || supportedLocales.some((l) => path ==
     <!-- Primary SEO -->
     <title>{finalTitle}</title>
     <meta name="description" content={finalDescription} />
-    <link rel="canonical" href={canonicalUrl} />
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (

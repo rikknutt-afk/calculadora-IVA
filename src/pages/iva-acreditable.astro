@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "Calculadora IVA Acreditable — IVA Deducible en México";
-const description = "Calculadora de IVA acreditable para México. Determina cuánto IVA de tus compras y gastos puedes acreditar (deducir) contra el IVA trasladado a tus clientes en tu declaración mensual del SAT.";
+const description = "Calculadora de IVA acreditable para México. Determina el IVA deducible de tus compras y gastos para restar del IVA trasladado en tu declaración del SAT.";
 
 const faqItems = [
   { question: "¿Qué es el IVA acreditable en México?", answer: "El IVA acreditable es el IVA que pagas en tus compras y gastos de negocio (facturas recibidas con CFDI) y que puedes restar del IVA que cobras a tus clientes (IVA trasladado). Es el equivalente mexicano del «IVA soportado deducible» español. Se acredita en la declaración mensual ante el SAT.", display: true, formula: { base: "IVA trasladado", rate: "− IVA acreditable", result: "IVA a pagar" } },

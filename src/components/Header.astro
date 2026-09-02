@@ -109,7 +109,7 @@ const currentPath = Astro.url.pathname;
             <!-- Scrollable Language List -->
             <div class="max-h-64 overflow-y-auto space-y-0.5 pr-0.5 custom-scrollbar" id="langListDesktop">
               {supportedLocales.map((loc) => {
-                const targetUrl = getLocalizedUrl(currentPath, loc.code);
+                const targetUrl = getLocalizedUrl('/', loc.code);
                 const isCurrent = loc.code === locale;
                 return (
                   <a
@@ -271,7 +271,7 @@ const currentPath = Astro.url.pathname;
       <!-- Languages Grid Mobile -->
       <div class="grid grid-cols-2 gap-2 overflow-y-auto max-h-[55vh] pr-1 pb-4" id="langListMobile">
         {supportedLocales.map((loc) => {
-          const targetUrl = getLocalizedUrl(currentPath, loc.code);
+          const targetUrl = getLocalizedUrl('/', loc.code);
           const isCurrent = loc.code === locale;
           return (
             <a
@@ -334,7 +334,7 @@ const currentPath = Astro.url.pathname;
       </div>
       <div class="grid grid-cols-3 gap-1.5 max-h-48 overflow-y-auto pr-1">
         {supportedLocales.map((loc) => {
-          const targetUrl = getLocalizedUrl(currentPath, loc.code);
+          const targetUrl = getLocalizedUrl('/', loc.code);
           const isCurrent = loc.code === locale;
           return (
             <a
