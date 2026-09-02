@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Calculadora IVA Factura — Desglose de IVA para Facturas";
+const description = "Calculadora de IVA para facturas: genera el desglose completo con base imponible, cuota de IVA y total. Crea líneas de factura con cantidades, precios unitarios y tipos de IVA diferentes.";
+
+const faqItems = [
+  {
+    question: "¿Cómo se calcula el IVA en una factura?",
+    answer: "El IVA en una factura se calcula multiplicando la base imponible por el tipo de IVA aplicable. Para cada línea: Subtotal = Cantidad × Precio unitario. Luego: IVA = Subtotal × (Tipo/100). El total de la factura es la suma de todos los subtotales más todas las cuotas de IVA.",
+    display: true,
+    formula: { base: "Cantidad × Precio", rate: "× IVA%", result: "Cuota de IVA" }
+  },
+  {
+    question: "¿Puede una factura tener varios tipos de IVA?",
+    answer: "Sí. Una factura puede incluir líneas con diferentes tipos de IVA. Por ejemplo: productos alimentarios al 10% y servicios profesionales al 21%. El desglose debe mostrar cada base imponible y cuota de IVA por separado para cada tipo aplicado.",
+    display: true
+  },
+  {
+    question: "¿Qué datos obligatorios debe tener una factura con IVA?",
+    answer: "Según la Agencia Tributaria (AEAT), una factura completa debe incluir: número y serie, fecha de emisión, datos del emisor y receptor (NIF, nombre, dirección), descripción de los productos/servicios, base imponible, tipo de IVA, cuota de IVA y total factura.",
+    display: true
+  },
+  {
+    question: "¿Cómo se calcula el IVA en una factura con descuento?",
+    answer: "El descuento se aplica antes de calcular el IVA. Ejemplo: producto de 100 € con 10% de descuento → Base = 90 €. IVA 21%: 90 × 0,21 = 18,90 €. Total: 90 + 18,90 = 108,90 €. El IVA siempre se calcula sobre la base imponible neta (después del descuento).",
+    display: true,
+    formula: { base: "90 € (tras dto.)", rate: "× 0,21", result: "18,90 € IVA" }
+  },
+  {
+    question: "¿Qué es la base imponible en una factura?",
+    answer: "La base imponible es el importe total de la factura antes de aplicar el IVA. Es la suma de todos los conceptos facturados (cantidad × precio unitario − descuentos). Sobre esta base se calcula la cuota de IVA que se repercute al cliente.",
+    display: true
+  },
+  {
+    question: "¿Cómo funciona la factura electrónica con IVA en España?",
+    answer: "La factura electrónica en España debe cumplir el formato Facturae o UBL. Desde 2025, VeriFactu exige que los autónomos y empresas emitan facturas verificables con desglose de IVA. El sistema genera un código QR y registra la factura en la AEAT en tiempo real.",
+    display: true
+  }
+];
+
+const invoiceExamples = [
+  { concepto: 'Diseño web', uds: 1, precio: '2.500,00 €', iva: '21%', cuota: '525,00 €', total: '3.025,00 €' },
+  { concepto: 'Hosting anual', uds: 1, precio: '120,00 €', iva: '21%', cuota: '25,20 €', total: '145,20 €' },
+  { concepto: 'Pack fotos stock', uds: 5, precio: '15,00 €', iva: '21%', cuota: '15,75 €', total: '90,75 €' },
+  { concepto: 'Dominio .es', uds: 2, precio: '9,00 €', iva: '21%', cuota: '3,78 €', total: '21,78 €' },
+  { concepto: 'Consultoría SEO', uds: 10, precio: '85,00 €', iva: '21%', cuota: '178,50 €', total: '1.028,50 €' },
+  { concepto: 'Menú catering', uds: 50, precio: '18,00 €', iva: '10%', cuota: '90,00 €', total: '990,00 €' },
+];
+---
+
+<BaseLayout title={title} description={description} schemaType="WebSite" faqItems={faqItems} locale="es">
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Calculadora IVA <span class="gradient-text">Factura</span></h1>
+      <p class="hero-subtitle">Genera el desglose completo de IVA para tus facturas con múltiples líneas,<br class="hidden sm:inline" /> cantidades, precios unitarios y tipos de IVA diferenciados.</p>
+    </div>
+  </section>
+
+  <section class="calculator-section" id="calculator">
+    <div class="relative w-full max-w-2xl mx-auto z-10">
+      <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
+      <div class="glass-card p-6 sm:p-8 md:p-10 relative overflow-hidden transition-all duration-300">
+        <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_30%_40%,rgba(79,70,229,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_60%,rgba(236,72,153,0.05)_0%,transparent_50%)] pointer-events-none animate-[spin_25s_linear_infinite]" aria-hidden="true"></div>
+
+        <div id="calcBody" class="space-y-5">
+          <div class="flex items-center gap-2 mb-2">
+            <svg class="w-5 h-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="text-sm font-bold text-[var(--text-primary)]">Líneas de factura</span>
+          </div>
+
+          <div id="invoiceLines" class="space-y-3">
+            <div class="invoice-line grid grid-cols-12 gap-2 items-end" data-line="1">
+              <div class="col-span-5"><label class="text-[10px] font-bold uppercase text-[var(--text-tertiary)] mb-1 block">Concepto</label><input type="text" class="line-concept w-full py-2.5 px-3 bg-[var(--bg-input)] border border-[var(--border-medium)] rounded-lg text-sm font-semibold text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-all" placeholder="Descripción" /></div>
+              <div class="col-span-2"><label class="text-[10px] font-bold uppercase text-[var(--text-tertiary)] mb-1 block">Uds.</label><input type="text" class="line-qty w-full py-2.5 px-3 bg-[var(--bg-input)] border border-[var(--border-medium)] rounded-lg text-sm font-bold text-center text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-all" placeholder="1" inputmode="decimal" value="1" /></div>
+              <div class="col-span-3"><label class="text-[10px] font-bold uppercase text-[var(--text-tertiary)] mb-1 block">Precio ud.</label><input type="text" class="line-price w-full py-2.5 px-3 bg-[var(--bg-input)] border border-[var(--border-medium)] rounded-lg text-sm font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-all" placeholder="0,00" inputmode="decimal" /></div>
+              <div class="col-span-2"><label class="text-[10px] font-bold uppercase text-[var(--text-tertiary)] mb-1 block">IVA %</label><select class="line-iva w-full py-2.5 px-2 bg-[var(--bg-input)] border border-[var(--border-medium)] rounded-lg text-sm font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-all"><option value="21">21%</option><option value="10">10%</option><option value="4">4%</option><option value="0">0%</option></select></div>
+            </div>
+          </div>
+
+          <button type="button" id="addLineBtn" class="w-full py-2.5 px-4 rounded-lg border border-dashed border-[var(--border-medium)] bg-[var(--bg-tertiary)] text-sm font-semibold text-[var(--text-secondary)] hover:border-indigo-500 hover:text-indigo-600 flex items-center justify-center gap-2 transition-all">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Añadir línea
+          </button>
+
+          <button type="button" id="calcButton" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/45 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden transition-all group">
+            <span class="relative z-10">Generar Desglose de Factura</span>
+            <svg class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <div class="btn-shine" aria-hidden="true"></div>
+          </button>
+        </div>
+
+        <div id="resultsPanel" class="hidden space-y-6 animate-[fadeIn_0.4s_ease-out]">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display font-extrabold text-xl gradient-text">Desglose de Factura</h3>
+            <button type="button" id="resultsClose" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-xs font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 transition-colors shadow-sm"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Modificar</span></button>
+          </div>
+          <div id="resultLines" class="space-y-2"></div>
+          <div class="grid gap-3 pt-2 border-t border-[var(--border-subtle)]">
+            <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm"><span class="text-sm font-semibold text-[var(--text-secondary)]">Base imponible total</span><span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultBaseTotal">0,00 €</span></div>
+            <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm"><span class="text-sm font-semibold text-[var(--text-secondary)]">Total IVA</span><span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultIvaTotal">0,00 €</span></div>
+            <div class="flex items-center justify-between p-4 rounded-xl border border-indigo-500/40 bg-[var(--gradient-card)] shadow-md"><span class="text-sm font-bold text-[var(--text-secondary)]">Total factura</span><span class="font-display font-extrabold text-2xl gradient-text" id="resultGrandTotal">0,00 €</span></div>
+          </div>
+          <div class="relative w-[170px] h-[170px] mx-auto flex items-center justify-center">
+            <canvas id="breakdownCanvas" class="w-[170px] h-[170px] block drop-shadow-md" width="170" height="170"></canvas>
+            <div class="absolute flex flex-col items-center justify-center pointer-events-none">
+              <span id="chartCenterPercent" class="font-display font-extrabold text-2xl text-[var(--text-primary)] leading-none">0%</span>
+              <span id="chartCenterLabel" class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mt-1">IVA</span>
+            </div>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <button type="button" id="copyResult" class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copiar</span></button>
+            <button type="button" id="newCalc" class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg><span>Nueva Factura</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="calcular-iva"><div class="section-container"><h2 class="section-title">3 Tipos de <span class="gradient-text">Factura con IVA</span></h2><p class="section-subtitle">Cada tipo de factura tiene requisitos diferentes para el desglose del IVA según la normativa española</p><div class="methods-grid">
+    <div class="method-card"><div class="method-icon-wrapper"><div class="method-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span class="method-number">01</span></div><h3 class="method-title">Factura ordinaria completa</h3><p class="method-desc">La factura estándar con todos los datos fiscales: emisor, receptor, desglose de IVA por línea, base imponible, cuota y total. Obligatoria para operaciones B2B.</p><div class="method-formula"><span class="method-formula-var">Σ (Uds × Precio)</span><span class="method-formula-op">+</span><span class="method-formula-var">Σ IVA</span><span class="method-formula-op">=</span><span class="method-formula-result">Total factura</span></div><div class="method-example"><span class="method-example-label">Ejemplo</span><span>3 × 500 € + IVA 21% = <strong>1.815,00 €</strong></span></div></div>
+    <div class="method-card"><div class="method-icon-wrapper"><div class="method-icon method-icon-remove"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><span class="method-number">02</span></div><h3 class="method-title">Factura simplificada (ticket)</h3><p class="method-desc">Para ventas a consumidor final hasta 400 €. No requiere datos del comprador. El IVA debe estar incluido en el precio indicado y desglosado por separado.</p><div class="method-formula"><span class="method-formula-var">Precio PVP</span><span class="method-formula-op">÷</span><span class="method-formula-var">1,21</span><span class="method-formula-op">=</span><span class="method-formula-result">Base + IVA</span></div><div class="method-example"><span class="method-example-label">Ejemplo</span><span>48,40 € ÷ 1,21 = <strong>40 € + 8,40 € IVA</strong></span></div></div>
+    <div class="method-card"><div class="method-icon-wrapper"><div class="method-icon method-icon-desglose"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div><span class="method-number">03</span></div><h3 class="method-title">Factura rectificativa</h3><p class="method-desc">Corrige errores o devoluciones de facturas anteriores. Debe indicar la factura original, el motivo de rectificación y el nuevo desglose de IVA correcto.</p><div class="method-formula"><span class="method-formula-var">IVA original</span><span class="method-formula-op">−</span><span class="method-formula-var">IVA corregido</span><span class="method-formula-op">=</span><span class="method-formula-result">Diferencia</span></div><div class="method-example"><span class="method-example-label">Ejemplo</span><span>210 € − 189 € = <strong>21 € rectificación</strong></span></div></div>
+  </div></div></section>
+
+  <section class="content-section content-section-alt" id="formula-iva"><div class="section-container"><h2 class="section-title">Fórmula del IVA en <span class="gradient-text">Facturas</span></h2><p class="section-subtitle">Cómo calcular el desglose de IVA línea por línea en una factura profesional</p><div class="formula-builder">
+    <div class="formula-builder-card"><div class="formula-builder-header"><div class="formula-builder-badge formula-builder-badge-add"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>Línea de factura</span></div></div><div class="formula-builder-equation"><div class="formula-builder-part"><span class="formula-builder-label">Cantidad × Precio</span><span class="formula-builder-value">5 × 85 €</span></div><span class="formula-builder-op">=</span><div class="formula-builder-part"><span class="formula-builder-label">Subtotal</span><span class="formula-builder-value">425 €</span></div><span class="formula-builder-op">+ IVA 21%</span><div class="formula-builder-part formula-builder-part-result"><span class="formula-builder-label">Total línea</span><span class="formula-builder-value">514,25 €</span></div></div><div class="formula-builder-breakdown"><div class="formula-builder-breakdown-row"><span>Subtotal (5 × 85 €)</span><span>425,00 €</span></div><div class="formula-builder-breakdown-row"><span>IVA (21%)</span><span>89,25 €</span></div><div class="formula-builder-breakdown-row formula-builder-breakdown-total"><span>Total línea</span><span>514,25 €</span></div></div></div>
+    <div class="formula-builder-card"><div class="formula-builder-header"><div class="formula-builder-badge formula-builder-badge-remove"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span>Total factura</span></div></div><div class="formula-builder-equation"><div class="formula-builder-part"><span class="formula-builder-label">Σ Subtotales</span><span class="formula-builder-value">Σ Bases</span></div><span class="formula-builder-op">+</span><div class="formula-builder-part"><span class="formula-builder-label">Σ Cuotas IVA</span><span class="formula-builder-value">Σ IVA</span></div><span class="formula-builder-op">=</span><div class="formula-builder-part formula-builder-part-result"><span class="formula-builder-label">Gran total</span><span class="formula-builder-value">Total €</span></div></div><div class="formula-builder-breakdown"><div class="formula-builder-breakdown-row"><span>Línea 1: Consultoría</span><span>514,25 €</span></div><div class="formula-builder-breakdown-row"><span>Línea 2: Hosting</span><span>145,20 €</span></div><div class="formula-builder-breakdown-row formula-builder-breakdown-total"><span>Total factura</span><span>659,45 €</span></div></div></div>
+  </div></div></section>
+
+  <section class="content-section" id="como-funciona"><div class="section-container"><h2 class="section-title">¿Cómo Crear una Factura con <span class="gradient-text">Desglose de IVA</span>?</h2><p class="section-subtitle">4 pasos para generar el desglose completo de IVA en tu factura profesional</p><div class="walkthrough-steps">
+    <div class="walkthrough-step" data-step="1"><div class="walkthrough-step-connector"></div><div class="walkthrough-step-number">1</div><div class="walkthrough-step-content"><div class="walkthrough-step-icon">📝</div><h3 class="walkthrough-step-title">1. Añade las líneas de factura</h3><p class="walkthrough-step-desc">Introduce el concepto, la cantidad, el precio unitario y el tipo de IVA de cada producto o servicio facturado.</p></div></div>
+    <div class="walkthrough-step" data-step="2"><div class="walkthrough-step-connector"></div><div class="walkthrough-step-number">2</div><div class="walkthrough-step-content"><div class="walkthrough-step-icon">🔢</div><h3 class="walkthrough-step-title">2. Selecciona el IVA por línea</h3><p class="walkthrough-step-desc">Elige 21%, 10%, 4% o 0% para cada línea. Productos diferentes pueden tener tipos de IVA distintos en la misma factura.</p></div></div>
+    <div class="walkthrough-step" data-step="3"><div class="walkthrough-step-connector"></div><div class="walkthrough-step-number">3</div><div class="walkthrough-step-content"><div class="walkthrough-step-icon">⚡</div><h3 class="walkthrough-step-title">3. Genera el desglose</h3><p class="walkthrough-step-desc">La calculadora calcula automáticamente el subtotal, la cuota de IVA y el total de cada línea, agrupando por tipo de IVA.</p></div></div>
+    <div class="walkthrough-step" data-step="4"><div class="walkthrough-step-connector"></div><div class="walkthrough-step-number">4</div><div class="walkthrough-step-content"><div class="walkthrough-step-icon">📋</div><h3 class="walkthrough-step-title">4. Copia el resultado</h3><p class="walkthrough-step-desc">Obtén el total de base imponible, la suma de cuotas de IVA y el importe total de la factura. Copia para usar en tu software de facturación.</p><div class="walkthrough-mini-result"><div class="mini-result-row"><span>Base total</span><span class="mini-result-value">2.500,00 €</span></div><div class="mini-result-row mini-result-iva"><span>Total IVA (21%)</span><span class="mini-result-value">525,00 €</span></div><div class="mini-result-row mini-result-total"><span>Total factura</span><span class="mini-result-value"><strong>3.025,00 €</strong></span></div></div></div></div>
+  </div></div></section>
+
+  <section class="content-section content-section-alt" id="tabla-referencia"><div class="section-container section-container-wide"><h2 class="section-title">Ejemplos de Líneas de <span class="gradient-text">Factura con IVA</span></h2><p class="section-subtitle">Desgloses de IVA para conceptos habituales en facturas de servicios y productos</p><div class="quick-table-wrapper"><div class="quick-table-container"><table class="quick-table"><thead><tr><th>Concepto</th><th>Uds</th><th>Precio ud.</th><th>IVA</th><th>Cuota IVA</th><th>Total</th></tr></thead><tbody>{invoiceExamples.map((r) => (<tr><td>{r.concepto}</td><td>{r.uds}</td><td>{r.precio}</td><td>{r.iva}</td><td>{r.cuota}</td><td><strong>{r.total}</strong></td></tr>))}</tbody></table></div></div></div></section>
+
+  <section class="faq-section" id="faq"><div class="section-container"><h2 class="section-title">Preguntas sobre <span class="gradient-text">IVA en Facturas</span></h2><p class="section-subtitle">Resuelve tus dudas sobre el desglose de IVA, tipos de factura y obligaciones fiscales</p><div class="faq-list" id="faqList">{faqItems.map((item, idx) => (<div class="faq-item" id={`faq${idx + 1}`}><button class="faq-question" id={`faqBtn${idx + 1}`} aria-expanded="false" aria-controls={`faqAnswer${idx + 1}`} type="button"><span>{item.question}</span><svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer" id={`faqAnswer${idx + 1}`} role="region" aria-labelledby={`faqBtn${idx + 1}`}><p set:html={item.answer} />{item.formula && (<div class="faq-formula-mini"><div class="faq-formula-equation"><span class="faq-formula-var">{item.formula.base}</span><span class="faq-formula-op">×</span><span class="faq-formula-var">{item.formula.rate}</span><span class="faq-formula-op">=</span><span class="faq-formula-result">{item.formula.result}</span></div></div>)}</div></div>))}</div></div></section>
+</BaseLayout>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  let lineCount = 1;
+  const addLineBtn = document.getElementById('addLineBtn');
+  const invoiceLines = document.getElementById('invoiceLines');
+
+  addLineBtn?.addEventListener('click', () => {
+    lineCount++;
+    const div = document.createElement('div');
+    div.className = 'invoice-line grid grid-cols-12 gap-2 items-end';
+    div.setAttribute('data-line', lineCount);
+    div.innerHTML = `<div class="col-span-5"><input type="text" class="line-concept w-full py-2.5 px-3 bg-[var(--bg-input)] border border-[var(--border-medium)] rounded-lg text-sm font-semibold text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-all" placeholder="Concepto" /></div><div class="col-span-2"><input type="text" class="line-qty w-full py-2.5 px-3 bg-[var(--bg-input)] border border-[var(--border-medium)] rounded-lg text-sm font-bold text-center text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-all" placeholder="1" inputmode="decimal" value="1" /></div><div class="col-span-3"><input type="text" class="line-price w-full py-2.5 px-3 bg-[var(--bg-input)] border border-[var(--border-medium)] rounded-lg text-sm font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-all" placeholder="0,00" inputmode="decimal" /></div><div class="col-span-2"><select class="line-iva w-full py-2.5 px-2 bg-[var(--bg-input)] border border-[var(--border-medium)] rounded-lg text-sm font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-all"><option value="21">21%</option><option value="10">10%</option><option value="4">4%</option><option value="0">0%</option></select></div>`;
+    invoiceLines?.appendChild(div);
+  });
+
+  function pn(s){if(!s)return NaN;s=s.trim();const lc=s.lastIndexOf(','),ld=s.lastIndexOf('.');if(lc>ld)s=s.replace(/\./g,'').replace(',','.');else if(ld>lc)s=s.replace(/,/g,'');else if(lc!==-1)s=s.replace(',','.');return parseFloat(s)}
+  function fc(v){return v.toLocaleString('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2})}
+
+  const els = { calcButton: document.getElementById('calcButton'), calcBody: document.getElementById('calcBody'), resultsPanel: document.getElementById('resultsPanel'), resultsClose: document.getElementById('resultsClose'), resultLines: document.getElementById('resultLines'), resultBaseTotal: document.getElementById('resultBaseTotal'), resultIvaTotal: document.getElementById('resultIvaTotal'), resultGrandTotal: document.getElementById('resultGrandTotal'), breakdownCanvas: document.getElementById('breakdownCanvas'), chartCenterPercent: document.getElementById('chartCenterPercent'), chartCenterLabel: document.getElementById('chartCenterLabel'), copyResult: document.getElementById('copyResult'), newCalc: document.getElementById('newCalc'), ambientCanvas: document.getElementById('ambientCanvas') };
+  let lastResult = null;
+
+  // Ambient canvas
+  !function(){const c=els.ambientCanvas;if(!c)return;const x=c.getContext('2d');if(!x)return;let w=0,h=0;function rs(){w=window.innerWidth;h=window.innerHeight;const d=window.devicePixelRatio||1;c.width=w*d;c.height=h*d;c.style.width=w+'px';c.style.height=h+'px';x.scale(d,d)}window.addEventListener('resize',rs);rs();const ps=[];for(let i=0;i<Math.min(Math.floor(w*h/22000),50);i++)ps.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,r:Math.random()*2.5+1.5,ci:Math.floor(Math.random()*4)});function rn(){x.clearRect(0,0,w,h);const dk=document.documentElement.getAttribute('data-theme')==='dark';const cl=dk?['rgba(129,140,248,0.5)','rgba(192,132,252,0.45)','rgba(244,114,182,0.4)','rgba(52,211,153,0.35)']:['rgba(79,70,229,0.4)','rgba(124,58,237,0.35)','rgba(236,72,153,0.3)','rgba(16,185,129,0.3)'];ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle=cl[p.ci];x.fill()});for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,ds=Math.sqrt(dx*dx+dy*dy);if(ds<125){const a=(1-ds/125)*(dk?.2:.14);x.beginPath();x.moveTo(ps[i].x,ps[i].y);x.lineTo(ps[j].x,ps[j].y);x.strokeStyle=dk?`rgba(129,140,248,${a})`:`rgba(79,70,229,${a})`;x.lineWidth=1;x.stroke()}}requestAnimationFrame(rn)}rn()}();
+
+  function calculate() {
+    const lines = document.querySelectorAll('.invoice-line');
+    const results = [];
+    let totalBase = 0, totalIva = 0;
+
+    lines.forEach(line => {
+      const concept = line.querySelector('.line-concept')?.value || 'Concepto';
+      const qty = pn(line.querySelector('.line-qty')?.value) || 1;
+      const price = pn(line.querySelector('.line-price')?.value);
+      const ivaRate = parseFloat(line.querySelector('.line-iva')?.value) || 21;
+
+      if (isNaN(price) || price <= 0) return;
+
+      const subtotal = qty * price;
+      const iva = subtotal * (ivaRate / 100);
+      const lineTotal = subtotal + iva;
+
+      results.push({ concept, qty, price, ivaRate, subtotal, iva, lineTotal });
+      totalBase += subtotal;
+      totalIva += iva;
+    });
+
+    if (results.length === 0) { document.querySelector('.line-price')?.classList.add('shake'); setTimeout(() => document.querySelector('.line-price')?.classList.remove('shake'), 400); return; }
+
+    const grandTotal = totalBase + totalIva;
+    lastResult = { results, totalBase, totalIva, grandTotal };
+
+    // Render result lines
+    els.resultLines.innerHTML = results.map(r => `<div class="flex items-center justify-between p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"><div class="flex-1"><span class="text-sm font-semibold text-[var(--text-primary)]">${r.concept}</span><span class="text-xs text-[var(--text-tertiary)] ml-2">${r.qty} × ${fc(r.price)} + ${r.ivaRate}% IVA</span></div><span class="font-display font-bold text-sm text-[var(--text-primary)]">${fc(r.lineTotal)}</span></div>`).join('');
+
+    els.resultBaseTotal.textContent = fc(totalBase);
+    els.resultIvaTotal.textContent = fc(totalIva);
+    els.resultGrandTotal.textContent = fc(grandTotal);
+
+    // Chart
+    const cv = els.breakdownCanvas; if (cv) {
+      const ctx = cv.getContext('2d'); if (ctx) {
+        const dp = window.devicePixelRatio || 1, sz = 170; cv.width = sz * dp; cv.height = sz * dp; ctx.scale(dp, dp);
+        const cx = sz/2, cy = sz/2, rd = sz*.38, lw = 16;
+        const br = totalBase / grandTotal, ir = totalIva / grandTotal;
+        els.chartCenterPercent.textContent = `${Math.round(ir * 100)}%`;
+        els.chartCenterLabel.textContent = 'IVA total';
+        const st = performance.now(), du = 600;
+        let crid;
+        function f(now) {
+          const p = Math.min((now - st) / du, 1), e = 1 - Math.pow(1 - p, 3);
+          ctx.clearRect(0, 0, sz, sz); const dk = document.documentElement.getAttribute('data-theme') === 'dark';
+          ctx.beginPath(); ctx.arc(cx, cy, rd, 0, Math.PI * 2); ctx.strokeStyle = dk ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.06)'; ctx.lineWidth = lw; ctx.stroke();
+          const sa = -Math.PI / 2, ta = Math.PI * 2 * e, ba = ta * br, ia = ta * ir;
+          if (ba > 0) { ctx.beginPath(); ctx.arc(cx, cy, rd, sa, sa + ba); const g = ctx.createLinearGradient(0, 0, sz, sz); g.addColorStop(0, '#4f46e5'); g.addColorStop(1, '#6366f1'); ctx.strokeStyle = g; ctx.lineWidth = lw; ctx.lineCap = 'round'; ctx.stroke(); }
+          if (ia > 0) { ctx.beginPath(); ctx.arc(cx, cy, rd, sa + ba, sa + ba + ia); const g = ctx.createLinearGradient(0, 0, sz, sz); g.addColorStop(0, '#ec4899'); g.addColorStop(1, '#c084fc'); ctx.strokeStyle = g; ctx.lineWidth = lw; ctx.lineCap = 'round'; ctx.stroke(); }
+          if (p < 1) crid = requestAnimationFrame(f);
+        }
+        crid = requestAnimationFrame(f);
+      }
+    }
+
+    els.calcBody.classList.add('hidden'); els.resultsPanel.classList.remove('hidden');
+  }
+
+  els.calcButton?.addEventListener('click', calculate);
+  els.resultsClose?.addEventListener('click', () => { els.resultsPanel.classList.add('hidden'); els.calcBody.classList.remove('hidden'); });
+  els.newCalc?.addEventListener('click', () => { els.resultsPanel.classList.add('hidden'); els.calcBody.classList.remove('hidden'); invoiceLines.innerHTML = ''; lineCount = 0; addLineBtn?.click(); });
+
+  els.copyResult?.addEventListener('click', () => {
+    if (!lastResult) return;
+    const { results, totalBase, totalIva, grandTotal } = lastResult;
+    let t = 'Factura con IVA\n' + results.map(r => `${r.concept}: ${r.qty}×${fc(r.price)} + ${r.ivaRate}% = ${fc(r.lineTotal)}`).join('\n');
+    t += `\n\nBase total: ${fc(totalBase)}\nTotal IVA: ${fc(totalIva)}\nTotal factura: ${fc(grandTotal)}`;
+    navigator.clipboard.writeText(t).then(() => { const ex = document.querySelector('.toast'); if (ex) ex.remove(); const toast = document.createElement('div'); toast.className = 'toast show'; toast.textContent = '✓ Factura copiada'; document.body.appendChild(toast); setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 2500); });
+  });
+
+  document.querySelectorAll('.faq-item .faq-question').forEach(b => { b.addEventListener('click', () => { const i = b.closest('.faq-item'); if (!i) return; const o = i.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(x => { if (x !== i) { x.classList.remove('open'); const btn = x.querySelector('.faq-question'); if (btn) btn.setAttribute('aria-expanded', 'false'); } }); if (o) { i.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); } else { i.classList.add('open'); b.setAttribute('aria-expanded', 'true'); } }); });
+});
+</script>

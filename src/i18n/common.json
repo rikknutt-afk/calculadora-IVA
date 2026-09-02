@@ -12,7 +12,8 @@
       "contact": "Contact",
       "terms": "Terms of Service",
       "privacy": "Privacy Policy",
-      "sitemap": "Sitemap"
+      "sitemap": "Sitemap",
+      "tools": "Tools"
     },
     "footer": {
       "desc": "Free online VAT/IVA calculator with official tax rates, instant invoice breakdowns, and math formulas.",
@@ -77,7 +78,8 @@
       "contact": "Contacto",
       "terms": "Términos de Uso",
       "privacy": "Privacidad",
-      "sitemap": "Mapa del Sitio"
+      "sitemap": "Mapa del Sitio",
+      "tools": "Herramientas"
     },
     "footer": {
       "desc": "Cálculo de IVA rápido y gratuito para España y Latinoamérica con los tipos oficiales y desgloses instantáneos.",
@@ -142,7 +144,8 @@
       "contact": "संपर्क करें",
       "terms": "सेवा की शर्तें",
       "privacy": "गोपनीयता नीति",
-      "sitemap": "साइटमैप"
+      "sitemap": "साइटमैप",
+      "tools": "उपकरण"
     },
     "footer": {
       "desc": "सटीक और तेज़ वैट/आईवीए गणना के लिए निःशुल्क ऑनलाइन टूल।",
@@ -207,7 +210,8 @@
       "contact": "Контакты",
       "terms": "Условия использования",
       "privacy": "Конфиденциальность",
-      "sitemap": "Карта сайта"
+      "sitemap": "Карта сайта",
+      "tools": "Инструменты"
     },
     "footer": {
       "desc": "Бесплатный онлайн-калькулятор НДС (IVA) с официальными ставками и формулами.",
@@ -272,7 +276,8 @@
       "contact": "Contact",
       "terms": "Conditions d'utilisation",
       "privacy": "Confidentialité",
-      "sitemap": "Plan du site"
+      "sitemap": "Plan du site",
+      "tools": "Outils"
     },
     "footer": {
       "desc": "Calculateur de TVA gratuit et précis avec taux officiels et ventilation instantanée.",
@@ -337,7 +342,8 @@
       "contact": "Kontakt",
       "terms": "Nutzungsbedingungen",
       "privacy": "Datenschutz",
-      "sitemap": "Sitemap"
+      "sitemap": "Sitemap",
+      "tools": "Werkzeuge"
     },
     "footer": {
       "desc": "Kostenloser Mehrwertsteuerrechner (IVA) mit offiziellen Steuersätzen und Formeln.",
@@ -402,7 +408,8 @@
       "contact": "Contatti",
       "terms": "Termini di servizio",
       "privacy": "Privacy",
-      "sitemap": "Mappa del sito"
+      "sitemap": "Mappa del sito",
+      "tools": "Strumenti"
     },
     "footer": {
       "desc": "Calcolatore IVA online gratuito con aliquote ufficiali e scorporo istantaneo.",
@@ -467,7 +474,8 @@
       "contact": "Contato",
       "terms": "Termos de uso",
       "privacy": "Privacidade",
-      "sitemap": "Mapa do site"
+      "sitemap": "Mapa do site",
+      "tools": "Ferramentas"
     },
     "footer": {
       "desc": "Calculadora de IVA online gratuita com taxas oficiais e fórmulas instantâneas.",
@@ -532,7 +540,8 @@
       "contact": "যোগাযোগ",
       "terms": "শর্তাবলী",
       "privacy": "গোপনীয়তা নীতি",
-      "sitemap": "সাইটম্যাপ"
+      "sitemap": "সাইটম্যাপ",
+      "tools": "সরঞ্জাম"
     },
     "footer": {
       "desc": "দ্রুত ও নিখুঁত ভ্যাট গণনার জন্য একটি বিনামূল্যে অনলাইন টুল।",
@@ -597,7 +606,8 @@
       "contact": "お問い合わせ",
       "terms": "利用規約",
       "privacy": "プライバシーポリシー",
-      "sitemap": "サイトマップ"
+      "sitemap": "サイトマップ",
+      "tools": "ツール"
     },
     "footer": {
       "desc": "付加価値税（VAT/IVA）を瞬時に計算できる無料のオンラインツール。",
@@ -662,7 +672,8 @@
       "contact": "문의하기",
       "terms": "이용약관",
       "privacy": "개인정보처리방침",
-      "sitemap": "사이트맵"
+      "sitemap": "사이트맵",
+      "tools": "도구"
     },
     "footer": {
       "desc": "공식 세율과 공식을 적용한 빠르고 정확한 무료 부가세 계산기입니다.",
@@ -727,7 +738,8 @@
       "contact": "Hubungi",
       "terms": "Syarat Perkhidmatan",
       "privacy": "Dasar Privasi",
-      "sitemap": "Peta Laman"
+      "sitemap": "Peta Laman",
+      "tools": "Alatan"
     },
     "footer": {
       "desc": "Alat dalam talian percuma untuk mengira Cukai Nilai Tambah (VAT / IVA).",
@@ -792,7 +804,8 @@
       "contact": "Kontakt",
       "terms": "Regulamin",
       "privacy": "Prywatność",
-      "sitemap": "Mapa strony"
+      "sitemap": "Mapa strony",
+      "tools": "Narzędzia"
     },
     "footer": {
       "desc": "Darmowy kalkulator podatku VAT / IVA z oficjalnymi stawkami i formułami.",
@@ -857,7 +870,8 @@
       "contact": "Kontak",
       "terms": "Ketentuan Layanan",
       "privacy": "Kebijakan Privasi",
-      "sitemap": "Peta Situs"
+      "sitemap": "Peta Situs",
+      "tools": "Alat"
     },
     "footer": {
       "desc": "Alat online gratis untuk menghitung Pajak Pertambahan Nilai (PPN / VAT / IVA).",
@@ -922,7 +936,8 @@
       "contact": "اتصل بنا",
       "terms": "شروط الخدمة",
       "privacy": "سياسة الخصوصية",
-      "sitemap": "خريطة الموقع"
+      "sitemap": "خريطة الموقع",
+      "tools": "أدوات"
     },
     "footer": {
       "desc": "أداة مجانية لحساب ضريبة القيمة المضافة (VAT / IVA) بدقة وفورية.",
@@ -987,7 +1002,8 @@
       "contact": "Контакти",
       "terms": "Условия за ползване",
       "privacy": "Поверителност",
-      "sitemap": "Карта на сайта"
+      "sitemap": "Карта на сайта",
+      "tools": "Инструменти"
     },
     "footer": {
       "desc": "Безплатен онлайн калкулатор за ДДС с официални ставки и бързи изчисления.",
@@ -1052,7 +1068,8 @@
       "contact": "İletişim",
       "terms": "Kullanım Koşulları",
       "privacy": "Gizlilik Politikası",
-      "sitemap": "Site Haritası"
+      "sitemap": "Site Haritası",
+      "tools": "Araçlar"
     },
     "footer": {
       "desc": "Resmi vergi oranları ve formülleri ile ücretsiz Katma Değer Vergisi (KDV / IVA) hesaplama aracı.",
@@ -1117,7 +1134,8 @@
       "contact": "Kontakt",
       "terms": "Användarvillkor",
       "privacy": "Integritetspolicy",
-      "sitemap": "Webbplatskarta"
+      "sitemap": "Webbplatskarta",
+      "tools": "Verktyg"
     },
     "footer": {
       "desc": "Gratis onlinekalkylator för mervärdesskatt (moms / IVA) med officiella satser och formler.",

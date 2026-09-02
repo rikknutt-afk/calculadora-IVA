@@ -1,0 +1,536 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Calculadora IVA Incluido — Extrae el IVA de un Precio con Impuesto";
+const description = "Calculadora de IVA incluido para extraer la base imponible y la cuota de IVA de un precio bruto. Introduce un importe con IVA incluido y obtén el desglose al instante para España.";
+
+const faqItems = [
+  {
+    question: "¿Cómo se calcula el IVA incluido en un precio?",
+    answer: "Para extraer el IVA incluido en un precio, divide el precio bruto entre (1 + tipo/100). Con el 21%: Base = Precio con IVA ÷ 1,21. Ejemplo: 242 € ÷ 1,21 = 200 € de base imponible. El IVA incluido era: 242 − 200 = 42 €.",
+    display: true,
+    formula: { base: "242 €", rate: "÷ 1,21", result: "200 € base" }
+  },
+  {
+    question: "¿Cuál es la base imponible de un precio de 121 € con IVA incluido?",
+    answer: "Si el precio de 121 € ya incluye el 21% de IVA: 121 ÷ 1,21 = 100 € de base imponible. La cuota de IVA es 121 − 100 = 21 €. Así, el producto vale realmente 100 € antes de impuestos.",
+    display: true,
+    formula: { base: "121 €", rate: "÷ 1,21", result: "100 € base" }
+  },
+  {
+    question: "¿Cómo saber cuánto IVA tiene un precio final?",
+    answer: "Usa la fórmula del IVA inverso: IVA = Precio final − (Precio final ÷ (1 + tipo/100)). Con el 21%: IVA = Precio − (Precio ÷ 1,21). Ejemplo: un producto de 605 € con IVA incluido tiene 605 − (605 ÷ 1,21) = 605 − 500 = 105 € de IVA.",
+    display: true,
+    formula: { base: "605 €", rate: "÷ 1,21 =", result: "105 € IVA" }
+  },
+  {
+    question: "¿Es lo mismo IVA incluido que IVA repercutido?",
+    answer: "No exactamente. «IVA incluido» significa que el precio ya contiene el impuesto, es la perspectiva del comprador. «IVA repercutido» es el IVA que el vendedor carga al cliente en la factura. El importe es el mismo, pero el concepto fiscal difiere.",
+    display: true
+  },
+  {
+    question: "¿Cómo extraer el IVA al 10% de un precio con IVA incluido?",
+    answer: "Para el tipo reducido del 10%, divide entre 1,10. Ejemplo: un billete de tren de 55 € con IVA incluido: 55 ÷ 1,10 = 50 € de base imponible. El IVA al 10% era: 55 − 50 = 5 €.",
+    display: true,
+    formula: { base: "55 €", rate: "÷ 1,10", result: "50 € base" }
+  },
+  {
+    question: "¿Por qué es importante conocer el IVA incluido en un ticket?",
+    answer: "Conocer el IVA incluido te permite: verificar que el comercio aplica el tipo correcto, deducir el IVA soportado si eres autónomo o empresa, reclamar devoluciones de IVA en compras intracomunitarias y llevar una contabilidad precisa.",
+    display: true
+  }
+];
+
+const quickTableData = [
+  { total: '12,10 €', base: '10,00 €', iva: '2,10 €' },
+  { total: '24,20 €', base: '20,00 €', iva: '4,20 €' },
+  { total: '60,50 €', base: '50,00 €', iva: '10,50 €' },
+  { total: '121,00 €', base: '100,00 €', iva: '21,00 €' },
+  { total: '181,50 €', base: '150,00 €', iva: '31,50 €' },
+  { total: '302,50 €', base: '250,00 €', iva: '52,50 €' },
+  { total: '605,00 €', base: '500,00 €', iva: '105,00 €' },
+  { total: '1.210,00 €', base: '1.000,00 €', iva: '210,00 €' },
+  { total: '2.420,00 €', base: '2.000,00 €', iva: '420,00 €' },
+  { total: '3.630,00 €', base: '3.000,00 €', iva: '630,00 €' },
+  { total: '6.050,00 €', base: '5.000,00 €', iva: '1.050,00 €' },
+  { total: '12.100,00 €', base: '10.000,00 €', iva: '2.100,00 €' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="WebSite"
+  faqItems={faqItems}
+  locale="es"
+>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Calculadora <span class="gradient-text">IVA Incluido</span></h1>
+      <p class="hero-subtitle">¿Tu precio ya incluye el IVA? Extrae la base imponible y la cuota de IVA<br class="hidden sm:inline" /> de cualquier importe bruto de forma instantánea y precisa.</p>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="calculator-section" id="calculator">
+    <div class="relative w-full max-w-xl mx-auto z-10">
+      <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
+      <div class="glass-card p-6 sm:p-8 md:p-10 relative overflow-hidden transition-all duration-300">
+        <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_30%_40%,rgba(79,70,229,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_60%,rgba(236,72,153,0.05)_0%,transparent_50%)] pointer-events-none animate-[spin_25s_linear_infinite]" aria-hidden="true"></div>
+
+        <!-- Mode Toggle - Defaults to REMOVE -->
+        <div class="flex relative bg-[var(--bg-toggle)] border border-[var(--border-subtle)] rounded-xl p-1 mb-8" role="tablist" aria-label="Modo de cálculo">
+          <button type="button" id="modeAdd" data-mode="add" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold text-[var(--text-secondary)] transition-all relative z-10" role="tab" aria-selected="false">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Añadir IVA</span>
+          </button>
+          <button type="button" id="modeRemove" data-mode="remove" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 transition-all relative z-10" role="tab" aria-selected="true">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Extraer IVA incluido</span>
+          </button>
+          <div id="toggleSlider" class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-[var(--bg-pill)] rounded-lg shadow-md transition-transform duration-300 pointer-events-none" style="transform: translateX(100%)"></div>
+        </div>
+
+        <!-- Input -->
+        <div id="calcBody" class="space-y-6">
+          <div>
+            <label for="amountInput" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+              <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              <span id="amountLabel" data-label-add="Importe sin IVA (Base)" data-label-remove="Precio con IVA incluido">Precio con IVA incluido</span>
+            </label>
+            <div class="relative">
+              <input type="text" id="amountInput" class="w-full py-4 pl-5 pr-12 bg-[var(--bg-input)] border-1.5 border-[var(--border-medium)] rounded-xl font-display text-2xl font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 shadow-sm transition-all placeholder:text-[var(--text-tertiary)] placeholder:opacity-50" placeholder="Ej: 121,00" inputmode="decimal" autocomplete="off" aria-label="Precio con IVA incluido" />
+              <span class="absolute right-5 top-1/2 -translate-y-1/2 font-display text-xl font-bold text-[var(--text-tertiary)]">€</span>
+            </div>
+          </div>
+
+          <!-- Rate Buttons -->
+          <div>
+            <label class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+              <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              <span>Tipo de IVA aplicado</span>
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="radiogroup" aria-label="Tipo de IVA incluido">
+              <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="4" role="radio" aria-checked="false">
+                <span class="font-display font-bold text-base text-[var(--text-primary)]">4%</span>
+                <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Superreducido</span>
+              </button>
+              <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="10" role="radio" aria-checked="false">
+                <span class="font-display font-bold text-base text-[var(--text-primary)]">10%</span>
+                <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Reducido</span>
+              </button>
+              <button type="button" class="rate-btn active flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-indigo-500 bg-indigo-500/5 ring-3 ring-indigo-500/15 shadow-sm transition-all" data-rate="21" role="radio" aria-checked="true">
+                <span class="font-display font-bold text-base text-[var(--text-primary)]">21%</span>
+                <span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">General</span>
+              </button>
+              <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" id="rateCustomBtn" data-rate="custom" role="radio" aria-checked="false">
+                <span class="font-display font-bold text-base text-[var(--text-primary)] flex items-center">
+                  <input type="text" id="customRateInput" class="w-8 text-center bg-transparent border-b border-[var(--text-tertiary)] focus:border-indigo-500 outline-none text-base font-bold text-[var(--text-primary)]" placeholder="?" inputmode="decimal" />%
+                </span>
+                <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Personalizado</span>
+              </button>
+            </div>
+          </div>
+
+          <button type="button" id="calcButton" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/45 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden transition-all group">
+            <span class="relative z-10">Extraer IVA Incluido</span>
+            <svg class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <div class="btn-shine" aria-hidden="true"></div>
+          </button>
+        </div>
+
+        <!-- Results Panel -->
+        <div id="resultsPanel" class="hidden space-y-6 animate-[fadeIn_0.4s_ease-out]">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display font-extrabold text-xl gradient-text">IVA Extraído del Precio</h3>
+            <button type="button" id="resultsClose" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-xs font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 transition-colors shadow-sm">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              <span>Modificar</span>
+            </button>
+          </div>
+          <div class="grid gap-3">
+            <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm">
+              <span class="text-sm font-semibold text-[var(--text-secondary)]" id="resultBaseLabel">Base imponible</span>
+              <span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultBaseValue">0,00 €</span>
+            </div>
+            <div class="flex items-center justify-between p-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-input)] shadow-sm">
+              <span class="text-sm font-semibold text-[var(--text-secondary)]">IVA incluido (<span id="resultIvaRate">21</span>%)</span>
+              <span class="font-display font-bold text-lg text-[var(--text-primary)]" id="resultIvaValue">0,00 €</span>
+            </div>
+            <div class="flex items-center justify-between p-4 rounded-xl border border-indigo-500/40 bg-[var(--gradient-card)] shadow-md">
+              <span class="text-sm font-bold text-[var(--text-secondary)]" id="resultTotalLabel">Precio con IVA</span>
+              <span class="font-display font-extrabold text-2xl gradient-text" id="resultTotalValue">0,00 €</span>
+            </div>
+          </div>
+          <div class="relative w-[170px] h-[170px] mx-auto flex items-center justify-center">
+            <canvas id="breakdownCanvas" class="w-[170px] h-[170px] block drop-shadow-md" width="170" height="170" aria-label="Desglose IVA incluido"></canvas>
+            <div class="absolute flex flex-col items-center justify-center pointer-events-none">
+              <span id="chartCenterPercent" class="font-display font-extrabold text-2xl text-[var(--text-primary)] leading-none">21%</span>
+              <span id="chartCenterLabel" class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mt-1">IVA</span>
+            </div>
+          </div>
+          <div class="flex h-7 rounded-full overflow-hidden bg-[var(--bg-toggle)] border border-[var(--border-subtle)] shadow-inner">
+            <div id="breakdownFill" class="flex items-center justify-center bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all duration-500 min-w-[36px]">Base</div>
+            <div id="breakdownIvaFill" class="flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-500 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all duration-500 min-w-[28px]">IVA</div>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <button type="button" id="copyResult" data-copied-msg="✓ Desglose copiado al portapapeles" class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copiar</span>
+            </button>
+            <button type="button" id="newCalc" class="flex-1 py-3 px-4 rounded-xl border border-[var(--border-medium)] bg-[var(--bg-secondary)] text-sm font-semibold text-[var(--text-secondary)] hover:text-indigo-600 hover:border-indigo-500 flex items-center justify-center gap-2 shadow-sm transition-all">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+              <span>Nuevo Cálculo</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methods Section -->
+  <section class="content-section" id="calcular-iva">
+    <div class="section-container">
+      <h2 class="section-title">¿Cómo Calcular el <span class="gradient-text">IVA Incluido</span>?</h2>
+      <p class="section-subtitle">3 escenarios habituales en los que necesitas extraer el IVA de un precio que ya lo incluye: ticket de compra, presupuesto y factura recibida.</p>
+      <div class="methods-grid">
+        <div class="method-card">
+          <div class="method-icon-wrapper">
+            <div class="method-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <span class="method-number">01</span>
+          </div>
+          <h3 class="method-title">IVA incluido en un ticket de compra</h3>
+          <p class="method-desc">El precio del producto en tienda ya incluye el IVA. Divide entre 1,21 para saber cuánto pagaste realmente por el producto y cuánto fue impuesto.</p>
+          <div class="method-formula">
+            <span class="method-formula-var">Precio PVP</span>
+            <span class="method-formula-op">÷</span>
+            <span class="method-formula-var">1,21</span>
+            <span class="method-formula-op">=</span>
+            <span class="method-formula-result">Precio sin IVA</span>
+          </div>
+          <div class="method-example">
+            <span class="method-example-label">Ejemplo</span>
+            <span>59,99 € ÷ 1,21 = <strong>49,58 €</strong> (IVA: 10,41 €)</span>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon-wrapper">
+            <div class="method-icon method-icon-remove">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="method-number">02</span>
+          </div>
+          <h3 class="method-title">IVA incluido en un presupuesto</h3>
+          <p class="method-desc">Un presupuesto muestra el total «IVA incluido». Extrae la base para comparar ofertas de distintos proveedores sin que el impuesto distorsione la comparación.</p>
+          <div class="method-formula">
+            <span class="method-formula-var">Presupuesto total</span>
+            <span class="method-formula-op">÷</span>
+            <span class="method-formula-var">(1 + IVA/100)</span>
+            <span class="method-formula-op">=</span>
+            <span class="method-formula-result">Coste real</span>
+          </div>
+          <div class="method-example">
+            <span class="method-example-label">Ejemplo</span>
+            <span>3.025 € ÷ 1,21 = <strong>2.500,00 €</strong> (IVA: 525 €)</span>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon-wrapper">
+            <div class="method-icon method-icon-desglose">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <span class="method-number">03</span>
+          </div>
+          <h3 class="method-title">IVA incluido en factura recibida</h3>
+          <p class="method-desc">Cuando recibes una factura con el total final, necesitas desglosar base e IVA para registrar correctamente el IVA soportado en tu contabilidad fiscal.</p>
+          <div class="method-formula">
+            <span class="method-formula-var">Total factura</span>
+            <span class="method-formula-op">−</span>
+            <span class="method-formula-var">(Total ÷ 1,21)</span>
+            <span class="method-formula-op">=</span>
+            <span class="method-formula-result">IVA soportado</span>
+          </div>
+          <div class="method-example">
+            <span class="method-example-label">Ejemplo</span>
+            <span>1.210 € − 1.000 € = <strong>210,00 € IVA</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formula Section -->
+  <section class="content-section content-section-alt" id="formula-iva">
+    <div class="section-container">
+      <h2 class="section-title">Fórmula para Extraer el <span class="gradient-text">IVA Incluido</span></h2>
+      <p class="section-subtitle">La fórmula inversa del IVA: divide el precio bruto entre el factor (1 + tipo) para separar base imponible e impuesto</p>
+      <div class="formula-builder">
+        <div class="formula-builder-card">
+          <div class="formula-builder-header">
+            <div class="formula-builder-badge formula-builder-badge-remove">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Extraer IVA incluido</span>
+            </div>
+          </div>
+          <div class="formula-builder-equation">
+            <div class="formula-builder-part">
+              <span class="formula-builder-label">Precio con IVA</span>
+              <span class="formula-builder-value">605,00 €</span>
+            </div>
+            <span class="formula-builder-op">÷</span>
+            <div class="formula-builder-part">
+              <span class="formula-builder-label">Factor IVA 21%</span>
+              <span class="formula-builder-value">1,21</span>
+            </div>
+            <span class="formula-builder-op">=</span>
+            <div class="formula-builder-part formula-builder-part-result">
+              <span class="formula-builder-label">Base imponible</span>
+              <span class="formula-builder-value">500,00 €</span>
+            </div>
+          </div>
+          <div class="formula-builder-breakdown">
+            <div class="formula-builder-breakdown-row">
+              <span>Precio con IVA incluido</span>
+              <span>605,00 €</span>
+            </div>
+            <div class="formula-builder-breakdown-row">
+              <span>IVA extraído (21%)</span>
+              <span>105,00 €</span>
+            </div>
+            <div class="formula-builder-breakdown-row formula-builder-breakdown-total">
+              <span>Base imponible real</span>
+              <span>500,00 €</span>
+            </div>
+          </div>
+        </div>
+        <div class="formula-builder-card">
+          <div class="formula-builder-header">
+            <div class="formula-builder-badge formula-builder-badge-add">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Verificar: Añadir IVA</span>
+            </div>
+          </div>
+          <div class="formula-builder-equation">
+            <div class="formula-builder-part">
+              <span class="formula-builder-label">Base imponible</span>
+              <span class="formula-builder-value">500,00 €</span>
+            </div>
+            <span class="formula-builder-op">×</span>
+            <div class="formula-builder-part">
+              <span class="formula-builder-label">Factor IVA 21%</span>
+              <span class="formula-builder-value">1,21</span>
+            </div>
+            <span class="formula-builder-op">=</span>
+            <div class="formula-builder-part formula-builder-part-result">
+              <span class="formula-builder-label">Verificación</span>
+              <span class="formula-builder-value">605,00 €</span>
+            </div>
+          </div>
+          <div class="formula-builder-breakdown">
+            <div class="formula-builder-breakdown-row">
+              <span>Base imponible</span>
+              <span>500,00 €</span>
+            </div>
+            <div class="formula-builder-breakdown-row">
+              <span>IVA añadido (21%)</span>
+              <span>105,00 €</span>
+            </div>
+            <div class="formula-builder-breakdown-row formula-builder-breakdown-total">
+              <span>Total verificado ✓</span>
+              <span>605,00 €</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="content-section" id="como-funciona">
+    <div class="section-container">
+      <h2 class="section-title">¿Cómo Extraer el <span class="gradient-text">IVA Incluido</span> Paso a Paso?</h2>
+      <p class="section-subtitle">4 pasos sencillos para obtener la base imponible y la cuota de IVA de cualquier precio que ya incluye el impuesto</p>
+      <div class="walkthrough-steps">
+        <div class="walkthrough-step" data-step="1">
+          <div class="walkthrough-step-connector"></div>
+          <div class="walkthrough-step-number">1</div>
+          <div class="walkthrough-step-content">
+            <div class="walkthrough-step-icon">🏷️</div>
+            <h3 class="walkthrough-step-title">1. Localiza el precio con IVA</h3>
+            <p class="walkthrough-step-desc">Identifica el precio final en tu ticket, presupuesto o factura. Es el importe total que incluye el impuesto.</p>
+            <div class="walkthrough-mini-input">
+              <span class="mini-input-label">Precio con IVA</span>
+              <div class="mini-input-box">605,00 <span class="mini-input-currency">€</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="walkthrough-step" data-step="2">
+          <div class="walkthrough-step-connector"></div>
+          <div class="walkthrough-step-number">2</div>
+          <div class="walkthrough-step-content">
+            <div class="walkthrough-step-icon">🔍</div>
+            <h3 class="walkthrough-step-title">2. Identifica el tipo de IVA aplicado</h3>
+            <p class="walkthrough-step-desc">Consulta la factura o el tipo de producto para saber si es 21% (general), 10% (reducido) o 4% (superreducido).</p>
+            <div class="walkthrough-mini-rates" id="miniRates">
+              <button type="button" class="mini-rate-btn" data-minirate="4">4%</button>
+              <button type="button" class="mini-rate-btn" data-minirate="10">10%</button>
+              <button type="button" class="mini-rate-btn mini-rate-active" data-minirate="21">21%</button>
+            </div>
+          </div>
+        </div>
+        <div class="walkthrough-step" data-step="3">
+          <div class="walkthrough-step-connector"></div>
+          <div class="walkthrough-step-number">3</div>
+          <div class="walkthrough-step-content">
+            <div class="walkthrough-step-icon">➗</div>
+            <h3 class="walkthrough-step-title">3. Divide entre el factor</h3>
+            <p class="walkthrough-step-desc">La calculadora aplica automáticamente: Precio ÷ (1 + IVA/100). Para el 21%: Precio ÷ 1,21 = Base imponible.</p>
+          </div>
+        </div>
+        <div class="walkthrough-step" data-step="4">
+          <div class="walkthrough-step-connector"></div>
+          <div class="walkthrough-step-number">4</div>
+          <div class="walkthrough-step-content">
+            <div class="walkthrough-step-icon">✅</div>
+            <h3 class="walkthrough-step-title">4. Obtén base e IVA separados</h3>
+            <p class="walkthrough-step-desc">Visualiza la base imponible (precio real sin impuesto) y la cuota de IVA que estaba incluida en el precio.</p>
+            <div class="walkthrough-mini-result">
+              <div class="mini-result-row">
+                <span>Base imponible</span>
+                <span class="mini-result-value">500,00 €</span>
+              </div>
+              <div class="mini-result-row mini-result-iva">
+                <span>IVA incluido (21%)</span>
+                <span class="mini-result-value">105,00 €</span>
+              </div>
+              <div class="mini-result-row mini-result-total">
+                <span>Precio con IVA</span>
+                <span class="mini-result-value"><strong>605,00 €</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reference Table: IVA Incluido Desglose -->
+  <section class="content-section content-section-alt" id="tabla-referencia">
+    <div class="section-container section-container-wide">
+      <h2 class="section-title">Tabla de Desglose <span class="gradient-text">IVA Incluido</span> al 21%</h2>
+      <p class="section-subtitle">Precios comunes con IVA incluido y su desglose: base imponible y cuota de IVA al tipo general del 21%</p>
+      <div class="quick-table-wrapper">
+        <div class="quick-table-container">
+          <table class="quick-table">
+            <thead>
+              <tr>
+                <th>Precio con IVA</th>
+                <th>Base imponible</th>
+                <th>IVA incluido (21%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {quickTableData.map((row) => (
+                <tr>
+                  <td><strong>{row.total}</strong></td>
+                  <td>{row.base}</td>
+                  <td>{row.iva}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="section-container">
+      <h2 class="section-title">Preguntas sobre <span class="gradient-text">IVA Incluido</span></h2>
+      <p class="section-subtitle">Dudas frecuentes sobre cómo extraer el IVA de precios que ya lo incluyen, con fórmulas y ejemplos</p>
+      <div class="faq-list" id="faqList">
+        {faqItems.map((item, idx) => (
+          <div class="faq-item" id={`faq${idx + 1}`}>
+            <button class="faq-question" id={`faqBtn${idx + 1}`} aria-expanded="false" aria-controls={`faqAnswer${idx + 1}`} type="button">
+              <span>{item.question}</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" id={`faqAnswer${idx + 1}`} role="region" aria-labelledby={`faqBtn${idx + 1}`}>
+              <p set:html={item.answer} />
+              {item.formula && (
+                <div class="faq-formula-mini">
+                  <div class="faq-formula-equation">
+                    <span class="faq-formula-var">{item.formula.base}</span>
+                    <span class="faq-formula-op">{item.formula.rate.startsWith('÷') ? '÷' : '×'}</span>
+                    <span class="faq-formula-var">{item.formula.rate.replace('÷ ', '').replace('× ', '')}</span>
+                    <span class="faq-formula-op">=</span>
+                    <span class="faq-formula-result">{item.formula.result}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const elements = {
+    modeAdd: document.getElementById('modeAdd'), modeRemove: document.getElementById('modeRemove'), toggleSlider: document.getElementById('toggleSlider'), amountInput: document.getElementById('amountInput'), amountLabel: document.getElementById('amountLabel'), rateButtons: document.querySelectorAll('.rate-btn'), customRateInput: document.getElementById('customRateInput'), rateCustomBtn: document.getElementById('rateCustomBtn'), calcButton: document.getElementById('calcButton'), calcBody: document.getElementById('calcBody'), resultsPanel: document.getElementById('resultsPanel'), resultsClose: document.getElementById('resultsClose'), resultBaseLabel: document.getElementById('resultBaseLabel'), resultBaseValue: document.getElementById('resultBaseValue'), resultIvaRate: document.getElementById('resultIvaRate'), resultIvaValue: document.getElementById('resultIvaValue'), resultTotalLabel: document.getElementById('resultTotalLabel'), resultTotalValue: document.getElementById('resultTotalValue'), breakdownFill: document.getElementById('breakdownFill'), breakdownIvaFill: document.getElementById('breakdownIvaFill'), breakdownCanvas: document.getElementById('breakdownCanvas'), chartCenterPercent: document.getElementById('chartCenterPercent'), chartCenterLabel: document.getElementById('chartCenterLabel'), copyResult: document.getElementById('copyResult'), newCalc: document.getElementById('newCalc'), ambientCanvas: document.getElementById('ambientCanvas'),
+  };
+  let state = { mode: 'remove', rate: 21, isCustom: false, lastResult: null };
+
+  // Ambient canvas
+  !function(){const c=elements.ambientCanvas;if(!c)return;const x=c.getContext('2d');if(!x)return;let w=0,h=0,d=window.devicePixelRatio||1;const m={x:null,y:null,r:140};window.addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});window.addEventListener('mouseleave',()=>{m.x=null;m.y=null});function rs(){w=window.innerWidth;h=window.innerHeight;d=window.devicePixelRatio||1;c.width=w*d;c.height=h*d;c.style.width=w+'px';c.style.height=h+'px';x.scale(d,d)}window.addEventListener('resize',rs);rs();const ps=[];const n=Math.min(Math.floor((w*h)/22000),50);for(let i=0;i<n;i++)ps.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,r:Math.random()*2.5+1.5,ci:Math.floor(Math.random()*4)});function rn(){x.clearRect(0,0,w,h);const dk=document.documentElement.getAttribute('data-theme')==='dark';const cl=dk?['rgba(129,140,248,0.5)','rgba(192,132,252,0.45)','rgba(244,114,182,0.4)','rgba(52,211,153,0.35)']:['rgba(79,70,229,0.4)','rgba(124,58,237,0.35)','rgba(236,72,153,0.3)','rgba(16,185,129,0.3)'];ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;if(m.x!==null&&m.y!==null){const dx=m.x-p.x,dy=m.y-p.y,ds=Math.sqrt(dx*dx+dy*dy);if(ds<m.r&&ds>0){const f=(m.r-ds)/m.r,a=Math.atan2(dy,dx);p.x-=Math.cos(a)*f*2;p.y-=Math.sin(a)*f*2}}x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle=cl[p.ci];x.fill()});for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++){const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,ds=Math.sqrt(dx*dx+dy*dy);if(ds<125){const a=(1-ds/125)*(dk?.2:.14);x.beginPath();x.moveTo(ps[i].x,ps[i].y);x.lineTo(ps[j].x,ps[j].y);x.strokeStyle=dk?`rgba(129,140,248,${a})`:`rgba(79,70,229,${a})`;x.lineWidth=1;x.stroke()}}requestAnimationFrame(rn)}rn()}();
+
+  function setMode(mode) {
+    state.mode = mode;
+    elements.modeAdd.setAttribute('aria-selected', String(mode === 'add'));
+    elements.modeRemove.setAttribute('aria-selected', String(mode === 'remove'));
+    if (mode === 'add') { elements.modeAdd.classList.add('text-indigo-600','dark:text-indigo-400','font-bold'); elements.modeAdd.classList.remove('text-[var(--text-secondary)]','font-semibold'); elements.modeRemove.classList.remove('text-indigo-600','dark:text-indigo-400','font-bold'); elements.modeRemove.classList.add('text-[var(--text-secondary)]','font-semibold'); elements.toggleSlider.style.transform='translateX(0%)'; elements.amountLabel.textContent=elements.amountLabel.getAttribute('data-label-add'); } else { elements.modeRemove.classList.add('text-indigo-600','dark:text-indigo-400','font-bold'); elements.modeRemove.classList.remove('text-[var(--text-secondary)]','font-semibold'); elements.modeAdd.classList.remove('text-indigo-600','dark:text-indigo-400','font-bold'); elements.modeAdd.classList.add('text-[var(--text-secondary)]','font-semibold'); elements.toggleSlider.style.transform='translateX(100%)'; elements.amountLabel.textContent=elements.amountLabel.getAttribute('data-label-remove'); }
+  }
+  elements.modeAdd?.addEventListener('click', () => setMode('add'));
+  elements.modeRemove?.addEventListener('click', () => setMode('remove'));
+
+  elements.rateButtons?.forEach(btn => { btn.addEventListener('click', () => { const rate = btn.dataset.rate; elements.rateButtons.forEach(b => { b.classList.remove('border-indigo-500','bg-indigo-500/5','ring-3','ring-indigo-500/15'); b.classList.add('border-[var(--border-subtle)]','bg-[var(--bg-input)]'); b.setAttribute('aria-checked','false'); }); btn.classList.add('border-indigo-500','bg-indigo-500/5','ring-3','ring-indigo-500/15'); btn.classList.remove('border-[var(--border-subtle)]','bg-[var(--bg-input)]'); btn.setAttribute('aria-checked','true'); if(rate==='custom'){state.isCustom=true;elements.customRateInput?.focus();const v=pn(elements.customRateInput?.value);state.rate=isNaN(v)?0:v}else{state.isCustom=false;state.rate=parseFloat(rate)} }); });
+  elements.customRateInput?.addEventListener('input', () => { if(state.isCustom){const v=pn(elements.customRateInput.value);state.rate=isNaN(v)?0:v} });
+  elements.customRateInput?.addEventListener('focus', () => { elements.rateCustomBtn?.click(); });
+
+  function pn(s){if(!s)return NaN;s=s.trim();const lc=s.lastIndexOf(','),ld=s.lastIndexOf('.');if(lc>ld)s=s.replace(/\./g,'').replace(',','.');else if(ld>lc)s=s.replace(/,/g,'');else if(lc!==-1)s=s.replace(',','.');return parseFloat(s)}
+  function fc(v){return v.toLocaleString('es-ES',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2})}
+  function fr(r){return r%1===0?r.toString():r.toFixed(1)}
+
+  function calculate() {
+    const raw=elements.amountInput?.value.trim();
+    if(!raw){elements.amountInput?.classList.add('shake');setTimeout(()=>elements.amountInput?.classList.remove('shake'),400);return}
+    const amount=pn(raw);if(isNaN(amount)||amount<=0){elements.amountInput?.classList.add('shake');setTimeout(()=>elements.amountInput?.classList.remove('shake'),400);return}
+    const rate=state.rate;let base,iva,total;
+    if(state.mode==='add'){base=amount;iva=amount*(rate/100);total=amount+iva}else{total=amount;base=amount/(1+rate/100);iva=total-base}
+    state.lastResult={base,iva,total,rate,mode:state.mode};showResults(base,iva,total,rate);
+  }
+  elements.calcButton?.addEventListener('click', calculate);
+  elements.amountInput?.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();calculate()} });
+
+  let crid=null;
+  function animateChart(base,iva,total){const cv=elements.breakdownCanvas;if(!cv)return;const ctx=cv.getContext('2d');if(!ctx)return;if(crid)cancelAnimationFrame(crid);const dp=window.devicePixelRatio||1,sz=170;cv.width=sz*dp;cv.height=sz*dp;ctx.scale(dp,dp);const cx=sz/2,cy=sz/2,rd=sz*.38,lw=16;const br=total>0?base/total:.8,ir=total>0?iva/total:.2;elements.chartCenterPercent.textContent=`${Math.round(ir*100)}%`;elements.chartCenterLabel.textContent=`IVA (${fr(state.rate)}%)`;const st=performance.now(),du=600;function f(now){const p=Math.min((now-st)/du,1),e=1-Math.pow(1-p,3);ctx.clearRect(0,0,sz,sz);const dk=document.documentElement.getAttribute('data-theme')==='dark';ctx.beginPath();ctx.arc(cx,cy,rd,0,Math.PI*2);ctx.strokeStyle=dk?'rgba(255,255,255,0.08)':'rgba(15,23,42,0.06)';ctx.lineWidth=lw;ctx.stroke();const sa=-Math.PI/2,ta=Math.PI*2*e,ba=ta*br,ia=ta*ir;if(ba>0){ctx.beginPath();ctx.arc(cx,cy,rd,sa,sa+ba);const g=ctx.createLinearGradient(0,0,sz,sz);g.addColorStop(0,'#4f46e5');g.addColorStop(1,'#6366f1');ctx.strokeStyle=g;ctx.lineWidth=lw;ctx.lineCap='round';ctx.stroke()}if(ia>0){ctx.beginPath();ctx.arc(cx,cy,rd,sa+ba,sa+ba+ia);const g=ctx.createLinearGradient(0,0,sz,sz);g.addColorStop(0,'#ec4899');g.addColorStop(1,'#c084fc');ctx.strokeStyle=g;ctx.lineWidth=lw;ctx.lineCap='round';ctx.stroke()}if(p<1)crid=requestAnimationFrame(f)}crid=requestAnimationFrame(f)}
+
+  function showResults(base,iva,total,rate){elements.resultBaseValue.textContent=fc(base);elements.resultIvaValue.textContent=fc(iva);elements.resultTotalValue.textContent=fc(total);elements.resultIvaRate.textContent=fr(rate);elements.breakdownFill.style.width=`${(base/total)*100}%`;elements.breakdownIvaFill.style.width=`${(iva/total)*100}%`;animateChart(base,iva,total);elements.calcBody.classList.add('hidden');elements.resultsPanel.classList.remove('hidden')}
+  elements.resultsClose?.addEventListener('click',()=>{elements.resultsPanel.classList.add('hidden');elements.calcBody.classList.remove('hidden')});
+  elements.newCalc?.addEventListener('click',()=>{elements.resultsPanel.classList.add('hidden');elements.calcBody.classList.remove('hidden');elements.amountInput.value='';elements.amountInput.focus()});
+
+  elements.copyResult?.addEventListener('click',()=>{if(!state.lastResult)return;const{base,iva,total,rate}=state.lastResult;const t=`Calculadora IVA Incluido\nBase imponible: ${fc(base)}\nIVA incluido (${fr(rate)}%): ${fc(iva)}\nPrecio con IVA: ${fc(total)}`;navigator.clipboard.writeText(t).then(()=>{showToast(elements.copyResult?.getAttribute('data-copied-msg')||'✓ Copiado')})});
+  function showToast(msg){const ex=document.querySelector('.toast');if(ex)ex.remove();const t=document.createElement('div');t.className='toast show';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300)},2500)}
+
+  document.querySelectorAll('.faq-item .faq-question').forEach(button=>{button.addEventListener('click',()=>{const item=button.closest('.faq-item');if(!item)return;const isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{if(i!==item){i.classList.remove('open');const b=i.querySelector('.faq-question');if(b)b.setAttribute('aria-expanded','false')}});if(isOpen){item.classList.remove('open');button.setAttribute('aria-expanded','false')}else{item.classList.add('open');button.setAttribute('aria-expanded','true')}})});
+  document.querySelectorAll('.walkthrough-mini-rates .mini-rate-btn').forEach(btn=>{btn.addEventListener('click',()=>{const p=btn.closest('.walkthrough-mini-rates');if(p){p.querySelectorAll('.mini-rate-btn').forEach(b=>b.classList.remove('mini-rate-active'));btn.classList.add('mini-rate-active')}})});
+});
+</script>
