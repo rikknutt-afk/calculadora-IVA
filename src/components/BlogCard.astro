@@ -27,7 +27,7 @@ const postUrl = getLocalizedUrl(`/blog/${post.slug}/`, locale);
 ---
 
 <article class="glass-card flex flex-col justify-between overflow-hidden group hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
-  <a href={postUrl} class="block aspect-[16/9] overflow-hidden bg-gradient-to-br from-indigo-500/20 to-purple-500/20 relative">
+  <a href={postUrl} aria-label={post.data.title} class="block aspect-[16/9] overflow-hidden bg-gradient-to-br from-indigo-500/20 to-purple-500/20 relative">
     <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
       <span class="font-display font-black text-2xl sm:text-3xl gradient-text opacity-90 group-hover:scale-105 transition-transform duration-300">
         % IVA
@@ -57,6 +57,7 @@ const postUrl = getLocalizedUrl(`/blog/${post.slug}/`, locale);
 
     <a
       href={postUrl}
+      aria-label={`${t('readMore')}: ${post.data.title}`}
       class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 group-hover:underline pt-2"
     >
       <span>{t('readMore')}</span>

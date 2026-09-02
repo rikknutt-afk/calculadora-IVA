@@ -95,6 +95,7 @@ const currentPath = Astro.url.pathname;
                 <input
                   type="text"
                   id="langSearchDesktop"
+                  aria-label={locale === 'es' ? 'Buscar idioma' : 'Search language'}
                   placeholder={locale === 'es' ? 'Buscar idioma...' : 'Search language...'}
                   class="w-full text-xs px-2.5 py-1.5 pl-7 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
                   autocomplete="off"
@@ -258,6 +259,7 @@ const currentPath = Astro.url.pathname;
         <input
           type="text"
           id="langSearchMobile"
+          aria-label={locale === 'es' ? 'Buscar idioma' : 'Search language'}
           placeholder={locale === 'es' ? 'Buscar idioma...' : 'Search language...'}
           class="w-full text-xs px-3 py-2 pl-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:border-indigo-500"
           autocomplete="off"

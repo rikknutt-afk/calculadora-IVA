@@ -82,7 +82,7 @@ const isLocalizedHomepage = path === '/' || supportedLocales.some((l) => path ==
         {supportedLocales.map((l) => (
           <link rel="alternate" hreflang={l.code} href={new URL(getLocalizedUrl('/', l.code), siteConfig.siteUrl).href} />
         ))}
-        <link rel="alternate" hreflang="x-default" href={new URL('/', siteConfig.siteUrl).href} />
+        <link rel="alternate" hreflang="x-default" href={`${siteConfig.siteUrl}/`} />
       </>
     )}
 
