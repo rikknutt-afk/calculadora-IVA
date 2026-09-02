@@ -46,9 +46,9 @@ const postUrl = getLocalizedUrl(`/blog/${post.slug}/`, locale);
         <span>{post.data.author}</span>
       </div>
 
-      <h3 class="font-display font-bold text-lg text-[var(--text-primary)] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 mb-2">
+      <h2 class="font-display font-bold text-lg text-[var(--text-primary)] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 mb-2">
         <a href={postUrl}>{post.data.title}</a>
-      </h3>
+      </h2>
 
       <p class="text-xs sm:text-sm text-[var(--text-secondary)] line-clamp-3 leading-relaxed mb-4">
         {post.data.description}

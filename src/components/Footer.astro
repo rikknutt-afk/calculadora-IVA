@@ -39,7 +39,7 @@ const homeUrl = getLocalizedUrl('/', locale);
       <div class="footer-grid">
         <!-- Col 1: Tools / Herramientas -->
         <div class="footer-col" id="footerInterest">
-          <h4 class="footer-col-title">{t('footer.tools', 'Herramientas')}</h4>
+          <p class="footer-col-title">{t('footer.tools', 'Herramientas')}</p>
           <ul class="footer-link-list">
             <li><a href={`${homeUrl}#calculator`} class="footer-link">{t('nav.calculator', 'Calculadora de IVA')}</a></li>
             <li><a href={`${homeUrl}#calcular-iva`} class="footer-link">{t('nav.calcularIva', 'Calcular IVA online')}</a></li>
@@ -52,7 +52,7 @@ const homeUrl = getLocalizedUrl('/', locale);
 
         <!-- Col 2: Calculadoras / Tool Pages -->
         <div class="footer-col" id="footerCalculadoras">
-          <h4 class="footer-col-title">{t('footer.calculadoras', 'Calculadoras')}</h4>
+          <p class="footer-col-title">{t('footer.calculadoras', 'Calculadoras')}</p>
           <ul class="footer-link-list">
             <li><a href="/iva-de-una-cantidad/" class="footer-link">IVA de una Cantidad</a></li>
             <li><a href="/iva-incluido/" class="footer-link">IVA Incluido</a></li>
@@ -67,7 +67,7 @@ const homeUrl = getLocalizedUrl('/', locale);
 
         <!-- Col 3: By Country / Por País -->
         <div class="footer-col" id="footerCountries">
-          <h4 class="footer-col-title">{t('footer.byCountry', 'Por País')}</h4>
+          <p class="footer-col-title">{t('footer.byCountry', 'Por País')}</p>
           <ul class="footer-link-list">
             <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('footer.countries.es', 'España')} (21%)</a></li>
             <li><a href={`${homeUrl}#iva-porcentaje`} class="footer-link">{t('footer.countries.mx', 'México')} (16%)</a></li>
@@ -80,7 +80,7 @@ const homeUrl = getLocalizedUrl('/', locale);
 
         <!-- Col 3: Highlights / Destacados -->
         <div class="footer-col" id="footerHighlights">
-          <h4 class="footer-col-title">{t('footer.highlights', 'Destacados')}</h4>
+          <p class="footer-col-title">{t('footer.highlights', 'Destacados')}</p>
           <ul class="footer-link-list">
             <li><a href={`${homeUrl}#formula-iva`} class="footer-link">{t('nav.formulaIva', 'Fórmula del IVA')}</a></li>
             <li><a href={`${homeUrl}#calcular-iva`} class="footer-link">{t('footer.addRemoveIva', 'Añadir / Quitar IVA')}</a></li>
@@ -92,7 +92,7 @@ const homeUrl = getLocalizedUrl('/', locale);
 
         <!-- Col 4: Legal & Info -->
         <div class="footer-col" id="footerLegal">
-          <h4 class="footer-col-title">{t('footer.legal', 'Legal & Info')}</h4>
+          <p class="footer-col-title">{t('footer.legal', 'Legal & Info')}</p>
           <ul class="footer-link-list mb-3">
             <li><a href={getLocalizedUrl('/about-us/', locale)} class="footer-link">{t('nav.about', 'Sobre Nosotros')}</a></li>
             <li><a href={getLocalizedUrl('/contact-us/', locale)} class="footer-link">{t('nav.contact', 'Contacto')}</a></li>
