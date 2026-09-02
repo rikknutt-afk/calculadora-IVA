@@ -76,12 +76,12 @@ const quickTableData = [
         <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_30%_40%,rgba(79,70,229,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_60%,rgba(236,72,153,0.05)_0%,transparent_50%)] pointer-events-none animate-[spin_25s_linear_infinite]" aria-hidden="true"></div>
 
         <!-- Mode Toggle -->
-        <div class="flex relative bg-[var(--bg-toggle)] border border-[var(--border-subtle)] rounded-xl p-1 mb-8" role="tablist" aria-label="Modo de cálculo">
-          <button type="button" id="modeAdd" data-mode="add" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 transition-all relative z-10" role="tab" aria-selected="true">
+        <div class="flex relative bg-[var(--bg-toggle)] border border-[var(--border-subtle)] rounded-xl p-1 mb-8" role="group" aria-label="Modo de cálculo">
+          <button type="button" id="modeAdd" data-mode="add" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 transition-all relative z-10" aria-pressed="true">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             <span>Sumar IVA a cantidad</span>
           </button>
-          <button type="button" id="modeRemove" data-mode="remove" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold text-[var(--text-secondary)] transition-all relative z-10" role="tab" aria-selected="false">
+          <button type="button" id="modeRemove" data-mode="remove" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold text-[var(--text-secondary)] transition-all relative z-10" aria-pressed="false">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             <span>Extraer IVA de cantidad</span>
           </button>
@@ -120,12 +120,12 @@ const quickTableData = [
                 <span class="font-display font-bold text-base text-[var(--text-primary)]">21%</span>
                 <span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">General</span>
               </button>
-              <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" id="rateCustomBtn" data-rate="custom" role="radio" aria-checked="false">
+              <div class="cursor-pointer rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" id="rateCustomBtn" data-rate="custom" role="radio" aria-checked="false" tabindex="0">
                 <span class="font-display font-bold text-base text-[var(--text-primary)] flex items-center">
                   <input type="text" id="customRateInput" aria-label="Tipo de IVA personalizado" class="w-8 text-center bg-transparent border-b border-[var(--text-tertiary)] focus:border-indigo-500 outline-none text-base font-bold text-[var(--text-primary)]" placeholder="?" inputmode="decimal" />%
                 </span>
                 <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">Personalizado</span>
-              </button>
+              </div>
             </div>
           </div>
 
