@@ -1,6 +1,6 @@
 ---
 import siteConfig from '../config/site.json';
-import { getLocaleFromUrl, getLocaleDir, getOgLocale, useTranslations } from '../i18n/utils';
+import { getLocaleFromUrl, getLocaleDir, getOgLocale, useTranslations, supportedLocales, getLocalizedUrl } from '../i18n/utils';
 import ThemeScript from '../components/ThemeScript.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -61,6 +61,12 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteConfig.siteUrl}${
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
 
+    <!-- Multilingual Hreflang Tags -->
+    {supportedLocales.map((l) => (
+      <link rel="alternate" hreflang={l.code} href={new URL(getLocalizedUrl(Astro.url.pathname, l.code), siteConfig.siteUrl).href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(getLocalizedUrl(Astro.url.pathname, 'es'), siteConfig.siteUrl).href} />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -87,13 +93,26 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteConfig.siteUrl}${
     <meta name="twitter:description" content={finalDescription} />
     <meta name="twitter:image" content={fullImageUrl} />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Optimized Non-Blocking Load with Font Display Swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap"
+      />
+    </noscript>
 
     <!-- JSON-LD Structured Data -->
     <SchemaOrg

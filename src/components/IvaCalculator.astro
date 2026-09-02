@@ -232,8 +232,12 @@ const { t } = useTranslations(locale);
       lastResult: null,
     };
 
-    // 1. Ambient Background Canvas
+    // 1. Ambient Background Canvas (Desktop only, deferred to idle)
     function initAmbientCanvas() {
+      if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (elements.ambientCanvas) elements.ambientCanvas.style.display = 'none';
+        return;
+      }
       const canvas = elements.ambientCanvas;
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
@@ -333,7 +337,11 @@ const { t } = useTranslations(locale);
       }
       render();
     }
-    initAmbientCanvas();
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initAmbientCanvas, { timeout: 2000 });
+    } else {
+      setTimeout(initAmbientCanvas, 1200);
+    }
 
     // 2. Mode Toggle
     function setMode(mode) {

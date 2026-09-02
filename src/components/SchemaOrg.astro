@@ -50,13 +50,24 @@ const organizationSchema = {
 };
 
 // 2. Site Navigation Element Graph
+const navLabels: Record<string, string> = {
+  'nav.calculator': 'Calculadora de IVA',
+  'nav.calcularIva': 'Calcular IVA',
+  'nav.formulaIva': 'Fórmula del IVA',
+  'nav.howItWorks': 'Cómo funciona la calculadora',
+  'nav.rates': 'Porcentajes y tipos de IVA',
+  'nav.tools': 'Herramientas de cálculo',
+  'nav.faq': 'Preguntas Frecuentes',
+  'nav.blog': 'Blog de fiscalidad',
+};
+
 const siteNavSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   itemListElement: navConfig.headerNav.map((item, index) => ({
     '@type': 'SiteNavigationElement',
     position: index + 1,
-    name: item.key,
+    name: navLabels[item.key] || item.key,
     url: `${siteConfig.siteUrl}${item.href}`,
   })),
 };

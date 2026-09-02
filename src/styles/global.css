@@ -4,8 +4,8 @@
 
 @theme {
   --breakpoint-2xl: 1440px;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* =============================================
@@ -27,7 +27,7 @@
 
   --text-primary: #0f172a;
   --text-secondary: #475569;
-  --text-tertiary: #94a3b8;
+  --text-tertiary: #64748b;
   --text-accent: #4f46e5;
 
   /* Modern Gradients */
@@ -95,7 +95,7 @@
 
   --text-primary: #f0f0f5;
   --text-secondary: #a0a0b8;
-  --text-tertiary: #6b6b82;
+  --text-tertiary: #94a3b8;
   --text-accent: #c4b5fd;
 
   --gradient-primary: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
@@ -310,13 +310,14 @@ body {
 }
 
 .hero-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2.4rem, 5.5vw, 3.8rem);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: var(--space-lg);
+  content-visibility: visible;
 }
 
 .hero-subtitle {

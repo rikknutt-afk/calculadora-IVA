@@ -7,6 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://calculadoraiva.es',
   trailingSlash: 'always',
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [
     mdx(),
     sitemap({
