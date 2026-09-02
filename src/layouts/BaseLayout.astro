@@ -18,6 +18,7 @@ interface Props {
   breadcrumbs?: Array<{ name: string; url: string }>;
   blogItems?: Array<{ name: string; url: string; position: number }>;
   locale?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   breadcrumbs,
   blogItems,
   locale: propLocale,
+  noindex = false,
 } = Astro.props;
 
 const currentUrl = new URL(Astro.request.url);
@@ -41,8 +43,17 @@ const { t } = useTranslations(locale);
 
 const finalTitle = title || t('siteTitle', siteConfig.defaultTitle);
 const finalDescription = description || t('siteDescription', siteConfig.defaultDescription);
-const canonicalUrl = new URL(Astro.url.pathname, siteConfig.siteUrl).href;
+
+// Ensure trailing slash on canonical URL to match site config
+let path = Astro.url.pathname;
+if (!path.endsWith('/')) {
+  path += '/';
+}
+const canonicalUrl = new URL(path, siteConfig.siteUrl).href;
 const fullImageUrl = image.startsWith('http') ? image : `${siteConfig.siteUrl}${image}`;
+
+// Only output multilingual hreflang for the homepage versions which exist in all supported languages
+const isLocalizedHomepage = path === '/' || supportedLocales.some((l) => path === `/${l.code}/`);
 ---
 
 <!DOCTYPE html>
@@ -58,14 +69,22 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteConfig.siteUrl}${
     <title>{finalTitle}</title>
     <meta name="description" content={finalDescription} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+    {!noindex && <meta name="googlebot" content="index, follow" />}
 
-    <!-- Multilingual Hreflang Tags -->
-    {supportedLocales.map((l) => (
-      <link rel="alternate" hreflang={l.code} href={new URL(getLocalizedUrl(Astro.url.pathname, l.code), siteConfig.siteUrl).href} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={new URL(getLocalizedUrl(Astro.url.pathname, 'es'), siteConfig.siteUrl).href} />
+    <!-- Multilingual Hreflang Tags (Only for localized homepages) -->
+    {isLocalizedHomepage && (
+      <>
+        {supportedLocales.map((l) => (
+          <link rel="alternate" hreflang={l.code} href={new URL(getLocalizedUrl('/', l.code), siteConfig.siteUrl).href} />
+        ))}
+        <link rel="alternate" hreflang="x-default" href={new URL('/', siteConfig.siteUrl).href} />
+      </>
+    )}
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

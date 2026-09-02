@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://calculadoraiva.es',
+  site: 'https://calculadoraiva.net',
   trailingSlash: 'always',
   build: {
     inlineStylesheets: 'always',

@@ -1,7 +1,7 @@
 # LLMs.txt for Calculadora IVA
-Site-URL: https://calculadoraiva.es
-Contact: contacto@calculadoraiva.es
-Sitemap: https://calculadoraiva.es/sitemap-index.xml
+Site-URL: https://calculadoraiva.net
+Contact: contacto@calculadoraiva.net
+Sitemap: https://calculadoraiva.net/sitemap-index.xml
 
 # Description
 Calculadora de IVA online gratuita para España y Latinoamérica. Calcula el Impuesto al Valor Agregado (IVA) con los tipos impositivos de cada país: 21%, 16%, 19% y más. Añade o quita IVA al instante.

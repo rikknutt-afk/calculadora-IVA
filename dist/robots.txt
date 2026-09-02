@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://calculadoraiva.es/sitemap-index.xml
+Sitemap: https://calculadoraiva.net/sitemap-index.xml
