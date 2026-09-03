@@ -27,7 +27,6 @@ Disallow: *&preview=*
 
 # Sitemap Link
 Sitemap: ${siteConfig.siteUrl}/sitemap.xml
-Sitemap: ${siteConfig.siteUrl}/sitemap-index.xml
 
 # Block Ahrefs Crawler
 User-agent: AhrefsBot

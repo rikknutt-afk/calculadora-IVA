@@ -23,7 +23,6 @@ Disallow: *&preview=*
 
 # Sitemap Link
 Sitemap: https://calculadoraiva.net/sitemap.xml
-Sitemap: https://calculadoraiva.net/sitemap-index.xml
 
 # Block Ahrefs Crawler
 User-agent: AhrefsBot
