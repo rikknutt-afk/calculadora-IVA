@@ -25,7 +25,14 @@ const ivaTable = [
 ];
 ---
 
-<BaseLayout title={title} description={description} schemaType="WebSite" faqItems={faqItems} locale="es">
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="WebApplication"
+  isCalculator={true}
+  faqItems={faqItems}
+  locale="es"
+>
   <section class="hero" id="hero"><div class="hero-content"><h1 class="hero-title">Calculadora <span class="gradient-text">IVA a Pagar</span></h1><p class="hero-subtitle">Calcula la diferencia entre el IVA repercutido y el IVA soportado.<br class="hidden sm:inline" /> Descubre si debes ingresar a Hacienda o tienes saldo a compensar.</p></div></section>
 
   <section class="calculator-section" id="calculator">

@@ -24,7 +24,14 @@ const isrTable = [
 ];
 ---
 
-<BaseLayout title={title} description={description} schemaType="WebSite" faqItems={faqItems} locale="es">
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="WebApplication"
+  isCalculator={true}
+  faqItems={faqItems}
+  locale="es"
+>
   <section class="hero" id="hero"><div class="hero-content"><h1 class="hero-title">Calculadora <span class="gradient-text">IVA e ISR</span></h1><p class="hero-subtitle">Calcula el IVA al 16% y la retención de ISR para tus facturas CFDI en México.<br class="hidden sm:inline" /> Incluye retención de IVA (⅔) para servicios profesionales entre personas morales y físicas.</p></div></section>
 
   <section class="calculator-section" id="calculator">

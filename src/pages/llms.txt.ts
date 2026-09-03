@@ -37,6 +37,7 @@ ${siteConfig.siteName} proporciona herramientas financieras y de facturación gr
 - [Política de Privacidad](${siteConfig.siteUrl}/privacy/): Información de privacidad y RGPD.
 - [Términos y Condiciones](${siteConfig.siteUrl}/terms/): Términos legales de uso del servicio.
 - [Mapa del Sitio](${siteConfig.siteUrl}/sitemap/): Índice estructurado de páginas del sitio web.
+- [Sitemap XML](${siteConfig.siteUrl}/sitemap.xml): Archivo XML de sitemap con todas las rutas y prioridades.
 `;
 
   return new Response(content, {

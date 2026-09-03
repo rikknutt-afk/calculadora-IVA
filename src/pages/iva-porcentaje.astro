@@ -55,7 +55,14 @@ const ratesComparison = [
 ];
 ---
 
-<BaseLayout title={title} description={description} schemaType="WebSite" faqItems={faqItems} locale="es">
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="WebApplication"
+  isCalculator={true}
+  faqItems={faqItems}
+  locale="es"
+>
   <section class="hero" id="hero">
     <div class="hero-content">
       <h1 class="hero-title">Calculadora IVA <span class="gradient-text">Porcentaje</span></h1>

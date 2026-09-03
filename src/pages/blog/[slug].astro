@@ -37,9 +37,13 @@ const breadcrumbs = [
   title={post.data.seoTitle || post.data.title}
   description={post.data.description}
   image={post.data.image}
+  imageAlt={post.data.title}
   schemaType="Article"
   datePublished={post.data.date.toISOString()}
+  dateModified={post.data.date.toISOString()}
   authorName={post.data.author}
+  articleSection={post.data.category}
+  articleTags={[post.data.category, 'IVA', 'España', 'Impuestos', 'Fiscalidad']}
   breadcrumbs={breadcrumbs}
 >
   <article class="max-w-3xl mx-auto py-8">

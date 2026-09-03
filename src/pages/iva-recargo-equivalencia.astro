@@ -24,7 +24,14 @@ const recargoTable = [
 ];
 ---
 
-<BaseLayout title={title} description={description} schemaType="WebSite" faqItems={faqItems} locale="es">
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="WebApplication"
+  isCalculator={true}
+  faqItems={faqItems}
+  locale="es"
+>
   <section class="hero" id="hero"><div class="hero-content"><h1 class="hero-title">Calculadora <span class="gradient-text">Recargo de Equivalencia</span></h1><p class="hero-subtitle">Calcula el IVA y el recargo de equivalencia para comerciantes minoristas en España.<br class="hidden sm:inline" /> Selecciona el tipo de IVA y obtén el recargo automáticamente (5,2%, 1,4% o 0,5%).</p></div></section>
 
   <section class="calculator-section" id="calculator">

@@ -24,7 +24,14 @@ const iepsTable = [
 ];
 ---
 
-<BaseLayout title={title} description={description} schemaType="WebSite" faqItems={faqItems} locale="es">
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="WebApplication"
+  isCalculator={true}
+  faqItems={faqItems}
+  locale="es"
+>
   <section class="hero" id="hero"><div class="hero-content"><h1 class="hero-title">Calculadora <span class="gradient-text">IVA e IEPS</span></h1><p class="hero-subtitle">Calcula el Impuesto Especial sobre Producción y Servicios junto con el IVA.<br class="hidden sm:inline" /> Alcohol, tabaco, bebidas azucaradas, energéticos y combustibles en México.</p></div></section>
 
   <section class="calculator-section" id="calculator">

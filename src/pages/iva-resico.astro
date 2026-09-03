@@ -25,7 +25,14 @@ const resicoTable = [
 ];
 ---
 
-<BaseLayout title={title} description={description} schemaType="WebSite" faqItems={faqItems} locale="es">
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="WebApplication"
+  isCalculator={true}
+  faqItems={faqItems}
+  locale="es"
+>
   <section class="hero" id="hero"><div class="hero-content"><h1 class="hero-title">Calculadora IVA <span class="gradient-text">RESICO</span></h1><p class="hero-subtitle">Calcula tu ISR e IVA mensual bajo el Régimen Simplificado de Confianza.<br class="hidden sm:inline" /> Tasas de ISR del 1% al 2,5% según tus ingresos. Sin deducciones.</p></div></section>
 
   <section class="calculator-section" id="calculator">

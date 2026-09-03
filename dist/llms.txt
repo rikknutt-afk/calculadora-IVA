@@ -33,3 +33,4 @@ Calculadora IVA proporciona herramientas financieras y de facturación gratuitas
 - [Política de Privacidad](https://calculadoraiva.net/privacy/): Información de privacidad y RGPD.
 - [Términos y Condiciones](https://calculadoraiva.net/terms/): Términos legales de uso del servicio.
 - [Mapa del Sitio](https://calculadoraiva.net/sitemap/): Índice estructurado de páginas del sitio web.
+- [Sitemap XML](https://calculadoraiva.net/sitemap.xml): Archivo XML de sitemap con todas las rutas y prioridades.
