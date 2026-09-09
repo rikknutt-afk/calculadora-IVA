@@ -9,8 +9,14 @@ const { locale = 'es' } = Astro.props;
 const { t } = useTranslations(locale);
 ---
 
-<section class="content-section" id="como-funciona">
+<section class="section-block" id="como-funciona">
   <div class="section-container">
+    <div class="text-center">
+      <span class="section-badge">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        <span>{t('walkthroughBadge', 'Paso a Paso')}</span>
+      </span>
+    </div>
     <h2 class="section-title" set:html={t('howItWorksTitle', '¿Cómo funciona la calculadora de <span class="gradient-text">IVA</span>?')} />
     <p class="section-subtitle">
       {t('howItWorksSubtitle', 'La calculadora de IVA en línea funciona en 4 pasos: seleccionar el modo de cálculo, introducir el importe, elegir el porcentaje de IVA y obtener el resultado')}
