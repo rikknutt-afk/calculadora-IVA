@@ -1584,8 +1584,8 @@ body {
 /* Rate Comparison Chart */
 .rate-chart-container {
   max-width: 860px;
-  margin: 0 auto var(--space-2xl);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
+  margin: 0 auto 1.25rem;
+  padding: 1rem 1.25rem;
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
@@ -1607,17 +1607,17 @@ body {
 
 .rate-chart-title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: var(--space-xl);
+  margin-bottom: 0.75rem;
   text-align: center;
 }
 
 .rate-chart-bars {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
 }
 
 .rate-chart-bar-item {
@@ -1625,7 +1625,7 @@ body {
   grid-template-columns: 130px 1fr 50px;
   align-items: center;
   gap: var(--space-md);
-  padding: 6px 8px;
+  padding: 4px 6px;
   border-radius: var(--radius-md);
   transition: all var(--duration-fast) var(--ease-out);
 }
@@ -1635,14 +1635,14 @@ body {
 }
 
 .rate-chart-country {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-primary);
   white-space: nowrap;
 }
 
 .rate-chart-bar-track {
-  height: 22px;
+  height: 20px;
   background: var(--bg-tertiary);
   border-radius: var(--radius-full);
   overflow: hidden;
@@ -1659,7 +1659,7 @@ body {
 
 .rate-chart-pct {
   font-family: var(--font-display);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--accent-indigo);
   text-align: right;
@@ -1673,22 +1673,22 @@ body {
 
 .spain-rates-title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
   text-align: center;
-  margin-bottom: var(--space-xl);
+  margin-bottom: 0.75rem;
 }
 
 .spain-rates-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+  gap: 0.75rem;
 }
 
 .spain-rate-card {
-  padding: clamp(1.25rem, 2.5vw, 1.75rem);
-  border-radius: var(--radius-xl);
+  padding: 0.85rem 0.75rem;
+  border-radius: var(--radius-lg);
   text-align: center;
   transition: all var(--duration-normal) var(--ease-out);
   border: 1px solid var(--border-subtle);
@@ -1697,7 +1697,7 @@ body {
 }
 
 .spain-rate-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
@@ -1718,9 +1718,9 @@ body {
 
 .spain-rate-pct {
   font-family: var(--font-display);
-  font-size: 2.1rem;
+  font-size: 1.7rem;
   font-weight: 800;
-  margin-bottom: var(--space-xs);
+  margin-bottom: 2px;
   line-height: 1.1;
 }
 
@@ -1730,16 +1730,16 @@ body {
 
 .spain-rate-name {
   font-family: var(--font-display);
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .spain-rate-desc {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .faq-list {
@@ -1747,13 +1747,13 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 0.5rem;
 }
 
 .faq-item {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all var(--duration-normal) var(--ease-out);
   box-shadow: var(--shadow-sm);
@@ -1774,11 +1774,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.15rem 1.4rem;
+  padding: 0.85rem 1.1rem;
   background: transparent;
   border: none;
   font-family: 'Inter', sans-serif;
-  font-size: 0.98rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: var(--text-primary);
   cursor: pointer;
@@ -1813,10 +1813,10 @@ body {
 }
 
 .faq-answer p {
-  padding: 0 1.4rem 1.15rem;
-  font-size: 0.92rem;
+  padding: 0 1.1rem 0.85rem;
+  font-size: 0.88rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .faq-answer p:first-child {
@@ -1824,8 +1824,8 @@ body {
 }
 
 .faq-formula-mini {
-  margin: 0 1.4rem 1.15rem;
-  padding: var(--space-md);
+  margin: 0 1.1rem 0.85rem;
+  padding: 0.5rem 0.75rem;
   background: var(--bg-tertiary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -1871,8 +1871,8 @@ body {
 /* Quick Reference Table */
 .quick-table-wrapper {
   max-width: 860px;
-  margin: var(--space-3xl) auto 0;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
+  margin: 1.25rem auto 0;
+  padding: 1rem 1.25rem;
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
@@ -1893,19 +1893,19 @@ body {
 }
 
 .quick-table-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.35rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--text-primary);
   text-align: center;
-  margin-bottom: var(--space-sm);
+  margin-bottom: 0.25rem;
 }
 
 .quick-table-subtitle {
   text-align: center;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  margin-bottom: var(--space-xl);
+  margin-bottom: 0.85rem;
 }
 
 .quick-table-container {

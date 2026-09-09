@@ -13,17 +13,17 @@ const { t } = useTranslations(locale);
   <!-- Interactive HTML5 Background Canvas Component -->
   <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
 
-  <div class="glass-card p-6 sm:p-8 md:p-10 relative overflow-hidden transition-all duration-300">
+  <div class="glass-card p-5 sm:p-7 md:p-8 relative overflow-hidden transition-all duration-300">
     <!-- Ambient card glow -->
     <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_30%_40%,rgba(79,70,229,0.06)_0%,transparent_50%),radial-gradient(circle_at_70%_60%,rgba(236,72,153,0.05)_0%,transparent_50%)] pointer-events-none animate-[spin_25s_linear_infinite]" aria-hidden="true"></div>
 
     <!-- Mode Selector: Añadir vs Quitar IVA -->
-    <div class="flex p-1 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)] relative mb-6" role="group" aria-label="Modo de cálculo">
+    <div class="flex p-1 bg-[var(--bg-tertiary)] rounded-xl border border-[var(--border-subtle)] relative mb-4" role="group" aria-label="Modo de cálculo">
       <button
         type="button"
         id="modeAdd"
         data-mode="add"
-        class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 transition-all relative z-10"
+        class="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 transition-all relative z-10"
         aria-pressed="true"
       >
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -34,7 +34,7 @@ const { t } = useTranslations(locale);
         type="button"
         id="modeRemove"
         data-mode="remove"
-        class="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-semibold text-[var(--text-secondary)] transition-all relative z-10"
+        class="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-semibold text-[var(--text-secondary)] transition-all relative z-10"
         aria-pressed="false"
       >
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -45,10 +45,10 @@ const { t } = useTranslations(locale);
     </div>
 
     <!-- Input Form Body -->
-    <div id="calcBody" class="space-y-6">
+    <div id="calcBody" class="space-y-4">
       <!-- Amount Input -->
       <div>
-        <label for="amountInput" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+        <label for="amountInput" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5">
           <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
           <span
             id="amountLabel"
@@ -60,7 +60,7 @@ const { t } = useTranslations(locale);
           <input
             type="text"
             id="amountInput"
-            class="w-full py-4 pl-5 pr-12 bg-[var(--bg-input)] border-1.5 border-[var(--border-medium)] rounded-xl font-display text-2xl font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 shadow-sm transition-all placeholder:text-[var(--text-tertiary)] placeholder:opacity-50"
+            class="w-full py-3 pl-4 pr-12 bg-[var(--bg-input)] border-1.5 border-[var(--border-medium)] rounded-xl font-display text-2xl font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 shadow-sm transition-all placeholder:text-[var(--text-tertiary)] placeholder:opacity-50"
             placeholder="0,00"
             inputmode="decimal"
             autocomplete="off"
@@ -72,27 +72,24 @@ const { t } = useTranslations(locale);
 
       <!-- Rate Buttons Selection -->
       <div>
-        <label class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-2">
+        <label class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] mb-1.5">
           <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
           <span>{t('vatRate')}</span>
         </label>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="radiogroup" aria-label="Seleccionar tipo de IVA">
-          <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="4" role="radio" aria-checked="false">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" role="radiogroup" aria-label="Seleccionar tipo de IVA">
+          <button type="button" class="rate-btn flex flex-col items-center justify-center p-2.5 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="4" role="radio" aria-checked="false">
             <span class="font-display font-bold text-base text-[var(--text-primary)]">4%</span>
             <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">{t('superReduced')}</span>
           </button>
-
-          <button type="button" class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="10" role="radio" aria-checked="false">
+          <button type="button" class="rate-btn flex flex-col items-center justify-center p-2.5 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all" data-rate="10" role="radio" aria-checked="false">
             <span class="font-display font-bold text-base text-[var(--text-primary)]">10%</span>
             <span class="text-[10px] font-semibold text-[var(--text-tertiary)] uppercase tracking-wide">{t('reduced')}</span>
           </button>
-
-          <button type="button" class="rate-btn active flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-indigo-500 bg-indigo-500/5 ring-3 ring-indigo-500/15 shadow-sm transition-all" data-rate="21" role="radio" aria-checked="true">
+          <button type="button" class="rate-btn active flex flex-col items-center justify-center p-2.5 rounded-xl border-1.5 border-indigo-500 bg-indigo-500/5 ring-3 ring-indigo-500/15 shadow-sm transition-all" data-rate="21" role="radio" aria-checked="true">
             <span class="font-display font-bold text-base text-[var(--text-primary)]">21%</span>
             <span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">{t('general')}</span>
           </button>
-
-          <div class="rate-btn flex flex-col items-center justify-center p-3 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all cursor-pointer" id="rateCustomBtn" data-rate="custom" role="radio" aria-checked="false" tabindex="0">
+          <div class="rate-btn flex flex-col items-center justify-center p-2.5 rounded-xl border-1.5 border-[var(--border-subtle)] bg-[var(--bg-input)] hover:border-indigo-500 hover:-translate-y-0.5 shadow-sm transition-all cursor-pointer" id="rateCustomBtn" data-rate="custom" role="radio" aria-checked="false" tabindex="0">
             <span class="font-display font-bold text-base text-[var(--text-primary)] flex items-center">
               <input type="text" id="customRateInput" aria-label={t('custom', 'Tipo de IVA personalizado')} class="w-8 text-center bg-transparent border-b border-[var(--text-tertiary)] focus:border-indigo-500 outline-none text-base font-bold text-[var(--text-primary)]" placeholder="?" inputmode="decimal" />%
             </span>
@@ -105,7 +102,7 @@ const { t } = useTranslations(locale);
       <button
         type="button"
         id="calcButton"
-        class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/45 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden transition-all group"
+        class="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/45 hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden transition-all group"
       >
         <span class="relative z-10">{t('calcButton')}</span>
         <svg class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
