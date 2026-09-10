@@ -7,6 +7,7 @@ import FormulaIva from '../components/FormulaIva.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import RateTable from '../components/RateTable.astro';
 import ToolsShowcase from '../components/ToolsShowcase.astro';
+import BlogSection from '../components/BlogSection.astro';
 import FaqSection from '../components/FaqSection.astro';
 import { defaultLocale, useTranslations } from '../i18n/utils';
 
@@ -44,6 +45,9 @@ const { t, faq } = useTranslations(locale);
 
   <!-- Section: All Calculator Tools Showcase -->
   <ToolsShowcase locale={locale} />
+
+  <!-- Section: Blog & Guides Showcase -->
+  <BlogSection locale={locale} />
 
   <!-- Section: FAQ (6 questions + Quick Reference Table) -->
   <FaqSection locale={locale} />
