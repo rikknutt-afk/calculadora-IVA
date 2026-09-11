@@ -1,0 +1,159 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'es' } = Astro.props;
+const { t } = useTranslations(locale);
+
+const examples = [
+  {
+    label: t('exampleAddLabel', 'Añadir IVA (21%)'),
+    input: '100 €',
+    operation: '× 1,21',
+    result: '121,00 €',
+    color: 'indigo',
+  },
+  {
+    label: t('exampleRemoveLabel', 'Quitar IVA (21%)'),
+    input: '121 €',
+    operation: '÷ 1,21',
+    result: '100,00 €',
+    color: 'pink',
+  },
+  {
+    label: t('exampleReducedLabel', 'IVA reducido (10%)'),
+    input: '50 €',
+    operation: '× 1,10',
+    result: '55,00 €',
+    color: 'emerald',
+  },
+];
+---
+
+<section class="section-block" id="ejemplos-iva">
+  <div class="section-container">
+    <h2 class="section-title" set:html={t('examplesTitle', 'Ejemplos de Cálculo de <span class="gradient-text">IVA</span>')} />
+
+    <div class="examples-grid">
+      {examples.map((ex) => (
+        <div class={`example-card example-card--${ex.color}`}>
+          <span class="example-label">{ex.label}</span>
+          <div class="example-flow">
+            <span class="example-value">{ex.input}</span>
+            <span class="example-op">{ex.operation}</span>
+            <span class="example-equals">=</span>
+            <span class="example-result">{ex.result}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .examples-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 860px;
+    margin: 0.75rem auto 0;
+  }
+
+  .example-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.15rem 1rem;
+    border-radius: var(--radius-lg, 1rem);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .example-card:hover {
+    box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.08));
+  }
+
+  .example-card--indigo { border-color: rgba(79, 70, 229, 0.18); }
+  .example-card--pink   { border-color: rgba(236, 72, 153, 0.18); }
+  .example-card--emerald { border-color: rgba(16, 185, 129, 0.18); }
+
+  .example-card--indigo:hover { border-color: rgba(79, 70, 229, 0.35); }
+  .example-card--pink:hover   { border-color: rgba(236, 72, 153, 0.35); }
+  .example-card--emerald:hover { border-color: rgba(16, 185, 129, 0.35); }
+
+  .example-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-tertiary);
+  }
+
+  .example-card--indigo .example-label  { color: var(--accent-indigo, #6366f1); }
+  .example-card--pink .example-label    { color: #ec4899; }
+  .example-card--emerald .example-label { color: #10b981; }
+
+  .example-flow {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .example-value {
+    font-family: var(--font-display, system-ui);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .example-op {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    padding: 0.15rem 0.4rem;
+    background: rgba(79, 70, 229, 0.06);
+    border-radius: var(--radius-sm, 0.375rem);
+  }
+
+  .example-equals {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+  }
+
+  .example-result {
+    font-family: var(--font-display, system-ui);
+    font-size: 1.1rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-indigo, #6366f1), #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .example-card--pink .example-result {
+    background: linear-gradient(135deg, #ec4899, #f97316);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .example-card--emerald .example-result {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  @media (max-width: 640px) {
+    .examples-grid {
+      grid-template-columns: 1fr;
+      max-width: 340px;
+    }
+  }
+</style>

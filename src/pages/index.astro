@@ -2,7 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import IvaCalculator from '../components/IvaCalculator.astro';
-import CalcularIva from '../components/CalcularIva.astro';
+import DefinicionIva from '../components/DefinicionIva.astro';
+import EjemplosIva from '../components/EjemplosIva.astro';
 import FormulaIva from '../components/FormulaIva.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import RateTable from '../components/RateTable.astro';
@@ -31,8 +32,11 @@ const { t, faq } = useTranslations(locale);
     <IvaCalculator locale={locale} />
   </section>
 
-  <!-- Section: Calcular IVA (3-method flow diagram) -->
-  <CalcularIva locale={locale} />
+  <!-- Section: ¿Qué es el IVA? (Short definition) -->
+  <DefinicionIva locale={locale} />
+
+  <!-- Section: Ejemplos de Cálculo de IVA -->
+  <EjemplosIva locale={locale} />
 
   <!-- Section: ¿Cuál es la fórmula para calcular el IVA? & IVA soportado vs repercutido -->
   <FormulaIva locale={locale} />

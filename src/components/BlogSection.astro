@@ -17,18 +17,14 @@ const latestPosts = allPosts
 const blogArchiveUrl = getLocalizedUrl('/blog/', locale);
 ---
 
-<section class="py-16 bg-[var(--bg-secondary)]/40 border-y border-[var(--border-subtle)]" id="blog-section">
-  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+<section class="section-block" id="blog-section">
+  <div class="section-container section-container-wide">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-5 gap-4">
       <div>
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 mb-3 border border-indigo-500/20">
-          <span>📚</span>
-          <span>Blog & Guías Fiscales</span>
-        </div>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[var(--text-primary)]">
+        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-[var(--text-primary)]">
           Artículos y Guías sobre el <span class="gradient-text">IVA</span>
         </h2>
-        <p class="text-sm sm:text-base text-[var(--text-secondary)] mt-2 max-w-xl">
+        <p class="text-sm sm:text-base text-[var(--text-secondary)] mt-1 max-w-xl">
           Aprende a calcular el impuesto, aplicar fórmulas, emitir facturas y entender las normativas fiscales vigentes.
         </p>
       </div>
@@ -43,7 +39,7 @@ const blogArchiveUrl = getLocalizedUrl('/blog/', locale);
     </div>
 
     <!-- 3-Card Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {latestPosts.map((post) => (
         <BlogCard post={post} locale={locale} />
       ))}

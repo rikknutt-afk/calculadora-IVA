@@ -859,7 +859,7 @@ body {
 }
 
 .calculator-section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
   position: relative;
   z-index: 10;
 }
@@ -873,8 +873,8 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2vw, 1.5rem);
-  margin-bottom: 1.5rem;
+  padding: clamp(1rem, 2vw, 1.4rem) clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: 0.75rem;
   position: relative;
   z-index: 1;
   box-shadow: var(--shadow-sm);
@@ -946,7 +946,7 @@ body {
   color: var(--text-secondary);
   font-size: clamp(0.85rem, 1.5vw, 0.95rem);
   line-height: 1.55;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
   max-width: 680px;
   margin-left: auto;
   margin-right: auto;

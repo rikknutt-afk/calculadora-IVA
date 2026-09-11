@@ -11,12 +11,6 @@ const { t } = useTranslations(locale);
 
 <section class="section-block" id="calcular-iva">
   <div class="section-container">
-    <div class="text-center">
-      <span class="section-badge">
-        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        <span>{t('methodsBadge', 'Métodos de Cálculo')}</span>
-      </span>
-    </div>
     <h2 class="section-title" set:html={t('calcularIvaTitle', 'Calcular <span class="gradient-text">IVA</span>')} />
     <p class="section-subtitle">
       {t('calcularIvaSubtitle', 'La calculadora de IVA permite calcular el Impuesto al Valor Agregado (IVA) de 3 formas: añadir IVA a un precio sin IVA, quitar IVA de un precio con IVA incluido, o calcular el IVA inverso desde un total')}

@@ -1,0 +1,82 @@
+---
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'es' } = Astro.props;
+const { t } = useTranslations(locale);
+---
+
+<section class="section-block" id="que-es-iva">
+  <div class="section-container">
+    <h2 class="section-title" set:html={t('definitionTitle', '¿Qué es el <span class="gradient-text">IVA</span>?')} />
+
+    <div class="definition-card">
+      <div class="definition-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
+      <p class="definition-text">
+        {t('definitionText', 'El IVA (Impuesto sobre el Valor Añadido) es un impuesto indirecto que grava el consumo de bienes y servicios. Se aplica en cada etapa de la cadena de producción y distribución, pero solo el consumidor final soporta la carga fiscal. En España, los tipos vigentes son el 21% (general), 10% (reducido) y 4% (superreducido).')}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .definition-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.04) 0%, rgba(236, 72, 153, 0.03) 100%);
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    border-radius: var(--radius-lg, 1rem);
+    position: relative;
+  }
+
+  [data-theme="dark"] .definition-card {
+    background: linear-gradient(135deg, rgba(129, 140, 248, 0.06) 0%, rgba(236, 72, 153, 0.04) 100%);
+    border-color: rgba(129, 140, 248, 0.18);
+  }
+
+  .definition-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md, 0.75rem);
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--accent-indigo, #6366f1);
+    margin-top: 0.1rem;
+  }
+
+  [data-theme="dark"] .definition-icon {
+    background: rgba(129, 140, 248, 0.12);
+  }
+
+  .definition-text {
+    font-size: clamp(0.88rem, 1.4vw, 0.95rem);
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 480px) {
+    .definition-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+    }
+  }
+</style>
