@@ -17,6 +17,9 @@
           "type": "string",
           "default": "/og-image.png"
         },
+        "imageAlt": {
+          "type": "string"
+        },
         "date": {
           "anyOf": [
             {

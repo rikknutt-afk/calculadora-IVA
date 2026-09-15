@@ -7,6 +7,7 @@ const blogCollection = defineCollection({
     seoTitle: z.string().optional(),
     description: z.string(),
     image: z.string().default('/og-image.png'),
+    imageAlt: z.string().optional(),
     date: z.coerce.date(),
     author: z.string().default('Calculadora IVA'),
     category: z.string().default('Tax & Invoicing'),

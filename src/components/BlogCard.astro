@@ -28,11 +28,22 @@ const postUrl = getLocalizedUrl(`/blog/${post.slug}/`, locale);
 
 <article class="glass-card flex flex-col justify-between overflow-hidden group hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
   <a href={postUrl} aria-label={post.data.title} class="block aspect-[16/9] overflow-hidden bg-gradient-to-br from-indigo-500/20 to-purple-500/20 relative">
-    <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
-      <span class="font-display font-black text-2xl sm:text-3xl gradient-text opacity-90 group-hover:scale-105 transition-transform duration-300">
-        % IVA
-      </span>
-    </div>
+    {post.data.image && post.data.image !== '/og-image.png' ? (
+      <img
+        src={post.data.image}
+        alt={post.data.title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+        width="600"
+        height="338"
+      />
+    ) : (
+      <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
+        <span class="font-display font-black text-2xl sm:text-3xl gradient-text opacity-90 group-hover:scale-105 transition-transform duration-300">
+          % IVA
+        </span>
+      </div>
+    )}
     <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-indigo-600/90 text-white backdrop-blur-md shadow-sm">
       {post.data.category}
     </span>

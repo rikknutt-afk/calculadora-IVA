@@ -27,6 +27,7 @@ ${siteConfig.siteName} proporciona herramientas financieras y de facturación gr
 
 ## Blog y Guías Fiscales
 
+- [Cómo calcular el IVA fácilmente con una calculadora de IVA](${siteConfig.siteUrl}/blog/como-calcular-el-iva-facilmente-con-una-calculadora-de-iva/): Guía práctica para calcular el IVA desde cero, base imponible, desglose del impuesto y ejemplos claros.
 - [Guía del IVA en España 2025](${siteConfig.siteUrl}/blog/guia-iva-espana-2025/): Guía detallada sobre tipos impositivos, fórmulas matemáticas de cálculo y normativa fiscal.
 - [Facturación para Autónomos](${siteConfig.siteUrl}/blog/autonomos-irpf-facturacion/): Guía práctica sobre aplicación de IVA y retención de IRPF en facturas de autónomos.
 

@@ -189,6 +189,11 @@ export const GET: APIRoute = () => {
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://calculadoraiva.net/blog/como-calcular-el-iva-facilmente-con-una-calculadora-de-iva/</loc>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://calculadoraiva.net/blog/como-calcular-el-iva-facilmente/</loc>
     <lastmod>2026-09-10</lastmod>
     <priority>0.8</priority>
