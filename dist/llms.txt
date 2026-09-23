@@ -24,6 +24,7 @@ Calculadora IVA proporciona herramientas financieras y de facturación gratuitas
 ## Blog y Guías Fiscales
 
 - [Cómo calcular el IVA fácilmente con una calculadora de IVA](https://calculadoraiva.net/blog/como-calcular-el-iva-facilmente-con-una-calculadora-de-iva/): Guía práctica para calcular el IVA desde cero, base imponible, desglose del impuesto y ejemplos claros.
+- [Cómo calcular el IVA incluido en un precio y conocer la base imponible](https://calculadoraiva.net/blog/como-calcular-el-iva-incluido-en-un-precio-y-conocer-la-base-imponible/): Guía completa para desglosar el IVA incluido, calcular la base imponible con fórmula inversa y evitar errores contables.
 
 ## Enlaces Informativos
 
